@@ -43,6 +43,8 @@ type DeviceCreateInMetroInput struct {
 	IpxeScriptUrl *string `json:"ipxe_script_url,omitempty"`
 	// Whether the device should be locked, preventing accidental deletion.
 	Locked *bool `json:"locked,omitempty"`
+	// If true, this instance can not be converted to a different network type.
+	NetworkFrozen *bool `json:"network_frozen,omitempty"`
 	// Overrides default behaviour of attaching all of the organization members ssh keys and project ssh keys to device if no specific keys specified
 	NoSshKeys *bool `json:"no_ssh_keys,omitempty"`
 	// The slug of the operating system to provision. Check the Equinix Metal operating system documentation for rules that may be imposed per operating system, including restrictions on IP address options and device plans.
@@ -459,6 +461,38 @@ func (o *DeviceCreateInMetroInput) HasLocked() bool {
 // SetLocked gets a reference to the given bool and assigns it to the Locked field.
 func (o *DeviceCreateInMetroInput) SetLocked(v bool) {
 	o.Locked = &v
+}
+
+// GetNetworkFrozen returns the NetworkFrozen field value if set, zero value otherwise.
+func (o *DeviceCreateInMetroInput) GetNetworkFrozen() bool {
+	if o == nil || IsNil(o.NetworkFrozen) {
+		var ret bool
+		return ret
+	}
+	return *o.NetworkFrozen
+}
+
+// GetNetworkFrozenOk returns a tuple with the NetworkFrozen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceCreateInMetroInput) GetNetworkFrozenOk() (*bool, bool) {
+	if o == nil || IsNil(o.NetworkFrozen) {
+		return nil, false
+	}
+	return o.NetworkFrozen, true
+}
+
+// HasNetworkFrozen returns a boolean if a field has been set.
+func (o *DeviceCreateInMetroInput) HasNetworkFrozen() bool {
+	if o != nil && !IsNil(o.NetworkFrozen) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkFrozen gets a reference to the given bool and assigns it to the NetworkFrozen field.
+func (o *DeviceCreateInMetroInput) SetNetworkFrozen(v bool) {
+	o.NetworkFrozen = &v
 }
 
 // GetNoSshKeys returns the NoSshKeys field value if set, zero value otherwise.
@@ -902,6 +936,9 @@ func (o DeviceCreateInMetroInput) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
+	if !IsNil(o.NetworkFrozen) {
+		toSerialize["network_frozen"] = o.NetworkFrozen
+	}
 	if !IsNil(o.NoSshKeys) {
 		toSerialize["no_ssh_keys"] = o.NoSshKeys
 	}
@@ -966,6 +1003,7 @@ func (o *DeviceCreateInMetroInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "ip_addresses")
 		delete(additionalProperties, "ipxe_script_url")
 		delete(additionalProperties, "locked")
+		delete(additionalProperties, "network_frozen")
 		delete(additionalProperties, "no_ssh_keys")
 		delete(additionalProperties, "operating_system")
 		delete(additionalProperties, "plan")

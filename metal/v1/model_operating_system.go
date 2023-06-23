@@ -29,11 +29,13 @@ type OperatingSystem struct {
 	// Servers can be already preinstalled with OS in order to shorten provision time.
 	Preinstallable *bool `json:"preinstallable,omitempty"`
 	// This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores)
-	Pricing              map[string]interface{} `json:"pricing,omitempty"`
-	ProvisionableOn      []string               `json:"provisionable_on,omitempty"`
-	Slug                 *string                `json:"slug,omitempty"`
-	Version              *string                `json:"version,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Pricing         map[string]interface{} `json:"pricing,omitempty"`
+	ProvisionableOn []string               `json:"provisionable_on,omitempty"`
+	Slug            *string                `json:"slug,omitempty"`
+	Version         *string                `json:"version,omitempty"`
+	// Default operating system for the distro.
+	DefaultOperatingSystem *bool `json:"default_operating_system,omitempty"`
+	AdditionalProperties   map[string]interface{}
 }
 
 type _OperatingSystem OperatingSystem
@@ -375,6 +377,38 @@ func (o *OperatingSystem) SetVersion(v string) {
 	o.Version = &v
 }
 
+// GetDefaultOperatingSystem returns the DefaultOperatingSystem field value if set, zero value otherwise.
+func (o *OperatingSystem) GetDefaultOperatingSystem() bool {
+	if o == nil || IsNil(o.DefaultOperatingSystem) {
+		var ret bool
+		return ret
+	}
+	return *o.DefaultOperatingSystem
+}
+
+// GetDefaultOperatingSystemOk returns a tuple with the DefaultOperatingSystem field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OperatingSystem) GetDefaultOperatingSystemOk() (*bool, bool) {
+	if o == nil || IsNil(o.DefaultOperatingSystem) {
+		return nil, false
+	}
+	return o.DefaultOperatingSystem, true
+}
+
+// HasDefaultOperatingSystem returns a boolean if a field has been set.
+func (o *OperatingSystem) HasDefaultOperatingSystem() bool {
+	if o != nil && !IsNil(o.DefaultOperatingSystem) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultOperatingSystem gets a reference to the given bool and assigns it to the DefaultOperatingSystem field.
+func (o *OperatingSystem) SetDefaultOperatingSystem(v bool) {
+	o.DefaultOperatingSystem = &v
+}
+
 func (o OperatingSystem) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -415,6 +449,7 @@ func (o OperatingSystem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+	// skip: default_operating_system is readOnly
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -443,6 +478,7 @@ func (o *OperatingSystem) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "provisionable_on")
 		delete(additionalProperties, "slug")
 		delete(additionalProperties, "version")
+		delete(additionalProperties, "default_operating_system")
 		o.AdditionalProperties = additionalProperties
 	}
 

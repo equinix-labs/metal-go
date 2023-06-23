@@ -175,14 +175,14 @@ func (a *CapacityApiService) CheckCapacityForFacilityExecute(r ApiCheckCapacityF
 }
 
 type ApiCheckCapacityForMetroRequest struct {
-	ctx                   context.Context
-	ApiService            *CapacityApiService
-	capacityPerMetroInput *CapacityPerMetroInput
+	ctx           context.Context
+	ApiService    *CapacityApiService
+	capacityInput *CapacityInput
 }
 
 // Metro to check capacity in
-func (r ApiCheckCapacityForMetroRequest) CapacityPerMetroInput(capacityPerMetroInput CapacityPerMetroInput) ApiCheckCapacityForMetroRequest {
-	r.capacityPerMetroInput = &capacityPerMetroInput
+func (r ApiCheckCapacityForMetroRequest) CapacityInput(capacityInput CapacityInput) ApiCheckCapacityForMetroRequest {
+	r.capacityInput = &capacityInput
 	return r
 }
 
@@ -226,8 +226,8 @@ func (a *CapacityApiService) CheckCapacityForMetroExecute(r ApiCheckCapacityForM
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.capacityPerMetroInput == nil {
-		return localVarReturnValue, nil, reportError("capacityPerMetroInput is required and must be specified")
+	if r.capacityInput == nil {
+		return localVarReturnValue, nil, reportError("capacityInput is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -248,7 +248,7 @@ func (a *CapacityApiService) CheckCapacityForMetroExecute(r ApiCheckCapacityForM
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.capacityPerMetroInput
+	localVarPostBody = r.capacityInput
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -450,7 +450,7 @@ type ApiFindCapacityForMetroRequest struct {
 	ApiService *CapacityApiService
 }
 
-func (r ApiFindCapacityForMetroRequest) Execute() (*MetroCapacityList, *http.Response, error) {
+func (r ApiFindCapacityForMetroRequest) Execute() (*CapacityList, *http.Response, error) {
 	return r.ApiService.FindCapacityForMetroExecute(r)
 }
 
@@ -471,13 +471,13 @@ func (a *CapacityApiService) FindCapacityForMetro(ctx context.Context) ApiFindCa
 
 // Execute executes the request
 //
-//	@return MetroCapacityList
-func (a *CapacityApiService) FindCapacityForMetroExecute(r ApiFindCapacityForMetroRequest) (*MetroCapacityList, *http.Response, error) {
+//	@return CapacityList
+func (a *CapacityApiService) FindCapacityForMetroExecute(r ApiFindCapacityForMetroRequest) (*CapacityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MetroCapacityList
+		localVarReturnValue *CapacityList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CapacityApiService.FindCapacityForMetro")
@@ -714,7 +714,7 @@ type ApiFindOrganizationCapacityPerMetroRequest struct {
 	id         string
 }
 
-func (r ApiFindOrganizationCapacityPerMetroRequest) Execute() (*MetroCapacityList, *http.Response, error) {
+func (r ApiFindOrganizationCapacityPerMetroRequest) Execute() (*CapacityList, *http.Response, error) {
 	return r.ApiService.FindOrganizationCapacityPerMetroExecute(r)
 }
 
@@ -737,13 +737,13 @@ func (a *CapacityApiService) FindOrganizationCapacityPerMetro(ctx context.Contex
 
 // Execute executes the request
 //
-//	@return MetroCapacityList
-func (a *CapacityApiService) FindOrganizationCapacityPerMetroExecute(r ApiFindOrganizationCapacityPerMetroRequest) (*MetroCapacityList, *http.Response, error) {
+//	@return CapacityList
+func (a *CapacityApiService) FindOrganizationCapacityPerMetroExecute(r ApiFindOrganizationCapacityPerMetroRequest) (*CapacityList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *MetroCapacityList
+		localVarReturnValue *CapacityList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CapacityApiService.FindOrganizationCapacityPerMetro")

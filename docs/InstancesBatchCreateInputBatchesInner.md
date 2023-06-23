@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **IpAddresses** | Pointer to [**[]IPAddress**](IPAddress.md) | The &#x60;ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying &#x60;ip_addresses&#x60;, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send &#x60;{ \&quot;ip_addresses\&quot;: [{ \&quot;address_family\&quot;: 4, \&quot;public\&quot;: false }] }&#x60;.  It is possible to request a subnet size larger than a &#x60;/30&#x60; by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, &#x60;{ \&quot;ip_addresses\&quot;: [..., {\&quot;address_family\&quot;: 4, \&quot;public\&quot;: true, \&quot;ip_reservations\&quot;: [\&quot;uuid1\&quot;, \&quot;uuid2\&quot;]}] }&#x60;  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled. | [optional] [default to [{address_family=4, public=true}, {address_family=4, public=false}, {address_family=6, public=true}]]
 **IpxeScriptUrl** | Pointer to **string** | When set, the device will chainload an iPXE Script at boot fetched from the supplied URL.  See [Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/) for more details. | [optional] 
 **Locked** | Pointer to **bool** | Whether the device should be locked, preventing accidental deletion. | [optional] [default to false]
+**NetworkFrozen** | Pointer to **bool** | If true, this instance can not be converted to a different network type. | [optional] 
 **NoSshKeys** | Pointer to **bool** | Overrides default behaviour of attaching all of the organization members ssh keys and project ssh keys to device if no specific keys specified | [optional] [default to false]
 **OperatingSystem** | **string** | The slug of the operating system to provision. Check the Equinix Metal operating system documentation for rules that may be imposed per operating system, including restrictions on IP address options and device plans. | 
 **Plan** | **string** | The slug of the device plan to provision. | 
@@ -370,6 +371,31 @@ SetLocked sets Locked field to given value.
 `func (o *InstancesBatchCreateInputBatchesInner) HasLocked() bool`
 
 HasLocked returns a boolean if a field has been set.
+
+### GetNetworkFrozen
+
+`func (o *InstancesBatchCreateInputBatchesInner) GetNetworkFrozen() bool`
+
+GetNetworkFrozen returns the NetworkFrozen field if non-nil, zero value otherwise.
+
+### GetNetworkFrozenOk
+
+`func (o *InstancesBatchCreateInputBatchesInner) GetNetworkFrozenOk() (*bool, bool)`
+
+GetNetworkFrozenOk returns a tuple with the NetworkFrozen field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkFrozen
+
+`func (o *InstancesBatchCreateInputBatchesInner) SetNetworkFrozen(v bool)`
+
+SetNetworkFrozen sets NetworkFrozen field to given value.
+
+### HasNetworkFrozen
+
+`func (o *InstancesBatchCreateInputBatchesInner) HasNetworkFrozen() bool`
+
+HasNetworkFrozen returns a boolean if a field has been set.
 
 ### GetNoSshKeys
 

@@ -40,6 +40,8 @@ type Device struct {
 	// Prevents accidental deletion of this resource when set to true.
 	Locked *bool        `json:"locked,omitempty"`
 	Metro  *DeviceMetro `json:"metro,omitempty"`
+	// Whether network mode changes such as converting to/from Layer2 or Layer3 networking, bonding or disbonding network interfaces are permitted for the device.
+	NetworkFrozen *bool `json:"network_frozen,omitempty"`
 	// By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available.
 	NetworkPorts    []Port           `json:"network_ports,omitempty"`
 	OperatingSystem *OperatingSystem `json:"operating_system,omitempty"`
@@ -668,6 +670,38 @@ func (o *Device) HasMetro() bool {
 // SetMetro gets a reference to the given DeviceMetro and assigns it to the Metro field.
 func (o *Device) SetMetro(v DeviceMetro) {
 	o.Metro = &v
+}
+
+// GetNetworkFrozen returns the NetworkFrozen field value if set, zero value otherwise.
+func (o *Device) GetNetworkFrozen() bool {
+	if o == nil || IsNil(o.NetworkFrozen) {
+		var ret bool
+		return ret
+	}
+	return *o.NetworkFrozen
+}
+
+// GetNetworkFrozenOk returns a tuple with the NetworkFrozen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetNetworkFrozenOk() (*bool, bool) {
+	if o == nil || IsNil(o.NetworkFrozen) {
+		return nil, false
+	}
+	return o.NetworkFrozen, true
+}
+
+// HasNetworkFrozen returns a boolean if a field has been set.
+func (o *Device) HasNetworkFrozen() bool {
+	if o != nil && !IsNil(o.NetworkFrozen) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkFrozen gets a reference to the given bool and assigns it to the NetworkFrozen field.
+func (o *Device) SetNetworkFrozen(v bool) {
+	o.NetworkFrozen = &v
 }
 
 // GetNetworkPorts returns the NetworkPorts field value if set, zero value otherwise.
@@ -1470,6 +1504,9 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metro) {
 		toSerialize["metro"] = o.Metro
 	}
+	if !IsNil(o.NetworkFrozen) {
+		toSerialize["network_frozen"] = o.NetworkFrozen
+	}
 	if !IsNil(o.NetworkPorts) {
 		toSerialize["network_ports"] = o.NetworkPorts
 	}
@@ -1575,6 +1612,7 @@ func (o *Device) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "iqn")
 		delete(additionalProperties, "locked")
 		delete(additionalProperties, "metro")
+		delete(additionalProperties, "network_frozen")
 		delete(additionalProperties, "network_ports")
 		delete(additionalProperties, "operating_system")
 		delete(additionalProperties, "actions")

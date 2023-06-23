@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## CheckCapacityForMetro
 
-> CapacityCheckPerMetroList CheckCapacityForMetro(ctx).CapacityPerMetroInput(capacityPerMetroInput).Execute()
+> CapacityCheckPerMetroList CheckCapacityForMetro(ctx).CapacityInput(capacityInput).Execute()
 
 Check capacity for a metro
 
@@ -100,11 +100,11 @@ import (
 )
 
 func main() {
-    capacityPerMetroInput := *openapiclient.NewCapacityPerMetroInput() // CapacityPerMetroInput | Metro to check capacity in
+    capacityInput := *openapiclient.NewCapacityInput() // CapacityInput | Metro to check capacity in
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CapacityApi.CheckCapacityForMetro(context.Background()).CapacityPerMetroInput(capacityPerMetroInput).Execute()
+    resp, r, err := apiClient.CapacityApi.CheckCapacityForMetro(context.Background()).CapacityInput(capacityInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.CheckCapacityForMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,7 +125,7 @@ Other parameters are passed through a pointer to a apiCheckCapacityForMetroReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **capacityPerMetroInput** | [**CapacityPerMetroInput**](CapacityPerMetroInput.md) | Metro to check capacity in | 
+ **capacityInput** | [**CapacityInput**](CapacityInput.md) | Metro to check capacity in | 
 
 ### Return type
 
@@ -208,7 +208,7 @@ Other parameters are passed through a pointer to a apiFindCapacityForFacilityReq
 
 ## FindCapacityForMetro
 
-> MetroCapacityList FindCapacityForMetro(ctx).Execute()
+> CapacityList FindCapacityForMetro(ctx).Execute()
 
 View capacity for metros
 
@@ -235,7 +235,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindCapacityForMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindCapacityForMetro`: MetroCapacityList
+    // response from `FindCapacityForMetro`: CapacityList
     fmt.Fprintf(os.Stdout, "Response from `CapacityApi.FindCapacityForMetro`: %v\n", resp)
 }
 ```
@@ -251,7 +251,7 @@ Other parameters are passed through a pointer to a apiFindCapacityForMetroReques
 
 ### Return type
 
-[**MetroCapacityList**](MetroCapacityList.md)
+[**CapacityList**](CapacityList.md)
 
 ### Authorization
 
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationCapacityPerMetro
 
-> MetroCapacityList FindOrganizationCapacityPerMetro(ctx, id).Execute()
+> CapacityList FindOrganizationCapacityPerMetro(ctx, id).Execute()
 
 View available hardware plans per Metro for given organization
 
@@ -367,7 +367,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindOrganizationCapacityPerMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindOrganizationCapacityPerMetro`: MetroCapacityList
+    // response from `FindOrganizationCapacityPerMetro`: CapacityList
     fmt.Fprintf(os.Stdout, "Response from `CapacityApi.FindOrganizationCapacityPerMetro`: %v\n", resp)
 }
 ```
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MetroCapacityList**](MetroCapacityList.md)
+[**CapacityList**](CapacityList.md)
 
 ### Authorization
 

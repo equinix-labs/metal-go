@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Facility** | Pointer to **string** |  | [optional] 
-**Plan** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
+**Metro** | Pointer to **string** | The metro ID or code to check the capacity in. | [optional] 
+**Plan** | Pointer to **string** | The plan ID or slug to check the capacity of. | [optional] 
+**Quantity** | Pointer to **string** | The number of servers to check the capacity of. | [optional] 
 
 ## Methods
 
@@ -51,6 +52,31 @@ SetFacility sets Facility field to given value.
 `func (o *ServerInfo) HasFacility() bool`
 
 HasFacility returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *ServerInfo) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *ServerInfo) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *ServerInfo) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+### HasMetro
+
+`func (o *ServerInfo) HasMetro() bool`
+
+HasMetro returns a boolean if a field has been set.
 
 ### GetPlan
 

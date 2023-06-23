@@ -97,6 +97,10 @@ properties:
     default: false
     description: Whether the device should be locked, preventing accidental deletion.
     type: boolean
+  network_frozen:
+    description: If true, this instance can not be converted to a different network
+      type.
+    type: boolean
   no_ssh_keys:
     default: false
     description: Overrides default behaviour of attaching all of the organization

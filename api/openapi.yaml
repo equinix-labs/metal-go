@@ -723,6 +723,23 @@ paths:
         "200":
           content:
             application/json:
+              example:
+                capacity:
+                  am6:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da11:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  sv15:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -776,8 +793,25 @@ paths:
         "200":
           content:
             application/json:
+              example:
+                capacity:
+                  am:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  dc:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
-                $ref: '#/components/schemas/MetroCapacityList'
+                $ref: '#/components/schemas/CapacityList'
           description: ok
         "401":
           content:
@@ -795,7 +829,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CapacityPerMetroInput'
+              $ref: '#/components/schemas/CapacityInput'
         description: Metro to check capacity in
         required: true
       responses:
@@ -4574,6 +4608,23 @@ paths:
         "200":
           content:
             application/json:
+              example:
+                capacity:
+                  am6:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da11:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  sv15:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -4608,8 +4659,25 @@ paths:
         "200":
           content:
             application/json:
+              example:
+                capacity:
+                  am:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  dc:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
-                $ref: '#/components/schemas/MetroCapacityList'
+                $ref: '#/components/schemas/CapacityList'
           description: ok
         "401":
           content:
@@ -14202,9 +14270,11 @@ components:
       example:
         servers:
         - quantity: quantity
+          metro: metro
           facility: facility
           plan: plan
         - quantity: quantity
+          metro: metro
           facility: facility
           plan: plan
       properties:
@@ -14223,316 +14293,22 @@ components:
     CapacityList:
       example:
         capacity:
-          ord1:
-            baremetal_1e:
-              level: level
-          syd1:
-            baremetal_1e:
-              level: level
-          ams1:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          fra1:
-            baremetal_1e:
-              level: level
-          sin1:
-            baremetal_1e:
-              level: level
-          yyz1:
-            baremetal_1e:
-              level: level
-          sjc1:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          nrt1:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          dfw1:
-            baremetal_1e:
-              level: level
-          iad1:
-            baremetal_1e:
-              level: level
-          atl1:
-            baremetal_1e:
-              level: level
-          sea1:
-            baremetal_1e:
-              level: level
-          lax1:
-            baremetal_1e:
-              level: level
-          ewr1:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
+          key:
+            key:
               level: level
       properties:
         capacity:
-          $ref: '#/components/schemas/CapacityReport'
-      type: object
-    CapacityPerFacility:
-      example:
-        c2.medium.x86:
-          level: level
-        baremetal_2a2:
-          level: level
-        m2.xlarge.x86:
-          level: level
-        baremetal_1:
-          level: level
-        baremetal_0:
-          level: level
-        baremetal_2a:
-          level: level
-        baremetal_3:
-          level: level
-        baremetal_s:
-          level: level
-        baremetal_2:
-          level: level
-      properties:
-        baremetal_0:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_1:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2a:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2a2:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_3:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_s:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        c2.medium.x86:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        m2.xlarge.x86:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-      type: object
-    CapacityPerMetroInput:
-      example:
-        servers:
-        - quantity: quantity
-          metro: metro
-          plan: plan
-        - quantity: quantity
-          metro: metro
-          plan: plan
-      properties:
-        servers:
-          items:
-            $ref: '#/components/schemas/MetroServerInfo'
-          type: array
-      type: object
-    CapacityPerNewFacility:
-      example:
-        baremetal_1e:
-          level: level
-      properties:
-        baremetal_1e:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+          additionalProperties:
+            additionalProperties:
+              $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+            type: object
+          type: object
       type: object
     CapacityReport:
-      example:
-        ord1:
-          baremetal_1e:
-            level: level
-        syd1:
-          baremetal_1e:
-            level: level
-        ams1:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        fra1:
-          baremetal_1e:
-            level: level
-        sin1:
-          baremetal_1e:
-            level: level
-        yyz1:
-          baremetal_1e:
-            level: level
-        sjc1:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        nrt1:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        dfw1:
-          baremetal_1e:
-            level: level
-        iad1:
-          baremetal_1e:
-            level: level
-        atl1:
-          baremetal_1e:
-            level: level
-        sea1:
-          baremetal_1e:
-            level: level
-        lax1:
-          baremetal_1e:
-            level: level
-        ewr1:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-      properties:
-        ams1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        atl1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        dfw1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        ewr1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        fra1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        iad1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        lax1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        nrt1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ord1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sea1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sin1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sjc1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        syd1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        yyz1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
+      additionalProperties:
+        additionalProperties:
+          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+        type: object
       type: object
     Coordinates:
       example:
@@ -14882,6 +14658,7 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         sos: sos
         operating_system:
+          default_operating_system: true
           distro: distro
           preinstallable: true
           licensed: true
@@ -14957,6 +14734,7 @@ components:
           pricing: "{}"
           slug: m3.large.x86
         provisioning_percentage: 7.0614014
+        network_frozen: true
         image_url: image_url
         root_password: root_password
         volumes:
@@ -15209,6 +14987,11 @@ components:
           type: boolean
         metro:
           $ref: '#/components/schemas/Device_metro'
+        network_frozen:
+          description: "Whether network mode changes such as converting to/from Layer2\
+            \ or Layer3 networking, bonding or disbonding network interfaces are permitted\
+            \ for the device."
+          type: boolean
         network_ports:
           description: "By default, servers at Equinix Metal are configured in a “\
             bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC\
@@ -15414,6 +15197,10 @@ components:
           default: false
           description: "Whether the device should be locked, preventing accidental\
             \ deletion."
+          type: boolean
+        network_frozen:
+          description: "If true, this instance can not be converted to a different\
+            \ network type."
           type: boolean
         no_ssh_keys:
           default: false
@@ -15833,6 +15620,7 @@ components:
           updated_at: 2000-01-23T04:56:07.000+00:00
           sos: sos
           operating_system:
+            default_operating_system: true
             distro: distro
             preinstallable: true
             licensed: true
@@ -15908,6 +15696,7 @@ components:
             pricing: "{}"
             slug: m3.large.x86
           provisioning_percentage: 7.0614014
+          network_frozen: true
           image_url: image_url
           root_password: root_password
           volumes:
@@ -16412,6 +16201,7 @@ components:
           updated_at: 2000-01-23T04:56:07.000+00:00
           sos: sos
           operating_system:
+            default_operating_system: true
             distro: distro
             preinstallable: true
             licensed: true
@@ -16487,6 +16277,7 @@ components:
             pricing: "{}"
             slug: m3.large.x86
           provisioning_percentage: 7.0614014
+          network_frozen: true
           image_url: image_url
           root_password: root_password
           volumes:
@@ -19769,817 +19560,6 @@ components:
       required:
       - metro
       type: object
-    MetroCapacityList:
-      example:
-        capacity:
-          hk:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          sv:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          ch:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          ty:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          sy:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          ny:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          am:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          fr:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          pa:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          se:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          at:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          sg:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          la:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          md:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          ld:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          sl:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          da:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          sp:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          tr:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-          dc:
-            c2.medium.x86:
-              level: level
-            baremetal_2a2:
-              level: level
-            m2.xlarge.x86:
-              level: level
-            baremetal_1:
-              level: level
-            baremetal_0:
-              level: level
-            baremetal_2a:
-              level: level
-            baremetal_3:
-              level: level
-            baremetal_s:
-              level: level
-            baremetal_2:
-              level: level
-      properties:
-        capacity:
-          $ref: '#/components/schemas/MetroCapacityReport'
-      type: object
-    MetroCapacityReport:
-      example:
-        hk:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        sv:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        ch:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        ty:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        sy:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        ny:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        am:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        fr:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        pa:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        se:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        at:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        sg:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        la:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        md:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        ld:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        sl:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        da:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        sp:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        tr:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-        dc:
-          c2.medium.x86:
-            level: level
-          baremetal_2a2:
-            level: level
-          m2.xlarge.x86:
-            level: level
-          baremetal_1:
-            level: level
-          baremetal_0:
-            level: level
-          baremetal_2a:
-            level: level
-          baremetal_3:
-            level: level
-          baremetal_s:
-            level: level
-          baremetal_2:
-            level: level
-      properties:
-        am:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        at:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ch:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        da:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        dc:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        fr:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        hk:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        la:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ld:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        md:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ny:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        pa:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        se:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sg:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sl:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sp:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sv:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sy:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        tr:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ty:
-          $ref: '#/components/schemas/CapacityPerFacility'
-      type: object
     MetroList:
       example:
         metros:
@@ -20597,22 +19577,6 @@ components:
             $ref: '#/components/schemas/Metro'
           type: array
       type: object
-    MetroServerInfo:
-      example:
-        quantity: quantity
-        metro: metro
-        plan: plan
-      properties:
-        metro:
-          description: The metro ID or code to check the capacity in.
-          type: string
-        plan:
-          description: The plan ID or slug to check the capacity of.
-          type: string
-        quantity:
-          description: The number of servers to check the capacity of.
-          type: string
-      type: object
     NewPassword:
       example:
         new_password: new_password
@@ -20622,6 +19586,7 @@ components:
       type: object
     OperatingSystem:
       example:
+        default_operating_system: true
         distro: distro
         preinstallable: true
         licensed: true
@@ -20664,11 +19629,16 @@ components:
           type: string
         version:
           type: string
+        default_operating_system:
+          description: Default operating system for the distro.
+          readOnly: true
+          type: boolean
       type: object
     OperatingSystemList:
       example:
         operating_systems:
-        - distro: distro
+        - default_operating_system: true
+          distro: distro
           preinstallable: true
           licensed: true
           name: name
@@ -20680,7 +19650,8 @@ components:
           pricing: "{}"
           slug: slug
           distro_label: distro_label
-        - distro: distro
+        - default_operating_system: true
+          distro: distro
           preinstallable: true
           licensed: true
           name: name
@@ -22538,15 +21509,21 @@ components:
     ServerInfo:
       example:
         quantity: quantity
+        metro: metro
         facility: facility
         plan: plan
       properties:
         facility:
           deprecated: true
           type: string
+        metro:
+          description: The metro ID or code to check the capacity in.
+          type: string
         plan:
+          description: The plan ID or slug to check the capacity of.
           type: string
         quantity:
+          description: The number of servers to check the capacity of.
           type: string
       type: object
     SpotMarketPricesList:
