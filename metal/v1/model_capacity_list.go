@@ -20,7 +20,7 @@ var _ MappedNullable = &CapacityList{}
 
 // CapacityList struct for CapacityList
 type CapacityList struct {
-	Capacity             *CapacityReport `json:"capacity,omitempty"`
+	Capacity             *map[string]map[string]CapacityLevelPerBaremetal `json:"capacity,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +44,9 @@ func NewCapacityListWithDefaults() *CapacityList {
 }
 
 // GetCapacity returns the Capacity field value if set, zero value otherwise.
-func (o *CapacityList) GetCapacity() CapacityReport {
+func (o *CapacityList) GetCapacity() map[string]map[string]CapacityLevelPerBaremetal {
 	if o == nil || IsNil(o.Capacity) {
-		var ret CapacityReport
+		var ret map[string]map[string]CapacityLevelPerBaremetal
 		return ret
 	}
 	return *o.Capacity
@@ -54,7 +54,7 @@ func (o *CapacityList) GetCapacity() CapacityReport {
 
 // GetCapacityOk returns a tuple with the Capacity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityList) GetCapacityOk() (*CapacityReport, bool) {
+func (o *CapacityList) GetCapacityOk() (*map[string]map[string]CapacityLevelPerBaremetal, bool) {
 	if o == nil || IsNil(o.Capacity) {
 		return nil, false
 	}
@@ -70,8 +70,8 @@ func (o *CapacityList) HasCapacity() bool {
 	return false
 }
 
-// SetCapacity gets a reference to the given CapacityReport and assigns it to the Capacity field.
-func (o *CapacityList) SetCapacity(v CapacityReport) {
+// SetCapacity gets a reference to the given map[string]map[string]CapacityLevelPerBaremetal and assigns it to the Capacity field.
+func (o *CapacityList) SetCapacity(v map[string]map[string]CapacityLevelPerBaremetal) {
 	o.Capacity = &v
 }
 

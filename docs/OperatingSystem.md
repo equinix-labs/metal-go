@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ProvisionableOn** | Pointer to **[]string** |  | [optional] 
 **Slug** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
+**DefaultOperatingSystem** | Pointer to **bool** | Default operating system for the distro. | [optional] [readonly] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetVersion sets Version field to given value.
 `func (o *OperatingSystem) HasVersion() bool`
 
 HasVersion returns a boolean if a field has been set.
+
+### GetDefaultOperatingSystem
+
+`func (o *OperatingSystem) GetDefaultOperatingSystem() bool`
+
+GetDefaultOperatingSystem returns the DefaultOperatingSystem field if non-nil, zero value otherwise.
+
+### GetDefaultOperatingSystemOk
+
+`func (o *OperatingSystem) GetDefaultOperatingSystemOk() (*bool, bool)`
+
+GetDefaultOperatingSystemOk returns a tuple with the DefaultOperatingSystem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultOperatingSystem
+
+`func (o *OperatingSystem) SetDefaultOperatingSystem(v bool)`
+
+SetDefaultOperatingSystem sets DefaultOperatingSystem field to given value.
+
+### HasDefaultOperatingSystem
+
+`func (o *OperatingSystem) HasDefaultOperatingSystem() bool`
+
+HasDefaultOperatingSystem returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

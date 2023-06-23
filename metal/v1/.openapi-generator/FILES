@@ -75,10 +75,6 @@ docs/CapacityCheckPerMetroList.md
 docs/CapacityInput.md
 docs/CapacityLevelPerBaremetal.md
 docs/CapacityList.md
-docs/CapacityPerFacility.md
-docs/CapacityPerMetroInput.md
-docs/CapacityPerNewFacility.md
-docs/CapacityReport.md
 docs/Coordinates.md
 docs/CreateDeviceRequest.md
 docs/CreateEmailInput.md
@@ -179,11 +175,8 @@ docs/MetalGatewayListMetalGatewaysInner.md
 docs/MetalGatewayLite.md
 docs/MetalGatewaysApi.md
 docs/Metro.md
-docs/MetroCapacityList.md
-docs/MetroCapacityReport.md
 docs/MetroInput.md
 docs/MetroList.md
-docs/MetroServerInfo.md
 docs/MetrosApi.md
 docs/Mount.md
 docs/MoveHardwareReservationRequest.md
@@ -348,10 +341,6 @@ model_capacity_check_per_metro_list.go
 model_capacity_input.go
 model_capacity_level_per_baremetal.go
 model_capacity_list.go
-model_capacity_per_facility.go
-model_capacity_per_metro_input.go
-model_capacity_per_new_facility.go
-model_capacity_report.go
 model_coordinates.go
 model_create_device_request.go
 model_create_email_input.go
@@ -439,11 +428,8 @@ model_metal_gateway_list.go
 model_metal_gateway_list_metal_gateways_inner.go
 model_metal_gateway_lite.go
 model_metro.go
-model_metro_capacity_list.go
-model_metro_capacity_report.go
 model_metro_input.go
 model_metro_list.go
-model_metro_server_info.go
 model_mount.go
 model_move_hardware_reservation_request.go
 model_new_password.go

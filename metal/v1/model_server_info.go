@@ -21,8 +21,12 @@ var _ MappedNullable = &ServerInfo{}
 // ServerInfo struct for ServerInfo
 type ServerInfo struct {
 	// Deprecated
-	Facility             *string `json:"facility,omitempty"`
-	Plan                 *string `json:"plan,omitempty"`
+	Facility *string `json:"facility,omitempty"`
+	// The metro ID or code to check the capacity in.
+	Metro *string `json:"metro,omitempty"`
+	// The plan ID or slug to check the capacity of.
+	Plan *string `json:"plan,omitempty"`
+	// The number of servers to check the capacity of.
 	Quantity             *string `json:"quantity,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -79,6 +83,38 @@ func (o *ServerInfo) HasFacility() bool {
 // Deprecated
 func (o *ServerInfo) SetFacility(v string) {
 	o.Facility = &v
+}
+
+// GetMetro returns the Metro field value if set, zero value otherwise.
+func (o *ServerInfo) GetMetro() string {
+	if o == nil || IsNil(o.Metro) {
+		var ret string
+		return ret
+	}
+	return *o.Metro
+}
+
+// GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInfo) GetMetroOk() (*string, bool) {
+	if o == nil || IsNil(o.Metro) {
+		return nil, false
+	}
+	return o.Metro, true
+}
+
+// HasMetro returns a boolean if a field has been set.
+func (o *ServerInfo) HasMetro() bool {
+	if o != nil && !IsNil(o.Metro) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetro gets a reference to the given string and assigns it to the Metro field.
+func (o *ServerInfo) SetMetro(v string) {
+	o.Metro = &v
 }
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
@@ -158,6 +194,9 @@ func (o ServerInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
+	if !IsNil(o.Metro) {
+		toSerialize["metro"] = o.Metro
+	}
 	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
@@ -183,6 +222,7 @@ func (o *ServerInfo) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "facility")
+		delete(additionalProperties, "metro")
 		delete(additionalProperties, "plan")
 		delete(additionalProperties, "quantity")
 		o.AdditionalProperties = additionalProperties

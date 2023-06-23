@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **Iqn** | Pointer to **string** |  | [optional] 
 **Locked** | Pointer to **bool** | Prevents accidental deletion of this resource when set to true. | [optional] 
 **Metro** | Pointer to [**DeviceMetro**](DeviceMetro.md) |  | [optional] 
+**NetworkFrozen** | Pointer to **bool** | Whether network mode changes such as converting to/from Layer2 or Layer3 networking, bonding or disbonding network interfaces are permitted for the device. | [optional] 
 **NetworkPorts** | Pointer to [**[]Port**](Port.md) | By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available. | [optional] 
 **OperatingSystem** | Pointer to [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
 **Actions** | Pointer to [**[]DeviceActionsInner**](DeviceActionsInner.md) | Actions supported by the device instance. | [optional] 
@@ -514,6 +515,31 @@ SetMetro sets Metro field to given value.
 `func (o *Device) HasMetro() bool`
 
 HasMetro returns a boolean if a field has been set.
+
+### GetNetworkFrozen
+
+`func (o *Device) GetNetworkFrozen() bool`
+
+GetNetworkFrozen returns the NetworkFrozen field if non-nil, zero value otherwise.
+
+### GetNetworkFrozenOk
+
+`func (o *Device) GetNetworkFrozenOk() (*bool, bool)`
+
+GetNetworkFrozenOk returns a tuple with the NetworkFrozen field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkFrozen
+
+`func (o *Device) SetNetworkFrozen(v bool)`
+
+SetNetworkFrozen sets NetworkFrozen field to given value.
+
+### HasNetworkFrozen
+
+`func (o *Device) HasNetworkFrozen() bool`
+
+HasNetworkFrozen returns a boolean if a field has been set.
 
 ### GetNetworkPorts
 
