@@ -13,7 +13,8 @@ properties:
     format: date-time
     type: string
   logo:
-    format: binary
+    description: The logo for the organization; must be base64-encoded image data
+    format: byte
     type: string
   name:
     type: string
