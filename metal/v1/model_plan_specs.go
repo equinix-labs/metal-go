@@ -21,6 +21,7 @@ var _ MappedNullable = &PlanSpecs{}
 // PlanSpecs struct for PlanSpecs
 type PlanSpecs struct {
 	Cpus                 []PlanSpecsCpusInner   `json:"cpus,omitempty"`
+	Memory               *PlanSpecsMemory       `json:"memory,omitempty"`
 	Drives               []PlanSpecsDrivesInner `json:"drives,omitempty"`
 	Nics                 []PlanSpecsNicsInner   `json:"nics,omitempty"`
 	Features             *PlanSpecsFeatures     `json:"features,omitempty"`
@@ -76,6 +77,38 @@ func (o *PlanSpecs) HasCpus() bool {
 // SetCpus gets a reference to the given []PlanSpecsCpusInner and assigns it to the Cpus field.
 func (o *PlanSpecs) SetCpus(v []PlanSpecsCpusInner) {
 	o.Cpus = v
+}
+
+// GetMemory returns the Memory field value if set, zero value otherwise.
+func (o *PlanSpecs) GetMemory() PlanSpecsMemory {
+	if o == nil || IsNil(o.Memory) {
+		var ret PlanSpecsMemory
+		return ret
+	}
+	return *o.Memory
+}
+
+// GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlanSpecs) GetMemoryOk() (*PlanSpecsMemory, bool) {
+	if o == nil || IsNil(o.Memory) {
+		return nil, false
+	}
+	return o.Memory, true
+}
+
+// HasMemory returns a boolean if a field has been set.
+func (o *PlanSpecs) HasMemory() bool {
+	if o != nil && !IsNil(o.Memory) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemory gets a reference to the given PlanSpecsMemory and assigns it to the Memory field.
+func (o *PlanSpecs) SetMemory(v PlanSpecsMemory) {
+	o.Memory = &v
 }
 
 // GetDrives returns the Drives field value if set, zero value otherwise.
@@ -187,6 +220,9 @@ func (o PlanSpecs) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cpus) {
 		toSerialize["cpus"] = o.Cpus
 	}
+	if !IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
+	}
 	if !IsNil(o.Drives) {
 		toSerialize["drives"] = o.Drives
 	}
@@ -215,6 +251,7 @@ func (o *PlanSpecs) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "cpus")
+		delete(additionalProperties, "memory")
 		delete(additionalProperties, "drives")
 		delete(additionalProperties, "nics")
 		delete(additionalProperties, "features")
