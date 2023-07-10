@@ -56,8 +56,6 @@ gen:
 		-p packageVersion=${PACKAGE_VERSION} \
 		-p isGoSubmodule=true \
 		-p disallowAdditionalPropertiesIfNotPresent=false \
-		--model-package types \
-		--api-package models \
 		--git-user-id ${GIT_ORG} \
 		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
@@ -90,23 +88,6 @@ move-other:
 	rm -f ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/.travis.yml
 	mv ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/api .
 	rm ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/git_push.sh
-
-# https://github.com/OpenAPITools/openapi-generator/issues/741#issuecomment-569791780
-remove-dupe-requests: ## Removes duplicate Request structs from the generated code
-	@for struct in $$(grep -h 'type .\{1,\} struct' $(PACKAGE_PREFIX)/$(PACKAGE_MAJOR)/*.go | grep Request  | sort | uniq -c | grep -v '^      1' | awk '{print $$3}'); do \
-	  for f in $$(/bin/ls $(PACKAGE_PREFIX)/$(PACKAGE_MAJOR)/*.go); do \
-	    if grep -qF "type $${struct} struct" "$${f}"; then \
-	      if eval "test -z \$${$${struct}}"; then \
-	        echo "skipping first appearance of $${struct} in file $${f}"; \
-	        eval "export $${struct}=1"; \
-	      else \
-	        echo "removing dupe $${struct} from file $${f}"; \
-	        tr '\n' '\r' <"$${f}" | sed 's~// '"$${struct}"'.\{1,\}type '"$${struct}"' struct {[^}]\{1,\}}~~' | tr '\r' '\n' >"$${f}.tmp"; \
-	        mv -f "$${f}.tmp" "$${f}"; \
-	      fi; \
-	    fi \
-	  done \
-	done
 
 lint:
 	@$(GOLANGCI_LINT) run -v --no-config --fast=false --fix --disable-all --enable goimports $(PACKAGE_PREFIX)
