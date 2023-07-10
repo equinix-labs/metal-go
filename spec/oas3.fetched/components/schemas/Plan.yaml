@@ -80,6 +80,11 @@ properties:
               type: integer
             type:
               type: string
+      memory:
+        type: object
+        properties:
+          total:
+            type: string
       drives:
         type: array
         items:
