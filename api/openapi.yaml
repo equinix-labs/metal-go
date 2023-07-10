@@ -14703,6 +14703,8 @@ components:
               txt: true
               uefi: true
               raid: true
+            memory:
+              total: total
             cpus:
             - count: 6
               type: type
@@ -14877,6 +14879,8 @@ components:
                 txt: true
                 uefi: true
                 raid: true
+              memory:
+                total: total
               cpus:
               - count: 6
                 type: type
@@ -15665,6 +15669,8 @@ components:
                 txt: true
                 uefi: true
                 raid: true
+              memory:
+                total: total
               cpus:
               - count: 6
                 type: type
@@ -15839,6 +15845,8 @@ components:
                   txt: true
                   uefi: true
                   raid: true
+                memory:
+                  total: total
                 cpus:
                 - count: 6
                   type: type
@@ -16246,6 +16254,8 @@ components:
                 txt: true
                 uefi: true
                 raid: true
+              memory:
+                total: total
               cpus:
               - count: 6
                 type: type
@@ -16420,6 +16430,8 @@ components:
                   txt: true
                   uefi: true
                   raid: true
+                memory:
+                  total: total
                 cpus:
                 - count: 6
                   type: type
@@ -17117,6 +17129,8 @@ components:
               txt: true
               uefi: true
               raid: true
+            memory:
+              total: total
             cpus:
             - count: 6
               type: type
@@ -17341,6 +17355,8 @@ components:
                 txt: true
                 uefi: true
                 raid: true
+              memory:
+                total: total
               cpus:
               - count: 6
                 type: type
@@ -17501,6 +17517,8 @@ components:
                 txt: true
                 uefi: true
                 raid: true
+              memory:
+                total: total
               cpus:
               - count: 6
                 type: type
@@ -18598,6 +18616,8 @@ components:
                 txt: true
                 uefi: true
                 raid: true
+              memory:
+                total: total
               cpus:
               - count: 6
                 type: type
@@ -18658,6 +18678,8 @@ components:
                 txt: true
                 uefi: true
                 raid: true
+              memory:
+                total: total
               cpus:
               - count: 6
                 type: type
@@ -18778,6 +18800,8 @@ components:
                   txt: true
                   uefi: true
                   raid: true
+                memory:
+                  total: total
                 cpus:
                 - count: 6
                   type: type
@@ -18838,6 +18862,8 @@ components:
                   txt: true
                   uefi: true
                   raid: true
+                memory:
+                  total: total
                 cpus:
                 - count: 6
                   type: type
@@ -18914,6 +18940,8 @@ components:
                   txt: true
                   uefi: true
                   raid: true
+                memory:
+                  total: total
                 cpus:
                 - count: 6
                   type: type
@@ -18974,6 +19002,8 @@ components:
                   txt: true
                   uefi: true
                   raid: true
+                memory:
+                  total: total
                 cpus:
                 - count: 6
                   type: type
@@ -19116,6 +19146,8 @@ components:
               txt: true
               uefi: true
               raid: true
+            memory:
+              total: total
             cpus:
             - count: 6
               type: type
@@ -20129,6 +20161,8 @@ components:
             txt: true
             uefi: true
             raid: true
+          memory:
+            total: total
           cpus:
           - count: 6
             type: type
@@ -20244,6 +20278,8 @@ components:
               txt: true
               uefi: true
               raid: true
+            memory:
+              total: total
             cpus:
             - count: 6
               type: type
@@ -20297,6 +20333,8 @@ components:
               txt: true
               uefi: true
               raid: true
+            memory:
+              total: total
             cpus:
             - count: 6
               type: type
@@ -28770,6 +28808,13 @@ components:
         type:
           type: string
       type: object
+    Plan_specs_memory:
+      example:
+        total: total
+      properties:
+        total:
+          type: string
+      type: object
     Plan_specs_drives_inner:
       example:
         size: 3.84TB
@@ -28829,6 +28874,8 @@ components:
           txt: true
           uefi: true
           raid: true
+        memory:
+          total: total
         cpus:
         - count: 6
           type: type
@@ -28853,6 +28900,8 @@ components:
           items:
             $ref: '#/components/schemas/Plan_specs_cpus_inner'
           type: array
+        memory:
+          $ref: '#/components/schemas/Plan_specs_memory'
         drives:
           items:
             $ref: '#/components/schemas/Plan_specs_drives_inner'

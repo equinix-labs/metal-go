@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cpus** | Pointer to [**[]PlanSpecsCpusInner**](PlanSpecsCpusInner.md) |  | [optional] 
+**Memory** | Pointer to [**PlanSpecsMemory**](PlanSpecsMemory.md) |  | [optional] 
 **Drives** | Pointer to [**[]PlanSpecsDrivesInner**](PlanSpecsDrivesInner.md) |  | [optional] 
 **Nics** | Pointer to [**[]PlanSpecsNicsInner**](PlanSpecsNicsInner.md) |  | [optional] 
 **Features** | Pointer to [**PlanSpecsFeatures**](PlanSpecsFeatures.md) |  | [optional] 
@@ -52,6 +53,31 @@ SetCpus sets Cpus field to given value.
 `func (o *PlanSpecs) HasCpus() bool`
 
 HasCpus returns a boolean if a field has been set.
+
+### GetMemory
+
+`func (o *PlanSpecs) GetMemory() PlanSpecsMemory`
+
+GetMemory returns the Memory field if non-nil, zero value otherwise.
+
+### GetMemoryOk
+
+`func (o *PlanSpecs) GetMemoryOk() (*PlanSpecsMemory, bool)`
+
+GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMemory
+
+`func (o *PlanSpecs) SetMemory(v PlanSpecsMemory)`
+
+SetMemory sets Memory field to given value.
+
+### HasMemory
+
+`func (o *PlanSpecs) HasMemory() bool`
+
+HasMemory returns a boolean if a field has been set.
 
 ### GetDrives
 
