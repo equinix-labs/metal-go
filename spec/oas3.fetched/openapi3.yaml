@@ -44,7 +44,7 @@ info:
 
     ## Searching
 
-    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.
+    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
     To search resources you can use the `search` query parameter.
 
@@ -97,6 +97,10 @@ servers:
   - url: https://api.equinix.com/metal/v1
 components:
   parameters:
+    DeviceSearch:
+      $ref: './components/parameters/DeviceSearch.yaml'
+    ProjectName:
+      $ref: './components/parameters/ProjectName.yaml'
     Page:
       $ref: './components/parameters/Page.yaml'
     PerPage:

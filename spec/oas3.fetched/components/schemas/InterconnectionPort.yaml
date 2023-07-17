@@ -24,7 +24,9 @@ properties:
     description: A switch 'short ID'
     type: string
   virtual_circuits:
-    $ref: './VirtualCircuitList.yaml'
+    items:
+      $ref: './VirtualCircuit.yaml'
+    type: array
   name:
     type: string
   speed:
