@@ -40,6 +40,11 @@ get:
   description: Returns all API keys for the current user.
   operationId: findAPIKeys
   parameters:
+  - description: Search by description
+    in: query
+    name: search
+    schema:
+      type: string
   - $ref: '../../components/parameters/Include.yaml'
   - $ref: '../../components/parameters/Exclude.yaml'
   responses:

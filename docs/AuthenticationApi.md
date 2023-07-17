@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ## FindAPIKeys
 
-> AuthTokenList FindAPIKeys(ctx).Include(include).Exclude(exclude).Execute()
+> AuthTokenList FindAPIKeys(ctx).Search(search).Include(include).Exclude(exclude).Execute()
 
 Retrieve all user API keys
 
@@ -308,12 +308,13 @@ import (
 )
 
 func main() {
+    search := "search_example" // string | Search by description (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.FindAPIKeys(context.Background()).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.AuthenticationApi.FindAPIKeys(context.Background()).Search(search).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.FindAPIKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -334,6 +335,7 @@ Other parameters are passed through a pointer to a apiFindAPIKeysRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **search** | **string** | Search by description | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 

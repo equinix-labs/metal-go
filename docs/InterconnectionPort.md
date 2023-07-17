@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Role** | Pointer to **string** | Either &#39;primary&#39; or &#39;secondary&#39;. | [optional] 
 **Status** | Pointer to **string** | For both Fabric VCs and Dedicated Ports, this will be &#39;requested&#39; on creation and &#39;deleting&#39; on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to &#39;active&#39;. For Dedicated Ports, once the dedicated port is associated, this will also turn to &#39;active&#39;. For Fabric VCs, this can turn into an &#39;expired&#39; state if the service token associated is expired. | [optional] 
 **SwitchId** | Pointer to **string** | A switch &#39;short ID&#39; | [optional] 
-**VirtualCircuits** | Pointer to [**VirtualCircuitList**](VirtualCircuitList.md) |  | [optional] 
+**VirtualCircuits** | Pointer to [**[]VirtualCircuit**](VirtualCircuit.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Speed** | Pointer to **int32** |  | [optional] 
 **LinkStatus** | Pointer to **string** |  | [optional] 
@@ -161,20 +161,20 @@ HasSwitchId returns a boolean if a field has been set.
 
 ### GetVirtualCircuits
 
-`func (o *InterconnectionPort) GetVirtualCircuits() VirtualCircuitList`
+`func (o *InterconnectionPort) GetVirtualCircuits() []VirtualCircuit`
 
 GetVirtualCircuits returns the VirtualCircuits field if non-nil, zero value otherwise.
 
 ### GetVirtualCircuitsOk
 
-`func (o *InterconnectionPort) GetVirtualCircuitsOk() (*VirtualCircuitList, bool)`
+`func (o *InterconnectionPort) GetVirtualCircuitsOk() (*[]VirtualCircuit, bool)`
 
 GetVirtualCircuitsOk returns a tuple with the VirtualCircuits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualCircuits
 
-`func (o *InterconnectionPort) SetVirtualCircuits(v VirtualCircuitList)`
+`func (o *InterconnectionPort) SetVirtualCircuits(v []VirtualCircuit)`
 
 SetVirtualCircuits sets VirtualCircuits field to given value.
 

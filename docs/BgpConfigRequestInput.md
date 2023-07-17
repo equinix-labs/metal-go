@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Asn** | **int32** |  | 
-**DeploymentType** | **string** |  | 
-**Md5** | Pointer to **string** |  | [optional] 
-**UseCase** | Pointer to **string** |  | [optional] 
+**Asn** | **int32** | Autonomous System Number for local BGP deployment. | 
+**DeploymentType** | **string** | Wether the BGP deployment is local or global. Local deployments are configured immediately. Global deployments will need to be reviewed by Equinix Metal engineers. | 
+**Md5** | Pointer to **string** | The plaintext password to share between BGP neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character  | [optional] 
+**UseCase** | Pointer to **string** | A use case explanation (necessary for global BGP request review). | [optional] 
 
 ## Methods
 

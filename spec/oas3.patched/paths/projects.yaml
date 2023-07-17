@@ -3,6 +3,7 @@ get:
     of.
   operationId: findProjects
   parameters:
+  - $ref: '../components/parameters/ProjectName.yaml'
   - $ref: '../components/parameters/Include.yaml'
   - $ref: '../components/parameters/Exclude.yaml'
   - $ref: '../components/parameters/Page.yaml'

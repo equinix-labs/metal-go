@@ -392,7 +392,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    bgpConfigRequestInput := *openapiclient.NewBgpConfigRequestInput(int32(123), "DeploymentType_example") // BgpConfigRequestInput | BGP config Request to create
+    bgpConfigRequestInput := *openapiclient.NewBgpConfigRequestInput(int32(65000), "local") // BgpConfigRequestInput | BGP config Request to create
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
