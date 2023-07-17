@@ -9,6 +9,7 @@ get:
     schema:
       format: uuid
       type: string
+  - $ref: '../../../components/parameters/DeviceSearch.yaml'
   - description: Filter by plan category
     in: query
     name: categories
