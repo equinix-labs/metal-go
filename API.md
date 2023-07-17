@@ -38,7 +38,7 @@ Only IP addresses with the `type` field set to `public_ipv4` will be returned.
 
 ## Searching
 
-Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.
+Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
 To search resources you can use the `search` query parameter.
 

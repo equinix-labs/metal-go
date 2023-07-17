@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
 
 ## FindSSHKeys
 
-> SSHKeyList FindSSHKeys(ctx).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+> SSHKeyList FindSSHKeys(ctx).Search(search).Include(include).Exclude(exclude).Execute()
 
 Retrieve all ssh keys
 
@@ -468,13 +468,13 @@ import (
 )
 
 func main() {
-    searchString := "searchString_example" // string | Search by key, label, or fingerprint (optional)
+    search := "search_example" // string | Search by key, label, or fingerprint (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SSHKeysApi.FindSSHKeys(context.Background()).SearchString(searchString).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.SSHKeysApi.FindSSHKeys(context.Background()).Search(search).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SSHKeysApi.FindSSHKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -495,7 +495,7 @@ Other parameters are passed through a pointer to a apiFindSSHKeysRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **searchString** | **string** | Search by key, label, or fingerprint | 
+ **search** | **string** | Search by key, label, or fingerprint | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 

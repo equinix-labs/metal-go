@@ -890,7 +890,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationDevices
 
-> DeviceList FindOrganizationDevices(ctx, id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> DeviceList FindOrganizationDevices(ctx, id).Search(search).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all devices of an organization
 
@@ -910,6 +910,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    search := "search_example" // string | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
     categories := []string{"compute"} // []string | Filter by plan category (optional)
     facility := "facility_example" // string | Filter by device facility (optional)
     hostname := "hostname_example" // string | Filter by partial hostname (optional)
@@ -924,7 +925,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.FindOrganizationDevices(context.Background(), id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.DevicesApi.FindOrganizationDevices(context.Background(), id).Search(search).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindOrganizationDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -950,6 +951,7 @@ Other parameters are passed through a pointer to a apiFindOrganizationDevicesReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **search** | **string** | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | 
  **categories** | **[]string** | Filter by plan category | 
  **facility** | **string** | Filter by device facility | 
  **hostname** | **string** | Filter by partial hostname | 
@@ -982,7 +984,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectDevices
 
-> DeviceList FindProjectDevices(ctx, id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> DeviceList FindProjectDevices(ctx, id).Search(search).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all devices of a project
 
@@ -1002,6 +1004,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
+    search := "search_example" // string | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
     categories := []string{"compute"} // []string | Filter by plan category (optional)
     facility := "facility_example" // string | Filter by device facility (optional)
     hostname := "hostname_example" // string | Filter by partial hostname (optional)
@@ -1016,7 +1019,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.FindProjectDevices(context.Background(), id).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.DevicesApi.FindProjectDevices(context.Background(), id).Search(search).Categories(categories).Facility(facility).Hostname(hostname).Reserved(reserved).Tag(tag).Type_(type_).HasTerminationTime(hasTerminationTime).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindProjectDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1042,6 +1045,7 @@ Other parameters are passed through a pointer to a apiFindProjectDevicesRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **search** | **string** | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | 
  **categories** | **[]string** | Filter by plan category | 
  **facility** | **string** | Filter by device facility | 
  **hostname** | **string** | Filter by partial hostname | 

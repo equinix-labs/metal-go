@@ -750,7 +750,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationProjects
 
-> ProjectList FindOrganizationProjects(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> ProjectList FindOrganizationProjects(ctx, id).Name(name).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all projects of an organization
 
@@ -770,6 +770,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    name := "name_example" // string | Filter results by name. (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
@@ -777,7 +778,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationProjects(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationProjects(context.Background(), id).Name(name).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -803,6 +804,7 @@ Other parameters are passed through a pointer to a apiFindOrganizationProjectsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **name** | **string** | Filter results by name. | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]

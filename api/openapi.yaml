@@ -42,7 +42,7 @@ info:
 
     ## Searching
 
-    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.
+    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
     To search resources you can use the `search` query parameter.
 
@@ -4743,6 +4743,13 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: "Search by hostname, description, short_id, reservation short_id,\
+          \ tags, plan name, plan slug, facility code, facility name, operating system\
+          \ name, operating system slug, IP addresses."
+        in: query
+        name: search
+        schema:
+          type: string
       - description: Filter by plan category
         in: query
         name: categories
@@ -5446,6 +5453,11 @@ paths:
         required: true
         schema:
           format: uuid
+          type: string
+      - description: Filter results by name.
+        in: query
+        name: name
+        schema:
           type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
@@ -6640,6 +6652,11 @@ paths:
         of.
       operationId: findProjects
       parameters:
+      - description: Filter results by name.
+        in: query
+        name: name
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7276,6 +7293,13 @@ paths:
         required: true
         schema:
           format: uuid
+          type: string
+      - description: "Search by hostname, description, short_id, reservation short_id,\
+          \ tags, plan name, plan slug, facility code, facility name, operating system\
+          \ name, operating system slug, IP addresses."
+        in: query
+        name: search
+        schema:
           type: string
       - description: Filter by plan category
         in: query
@@ -9015,6 +9039,11 @@ paths:
       description: Returns all memberships in a project.
       operationId: findProjectMemberships
       parameters:
+      - description: "Search by member full name, id and email."
+        in: query
+        name: search
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -9847,7 +9876,7 @@ paths:
       parameters:
       - description: "Search by key, label, or fingerprint"
         in: query
-        name: Search string
+        name: search
         schema:
           type: string
       - description: |-
@@ -10325,6 +10354,11 @@ paths:
       description: Returns all API keys for the current user.
       operationId: findAPIKeys
       parameters:
+      - description: Search by description
+        in: query
+        name: search
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -11615,6 +11649,20 @@ paths:
       - VRFs
 components:
   parameters:
+    DeviceSearch:
+      description: "Search by hostname, description, short_id, reservation short_id,\
+        \ tags, plan name, plan slug, facility code, facility name, operating system\
+        \ name, operating system slug, IP addresses."
+      in: query
+      name: search
+      schema:
+        type: string
+    ProjectName:
+      description: Filter results by name.
+      in: query
+      name: name
+      schema:
+        type: string
     Page:
       description: Page to return
       in: query
@@ -11998,17 +12046,34 @@ components:
     BgpConfigRequestInput:
       example:
         use_case: use_case
-        deployment_type: deployment_type
-        asn: 0
+        deployment_type: local
+        asn: 65000
         md5: md5
       properties:
         asn:
+          description: Autonomous System Number for local BGP deployment.
+          example: 65000
           type: integer
         deployment_type:
+          description: Wether the BGP deployment is local or global. Local deployments
+            are configured immediately. Global deployments will need to be reviewed
+            by Equinix Metal engineers.
+          enum:
+          - local
+          - global
+          example: local
           type: string
         md5:
+          description: |
+            The plaintext password to share between BGP neighbors as an MD5 checksum:
+            * must be 10-20 characters long
+            * may not include punctuation
+            * must be a combination of numbers and letters
+            * must contain at least one lowercase, uppercase, and digit character
+          pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{10,20}$"
           type: string
         use_case:
+          description: A use case explanation (necessary for global BGP request review).
           type: string
       required:
       - asn
@@ -17889,9 +17954,8 @@ components:
         ports:
         - role: primary
           virtual_circuits:
-            virtual_circuits:
-            - null
-            - null
+          - null
+          - null
           organization:
             href: href
           name: name
@@ -17903,9 +17967,8 @@ components:
           status: requested
         - role: primary
           virtual_circuits:
-            virtual_circuits:
-            - null
-            - null
+          - null
+          - null
           organization:
             href: href
           name: name
@@ -18185,9 +18248,8 @@ components:
           ports:
           - role: primary
             virtual_circuits:
-              virtual_circuits:
-              - null
-              - null
+            - null
+            - null
             organization:
               href: href
             name: name
@@ -18199,9 +18261,8 @@ components:
             status: requested
           - role: primary
             virtual_circuits:
-              virtual_circuits:
-              - null
-              - null
+            - null
+            - null
             organization:
               href: href
             name: name
@@ -18249,9 +18310,8 @@ components:
           ports:
           - role: primary
             virtual_circuits:
-              virtual_circuits:
-              - null
-              - null
+            - null
+            - null
             organization:
               href: href
             name: name
@@ -18263,9 +18323,8 @@ components:
             status: requested
           - role: primary
             virtual_circuits:
-              virtual_circuits:
-              - null
-              - null
+            - null
+            - null
             organization:
               href: href
             name: name
@@ -18320,9 +18379,8 @@ components:
       example:
         role: primary
         virtual_circuits:
-          virtual_circuits:
-          - null
-          - null
+        - null
+        - null
         organization:
           href: href
         name: name
@@ -18361,7 +18419,9 @@ components:
           description: A switch 'short ID'
           type: string
         virtual_circuits:
-          $ref: '#/components/schemas/VirtualCircuitList'
+          items:
+            $ref: '#/components/schemas/VirtualCircuit'
+          type: array
         name:
           type: string
         speed:
@@ -18376,9 +18436,8 @@ components:
         ports:
         - role: primary
           virtual_circuits:
-            virtual_circuits:
-            - null
-            - null
+          - null
+          - null
           organization:
             href: href
           name: name
@@ -18390,9 +18449,8 @@ components:
           status: requested
         - role: primary
           virtual_circuits:
-            virtual_circuits:
-            - null
-            - null
+          - null
+          - null
           organization:
             href: href
           name: name
@@ -28223,8 +28281,14 @@ components:
         description:
           type: string
         md5:
-          description: The MD5 password for the BGP peering in plaintext (not a checksum).
+          description: |
+            The plaintext BGP peering password shared by neighbors as an MD5 checksum:
+            * must be 10-20 characters long
+            * may not include punctuation
+            * must be a combination of numbers and letters
+            * must contain at least one lowercase, uppercase, and digit character
           nullable: true
+          pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{10,20}$"
           type: string
         metal_ip:
           description: "An IP address from the subnet that will be used on the Metal\
@@ -28288,7 +28352,13 @@ components:
         description:
           type: string
         md5:
-          description: The MD5 password for the BGP peering in plaintext (not a checksum).
+          description: |
+            The plaintext BGP peering password shared by neighbors as an MD5 checksum:
+            * must be 10-20 characters long
+            * may not include punctuation
+            * must be a combination of numbers and letters
+            * must contain at least one lowercase, uppercase, and digit character
+          pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{10,20}$"
           type: string
         metal_ip:
           description: "An IP address from the subnet that will be used on the Metal\
