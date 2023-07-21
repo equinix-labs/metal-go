@@ -36,8 +36,7 @@ Name | Type | Description | Notes
 **SpotInstance** | Pointer to **bool** | Whether or not the device is a spot instance. | [optional] 
 **SpotPriceMax** | Pointer to **float32** | The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown. | [optional] 
 **SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
-**Storage** | Pointer to [**Storage**](Storage.md) |  | [optional] 
+**State** | Pointer to **string** | The current state the instance is in.  * When an instance is initially created it will be in the &#x60;queued&#x60; state until it is picked up by the provisioner. * Once provisioning has begun on the instance it&#39;s state will move to &#x60;provisioning&#x60;. * When an instance is deleted, it will move to &#x60;deprovisioning&#x60; state until the deprovision is completed and the instance state moves to &#x60;deleted&#x60;. * If an instance fails to provision or deprovision it will move to &#x60;failed&#x60; state. * Once an instance has completed provisioning it will move to &#x60;active&#x60; state. * If an instance is currently powering off or powering on it will move to &#x60;powering_off&#x60; or &#x60;powering_on&#x60; states respectively.  * When the instance is powered off completely it will move to the &#x60;inactive&#x60; state. * When an instance is powered on completely it will move to the &#x60;active&#x60; state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to &#x60;reinstalling&#x60;. * When the reinstall action is complete the instance will move to &#x60;active&#x60; state. | [optional] 
 **SwitchUuid** | Pointer to **string** | Switch short id. This can be used to determine if two devices are connected to the same switch, for example. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **TerminationTime** | Pointer to **time.Time** | When the device will be terminated. If you don&#39;t supply timezone info, the timestamp is assumed to be in UTC.  This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid. | [optional] 
@@ -890,31 +889,6 @@ SetState sets State field to given value.
 `func (o *Device) HasState() bool`
 
 HasState returns a boolean if a field has been set.
-
-### GetStorage
-
-`func (o *Device) GetStorage() Storage`
-
-GetStorage returns the Storage field if non-nil, zero value otherwise.
-
-### GetStorageOk
-
-`func (o *Device) GetStorageOk() (*Storage, bool)`
-
-GetStorageOk returns a tuple with the Storage field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStorage
-
-`func (o *Device) SetStorage(v Storage)`
-
-SetStorage sets Storage field to given value.
-
-### HasStorage
-
-`func (o *Device) HasStorage() bool`
-
-HasStorage returns a boolean if a field has been set.
 
 ### GetSwitchUuid
 

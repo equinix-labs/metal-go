@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
-**Name** | **string** |  | 
+**Name** | **string** | The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis. | 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
 

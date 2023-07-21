@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BackendTransferEnabled** | Pointer to **bool** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis. | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
 
 ## Methods

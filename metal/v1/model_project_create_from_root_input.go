@@ -20,10 +20,11 @@ var _ MappedNullable = &ProjectCreateFromRootInput{}
 
 // ProjectCreateFromRootInput struct for ProjectCreateFromRootInput
 type ProjectCreateFromRootInput struct {
-	Customdata           map[string]interface{} `json:"customdata,omitempty"`
-	Name                 string                 `json:"name"`
-	OrganizationId       *string                `json:"organization_id,omitempty"`
-	PaymentMethodId      *string                `json:"payment_method_id,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
+	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
+	Name                 string  `json:"name"`
+	OrganizationId       *string `json:"organization_id,omitempty"`
+	PaymentMethodId      *string `json:"payment_method_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

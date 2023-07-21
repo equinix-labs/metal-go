@@ -37,11 +37,13 @@ type Metadata struct {
 	PrivateSubnets []string `json:"private_subnets,omitempty"`
 	Reserved       *bool    `json:"reserved,omitempty"`
 	// The specs of the plan version of the instance
-	Specs                map[string]interface{} `json:"specs,omitempty"`
-	SshKeys              []string               `json:"ssh_keys,omitempty"`
-	SwitchShortId        *string                `json:"switch_short_id,omitempty"`
-	Tags                 []string               `json:"tags,omitempty"`
-	Volumes              []string               `json:"volumes,omitempty"`
+	Specs         map[string]interface{} `json:"specs,omitempty"`
+	SshKeys       []string               `json:"ssh_keys,omitempty"`
+	SwitchShortId *string                `json:"switch_short_id,omitempty"`
+	// The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.
+	State                *string  `json:"state,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
+	Volumes              []string `json:"volumes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -544,6 +546,38 @@ func (o *Metadata) SetSwitchShortId(v string) {
 	o.SwitchShortId = &v
 }
 
+// GetState returns the State field value if set, zero value otherwise.
+func (o *Metadata) GetState() string {
+	if o == nil || IsNil(o.State) {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Metadata) GetStateOk() (*string, bool) {
+	if o == nil || IsNil(o.State) {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *Metadata) HasState() bool {
+	if o != nil && !IsNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *Metadata) SetState(v string) {
+	o.State = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Metadata) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -663,6 +697,9 @@ func (o Metadata) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SwitchShortId) {
 		toSerialize["switch_short_id"] = o.SwitchShortId
 	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -702,6 +739,7 @@ func (o *Metadata) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "specs")
 		delete(additionalProperties, "ssh_keys")
 		delete(additionalProperties, "switch_short_id")
+		delete(additionalProperties, "state")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "volumes")
 		o.AdditionalProperties = additionalProperties
