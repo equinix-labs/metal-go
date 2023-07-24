@@ -20,9 +20,10 @@ var _ MappedNullable = &ProjectCreateInput{}
 
 // ProjectCreateInput struct for ProjectCreateInput
 type ProjectCreateInput struct {
-	Customdata           map[string]interface{} `json:"customdata,omitempty"`
-	Name                 string                 `json:"name"`
-	PaymentMethodId      *string                `json:"payment_method_id,omitempty"`
+	Customdata map[string]interface{} `json:"customdata,omitempty"`
+	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
+	Name                 string  `json:"name"`
+	PaymentMethodId      *string `json:"payment_method_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

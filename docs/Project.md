@@ -14,13 +14,14 @@ Name | Type | Description | Notes
 **MaxDevices** | Pointer to **map[string]interface{}** |  | [optional] 
 **Members** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Memberships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis. | [optional] 
 **NetworkStatus** | Pointer to **map[string]interface{}** |  | [optional] 
 **Organization** | Pointer to [**Organization**](Organization.md) |  | [optional] 
 **PaymentMethod** | Pointer to [**Href**](Href.md) |  | [optional] 
 **SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **Volumes** | Pointer to [**[]Href**](Href.md) |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -465,6 +466,31 @@ SetVolumes sets Volumes field to given value.
 `func (o *Project) HasVolumes() bool`
 
 HasVolumes returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *Project) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *Project) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *Project) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *Project) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

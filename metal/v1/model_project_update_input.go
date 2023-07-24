@@ -22,9 +22,10 @@ var _ MappedNullable = &ProjectUpdateInput{}
 type ProjectUpdateInput struct {
 	BackendTransferEnabled *bool                  `json:"backend_transfer_enabled,omitempty"`
 	Customdata             map[string]interface{} `json:"customdata,omitempty"`
-	Name                   *string                `json:"name,omitempty"`
-	PaymentMethodId        *string                `json:"payment_method_id,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
+	Name                 *string `json:"name,omitempty"`
+	PaymentMethodId      *string `json:"payment_method_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProjectUpdateInput ProjectUpdateInput
