@@ -95,6 +95,7 @@ docs/DeviceUpdateInput.md
 docs/DeviceUsage.md
 docs/DeviceUsageList.md
 docs/DevicesApi.md
+docs/Disk.md
 docs/Email.md
 docs/EmailInput.md
 docs/EmailsApi.md
@@ -108,6 +109,7 @@ docs/FacilitiesApi.md
 docs/Facility.md
 docs/FacilityInput.md
 docs/FacilityList.md
+docs/Filesystem.md
 docs/FindIPAddressById200Response.md
 docs/FindMetalGatewayById200Response.md
 docs/FindTrafficTimeframeParameter.md
@@ -176,6 +178,7 @@ docs/Metro.md
 docs/MetroInput.md
 docs/MetroList.md
 docs/MetrosApi.md
+docs/Mount.md
 docs/MoveHardwareReservationRequest.md
 docs/NewPassword.md
 docs/OTPsApi.md
@@ -187,6 +190,7 @@ docs/OrganizationInput.md
 docs/OrganizationList.md
 docs/OrganizationsApi.md
 docs/ParentBlock.md
+docs/Partition.md
 docs/PasswordResetTokensApi.md
 docs/PaymentMethod.md
 docs/PaymentMethodBillingAddress.md
@@ -228,6 +232,7 @@ docs/ProjectUpdateInput.md
 docs/ProjectUsage.md
 docs/ProjectUsageList.md
 docs/ProjectsApi.md
+docs/Raid.md
 docs/RecoveryCodeList.md
 docs/RequestIPReservation201Response.md
 docs/RequestIPReservationRequest.md
@@ -257,6 +262,7 @@ docs/SpotPricesPerBaremetal.md
 docs/SpotPricesPerFacility.md
 docs/SpotPricesPerNewFacility.md
 docs/SpotPricesReport.md
+docs/Storage.md
 docs/SupportRequestApi.md
 docs/SupportRequestInput.md
 docs/TransferRequest.md
@@ -355,6 +361,7 @@ model_device_project_lite.go
 model_device_update_input.go
 model_device_usage.go
 model_device_usage_list.go
+model_disk.go
 model_email.go
 model_email_input.go
 model_entitlement.go
@@ -365,6 +372,7 @@ model_fabric_service_token.go
 model_facility.go
 model_facility_input.go
 model_facility_list.go
+model_filesystem.go
 model_find_ip_address_by_id_200_response.go
 model_find_metal_gateway_by_id_200_response.go
 model_find_traffic_timeframe_parameter.go
@@ -423,6 +431,7 @@ model_metal_gateway_lite.go
 model_metro.go
 model_metro_input.go
 model_metro_list.go
+model_mount.go
 model_move_hardware_reservation_request.go
 model_new_password.go
 model_operating_system.go
@@ -431,6 +440,7 @@ model_organization.go
 model_organization_input.go
 model_organization_list.go
 model_parent_block.go
+model_partition.go
 model_payment_method.go
 model_payment_method_billing_address.go
 model_payment_method_create_input.go
@@ -467,6 +477,7 @@ model_project_list.go
 model_project_update_input.go
 model_project_usage.go
 model_project_usage_list.go
+model_raid.go
 model_recovery_code_list.go
 model_request_ip_reservation_201_response.go
 model_request_ip_reservation_request.go
@@ -493,6 +504,7 @@ model_ssh_key.go
 model_ssh_key_create_input.go
 model_ssh_key_input.go
 model_ssh_key_list.go
+model_storage.go
 model_support_request_input.go
 model_transfer_request.go
 model_transfer_request_input.go

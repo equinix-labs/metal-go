@@ -2,10 +2,10 @@ diff --git a/spec/oas3.patched/components/schemas/Device.yaml b/spec/oas3.patche
 index 005f243..4e0cc1c 100644
 --- a/spec/oas3.patched/components/schemas/Device.yaml
 +++ b/spec/oas3.patched/components/schemas/Device.yaml
-@@ -119,6 +119,8 @@ properties:
-       - powering_on
-       - powering_off
-       - provisioning
+@@ -135,6 +135,8 @@ properties:
+       * When an instance is powered on completely it will move to the `active` state.
+       * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`.
+       * When the reinstall action is complete the instance will move to `active` state.
 +  storage:
 +    $ref: './Storage.yaml'
    switch_uuid:

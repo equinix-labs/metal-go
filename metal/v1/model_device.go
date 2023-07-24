@@ -62,7 +62,8 @@ type Device struct {
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	SshKeys      []Href   `json:"ssh_keys,omitempty"`
 	// The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.
-	State *string `json:"state,omitempty"`
+	State   *string  `json:"state,omitempty"`
+	Storage *Storage `json:"storage,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
@@ -1152,6 +1153,38 @@ func (o *Device) SetState(v string) {
 	o.State = &v
 }
 
+// GetStorage returns the Storage field value if set, zero value otherwise.
+func (o *Device) GetStorage() Storage {
+	if o == nil || IsNil(o.Storage) {
+		var ret Storage
+		return ret
+	}
+	return *o.Storage
+}
+
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetStorageOk() (*Storage, bool) {
+	if o == nil || IsNil(o.Storage) {
+		return nil, false
+	}
+	return o.Storage, true
+}
+
+// HasStorage returns a boolean if a field has been set.
+func (o *Device) HasStorage() bool {
+	if o != nil && !IsNil(o.Storage) {
+		return true
+	}
+
+	return false
+}
+
+// SetStorage gets a reference to the given Storage and assigns it to the Storage field.
+func (o *Device) SetStorage(v Storage) {
+	o.Storage = &v
+}
+
 // GetSwitchUuid returns the SwitchUuid field value if set, zero value otherwise.
 func (o *Device) GetSwitchUuid() string {
 	if o == nil || IsNil(o.SwitchUuid) {
@@ -1517,6 +1550,9 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+	if !IsNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
+	}
 	if !IsNil(o.SwitchUuid) {
 		toSerialize["switch_uuid"] = o.SwitchUuid
 	}
@@ -1592,6 +1628,7 @@ func (o *Device) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "spot_price_max")
 		delete(additionalProperties, "ssh_keys")
 		delete(additionalProperties, "state")
+		delete(additionalProperties, "storage")
 		delete(additionalProperties, "switch_uuid")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "termination_time")
