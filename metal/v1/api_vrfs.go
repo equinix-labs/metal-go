@@ -2375,11 +2375,25 @@ type ApiUpdateVrfRequest struct {
 	ApiService     *VRFsApiService
 	id             string
 	vrfUpdateInput *VrfUpdateInput
+	include        *[]string
+	exclude        *[]string
 }
 
 // VRF to update
 func (r ApiUpdateVrfRequest) VrfUpdateInput(vrfUpdateInput VrfUpdateInput) ApiUpdateVrfRequest {
 	r.vrfUpdateInput = &vrfUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateVrfRequest) Include(include []string) ApiUpdateVrfRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateVrfRequest) Exclude(exclude []string) ApiUpdateVrfRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -2430,6 +2444,12 @@ func (a *VRFsApiService) UpdateVrfExecute(r ApiUpdateVrfRequest) (*Vrf, *http.Re
 		return localVarReturnValue, nil, reportError("vrfUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

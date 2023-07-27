@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInvitation
 
-> Invitation CreateOrganizationInvitation(ctx, id).InvitationInput(invitationInput).Execute()
+> Invitation CreateOrganizationInvitation(ctx, id).InvitationInput(invitationInput).Include(include).Execute()
 
 Create an invitation for an organization
 
@@ -115,10 +115,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     invitationInput := *openapiclient.NewInvitationInput("Invitee_example") // InvitationInput | Invitation to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).InvitationInput(invitationInput).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).InvitationInput(invitationInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -145,6 +146,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **invitationInput** | [**InvitationInput**](InvitationInput.md) | Invitation to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -166,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationProject
 
-> Project CreateOrganizationProject(ctx, id).ProjectCreateInput(projectCreateInput).Execute()
+> Project CreateOrganizationProject(ctx, id).ProjectCreateInput(projectCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a project for the organization
 
@@ -187,10 +189,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     projectCreateInput := *openapiclient.NewProjectCreateInput("Name_example") // ProjectCreateInput | Project to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).ProjectCreateInput(projectCreateInput).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).ProjectCreateInput(projectCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,6 +221,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **projectCreateInput** | [**ProjectCreateInput**](ProjectCreateInput.md) | Project to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -238,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## CreatePaymentMethod
 
-> PaymentMethod CreatePaymentMethod(ctx, id).PaymentMethodCreateInput(paymentMethodCreateInput).Execute()
+> PaymentMethod CreatePaymentMethod(ctx, id).PaymentMethodCreateInput(paymentMethodCreateInput).Include(include).Execute()
 
 Create a payment method for the given organization
 
@@ -259,10 +265,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     paymentMethodCreateInput := *openapiclient.NewPaymentMethodCreateInput("Name_example", "Nonce_example") // PaymentMethodCreateInput | Payment Method to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).PaymentMethodCreateInput(paymentMethodCreateInput).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).PaymentMethodCreateInput(paymentMethodCreateInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -289,6 +296,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **paymentMethodCreateInput** | [**PaymentMethodCreateInput**](PaymentMethodCreateInput.md) | Payment Method to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -378,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## FindOperatingSystemsByOrganization
 
-> OperatingSystemList FindOperatingSystemsByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+> OperatingSystemList FindOperatingSystemsByOrganization(ctx, id).Include(include).Execute()
 
 Retrieve all operating systems visible by the organization
 
@@ -399,11 +407,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOperatingSystemsByOrganization(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOperatingSystemsByOrganization(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOperatingSystemsByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -430,7 +437,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -594,7 +600,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationInvitations
 
-> InvitationList FindOrganizationInvitations(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> InvitationList FindOrganizationInvitations(ctx, id).Include(include).Page(page).PerPage(perPage).Execute()
 
 Retrieve organization invitations
 
@@ -615,13 +621,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationInvitations(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationInvitations(context.Background(), id).Include(include).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -648,7 +653,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
@@ -672,7 +676,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationPaymentMethods
 
-> PaymentMethodList FindOrganizationPaymentMethods(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> PaymentMethodList FindOrganizationPaymentMethods(ctx, id).Include(include).Page(page).PerPage(perPage).Execute()
 
 Retrieve all payment methods of an organization
 
@@ -693,13 +697,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationPaymentMethods(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationPaymentMethods(context.Background(), id).Include(include).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -726,7 +729,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
@@ -830,7 +832,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationTransfers
 
-> TransferRequestList FindOrganizationTransfers(ctx, id).Include(include).Exclude(exclude).Execute()
+> TransferRequestList FindOrganizationTransfers(ctx, id).Include(include).Execute()
 
 Retrieve all project transfer requests from or to an organization
 
@@ -851,11 +853,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationTransfers(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationTransfers(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationTransfers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -882,7 +883,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -1054,7 +1054,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganization
 
-> Organization UpdateOrganization(ctx, id).OrganizationInput(organizationInput).Execute()
+> Organization UpdateOrganization(ctx, id).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
 
 Update the organization
 
@@ -1075,10 +1075,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     organizationInput := *openapiclient.NewOrganizationInput() // OrganizationInput | Organization to update
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).OrganizationInput(organizationInput).Execute()
+    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1105,6 +1107,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **organizationInput** | [**OrganizationInput**](OrganizationInput.md) | Organization to update | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

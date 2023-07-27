@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateAPIKey
 
-> AuthToken CreateAPIKey(ctx).AuthTokenInput(authTokenInput).Execute()
+> AuthToken CreateAPIKey(ctx).AuthTokenInput(authTokenInput).Include(include).Execute()
 
 Create an API key
 
@@ -35,10 +35,11 @@ import (
 
 func main() {
     authTokenInput := *openapiclient.NewAuthTokenInput() // AuthTokenInput | API key to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.CreateAPIKey(context.Background()).AuthTokenInput(authTokenInput).Execute()
+    resp, r, err := apiClient.AuthenticationApi.CreateAPIKey(context.Background()).AuthTokenInput(authTokenInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.CreateAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,6 +61,7 @@ Other parameters are passed through a pointer to a apiCreateAPIKeyRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authTokenInput** | [**AuthTokenInput**](AuthTokenInput.md) | API key to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -81,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectAPIKey
 
-> AuthToken CreateProjectAPIKey(ctx, id).AuthTokenInput(authTokenInput).Execute()
+> AuthToken CreateProjectAPIKey(ctx, id).AuthTokenInput(authTokenInput).Include(include).Execute()
 
 Create an API key for a project.
 
@@ -102,10 +104,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     authTokenInput := *openapiclient.NewAuthTokenInput() // AuthTokenInput | API Key to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.CreateProjectAPIKey(context.Background(), id).AuthTokenInput(authTokenInput).Execute()
+    resp, r, err := apiClient.AuthenticationApi.CreateProjectAPIKey(context.Background(), id).AuthTokenInput(authTokenInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.CreateProjectAPIKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,6 +135,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **authTokenInput** | [**AuthTokenInput**](AuthTokenInput.md) | API Key to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -289,7 +293,7 @@ Name | Type | Description  | Notes
 
 ## FindAPIKeys
 
-> AuthTokenList FindAPIKeys(ctx).Search(search).Include(include).Exclude(exclude).Execute()
+> AuthTokenList FindAPIKeys(ctx).Search(search).Include(include).Execute()
 
 Retrieve all user API keys
 
@@ -310,11 +314,10 @@ import (
 func main() {
     search := "search_example" // string | Search by description (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.FindAPIKeys(context.Background()).Search(search).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.AuthenticationApi.FindAPIKeys(context.Background()).Search(search).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.FindAPIKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -337,7 +340,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **search** | **string** | Search by description | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -359,7 +361,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectAPIKeys
 
-> AuthTokenList FindProjectAPIKeys(ctx, id).Include(include).Exclude(exclude).Execute()
+> AuthTokenList FindProjectAPIKeys(ctx, id).Include(include).Execute()
 
 Retrieve all API keys for the project.
 
@@ -380,11 +382,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AuthenticationApi.FindProjectAPIKeys(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.AuthenticationApi.FindProjectAPIKeys(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationApi.FindProjectAPIKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -411,7 +412,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

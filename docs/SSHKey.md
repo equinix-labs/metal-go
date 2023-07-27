@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Key** | Pointer to **string** |  | [optional] 
 **Label** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -231,6 +232,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *SSHKey) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *SSHKey) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *SSHKey) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *SSHKey) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *SSHKey) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

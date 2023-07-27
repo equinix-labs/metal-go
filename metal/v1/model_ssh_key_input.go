@@ -20,8 +20,9 @@ var _ MappedNullable = &SSHKeyInput{}
 
 // SSHKeyInput struct for SSHKeyInput
 type SSHKeyInput struct {
-	Key                  *string `json:"key,omitempty"`
-	Label                *string `json:"label,omitempty"`
+	Key                  *string  `json:"key,omitempty"`
+	Label                *string  `json:"label,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -108,6 +109,38 @@ func (o *SSHKeyInput) SetLabel(v string) {
 	o.Label = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *SSHKeyInput) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SSHKeyInput) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *SSHKeyInput) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *SSHKeyInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o SSHKeyInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -123,6 +156,9 @@ func (o SSHKeyInput) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -144,6 +180,7 @@ func (o *SSHKeyInput) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "key")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -195,11 +195,18 @@ type ApiCreateProjectInvitationRequest struct {
 	ApiService      *ProjectsApiService
 	projectId       string
 	invitationInput *InvitationInput
+	include         *[]string
 }
 
 // Invitation to create
 func (r ApiCreateProjectInvitationRequest) InvitationInput(invitationInput InvitationInput) ApiCreateProjectInvitationRequest {
 	r.invitationInput = &invitationInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateProjectInvitationRequest) Include(include []string) ApiCreateProjectInvitationRequest {
+	r.include = &include
 	return r
 }
 
@@ -250,6 +257,9 @@ func (a *ProjectsApiService) CreateProjectInvitationExecute(r ApiCreateProjectIn
 		return localVarReturnValue, nil, reportError("invitationInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -368,11 +378,18 @@ type ApiCreateTransferRequestRequest struct {
 	ApiService           *ProjectsApiService
 	id                   string
 	transferRequestInput *TransferRequestInput
+	include              *[]string
 }
 
 // Transfer Request to create
 func (r ApiCreateTransferRequestRequest) TransferRequestInput(transferRequestInput TransferRequestInput) ApiCreateTransferRequestRequest {
 	r.transferRequestInput = &transferRequestInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateTransferRequestRequest) Include(include []string) ApiCreateTransferRequestRequest {
+	r.include = &include
 	return r
 }
 
@@ -423,6 +440,9 @@ func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferReq
 		return localVarReturnValue, nil, reportError("transferRequestInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1129,7 +1149,6 @@ type ApiFindProjectInvitationsRequest struct {
 	ApiService *ProjectsApiService
 	projectId  string
 	include    *[]string
-	exclude    *[]string
 	page       *int32
 	perPage    *int32
 }
@@ -1137,12 +1156,6 @@ type ApiFindProjectInvitationsRequest struct {
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindProjectInvitationsRequest) Include(include []string) ApiFindProjectInvitationsRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectInvitationsRequest) Exclude(exclude []string) ApiFindProjectInvitationsRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1204,9 +1217,6 @@ func (a *ProjectsApiService) FindProjectInvitationsExecute(r ApiFindProjectInvit
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
@@ -1320,7 +1330,6 @@ type ApiFindProjectMembershipsRequest struct {
 	projectId  string
 	search     *string
 	include    *[]string
-	exclude    *[]string
 	page       *int32
 	perPage    *int32
 }
@@ -1334,12 +1343,6 @@ func (r ApiFindProjectMembershipsRequest) Search(search string) ApiFindProjectMe
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindProjectMembershipsRequest) Include(include []string) ApiFindProjectMembershipsRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectMembershipsRequest) Exclude(exclude []string) ApiFindProjectMembershipsRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1404,9 +1407,6 @@ func (a *ProjectsApiService) FindProjectMembershipsExecute(r ApiFindProjectMembe
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
@@ -1693,11 +1693,25 @@ type ApiUpdateProjectRequest struct {
 	ApiService         *ProjectsApiService
 	id                 string
 	projectUpdateInput *ProjectUpdateInput
+	include            *[]string
+	exclude            *[]string
 }
 
 // Project to update
 func (r ApiUpdateProjectRequest) ProjectUpdateInput(projectUpdateInput ProjectUpdateInput) ApiUpdateProjectRequest {
 	r.projectUpdateInput = &projectUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateProjectRequest) Include(include []string) ApiUpdateProjectRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateProjectRequest) Exclude(exclude []string) ApiUpdateProjectRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -1748,6 +1762,12 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (*P
 		return localVarReturnValue, nil, reportError("projectUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

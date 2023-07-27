@@ -27,7 +27,21 @@ type ApiActivateHardwareReservationRequest struct {
 	ctx                                context.Context
 	ApiService                         *HardwareReservationsApiService
 	id                                 string
+	include                            *[]string
+	exclude                            *[]string
 	activateHardwareReservationRequest *ActivateHardwareReservationRequest
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiActivateHardwareReservationRequest) Include(include []string) ApiActivateHardwareReservationRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiActivateHardwareReservationRequest) Exclude(exclude []string) ApiActivateHardwareReservationRequest {
+	r.exclude = &exclude
+	return r
 }
 
 // Note to attach to the reservation
@@ -80,6 +94,12 @@ func (a *HardwareReservationsApiService) ActivateHardwareReservationExecute(r Ap
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -577,11 +597,25 @@ type ApiMoveHardwareReservationRequest struct {
 	ApiService                     *HardwareReservationsApiService
 	id                             string
 	moveHardwareReservationRequest *MoveHardwareReservationRequest
+	include                        *[]string
+	exclude                        *[]string
 }
 
 // Destination Project UUID
 func (r ApiMoveHardwareReservationRequest) MoveHardwareReservationRequest(moveHardwareReservationRequest MoveHardwareReservationRequest) ApiMoveHardwareReservationRequest {
 	r.moveHardwareReservationRequest = &moveHardwareReservationRequest
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiMoveHardwareReservationRequest) Include(include []string) ApiMoveHardwareReservationRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiMoveHardwareReservationRequest) Exclude(exclude []string) ApiMoveHardwareReservationRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -632,6 +666,12 @@ func (a *HardwareReservationsApiService) MoveHardwareReservationExecute(r ApiMov
 		return localVarReturnValue, nil, reportError("moveHardwareReservationRequest is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

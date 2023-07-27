@@ -183,11 +183,25 @@ type ApiCreateOrganizationInterconnectionRequest struct {
 	ApiService                 *InterconnectionsApiService
 	organizationId             string
 	interconnectionCreateInput *InterconnectionCreateInput
+	include                    *[]string
+	exclude                    *[]string
 }
 
 // Interconnection details
 func (r ApiCreateOrganizationInterconnectionRequest) InterconnectionCreateInput(interconnectionCreateInput InterconnectionCreateInput) ApiCreateOrganizationInterconnectionRequest {
 	r.interconnectionCreateInput = &interconnectionCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateOrganizationInterconnectionRequest) Include(include []string) ApiCreateOrganizationInterconnectionRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateOrganizationInterconnectionRequest) Exclude(exclude []string) ApiCreateOrganizationInterconnectionRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -238,6 +252,12 @@ func (a *InterconnectionsApiService) CreateOrganizationInterconnectionExecute(r 
 		return localVarReturnValue, nil, reportError("interconnectionCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -345,11 +365,25 @@ type ApiCreateProjectInterconnectionRequest struct {
 	ApiService                 *InterconnectionsApiService
 	projectId                  string
 	interconnectionCreateInput *InterconnectionCreateInput
+	include                    *[]string
+	exclude                    *[]string
 }
 
 // Interconnection details
 func (r ApiCreateProjectInterconnectionRequest) InterconnectionCreateInput(interconnectionCreateInput InterconnectionCreateInput) ApiCreateProjectInterconnectionRequest {
 	r.interconnectionCreateInput = &interconnectionCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateProjectInterconnectionRequest) Include(include []string) ApiCreateProjectInterconnectionRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateProjectInterconnectionRequest) Exclude(exclude []string) ApiCreateProjectInterconnectionRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -400,6 +434,12 @@ func (a *InterconnectionsApiService) CreateProjectInterconnectionExecute(r ApiCr
 		return localVarReturnValue, nil, reportError("interconnectionCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -495,6 +535,20 @@ type ApiDeleteInterconnectionRequest struct {
 	ctx          context.Context
 	ApiService   *InterconnectionsApiService
 	connectionId string
+	include      *[]string
+	exclude      *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiDeleteInterconnectionRequest) Include(include []string) ApiDeleteInterconnectionRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiDeleteInterconnectionRequest) Exclude(exclude []string) ApiDeleteInterconnectionRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiDeleteInterconnectionRequest) Execute() (*Interconnection, *http.Response, error) {
@@ -541,6 +595,12 @@ func (a *InterconnectionsApiService) DeleteInterconnectionExecute(r ApiDeleteInt
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -634,6 +694,20 @@ type ApiDeleteVirtualCircuitRequest struct {
 	ctx        context.Context
 	ApiService *InterconnectionsApiService
 	id         string
+	include    *[]string
+	exclude    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiDeleteVirtualCircuitRequest) Include(include []string) ApiDeleteVirtualCircuitRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiDeleteVirtualCircuitRequest) Exclude(exclude []string) ApiDeleteVirtualCircuitRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiDeleteVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
@@ -680,6 +754,12 @@ func (a *InterconnectionsApiService) DeleteVirtualCircuitExecute(r ApiDeleteVirt
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -773,6 +853,20 @@ type ApiGetInterconnectionRequest struct {
 	ctx          context.Context
 	ApiService   *InterconnectionsApiService
 	connectionId string
+	include      *[]string
+	exclude      *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiGetInterconnectionRequest) Include(include []string) ApiGetInterconnectionRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiGetInterconnectionRequest) Exclude(exclude []string) ApiGetInterconnectionRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiGetInterconnectionRequest) Execute() (*Interconnection, *http.Response, error) {
@@ -819,6 +913,12 @@ func (a *InterconnectionsApiService) GetInterconnectionExecute(r ApiGetInterconn
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -913,6 +1013,20 @@ type ApiGetInterconnectionPortRequest struct {
 	ApiService   *InterconnectionsApiService
 	connectionId string
 	id           string
+	include      *[]string
+	exclude      *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiGetInterconnectionPortRequest) Include(include []string) ApiGetInterconnectionPortRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiGetInterconnectionPortRequest) Exclude(exclude []string) ApiGetInterconnectionPortRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiGetInterconnectionPortRequest) Execute() (*InterconnectionPort, *http.Response, error) {
@@ -962,6 +1076,12 @@ func (a *InterconnectionsApiService) GetInterconnectionPortExecute(r ApiGetInter
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1055,6 +1175,20 @@ type ApiGetVirtualCircuitRequest struct {
 	ctx        context.Context
 	ApiService *InterconnectionsApiService
 	id         string
+	include    *[]string
+	exclude    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiGetVirtualCircuitRequest) Include(include []string) ApiGetVirtualCircuitRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiGetVirtualCircuitRequest) Exclude(exclude []string) ApiGetVirtualCircuitRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiGetVirtualCircuitRequest) Execute() (*VirtualCircuit, *http.Response, error) {
@@ -1101,6 +1235,12 @@ func (a *InterconnectionsApiService) GetVirtualCircuitExecute(r ApiGetVirtualCir
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1195,6 +1335,20 @@ type ApiListInterconnectionPortVirtualCircuitsRequest struct {
 	ApiService   *InterconnectionsApiService
 	connectionId string
 	portId       string
+	include      *[]string
+	exclude      *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiListInterconnectionPortVirtualCircuitsRequest) Include(include []string) ApiListInterconnectionPortVirtualCircuitsRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiListInterconnectionPortVirtualCircuitsRequest) Exclude(exclude []string) ApiListInterconnectionPortVirtualCircuitsRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiListInterconnectionPortVirtualCircuitsRequest) Execute() (*VirtualCircuitList, *http.Response, error) {
@@ -1244,6 +1398,12 @@ func (a *InterconnectionsApiService) ListInterconnectionPortVirtualCircuitsExecu
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1615,6 +1775,20 @@ type ApiOrganizationListInterconnectionsRequest struct {
 	ctx            context.Context
 	ApiService     *InterconnectionsApiService
 	organizationId string
+	include        *[]string
+	exclude        *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiOrganizationListInterconnectionsRequest) Include(include []string) ApiOrganizationListInterconnectionsRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiOrganizationListInterconnectionsRequest) Exclude(exclude []string) ApiOrganizationListInterconnectionsRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiOrganizationListInterconnectionsRequest) Execute() (*InterconnectionList, *http.Response, error) {
@@ -1661,6 +1835,12 @@ func (a *InterconnectionsApiService) OrganizationListInterconnectionsExecute(r A
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1934,11 +2114,25 @@ type ApiUpdateInterconnectionRequest struct {
 	ApiService                 *InterconnectionsApiService
 	connectionId               string
 	interconnectionUpdateInput *InterconnectionUpdateInput
+	include                    *[]string
+	exclude                    *[]string
 }
 
 // Updated interconnection details
 func (r ApiUpdateInterconnectionRequest) InterconnectionUpdateInput(interconnectionUpdateInput InterconnectionUpdateInput) ApiUpdateInterconnectionRequest {
 	r.interconnectionUpdateInput = &interconnectionUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateInterconnectionRequest) Include(include []string) ApiUpdateInterconnectionRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateInterconnectionRequest) Exclude(exclude []string) ApiUpdateInterconnectionRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -1989,6 +2183,12 @@ func (a *InterconnectionsApiService) UpdateInterconnectionExecute(r ApiUpdateInt
 		return localVarReturnValue, nil, reportError("interconnectionUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -2085,11 +2285,25 @@ type ApiUpdateVirtualCircuitRequest struct {
 	ApiService                *InterconnectionsApiService
 	id                        string
 	virtualCircuitUpdateInput *VirtualCircuitUpdateInput
+	include                   *[]string
+	exclude                   *[]string
 }
 
 // Updated Virtual Circuit details
 func (r ApiUpdateVirtualCircuitRequest) VirtualCircuitUpdateInput(virtualCircuitUpdateInput VirtualCircuitUpdateInput) ApiUpdateVirtualCircuitRequest {
 	r.virtualCircuitUpdateInput = &virtualCircuitUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateVirtualCircuitRequest) Include(include []string) ApiUpdateVirtualCircuitRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateVirtualCircuitRequest) Exclude(exclude []string) ApiUpdateVirtualCircuitRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -2140,6 +2354,12 @@ func (a *InterconnectionsApiService) UpdateVirtualCircuitExecute(r ApiUpdateVirt
 		return localVarReturnValue, nil, reportError("virtualCircuitUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

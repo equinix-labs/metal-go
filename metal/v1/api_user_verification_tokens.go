@@ -26,11 +26,18 @@ type ApiConsumeVerificationRequestRequest struct {
 	ctx         context.Context
 	ApiService  *UserVerificationTokensApiService
 	verifyEmail *VerifyEmail
+	include     *[]string
 }
 
 // Email to create
 func (r ApiConsumeVerificationRequestRequest) VerifyEmail(verifyEmail VerifyEmail) ApiConsumeVerificationRequestRequest {
 	r.verifyEmail = &verifyEmail
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiConsumeVerificationRequestRequest) Include(include []string) ApiConsumeVerificationRequestRequest {
+	r.include = &include
 	return r
 }
 
@@ -75,6 +82,9 @@ func (a *UserVerificationTokensApiService) ConsumeVerificationRequestExecute(r A
 		return nil, reportError("verifyEmail is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -161,11 +171,18 @@ type ApiCreateValidationRequestRequest struct {
 	ctx        context.Context
 	ApiService *UserVerificationTokensApiService
 	login      *string
+	include    *[]string
 }
 
 // Email for verification request
 func (r ApiCreateValidationRequestRequest) Login(login string) ApiCreateValidationRequestRequest {
 	r.login = &login
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateValidationRequestRequest) Include(include []string) ApiCreateValidationRequestRequest {
+	r.include = &include
 	return r
 }
 
@@ -211,6 +228,9 @@ func (a *UserVerificationTokensApiService) CreateValidationRequestExecute(r ApiC
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "login", r.login, "")
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

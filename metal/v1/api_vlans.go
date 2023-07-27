@@ -220,6 +220,20 @@ type ApiDeleteVirtualNetworkRequest struct {
 	ctx        context.Context
 	ApiService *VLANsApiService
 	id         string
+	include    *[]string
+	exclude    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiDeleteVirtualNetworkRequest) Include(include []string) ApiDeleteVirtualNetworkRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiDeleteVirtualNetworkRequest) Exclude(exclude []string) ApiDeleteVirtualNetworkRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiDeleteVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
@@ -266,6 +280,12 @@ func (a *VLANsApiService) DeleteVirtualNetworkExecute(r ApiDeleteVirtualNetworkR
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -572,6 +592,20 @@ type ApiGetVirtualNetworkRequest struct {
 	ctx        context.Context
 	ApiService *VLANsApiService
 	id         string
+	include    *[]string
+	exclude    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiGetVirtualNetworkRequest) Include(include []string) ApiGetVirtualNetworkRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiGetVirtualNetworkRequest) Exclude(exclude []string) ApiGetVirtualNetworkRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiGetVirtualNetworkRequest) Execute() (*VirtualNetwork, *http.Response, error) {
@@ -618,6 +652,12 @@ func (a *VLANsApiService) GetVirtualNetworkExecute(r ApiGetVirtualNetworkRequest
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -27,6 +27,13 @@ type ApiAcceptInvitationRequest struct {
 	ctx        context.Context
 	ApiService *InvitationsApiService
 	id         string
+	include    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiAcceptInvitationRequest) Include(include []string) ApiAcceptInvitationRequest {
+	r.include = &include
+	return r
 }
 
 func (r ApiAcceptInvitationRequest) Execute() (*Membership, *http.Response, error) {
@@ -73,6 +80,9 @@ func (a *InvitationsApiService) AcceptInvitationExecute(r ApiAcceptInvitationReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -316,18 +326,11 @@ type ApiFindInvitationByIdRequest struct {
 	ApiService *InvitationsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindInvitationByIdRequest) Include(include []string) ApiFindInvitationByIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindInvitationByIdRequest) Exclude(exclude []string) ApiFindInvitationByIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -377,9 +380,6 @@ func (a *InvitationsApiService) FindInvitationByIdExecute(r ApiFindInvitationByI
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

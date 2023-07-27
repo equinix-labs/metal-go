@@ -206,11 +206,18 @@ type ApiCreateOrganizationInvitationRequest struct {
 	ApiService      *OrganizationsApiService
 	id              string
 	invitationInput *InvitationInput
+	include         *[]string
 }
 
 // Invitation to create
 func (r ApiCreateOrganizationInvitationRequest) InvitationInput(invitationInput InvitationInput) ApiCreateOrganizationInvitationRequest {
 	r.invitationInput = &invitationInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateOrganizationInvitationRequest) Include(include []string) ApiCreateOrganizationInvitationRequest {
+	r.include = &include
 	return r
 }
 
@@ -262,6 +269,9 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 		return localVarReturnValue, nil, reportError("invitationInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -380,11 +390,25 @@ type ApiCreateOrganizationProjectRequest struct {
 	ApiService         *OrganizationsApiService
 	id                 string
 	projectCreateInput *ProjectCreateInput
+	include            *[]string
+	exclude            *[]string
 }
 
 // Project to create
 func (r ApiCreateOrganizationProjectRequest) ProjectCreateInput(projectCreateInput ProjectCreateInput) ApiCreateOrganizationProjectRequest {
 	r.projectCreateInput = &projectCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateOrganizationProjectRequest) Include(include []string) ApiCreateOrganizationProjectRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateOrganizationProjectRequest) Exclude(exclude []string) ApiCreateOrganizationProjectRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -435,6 +459,12 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 		return localVarReturnValue, nil, reportError("projectCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -531,11 +561,18 @@ type ApiCreatePaymentMethodRequest struct {
 	ApiService               *OrganizationsApiService
 	id                       string
 	paymentMethodCreateInput *PaymentMethodCreateInput
+	include                  *[]string
 }
 
 // Payment Method to create
 func (r ApiCreatePaymentMethodRequest) PaymentMethodCreateInput(paymentMethodCreateInput PaymentMethodCreateInput) ApiCreatePaymentMethodRequest {
 	r.paymentMethodCreateInput = &paymentMethodCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreatePaymentMethodRequest) Include(include []string) ApiCreatePaymentMethodRequest {
+	r.include = &include
 	return r
 }
 
@@ -586,6 +623,9 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 		return localVarReturnValue, nil, reportError("paymentMethodCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -820,18 +860,11 @@ type ApiFindOperatingSystemsByOrganizationRequest struct {
 	ApiService *OrganizationsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindOperatingSystemsByOrganizationRequest) Include(include []string) ApiFindOperatingSystemsByOrganizationRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindOperatingSystemsByOrganizationRequest) Exclude(exclude []string) ApiFindOperatingSystemsByOrganizationRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -881,9 +914,6 @@ func (a *OrganizationsApiService) FindOperatingSystemsByOrganizationExecute(r Ap
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1298,7 +1328,6 @@ type ApiFindOrganizationInvitationsRequest struct {
 	ApiService *OrganizationsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 	page       *int32
 	perPage    *int32
 }
@@ -1306,12 +1335,6 @@ type ApiFindOrganizationInvitationsRequest struct {
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindOrganizationInvitationsRequest) Include(include []string) ApiFindOrganizationInvitationsRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindOrganizationInvitationsRequest) Exclude(exclude []string) ApiFindOrganizationInvitationsRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1373,9 +1396,6 @@ func (a *OrganizationsApiService) FindOrganizationInvitationsExecute(r ApiFindOr
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
@@ -1488,7 +1508,6 @@ type ApiFindOrganizationPaymentMethodsRequest struct {
 	ApiService *OrganizationsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 	page       *int32
 	perPage    *int32
 }
@@ -1496,12 +1515,6 @@ type ApiFindOrganizationPaymentMethodsRequest struct {
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindOrganizationPaymentMethodsRequest) Include(include []string) ApiFindOrganizationPaymentMethodsRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindOrganizationPaymentMethodsRequest) Exclude(exclude []string) ApiFindOrganizationPaymentMethodsRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1563,9 +1576,6 @@ func (a *OrganizationsApiService) FindOrganizationPaymentMethodsExecute(r ApiFin
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
@@ -1845,18 +1855,11 @@ type ApiFindOrganizationTransfersRequest struct {
 	ApiService *OrganizationsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindOrganizationTransfersRequest) Include(include []string) ApiFindOrganizationTransfersRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindOrganizationTransfersRequest) Exclude(exclude []string) ApiFindOrganizationTransfersRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1906,9 +1909,6 @@ func (a *OrganizationsApiService) FindOrganizationTransfersExecute(r ApiFindOrga
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2358,11 +2358,25 @@ type ApiUpdateOrganizationRequest struct {
 	ApiService        *OrganizationsApiService
 	id                string
 	organizationInput *OrganizationInput
+	include           *[]string
+	exclude           *[]string
 }
 
 // Organization to update
 func (r ApiUpdateOrganizationRequest) OrganizationInput(organizationInput OrganizationInput) ApiUpdateOrganizationRequest {
 	r.organizationInput = &organizationInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateOrganizationRequest) Include(include []string) ApiUpdateOrganizationRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateOrganizationRequest) Exclude(exclude []string) ApiUpdateOrganizationRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -2413,6 +2427,12 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 		return localVarReturnValue, nil, reportError("organizationInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

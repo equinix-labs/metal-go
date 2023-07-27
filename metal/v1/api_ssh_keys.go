@@ -28,11 +28,18 @@ type ApiCreateProjectSSHKeyRequest struct {
 	ApiService        *SSHKeysApiService
 	id                string
 	sSHKeyCreateInput *SSHKeyCreateInput
+	include           *[]string
 }
 
 // ssh key to create
 func (r ApiCreateProjectSSHKeyRequest) SSHKeyCreateInput(sSHKeyCreateInput SSHKeyCreateInput) ApiCreateProjectSSHKeyRequest {
 	r.sSHKeyCreateInput = &sSHKeyCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateProjectSSHKeyRequest) Include(include []string) ApiCreateProjectSSHKeyRequest {
+	r.include = &include
 	return r
 }
 
@@ -83,6 +90,9 @@ func (a *SSHKeysApiService) CreateProjectSSHKeyExecute(r ApiCreateProjectSSHKeyR
 		return localVarReturnValue, nil, reportError("sSHKeyCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -178,11 +188,18 @@ type ApiCreateSSHKeyRequest struct {
 	ctx               context.Context
 	ApiService        *SSHKeysApiService
 	sSHKeyCreateInput *SSHKeyCreateInput
+	include           *[]string
 }
 
 // ssh key to create
 func (r ApiCreateSSHKeyRequest) SSHKeyCreateInput(sSHKeyCreateInput SSHKeyCreateInput) ApiCreateSSHKeyRequest {
 	r.sSHKeyCreateInput = &sSHKeyCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateSSHKeyRequest) Include(include []string) ApiCreateSSHKeyRequest {
+	r.include = &include
 	return r
 }
 
@@ -230,6 +247,9 @@ func (a *SSHKeysApiService) CreateSSHKeyExecute(r ApiCreateSSHKeyRequest) (*SSHK
 		return localVarReturnValue, nil, reportError("sSHKeyCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -465,7 +485,6 @@ type ApiFindDeviceSSHKeysRequest struct {
 	id           string
 	searchString *string
 	include      *[]string
-	exclude      *[]string
 }
 
 // Search by key, label, or fingerprint
@@ -477,12 +496,6 @@ func (r ApiFindDeviceSSHKeysRequest) SearchString(searchString string) ApiFindDe
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindDeviceSSHKeysRequest) Include(include []string) ApiFindDeviceSSHKeysRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindDeviceSSHKeysRequest) Exclude(exclude []string) ApiFindDeviceSSHKeysRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -535,9 +548,6 @@ func (a *SSHKeysApiService) FindDeviceSSHKeysExecute(r ApiFindDeviceSSHKeysReque
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -623,7 +633,6 @@ type ApiFindProjectSSHKeysRequest struct {
 	id         string
 	query      *string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Search by key, label, or fingerprint
@@ -635,12 +644,6 @@ func (r ApiFindProjectSSHKeysRequest) Query(query string) ApiFindProjectSSHKeysR
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindProjectSSHKeysRequest) Include(include []string) ApiFindProjectSSHKeysRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectSSHKeysRequest) Exclude(exclude []string) ApiFindProjectSSHKeysRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -693,9 +696,6 @@ func (a *SSHKeysApiService) FindProjectSSHKeysExecute(r ApiFindProjectSSHKeysReq
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -780,18 +780,11 @@ type ApiFindSSHKeyByIdRequest struct {
 	ApiService *SSHKeysApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindSSHKeyByIdRequest) Include(include []string) ApiFindSSHKeyByIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindSSHKeyByIdRequest) Exclude(exclude []string) ApiFindSSHKeyByIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -841,9 +834,6 @@ func (a *SSHKeysApiService) FindSSHKeyByIdExecute(r ApiFindSSHKeyByIdRequest) (*
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -950,7 +940,6 @@ type ApiFindSSHKeysRequest struct {
 	ApiService *SSHKeysApiService
 	search     *string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Search by key, label, or fingerprint
@@ -962,12 +951,6 @@ func (r ApiFindSSHKeysRequest) Search(search string) ApiFindSSHKeysRequest {
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindSSHKeysRequest) Include(include []string) ApiFindSSHKeysRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindSSHKeysRequest) Exclude(exclude []string) ApiFindSSHKeysRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1017,9 +1000,6 @@ func (a *SSHKeysApiService) FindSSHKeysExecute(r ApiFindSSHKeysRequest) (*SSHKey
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1104,11 +1084,18 @@ type ApiUpdateSSHKeyRequest struct {
 	ApiService  *SSHKeysApiService
 	id          string
 	sSHKeyInput *SSHKeyInput
+	include     *[]string
 }
 
 // ssh key to update
 func (r ApiUpdateSSHKeyRequest) SSHKeyInput(sSHKeyInput SSHKeyInput) ApiUpdateSSHKeyRequest {
 	r.sSHKeyInput = &sSHKeyInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateSSHKeyRequest) Include(include []string) ApiUpdateSSHKeyRequest {
+	r.include = &include
 	return r
 }
 
@@ -1159,6 +1146,9 @@ func (a *SSHKeysApiService) UpdateSSHKeyExecute(r ApiUpdateSSHKeyRequest) (*SSHK
 		return localVarReturnValue, nil, reportError("sSHKeyInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

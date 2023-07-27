@@ -28,11 +28,25 @@ type ApiCreateLicenseRequest struct {
 	ApiService         *LicensesApiService
 	id                 string
 	licenseCreateInput *LicenseCreateInput
+	include            *[]string
+	exclude            *[]string
 }
 
 // License to create
 func (r ApiCreateLicenseRequest) LicenseCreateInput(licenseCreateInput LicenseCreateInput) ApiCreateLicenseRequest {
 	r.licenseCreateInput = &licenseCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateLicenseRequest) Include(include []string) ApiCreateLicenseRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateLicenseRequest) Exclude(exclude []string) ApiCreateLicenseRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -83,6 +97,12 @@ func (a *LicensesApiService) CreateLicenseExecute(r ApiCreateLicenseRequest) (*L
 		return localVarReturnValue, nil, reportError("licenseCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -699,11 +719,25 @@ type ApiUpdateLicenseRequest struct {
 	ApiService         *LicensesApiService
 	id                 string
 	licenseUpdateInput *LicenseUpdateInput
+	include            *[]string
+	exclude            *[]string
 }
 
 // License to update
 func (r ApiUpdateLicenseRequest) LicenseUpdateInput(licenseUpdateInput LicenseUpdateInput) ApiUpdateLicenseRequest {
 	r.licenseUpdateInput = &licenseUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateLicenseRequest) Include(include []string) ApiUpdateLicenseRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateLicenseRequest) Exclude(exclude []string) ApiUpdateLicenseRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -754,6 +788,12 @@ func (a *LicensesApiService) UpdateLicenseExecute(r ApiUpdateLicenseRequest) (*L
 		return localVarReturnValue, nil, reportError("licenseUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

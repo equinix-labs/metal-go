@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateUser
 
-> User CreateUser(ctx).UserCreateInput(userCreateInput).Execute()
+> User CreateUser(ctx).UserCreateInput(userCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a user
 
@@ -36,10 +36,12 @@ import (
 
 func main() {
     userCreateInput := *openapiclient.NewUserCreateInput([]openapiclient.EmailInput{*openapiclient.NewEmailInput("Address_example")}, "FirstName_example", "LastName_example") // UserCreateInput | User to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).UserCreateInput(userCreateInput).Execute()
+    resp, r, err := apiClient.UsersApi.CreateUser(context.Background()).UserCreateInput(userCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +63,8 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userCreateInput** | [**UserCreateInput**](UserCreateInput.md) | User to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -150,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## FindInvitations
 
-> InvitationList FindInvitations(ctx).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> InvitationList FindInvitations(ctx).Include(include).Page(page).PerPage(perPage).Execute()
 
 Retrieve current user invitations
 
@@ -170,13 +174,12 @@ import (
 
 func main() {
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.FindInvitations(context.Background()).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.UsersApi.FindInvitations(context.Background()).Include(include).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.FindInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +201,6 @@ Other parameters are passed through a pointer to a apiFindInvitationsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
@@ -436,7 +438,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCurrentUser
 
-> User UpdateCurrentUser(ctx).UserUpdateInput(userUpdateInput).Execute()
+> User UpdateCurrentUser(ctx).UserUpdateInput(userUpdateInput).Include(include).Exclude(exclude).Execute()
 
 Update the current user
 
@@ -456,10 +458,12 @@ import (
 
 func main() {
     userUpdateInput := *openapiclient.NewUserUpdateInput() // UserUpdateInput | User to update
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).UserUpdateInput(userUpdateInput).Execute()
+    resp, r, err := apiClient.UsersApi.UpdateCurrentUser(context.Background()).UserUpdateInput(userUpdateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -481,6 +485,8 @@ Other parameters are passed through a pointer to a apiUpdateCurrentUserRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userUpdateInput** | [**UserUpdateInput**](UserUpdateInput.md) | User to update | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

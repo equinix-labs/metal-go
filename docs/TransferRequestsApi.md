@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## FindTransferRequestById
 
-> TransferRequest FindTransferRequestById(ctx, id).Include(include).Exclude(exclude).Execute()
+> TransferRequest FindTransferRequestById(ctx, id).Include(include).Execute()
 
 View a transfer request
 
@@ -169,11 +169,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Transfer request UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransferRequestsApi.FindTransferRequestById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.TransferRequestsApi.FindTransferRequestById(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransferRequestsApi.FindTransferRequestById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -200,7 +199,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

@@ -338,18 +338,11 @@ type ApiFindBatchByIdRequest struct {
 	ApiService *BatchesApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindBatchByIdRequest) Include(include []string) ApiFindBatchByIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindBatchByIdRequest) Exclude(exclude []string) ApiFindBatchByIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -399,9 +392,6 @@ func (a *BatchesApiService) FindBatchByIdExecute(r ApiFindBatchByIdRequest) (*Ba
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -497,18 +487,11 @@ type ApiFindBatchesByProjectRequest struct {
 	ApiService *BatchesApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindBatchesByProjectRequest) Include(include []string) ApiFindBatchesByProjectRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindBatchesByProjectRequest) Exclude(exclude []string) ApiFindBatchesByProjectRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -558,9 +541,6 @@ func (a *BatchesApiService) FindBatchesByProjectExecute(r ApiFindBatchesByProjec
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

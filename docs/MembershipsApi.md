@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## FindMembershipById
 
-> Membership FindMembershipById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Membership FindMembershipById(ctx, id).Include(include).Execute()
 
 Retrieve a membership
 
@@ -101,11 +101,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Membership UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MembershipsApi.FindMembershipById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.MembershipsApi.FindMembershipById(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.FindMembershipById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,7 +131,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -154,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## UpdateMembership
 
-> Membership UpdateMembership(ctx, id).MembershipInput(membershipInput).Execute()
+> Membership UpdateMembership(ctx, id).MembershipInput(membershipInput).Include(include).Execute()
 
 Update the membership
 
@@ -175,10 +173,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Membership UUID
     membershipInput := *openapiclient.NewMembershipInput() // MembershipInput | Membership to update
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MembershipsApi.UpdateMembership(context.Background(), id).MembershipInput(membershipInput).Execute()
+    resp, r, err := apiClient.MembershipsApi.UpdateMembership(context.Background(), id).MembershipInput(membershipInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MembershipsApi.UpdateMembership``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,6 +204,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **membershipInput** | [**MembershipInput**](MembershipInput.md) | Membership to update | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 

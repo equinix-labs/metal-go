@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 ## CreateBgpSession
 
-> BgpSession CreateBgpSession(ctx, id).BGPSessionInput(bGPSessionInput).Execute()
+> BgpSession CreateBgpSession(ctx, id).BGPSessionInput(bGPSessionInput).Include(include).Execute()
 
 Create a BGP session
 
@@ -48,10 +48,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     bGPSessionInput := *openapiclient.NewBGPSessionInput() // BGPSessionInput | BGP session to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.CreateBgpSession(context.Background(), id).BGPSessionInput(bGPSessionInput).Execute()
+    resp, r, err := apiClient.DevicesApi.CreateBgpSession(context.Background(), id).BGPSessionInput(bGPSessionInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.CreateBgpSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -78,6 +79,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **bGPSessionInput** | [**BGPSessionInput**](BGPSessionInput.md) | BGP session to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -321,7 +323,7 @@ Name | Type | Description  | Notes
 
 ## FindBgpSessions
 
-> BgpSessionList FindBgpSessions(ctx, id).Execute()
+> BgpSessionList FindBgpSessions(ctx, id).Include(include).Execute()
 
 Retrieve all BGP sessions
 
@@ -341,10 +343,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.FindBgpSessions(context.Background(), id).Execute()
+    resp, r, err := apiClient.DevicesApi.FindBgpSessions(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.FindBgpSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -370,6 +373,7 @@ Other parameters are passed through a pointer to a apiFindBgpSessionsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -1154,7 +1158,7 @@ Name | Type | Description  | Notes
 
 ## GetBgpNeighborData
 
-> BgpSessionNeighbors GetBgpNeighborData(ctx, id).Execute()
+> BgpSessionNeighbors GetBgpNeighborData(ctx, id).Include(include).Execute()
 
 Retrieve BGP neighbor data for this device
 
@@ -1174,10 +1178,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.GetBgpNeighborData(context.Background(), id).Execute()
+    resp, r, err := apiClient.DevicesApi.GetBgpNeighborData(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetBgpNeighborData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1203,6 +1208,7 @@ Other parameters are passed through a pointer to a apiGetBgpNeighborDataRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -1294,7 +1300,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDevice
 
-> Device UpdateDevice(ctx, id).DeviceUpdateInput(deviceUpdateInput).Execute()
+> Device UpdateDevice(ctx, id).DeviceUpdateInput(deviceUpdateInput).Include(include).Exclude(exclude).Execute()
 
 Update the device
 
@@ -1315,10 +1321,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
     deviceUpdateInput := *openapiclient.NewDeviceUpdateInput() // DeviceUpdateInput | Facility to update
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DevicesApi.UpdateDevice(context.Background(), id).DeviceUpdateInput(deviceUpdateInput).Execute()
+    resp, r, err := apiClient.DevicesApi.UpdateDevice(context.Background(), id).DeviceUpdateInput(deviceUpdateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.UpdateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1345,6 +1353,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **deviceUpdateInput** | [**DeviceUpdateInput**](DeviceUpdateInput.md) | Facility to update | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

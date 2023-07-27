@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## FindBgpConfigByProject
 
-> BgpConfig FindBgpConfigByProject(ctx, id).Include(include).Exclude(exclude).Execute()
+> BgpConfig FindBgpConfigByProject(ctx, id).Include(include).Execute()
 
 Retrieve a bgp config
 
@@ -105,11 +105,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BGPApi.FindBgpConfigByProject(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.BGPApi.FindBgpConfigByProject(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.FindBgpConfigByProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -136,7 +135,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -158,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## FindBgpSessionById
 
-> BgpSession FindBgpSessionById(ctx, id).Include(include).Exclude(exclude).Execute()
+> BgpSession FindBgpSessionById(ctx, id).Include(include).Execute()
 
 Retrieve a BGP session
 
@@ -179,11 +177,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | BGP session UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BGPApi.FindBgpSessionById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.BGPApi.FindBgpSessionById(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.FindBgpSessionById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,7 +207,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -372,7 +368,7 @@ Name | Type | Description  | Notes
 
 ## RequestBgpConfig
 
-> RequestBgpConfig(ctx, id).BgpConfigRequestInput(bgpConfigRequestInput).Execute()
+> RequestBgpConfig(ctx, id).BgpConfigRequestInput(bgpConfigRequestInput).Include(include).Execute()
 
 Requesting bgp config
 
@@ -393,10 +389,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     bgpConfigRequestInput := *openapiclient.NewBgpConfigRequestInput(int32(65000), "local") // BgpConfigRequestInput | BGP config Request to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).BgpConfigRequestInput(bgpConfigRequestInput).Execute()
+    r, err := apiClient.BGPApi.RequestBgpConfig(context.Background(), id).BgpConfigRequestInput(bgpConfigRequestInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BGPApi.RequestBgpConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -421,6 +418,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **bgpConfigRequestInput** | [**BgpConfigRequestInput**](BgpConfigRequestInput.md) | BGP config Request to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 

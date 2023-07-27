@@ -28,11 +28,18 @@ type ApiAssignNativeVlanRequest struct {
 	ApiService *PortsApiService
 	id         string
 	vnid       *string
+	include    *[]string
 }
 
 // Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;).
 func (r ApiAssignNativeVlanRequest) Vnid(vnid string) ApiAssignNativeVlanRequest {
 	r.vnid = &vnid
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiAssignNativeVlanRequest) Include(include []string) ApiAssignNativeVlanRequest {
+	r.include = &include
 	return r
 }
 
@@ -84,6 +91,9 @@ func (a *PortsApiService) AssignNativeVlanExecute(r ApiAssignNativeVlanRequest) 
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "vnid", r.vnid, "")
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -189,11 +199,18 @@ type ApiAssignPortRequest struct {
 	ApiService      *PortsApiService
 	id              string
 	portAssignInput *PortAssignInput
+	include         *[]string
 }
 
 // Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;).
 func (r ApiAssignPortRequest) PortAssignInput(portAssignInput PortAssignInput) ApiAssignPortRequest {
 	r.portAssignInput = &portAssignInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiAssignPortRequest) Include(include []string) ApiAssignPortRequest {
+	r.include = &include
 	return r
 }
 
@@ -244,6 +261,9 @@ func (a *PortsApiService) AssignPortExecute(r ApiAssignPortRequest) (*Port, *htt
 		return localVarReturnValue, nil, reportError("portAssignInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -362,11 +382,18 @@ type ApiBondPortRequest struct {
 	ApiService *PortsApiService
 	id         string
 	bulkEnable *bool
+	include    *[]string
 }
 
 // enable both ports
 func (r ApiBondPortRequest) BulkEnable(bulkEnable bool) ApiBondPortRequest {
 	r.bulkEnable = &bulkEnable
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiBondPortRequest) Include(include []string) ApiBondPortRequest {
+	r.include = &include
 	return r
 }
 
@@ -416,6 +443,9 @@ func (a *PortsApiService) BondPortExecute(r ApiBondPortRequest) (*Port, *http.Re
 
 	if r.bulkEnable != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bulk_enable", r.bulkEnable, "")
+	}
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -533,11 +563,18 @@ type ApiConvertLayer2Request struct {
 	ApiService      *PortsApiService
 	id              string
 	portAssignInput *PortAssignInput
+	include         *[]string
 }
 
 // Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;).
 func (r ApiConvertLayer2Request) PortAssignInput(portAssignInput PortAssignInput) ApiConvertLayer2Request {
 	r.portAssignInput = &portAssignInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiConvertLayer2Request) Include(include []string) ApiConvertLayer2Request {
+	r.include = &include
 	return r
 }
 
@@ -588,6 +625,9 @@ func (a *PortsApiService) ConvertLayer2Execute(r ApiConvertLayer2Request) (*Port
 		return localVarReturnValue, nil, reportError("portAssignInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -705,7 +745,14 @@ type ApiConvertLayer3Request struct {
 	ctx                    context.Context
 	ApiService             *PortsApiService
 	id                     string
+	include                *[]string
 	portConvertLayer3Input *PortConvertLayer3Input
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiConvertLayer3Request) Include(include []string) ApiConvertLayer3Request {
+	r.include = &include
+	return r
 }
 
 // IPs to request
@@ -758,6 +805,9 @@ func (a *PortsApiService) ConvertLayer3Execute(r ApiConvertLayer3Request) (*Port
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -876,11 +926,18 @@ type ApiCreatePortVlanAssignmentBatchRequest struct {
 	ApiService                         *PortsApiService
 	id                                 string
 	portVlanAssignmentBatchCreateInput *PortVlanAssignmentBatchCreateInput
+	include                            *[]string
 }
 
 // VLAN Assignment batch details
 func (r ApiCreatePortVlanAssignmentBatchRequest) PortVlanAssignmentBatchCreateInput(portVlanAssignmentBatchCreateInput PortVlanAssignmentBatchCreateInput) ApiCreatePortVlanAssignmentBatchRequest {
 	r.portVlanAssignmentBatchCreateInput = &portVlanAssignmentBatchCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreatePortVlanAssignmentBatchRequest) Include(include []string) ApiCreatePortVlanAssignmentBatchRequest {
+	r.include = &include
 	return r
 }
 
@@ -931,6 +988,9 @@ func (a *PortsApiService) CreatePortVlanAssignmentBatchExecute(r ApiCreatePortVl
 		return localVarReturnValue, nil, reportError("portVlanAssignmentBatchCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1048,6 +1108,13 @@ type ApiDeleteNativeVlanRequest struct {
 	ctx        context.Context
 	ApiService *PortsApiService
 	id         string
+	include    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiDeleteNativeVlanRequest) Include(include []string) ApiDeleteNativeVlanRequest {
+	r.include = &include
+	return r
 }
 
 func (r ApiDeleteNativeVlanRequest) Execute() (*Port, *http.Response, error) {
@@ -1094,6 +1161,9 @@ func (a *PortsApiService) DeleteNativeVlanExecute(r ApiDeleteNativeVlanRequest) 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1199,11 +1269,18 @@ type ApiDisbondPortRequest struct {
 	ApiService  *PortsApiService
 	id          string
 	bulkDisable *bool
+	include     *[]string
 }
 
 // disable both ports
 func (r ApiDisbondPortRequest) BulkDisable(bulkDisable bool) ApiDisbondPortRequest {
 	r.bulkDisable = &bulkDisable
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiDisbondPortRequest) Include(include []string) ApiDisbondPortRequest {
+	r.include = &include
 	return r
 }
 
@@ -1253,6 +1330,9 @@ func (a *PortsApiService) DisbondPortExecute(r ApiDisbondPortRequest) (*Port, *h
 
 	if r.bulkDisable != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bulk_disable", r.bulkDisable, "")
+	}
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1370,18 +1450,11 @@ type ApiFindPortByIdRequest struct {
 	ApiService *PortsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindPortByIdRequest) Include(include []string) ApiFindPortByIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindPortByIdRequest) Exclude(exclude []string) ApiFindPortByIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1431,9 +1504,6 @@ func (a *PortsApiService) FindPortByIdExecute(r ApiFindPortByIdRequest) (*Port, 
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1530,18 +1600,11 @@ type ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest struct {
 	id         string
 	batchId    string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) Include(include []string) ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest) Exclude(exclude []string) ApiFindPortVlanAssignmentBatchByPortIdAndBatchIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1594,9 +1657,6 @@ func (a *PortsApiService) FindPortVlanAssignmentBatchByPortIdAndBatchIdExecute(r
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1854,18 +1914,11 @@ type ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest struct {
 	id           string
 	assignmentId string
 	include      *[]string
-	exclude      *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Include(include []string) ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest) Exclude(exclude []string) ApiFindPortVlanAssignmentByPortIdAndAssignmentIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -1918,9 +1971,6 @@ func (a *PortsApiService) FindPortVlanAssignmentByPortIdAndAssignmentIdExecute(r
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2027,18 +2077,11 @@ type ApiFindPortVlanAssignmentsRequest struct {
 	ApiService *PortsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindPortVlanAssignmentsRequest) Include(include []string) ApiFindPortVlanAssignmentsRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindPortVlanAssignmentsRequest) Exclude(exclude []string) ApiFindPortVlanAssignmentsRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -2088,9 +2131,6 @@ func (a *PortsApiService) FindPortVlanAssignmentsExecute(r ApiFindPortVlanAssign
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2197,11 +2237,18 @@ type ApiUnassignPortRequest struct {
 	ApiService      *PortsApiService
 	id              string
 	portAssignInput *PortAssignInput
+	include         *[]string
 }
 
 // Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;).
 func (r ApiUnassignPortRequest) PortAssignInput(portAssignInput PortAssignInput) ApiUnassignPortRequest {
 	r.portAssignInput = &portAssignInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUnassignPortRequest) Include(include []string) ApiUnassignPortRequest {
+	r.include = &include
 	return r
 }
 
@@ -2252,6 +2299,9 @@ func (a *PortsApiService) UnassignPortExecute(r ApiUnassignPortRequest) (*Port, 
 		return localVarReturnValue, nil, reportError("portAssignInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

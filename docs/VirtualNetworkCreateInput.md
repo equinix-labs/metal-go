@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Facility** | Pointer to **string** | The UUID (or facility code) for the Facility in which to create this Virtual network. | [optional] 
 **Metro** | Pointer to **string** | The UUID (or metro code) for the Metro in which to create this Virtual Network. | [optional] 
 **Vxlan** | Pointer to **int32** | VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected. | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetVxlan sets Vxlan field to given value.
 `func (o *VirtualNetworkCreateInput) HasVxlan() bool`
 
 HasVxlan returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *VirtualNetworkCreateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VirtualNetworkCreateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VirtualNetworkCreateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VirtualNetworkCreateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

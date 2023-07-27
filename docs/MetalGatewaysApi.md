@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## CreateMetalGatewayElasticIp
 
-> IPAssignment CreateMetalGatewayElasticIp(ctx, id).MetalGatewayElasticIpCreateInput(metalGatewayElasticIpCreateInput).Execute()
+> IPAssignment CreateMetalGatewayElasticIp(ctx, id).MetalGatewayElasticIpCreateInput(metalGatewayElasticIpCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a Metal Gateway Elastic IP
 
@@ -116,10 +116,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Metal Gateway UUID
     metalGatewayElasticIpCreateInput := *openapiclient.NewMetalGatewayElasticIpCreateInput("147.75.234.8/31", "192.168.12.13") // MetalGatewayElasticIpCreateInput | 
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGatewayElasticIp(context.Background(), id).MetalGatewayElasticIpCreateInput(metalGatewayElasticIpCreateInput).Execute()
+    resp, r, err := apiClient.MetalGatewaysApi.CreateMetalGatewayElasticIp(context.Background(), id).MetalGatewayElasticIpCreateInput(metalGatewayElasticIpCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.CreateMetalGatewayElasticIp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -146,6 +148,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **metalGatewayElasticIpCreateInput** | [**MetalGatewayElasticIpCreateInput**](MetalGatewayElasticIpCreateInput.md) |  | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

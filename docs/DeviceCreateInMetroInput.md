@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **SpotInstance** | Pointer to **bool** | Create a spot instance. Spot instances are created with a maximum bid price. If the bid price is not met, the spot instance will be terminated as indicated by the &#x60;termination_time&#x60; field. | [optional] 
 **SpotPriceMax** | Pointer to **float32** | The maximum amount to bid for a spot instance. | [optional] 
 **SshKeys** | Pointer to [**[]SSHKeyInput**](SSHKeyInput.md) | A list of new or existing project ssh_keys that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  These keys are added in addition to any keys defined by   &#x60;project_ssh_keys&#x60; and &#x60;user_ssh_keys&#x60;.  | [optional] 
+**Storage** | Pointer to [**Storage**](Storage.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **TerminationTime** | Pointer to **time.Time** | When the device will be terminated. If you don&#39;t supply timezone info, the timestamp is assumed to be in UTC.  This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.  | [optional] 
 **UserSshKeys** | Pointer to **[]string** | A list of UUIDs identifying the users that should be authorized to access this device (typically via /root/.ssh/authorized_keys).  These keys will also appear in the device metadata.  The users must be members of the project or organization.  If no SSH keys are specified (&#x60;user_ssh_keys&#x60;, &#x60;project_ssh_keys&#x60;, and &#x60;ssh_keys&#x60; are all empty lists or omitted), all parent project keys, parent project members keys and organization members keys will be included. This behaviour can be changed with &#39;no_ssh_keys&#39; option to omit any SSH key being added.  | [optional] 
@@ -558,6 +559,31 @@ SetSshKeys sets SshKeys field to given value.
 `func (o *DeviceCreateInMetroInput) HasSshKeys() bool`
 
 HasSshKeys returns a boolean if a field has been set.
+
+### GetStorage
+
+`func (o *DeviceCreateInMetroInput) GetStorage() Storage`
+
+GetStorage returns the Storage field if non-nil, zero value otherwise.
+
+### GetStorageOk
+
+`func (o *DeviceCreateInMetroInput) GetStorageOk() (*Storage, bool)`
+
+GetStorageOk returns a tuple with the Storage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorage
+
+`func (o *DeviceCreateInMetroInput) SetStorage(v Storage)`
+
+SetStorage sets Storage field to given value.
+
+### HasStorage
+
+`func (o *DeviceCreateInMetroInput) HasStorage() bool`
+
+HasStorage returns a boolean if a field has been set.
 
 ### GetTags
 

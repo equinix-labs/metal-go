@@ -1066,7 +1066,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVrf
 
-> Vrf UpdateVrf(ctx, id).VrfUpdateInput(vrfUpdateInput).Execute()
+> Vrf UpdateVrf(ctx, id).VrfUpdateInput(vrfUpdateInput).Include(include).Exclude(exclude).Execute()
 
 Update the VRF
 
@@ -1087,10 +1087,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | VRF UUID
     vrfUpdateInput := *openapiclient.NewVrfUpdateInput() // VrfUpdateInput | VRF to update
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VRFsApi.UpdateVrf(context.Background(), id).VrfUpdateInput(vrfUpdateInput).Execute()
+    resp, r, err := apiClient.VRFsApi.UpdateVrf(context.Background(), id).VrfUpdateInput(vrfUpdateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VRFsApi.UpdateVrf``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1117,6 +1119,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **vrfUpdateInput** | [**VrfUpdateInput**](VrfUpdateInput.md) | VRF to update | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
