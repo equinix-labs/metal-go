@@ -9,6 +9,8 @@ delete:
     schema:
       format: uuid
       type: string
+  - $ref: '../../components/parameters/Include.yaml'
+  - $ref: '../../components/parameters/Exclude.yaml'
   responses:
     "202":
       content:
@@ -42,6 +44,8 @@ get:
     schema:
       format: uuid
       type: string
+  - $ref: '../../components/parameters/Include.yaml'
+  - $ref: '../../components/parameters/Exclude.yaml'
   responses:
     "200":
       content:
@@ -75,6 +79,8 @@ put:
     schema:
       format: uuid
       type: string
+  - $ref: '../../components/parameters/Include.yaml'
+  - $ref: '../../components/parameters/Exclude.yaml'
   requestBody:
     content:
       application/json:

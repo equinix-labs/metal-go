@@ -1,10 +1,10 @@
 properties:
-  key:
-    type: string
-  label:
-    type: string
-  tags:
+  devices:
     items:
       type: string
     type: array
+  level:
+    type: string
+  name:
+    type: string
 type: object

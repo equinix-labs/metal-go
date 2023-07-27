@@ -16,4 +16,8 @@ properties:
       the next-available VLAN ID in the range 1000-1999 will be automatically selected.
     example: 1099
     type: integer
+  tags:
+    items:
+      type: string
+    type: array
 type: object

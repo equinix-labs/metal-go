@@ -8,6 +8,8 @@ post:
           $ref: '../../components/schemas/AuthTokenInput.yaml'
     description: API key to create
     required: true
+  parameters:
+  - $ref: '../../components/parameters/Include.yaml'
   responses:
     "201":
       content:
@@ -46,7 +48,6 @@ get:
     schema:
       type: string
   - $ref: '../../components/parameters/Include.yaml'
-  - $ref: '../../components/parameters/Exclude.yaml'
   responses:
     "200":
       content:

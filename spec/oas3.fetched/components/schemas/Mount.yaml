@@ -1,9 +1,11 @@
 properties:
-  key:
+  device:
     type: string
-  label:
+  format:
     type: string
-  tags:
+  point:
+    type: string
+  options:
     items:
       type: string
     type: array

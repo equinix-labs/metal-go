@@ -10,6 +10,7 @@ get:
     schema:
       format: uuid
       type: string
+  - $ref: '../../../../components/parameters/Include.yaml'
   responses:
     "200":
       content:
