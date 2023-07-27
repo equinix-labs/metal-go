@@ -23,16 +23,6 @@ get:
         type: string
       type: array
     style: form
-  - description: Nested attributes to exclude. Excluded objects will return only the
-      href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-      nested objects.
-    in: query
-    name: exclude
-    schema:
-      items:
-        type: string
-      type: array
-    style: form
   responses:
     "200":
       content:
