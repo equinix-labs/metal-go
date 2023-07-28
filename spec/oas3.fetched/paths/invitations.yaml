@@ -3,7 +3,6 @@ get:
   operationId: findInvitations
   parameters:
   - $ref: '../components/parameters/Include.yaml'
-  - $ref: '../components/parameters/Exclude.yaml'
   - $ref: '../components/parameters/Page.yaml'
   - $ref: '../components/parameters/PerPage.yaml'
   responses:

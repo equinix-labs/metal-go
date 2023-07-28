@@ -27,7 +27,8 @@ type VirtualNetworkCreateInput struct {
 	// The UUID (or metro code) for the Metro in which to create this Virtual Network.
 	Metro *string `json:"metro,omitempty"`
 	// VLAN ID between 2-3999. Must be unique for the project within the Metro in which this Virtual Network is being created. If no value is specified, the next-available VLAN ID in the range 1000-1999 will be automatically selected.
-	Vxlan                *int32 `json:"vxlan,omitempty"`
+	Vxlan                *int32   `json:"vxlan,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -181,6 +182,38 @@ func (o *VirtualNetworkCreateInput) SetVxlan(v int32) {
 	o.Vxlan = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *VirtualNetworkCreateInput) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetworkCreateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *VirtualNetworkCreateInput) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *VirtualNetworkCreateInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o VirtualNetworkCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -202,6 +235,9 @@ func (o VirtualNetworkCreateInput) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -225,6 +261,7 @@ func (o *VirtualNetworkCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "facility")
 		delete(additionalProperties, "metro")
 		delete(additionalProperties, "vxlan")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

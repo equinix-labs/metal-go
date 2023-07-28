@@ -27,11 +27,18 @@ type ApiCreateAPIKeyRequest struct {
 	ctx            context.Context
 	ApiService     *AuthenticationApiService
 	authTokenInput *AuthTokenInput
+	include        *[]string
 }
 
 // API key to create
 func (r ApiCreateAPIKeyRequest) AuthTokenInput(authTokenInput AuthTokenInput) ApiCreateAPIKeyRequest {
 	r.authTokenInput = &authTokenInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateAPIKeyRequest) Include(include []string) ApiCreateAPIKeyRequest {
+	r.include = &include
 	return r
 }
 
@@ -79,6 +86,9 @@ func (a *AuthenticationApiService) CreateAPIKeyExecute(r ApiCreateAPIKeyRequest)
 		return localVarReturnValue, nil, reportError("authTokenInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -186,11 +196,18 @@ type ApiCreateProjectAPIKeyRequest struct {
 	ApiService     *AuthenticationApiService
 	id             string
 	authTokenInput *AuthTokenInput
+	include        *[]string
 }
 
 // API Key to create
 func (r ApiCreateProjectAPIKeyRequest) AuthTokenInput(authTokenInput AuthTokenInput) ApiCreateProjectAPIKeyRequest {
 	r.authTokenInput = &authTokenInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateProjectAPIKeyRequest) Include(include []string) ApiCreateProjectAPIKeyRequest {
+	r.include = &include
 	return r
 }
 
@@ -241,6 +258,9 @@ func (a *AuthenticationApiService) CreateProjectAPIKeyExecute(r ApiCreateProject
 		return localVarReturnValue, nil, reportError("authTokenInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -602,7 +622,6 @@ type ApiFindAPIKeysRequest struct {
 	ApiService *AuthenticationApiService
 	search     *string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Search by description
@@ -614,12 +633,6 @@ func (r ApiFindAPIKeysRequest) Search(search string) ApiFindAPIKeysRequest {
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindAPIKeysRequest) Include(include []string) ApiFindAPIKeysRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindAPIKeysRequest) Exclude(exclude []string) ApiFindAPIKeysRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -669,9 +682,6 @@ func (a *AuthenticationApiService) FindAPIKeysExecute(r ApiFindAPIKeysRequest) (
 	}
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -767,18 +777,11 @@ type ApiFindProjectAPIKeysRequest struct {
 	ApiService *AuthenticationApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindProjectAPIKeysRequest) Include(include []string) ApiFindProjectAPIKeysRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindProjectAPIKeysRequest) Exclude(exclude []string) ApiFindProjectAPIKeysRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -828,9 +831,6 @@ func (a *AuthenticationApiService) FindProjectAPIKeysExecute(r ApiFindProjectAPI
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -164,6 +164,8 @@ properties:
     items:
       $ref: './SSHKeyInput.yaml'
     type: array
+  storage:
+    $ref: './Storage.yaml'
   tags:
     items:
       type: string

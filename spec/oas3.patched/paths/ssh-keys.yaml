@@ -8,7 +8,6 @@ get:
     schema:
       type: string
   - $ref: '../components/parameters/Include.yaml'
-  - $ref: '../components/parameters/Exclude.yaml'
   responses:
     "200":
       content:
@@ -30,6 +29,8 @@ post:
   operationId: createSSHKey
   requestBody:
     $ref: '../components/requestBodies/SSHKeyCreateInput.yaml'
+  parameters:
+  - $ref: '../components/parameters/Include.yaml'
   responses:
     "201":
       content:

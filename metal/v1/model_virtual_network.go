@@ -33,8 +33,9 @@ type VirtualNetwork struct {
 	MetalGateways []MetalGatewayLite `json:"metal_gateways,omitempty"`
 	Metro         *Href              `json:"metro,omitempty"`
 	// The Metro code of the metro in which this Virtual Network is defined.
-	MetroCode            *string `json:"metro_code,omitempty"`
-	Vxlan                *int32  `json:"vxlan,omitempty"`
+	MetroCode            *string  `json:"metro_code,omitempty"`
+	Vxlan                *int32   `json:"vxlan,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -409,6 +410,38 @@ func (o *VirtualNetwork) SetVxlan(v int32) {
 	o.Vxlan = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *VirtualNetwork) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetwork) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *VirtualNetwork) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *VirtualNetwork) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o VirtualNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -452,6 +485,9 @@ func (o VirtualNetwork) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Vxlan) {
 		toSerialize["vxlan"] = o.Vxlan
 	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -481,6 +517,7 @@ func (o *VirtualNetwork) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "metro")
 		delete(additionalProperties, "metro_code")
 		delete(additionalProperties, "vxlan")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

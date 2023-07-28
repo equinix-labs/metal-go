@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## AssignNativeVlan
 
-> Port AssignNativeVlan(ctx, id).Vnid(vnid).Execute()
+> Port AssignNativeVlan(ctx, id).Vnid(vnid).Include(include).Execute()
 
 Assign a native VLAN
 
@@ -44,10 +44,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     vnid := "vnid_example" // string | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.AssignNativeVlan(context.Background(), id).Vnid(vnid).Execute()
+    resp, r, err := apiClient.PortsApi.AssignNativeVlan(context.Background(), id).Vnid(vnid).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.AssignNativeVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -74,6 +75,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **vnid** | **string** | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -95,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## AssignPort
 
-> Port AssignPort(ctx, id).PortAssignInput(portAssignInput).Execute()
+> Port AssignPort(ctx, id).PortAssignInput(portAssignInput).Include(include).Execute()
 
 Assign a port to virtual network
 
@@ -116,10 +118,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     portAssignInput := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.AssignPort(context.Background(), id).PortAssignInput(portAssignInput).Execute()
+    resp, r, err := apiClient.PortsApi.AssignPort(context.Background(), id).PortAssignInput(portAssignInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.AssignPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -146,6 +149,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **portAssignInput** | [**PortAssignInput**](PortAssignInput.md) | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -167,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## BondPort
 
-> Port BondPort(ctx, id).BulkEnable(bulkEnable).Execute()
+> Port BondPort(ctx, id).BulkEnable(bulkEnable).Include(include).Execute()
 
 Enabling bonding
 
@@ -188,10 +192,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     bulkEnable := true // bool | enable both ports (optional)
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.BondPort(context.Background(), id).BulkEnable(bulkEnable).Execute()
+    resp, r, err := apiClient.PortsApi.BondPort(context.Background(), id).BulkEnable(bulkEnable).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.BondPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -218,6 +223,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **bulkEnable** | **bool** | enable both ports | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -239,7 +245,7 @@ Name | Type | Description  | Notes
 
 ## ConvertLayer2
 
-> Port ConvertLayer2(ctx, id).PortAssignInput(portAssignInput).Execute()
+> Port ConvertLayer2(ctx, id).PortAssignInput(portAssignInput).Include(include).Execute()
 
 Convert to Layer 2
 
@@ -260,10 +266,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     portAssignInput := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.ConvertLayer2(context.Background(), id).PortAssignInput(portAssignInput).Execute()
+    resp, r, err := apiClient.PortsApi.ConvertLayer2(context.Background(), id).PortAssignInput(portAssignInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.ConvertLayer2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -290,6 +297,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **portAssignInput** | [**PortAssignInput**](PortAssignInput.md) | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -311,7 +319,7 @@ Name | Type | Description  | Notes
 
 ## ConvertLayer3
 
-> Port ConvertLayer3(ctx, id).PortConvertLayer3Input(portConvertLayer3Input).Execute()
+> Port ConvertLayer3(ctx, id).Include(include).PortConvertLayer3Input(portConvertLayer3Input).Execute()
 
 Convert to Layer 3
 
@@ -331,11 +339,12 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     portConvertLayer3Input := *openapiclient.NewPortConvertLayer3Input() // PortConvertLayer3Input | IPs to request (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.ConvertLayer3(context.Background(), id).PortConvertLayer3Input(portConvertLayer3Input).Execute()
+    resp, r, err := apiClient.PortsApi.ConvertLayer3(context.Background(), id).Include(include).PortConvertLayer3Input(portConvertLayer3Input).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.ConvertLayer3``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -361,6 +370,7 @@ Other parameters are passed through a pointer to a apiConvertLayer3Request struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **portConvertLayer3Input** | [**PortConvertLayer3Input**](PortConvertLayer3Input.md) | IPs to request | 
 
 ### Return type
@@ -383,7 +393,7 @@ Name | Type | Description  | Notes
 
 ## CreatePortVlanAssignmentBatch
 
-> PortVlanAssignmentBatch CreatePortVlanAssignmentBatch(ctx, id).PortVlanAssignmentBatchCreateInput(portVlanAssignmentBatchCreateInput).Execute()
+> PortVlanAssignmentBatch CreatePortVlanAssignmentBatch(ctx, id).PortVlanAssignmentBatchCreateInput(portVlanAssignmentBatchCreateInput).Include(include).Execute()
 
 Create a new Port-VLAN Assignment management batch
 
@@ -404,10 +414,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     portVlanAssignmentBatchCreateInput := *openapiclient.NewPortVlanAssignmentBatchCreateInput() // PortVlanAssignmentBatchCreateInput | VLAN Assignment batch details
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.CreatePortVlanAssignmentBatch(context.Background(), id).PortVlanAssignmentBatchCreateInput(portVlanAssignmentBatchCreateInput).Execute()
+    resp, r, err := apiClient.PortsApi.CreatePortVlanAssignmentBatch(context.Background(), id).PortVlanAssignmentBatchCreateInput(portVlanAssignmentBatchCreateInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.CreatePortVlanAssignmentBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -434,6 +445,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **portVlanAssignmentBatchCreateInput** | [**PortVlanAssignmentBatchCreateInput**](PortVlanAssignmentBatchCreateInput.md) | VLAN Assignment batch details | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -455,7 +467,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNativeVlan
 
-> Port DeleteNativeVlan(ctx, id).Execute()
+> Port DeleteNativeVlan(ctx, id).Include(include).Execute()
 
 Remove native VLAN
 
@@ -475,10 +487,11 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.DeleteNativeVlan(context.Background(), id).Execute()
+    resp, r, err := apiClient.PortsApi.DeleteNativeVlan(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.DeleteNativeVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -504,6 +517,7 @@ Other parameters are passed through a pointer to a apiDeleteNativeVlanRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -525,7 +539,7 @@ Name | Type | Description  | Notes
 
 ## DisbondPort
 
-> Port DisbondPort(ctx, id).BulkDisable(bulkDisable).Execute()
+> Port DisbondPort(ctx, id).BulkDisable(bulkDisable).Include(include).Execute()
 
 Disabling bonding
 
@@ -546,10 +560,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     bulkDisable := true // bool | disable both ports (optional)
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.DisbondPort(context.Background(), id).BulkDisable(bulkDisable).Execute()
+    resp, r, err := apiClient.PortsApi.DisbondPort(context.Background(), id).BulkDisable(bulkDisable).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.DisbondPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -576,6 +591,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **bulkDisable** | **bool** | disable both ports | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -597,7 +613,7 @@ Name | Type | Description  | Notes
 
 ## FindPortById
 
-> Port FindPortById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Port FindPortById(ctx, id).Include(include).Execute()
 
 Retrieve a port
 
@@ -618,11 +634,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.FindPortById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.PortsApi.FindPortById(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -649,7 +664,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -671,7 +685,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignmentBatchByPortIdAndBatchId
 
-> PortVlanAssignmentBatch FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx, id, batchId).Include(include).Exclude(exclude).Execute()
+> PortVlanAssignmentBatch FindPortVlanAssignmentBatchByPortIdAndBatchId(ctx, id, batchId).Include(include).Execute()
 
 Retrieve a VLAN Assignment Batch's details
 
@@ -693,11 +707,10 @@ func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     batchId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Batch ID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId(context.Background(), id, batchId).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId(context.Background(), id, batchId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentBatchByPortIdAndBatchId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -726,7 +739,6 @@ Name | Type | Description  | Notes
 
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -818,7 +830,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignmentByPortIdAndAssignmentId
 
-> PortVlanAssignment FindPortVlanAssignmentByPortIdAndAssignmentId(ctx, id, assignmentId).Include(include).Exclude(exclude).Execute()
+> PortVlanAssignment FindPortVlanAssignmentByPortIdAndAssignmentId(ctx, id, assignmentId).Include(include).Execute()
 
 Show a particular Port VLAN assignment's details
 
@@ -840,11 +852,10 @@ func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     assignmentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Assignment ID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional) (default to [port, virtual_network])
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId(context.Background(), id, assignmentId).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId(context.Background(), id, assignmentId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignmentByPortIdAndAssignmentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -873,7 +884,6 @@ Name | Type | Description  | Notes
 
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [default to [port, virtual_network]]
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -895,7 +905,7 @@ Name | Type | Description  | Notes
 
 ## FindPortVlanAssignments
 
-> PortVlanAssignmentList FindPortVlanAssignments(ctx, id).Include(include).Exclude(exclude).Execute()
+> PortVlanAssignmentList FindPortVlanAssignments(ctx, id).Include(include).Execute()
 
 List Current VLAN assignments for a port
 
@@ -916,11 +926,10 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional) (default to [port, virtual_network])
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.FindPortVlanAssignments(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.PortsApi.FindPortVlanAssignments(context.Background(), id).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.FindPortVlanAssignments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -947,7 +956,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [default to [port, virtual_network]]
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -969,7 +977,7 @@ Name | Type | Description  | Notes
 
 ## UnassignPort
 
-> Port UnassignPort(ctx, id).PortAssignInput(portAssignInput).Execute()
+> Port UnassignPort(ctx, id).PortAssignInput(portAssignInput).Include(include).Execute()
 
 Unassign a port
 
@@ -990,10 +998,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
     portAssignInput := *openapiclient.NewPortAssignInput() // PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortsApi.UnassignPort(context.Background(), id).PortAssignInput(portAssignInput).Execute()
+    resp, r, err := apiClient.PortsApi.UnassignPort(context.Background(), id).PortAssignInput(portAssignInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortsApi.UnassignPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1020,6 +1029,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **portAssignInput** | [**PortAssignInput**](PortAssignInput.md) | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: &#39;1001&#39;). | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 

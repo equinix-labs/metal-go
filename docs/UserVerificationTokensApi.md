@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ConsumeVerificationRequest
 
-> ConsumeVerificationRequest(ctx).VerifyEmail(verifyEmail).Execute()
+> ConsumeVerificationRequest(ctx).VerifyEmail(verifyEmail).Include(include).Execute()
 
 Verify a user using an email verification token
 
@@ -31,10 +31,11 @@ import (
 
 func main() {
     verifyEmail := *openapiclient.NewVerifyEmail("UserToken_example") // VerifyEmail | Email to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).VerifyEmail(verifyEmail).Execute()
+    r, err := apiClient.UserVerificationTokensApi.ConsumeVerificationRequest(context.Background()).VerifyEmail(verifyEmail).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserVerificationTokensApi.ConsumeVerificationRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,6 +55,7 @@ Other parameters are passed through a pointer to a apiConsumeVerificationRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **verifyEmail** | [**VerifyEmail**](VerifyEmail.md) | Email to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -75,7 +77,7 @@ Name | Type | Description  | Notes
 
 ## CreateValidationRequest
 
-> CreateValidationRequest(ctx).Login(login).Execute()
+> CreateValidationRequest(ctx).Login(login).Include(include).Execute()
 
 Create an email verification request
 
@@ -95,10 +97,11 @@ import (
 
 func main() {
     login := "login_example" // string | Email for verification request
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UserVerificationTokensApi.CreateValidationRequest(context.Background()).Login(login).Execute()
+    r, err := apiClient.UserVerificationTokensApi.CreateValidationRequest(context.Background()).Login(login).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserVerificationTokensApi.CreateValidationRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,6 +121,7 @@ Other parameters are passed through a pointer to a apiCreateValidationRequestReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **login** | **string** | Email for verification request | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 

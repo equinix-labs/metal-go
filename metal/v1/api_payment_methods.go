@@ -155,18 +155,11 @@ type ApiFindPaymentMethodByIdRequest struct {
 	ApiService *PaymentMethodsApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindPaymentMethodByIdRequest) Include(include []string) ApiFindPaymentMethodByIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindPaymentMethodByIdRequest) Exclude(exclude []string) ApiFindPaymentMethodByIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -216,9 +209,6 @@ func (a *PaymentMethodsApiService) FindPaymentMethodByIdExecute(r ApiFindPayment
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -314,11 +304,18 @@ type ApiUpdatePaymentMethodRequest struct {
 	ApiService               *PaymentMethodsApiService
 	id                       string
 	paymentMethodUpdateInput *PaymentMethodUpdateInput
+	include                  *[]string
 }
 
 // Payment Method to update
 func (r ApiUpdatePaymentMethodRequest) PaymentMethodUpdateInput(paymentMethodUpdateInput PaymentMethodUpdateInput) ApiUpdatePaymentMethodRequest {
 	r.paymentMethodUpdateInput = &paymentMethodUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdatePaymentMethodRequest) Include(include []string) ApiUpdatePaymentMethodRequest {
+	r.include = &include
 	return r
 }
 
@@ -369,6 +366,9 @@ func (a *PaymentMethodsApiService) UpdatePaymentMethodExecute(r ApiUpdatePayment
 		return localVarReturnValue, nil, reportError("paymentMethodUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

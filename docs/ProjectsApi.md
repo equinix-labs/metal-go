@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectInvitation
 
-> Invitation CreateProjectInvitation(ctx, projectId).InvitationInput(invitationInput).Execute()
+> Invitation CreateProjectInvitation(ctx, projectId).InvitationInput(invitationInput).Include(include).Execute()
 
 Create an invitation for a project
 
@@ -111,10 +111,11 @@ import (
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     invitationInput := *openapiclient.NewInvitationInput("Invitee_example") // InvitationInput | Invitation to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateProjectInvitation(context.Background(), projectId).InvitationInput(invitationInput).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateProjectInvitation(context.Background(), projectId).InvitationInput(invitationInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProjectInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -141,6 +142,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **invitationInput** | [**InvitationInput**](InvitationInput.md) | Invitation to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -162,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## CreateTransferRequest
 
-> TransferRequest CreateTransferRequest(ctx, id).TransferRequestInput(transferRequestInput).Execute()
+> TransferRequest CreateTransferRequest(ctx, id).TransferRequestInput(transferRequestInput).Include(include).Execute()
 
 Create a transfer request
 
@@ -183,10 +185,11 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project to be transferred
     transferRequestInput := *openapiclient.NewTransferRequestInput() // TransferRequestInput | Transfer Request to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.CreateTransferRequest(context.Background(), id).TransferRequestInput(transferRequestInput).Execute()
+    resp, r, err := apiClient.ProjectsApi.CreateTransferRequest(context.Background(), id).TransferRequestInput(transferRequestInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateTransferRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,6 +216,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **transferRequestInput** | [**TransferRequestInput**](TransferRequestInput.md) | Transfer Request to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
 
 ### Return type
 
@@ -515,7 +519,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectInvitations
 
-> InvitationList FindProjectInvitations(ctx, projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> InvitationList FindProjectInvitations(ctx, projectId).Include(include).Page(page).PerPage(perPage).Execute()
 
 Retrieve project invitations
 
@@ -536,13 +540,12 @@ import (
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.FindProjectInvitations(context.Background(), projectId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.ProjectsApi.FindProjectInvitations(context.Background(), projectId).Include(include).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -569,7 +572,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
@@ -593,7 +595,7 @@ Name | Type | Description  | Notes
 
 ## FindProjectMemberships
 
-> MembershipList FindProjectMemberships(ctx, projectId).Search(search).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> MembershipList FindProjectMemberships(ctx, projectId).Search(search).Include(include).Page(page).PerPage(perPage).Execute()
 
 Retrieve project memberships
 
@@ -615,13 +617,12 @@ func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     search := "search_example" // string | Search by member full name, id and email. (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.FindProjectMemberships(context.Background(), projectId).Search(search).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.ProjectsApi.FindProjectMemberships(context.Background(), projectId).Search(search).Include(include).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.FindProjectMemberships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -649,7 +650,6 @@ Name | Type | Description  | Notes
 
  **search** | **string** | Search by member full name, id and email. | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
- **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
  **perPage** | **int32** | Items returned per page | [default to 10]
 
@@ -747,7 +747,7 @@ Name | Type | Description  | Notes
 
 ## UpdateProject
 
-> Project UpdateProject(ctx, id).ProjectUpdateInput(projectUpdateInput).Execute()
+> Project UpdateProject(ctx, id).ProjectUpdateInput(projectUpdateInput).Include(include).Exclude(exclude).Execute()
 
 Update the project
 
@@ -768,10 +768,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     projectUpdateInput := *openapiclient.NewProjectUpdateInput() // ProjectUpdateInput | Project to update
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.UpdateProject(context.Background(), id).ProjectUpdateInput(projectUpdateInput).Execute()
+    resp, r, err := apiClient.ProjectsApi.UpdateProject(context.Background(), id).ProjectUpdateInput(projectUpdateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.UpdateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -798,6 +800,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **projectUpdateInput** | [**ProjectUpdateInput**](ProjectUpdateInput.md) | Project to update | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

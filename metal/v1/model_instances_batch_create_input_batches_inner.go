@@ -66,6 +66,7 @@ type InstancesBatchCreateInputBatchesInner struct {
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	// A list of new or existing project ssh_keys that should be authorized to access this device (typically via /root/.ssh/authorized_keys). These keys will also appear in the device metadata.  These keys are added in addition to any keys defined by   `project_ssh_keys` and `user_ssh_keys`.
 	SshKeys []SSHKeyInput `json:"ssh_keys,omitempty"`
+	Storage *Storage      `json:"storage,omitempty"`
 	Tags    []string      `json:"tags,omitempty"`
 	// When the device will be terminated. If you don't supply timezone info, the timestamp is assumed to be in UTC.  This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.
 	TerminationTime *time.Time `json:"termination_time,omitempty"`
@@ -838,6 +839,38 @@ func (o *InstancesBatchCreateInputBatchesInner) SetSshKeys(v []SSHKeyInput) {
 	o.SshKeys = v
 }
 
+// GetStorage returns the Storage field value if set, zero value otherwise.
+func (o *InstancesBatchCreateInputBatchesInner) GetStorage() Storage {
+	if o == nil || IsNil(o.Storage) {
+		var ret Storage
+		return ret
+	}
+	return *o.Storage
+}
+
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstancesBatchCreateInputBatchesInner) GetStorageOk() (*Storage, bool) {
+	if o == nil || IsNil(o.Storage) {
+		return nil, false
+	}
+	return o.Storage, true
+}
+
+// HasStorage returns a boolean if a field has been set.
+func (o *InstancesBatchCreateInputBatchesInner) HasStorage() bool {
+	if o != nil && !IsNil(o.Storage) {
+		return true
+	}
+
+	return false
+}
+
+// SetStorage gets a reference to the given Storage and assigns it to the Storage field.
+func (o *InstancesBatchCreateInputBatchesInner) SetStorage(v Storage) {
+	o.Storage = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *InstancesBatchCreateInputBatchesInner) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -1066,6 +1099,9 @@ func (o InstancesBatchCreateInputBatchesInner) ToMap() (map[string]interface{}, 
 	if !IsNil(o.SshKeys) {
 		toSerialize["ssh_keys"] = o.SshKeys
 	}
+	if !IsNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -1120,6 +1156,7 @@ func (o *InstancesBatchCreateInputBatchesInner) UnmarshalJSON(bytes []byte) (err
 		delete(additionalProperties, "spot_instance")
 		delete(additionalProperties, "spot_price_max")
 		delete(additionalProperties, "ssh_keys")
+		delete(additionalProperties, "storage")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "termination_time")
 		delete(additionalProperties, "user_ssh_keys")

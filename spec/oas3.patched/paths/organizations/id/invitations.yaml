@@ -3,7 +3,6 @@ get:
   operationId: findOrganizationInvitations
   parameters:
   - $ref: '../../../components/parameters/Include.yaml'
-  - $ref: '../../../components/parameters/Exclude.yaml'
   - $ref: '../../../components/parameters/Page.yaml'
   - $ref: '../../../components/parameters/PerPage.yaml'
   - description: Organization UUID
@@ -54,6 +53,7 @@ post:
     schema:
       format: uuid
       type: string
+  - $ref: '../../../components/parameters/Include.yaml'
   requestBody:
     $ref: '../../../components/requestBodies/InvitationInput.yaml'
   responses:

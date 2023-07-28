@@ -32,4 +32,8 @@ properties:
     type: string
   vxlan:
     type: integer
+  tags:
+    items:
+      type: string
+    type: array
 type: object

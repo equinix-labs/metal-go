@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInterconnection
 
-> Interconnection CreateOrganizationInterconnection(ctx, organizationId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
+> Interconnection CreateOrganizationInterconnection(ctx, organizationId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
 
 Request a new interconnection for the organization
 
@@ -120,10 +120,12 @@ import (
 func main() {
     organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
     interconnectionCreateInput := *openapiclient.NewInterconnectionCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example") // InterconnectionCreateInput | Interconnection details
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.CreateOrganizationInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -150,6 +152,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **interconnectionCreateInput** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Interconnection details | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -171,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectInterconnection
 
-> Interconnection CreateProjectInterconnection(ctx, projectId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
+> Interconnection CreateProjectInterconnection(ctx, projectId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
 
 Request a new interconnection for the project's organization
 
@@ -192,10 +196,12 @@ import (
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project
     interconnectionCreateInput := *openapiclient.NewInterconnectionCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example") // InterconnectionCreateInput | Interconnection details
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.CreateProjectInterconnection(context.Background(), projectId).InterconnectionCreateInput(interconnectionCreateInput).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.CreateProjectInterconnection(context.Background(), projectId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.CreateProjectInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,6 +228,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **interconnectionCreateInput** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Interconnection details | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -243,7 +251,7 @@ Name | Type | Description  | Notes
 
 ## DeleteInterconnection
 
-> Interconnection DeleteInterconnection(ctx, connectionId).Execute()
+> Interconnection DeleteInterconnection(ctx, connectionId).Include(include).Exclude(exclude).Execute()
 
 Delete interconnection
 
@@ -263,10 +271,12 @@ import (
 
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Interconnection UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.DeleteInterconnection(context.Background(), connectionId).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.DeleteInterconnection(context.Background(), connectionId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.DeleteInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -292,6 +302,8 @@ Other parameters are passed through a pointer to a apiDeleteInterconnectionReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -313,7 +325,7 @@ Name | Type | Description  | Notes
 
 ## DeleteVirtualCircuit
 
-> VirtualCircuit DeleteVirtualCircuit(ctx, id).Execute()
+> VirtualCircuit DeleteVirtualCircuit(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Delete a virtual circuit
 
@@ -333,10 +345,12 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.DeleteVirtualCircuit(context.Background(), id).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.DeleteVirtualCircuit(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.DeleteVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -362,6 +376,8 @@ Other parameters are passed through a pointer to a apiDeleteVirtualCircuitReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -383,7 +399,7 @@ Name | Type | Description  | Notes
 
 ## GetInterconnection
 
-> Interconnection GetInterconnection(ctx, connectionId).Execute()
+> Interconnection GetInterconnection(ctx, connectionId).Include(include).Exclude(exclude).Execute()
 
 Get interconnection
 
@@ -403,10 +419,12 @@ import (
 
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Interconnection UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.GetInterconnection(context.Background(), connectionId).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.GetInterconnection(context.Background(), connectionId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.GetInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -432,6 +450,8 @@ Other parameters are passed through a pointer to a apiGetInterconnectionRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -453,7 +473,7 @@ Name | Type | Description  | Notes
 
 ## GetInterconnectionPort
 
-> InterconnectionPort GetInterconnectionPort(ctx, connectionId, id).Execute()
+> InterconnectionPort GetInterconnectionPort(ctx, connectionId, id).Include(include).Exclude(exclude).Execute()
 
 Get a interconnection port
 
@@ -474,10 +494,12 @@ import (
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Port UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.GetInterconnectionPort(context.Background(), connectionId, id).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.GetInterconnectionPort(context.Background(), connectionId, id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.GetInterconnectionPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -505,6 +527,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -526,7 +550,7 @@ Name | Type | Description  | Notes
 
 ## GetVirtualCircuit
 
-> VirtualCircuit GetVirtualCircuit(ctx, id).Execute()
+> VirtualCircuit GetVirtualCircuit(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Get a virtual circuit
 
@@ -546,10 +570,12 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.GetVirtualCircuit(context.Background(), id).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.GetVirtualCircuit(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.GetVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -575,6 +601,8 @@ Other parameters are passed through a pointer to a apiGetVirtualCircuitRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -596,7 +624,7 @@ Name | Type | Description  | Notes
 
 ## ListInterconnectionPortVirtualCircuits
 
-> VirtualCircuitList ListInterconnectionPortVirtualCircuits(ctx, connectionId, portId).Execute()
+> VirtualCircuitList ListInterconnectionPortVirtualCircuits(ctx, connectionId, portId).Include(include).Exclude(exclude).Execute()
 
 List a interconnection port's virtual circuits
 
@@ -617,10 +645,12 @@ import (
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection
     portId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the interconnection port
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.ListInterconnectionPortVirtualCircuits(context.Background(), connectionId, portId).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.ListInterconnectionPortVirtualCircuits(context.Background(), connectionId, portId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.ListInterconnectionPortVirtualCircuits``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -648,6 +678,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -809,7 +841,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationListInterconnections
 
-> InterconnectionList OrganizationListInterconnections(ctx, organizationId).Execute()
+> InterconnectionList OrganizationListInterconnections(ctx, organizationId).Include(include).Exclude(exclude).Execute()
 
 List organization connections
 
@@ -829,10 +861,12 @@ import (
 
 func main() {
     organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.OrganizationListInterconnections(context.Background(), organizationId).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.OrganizationListInterconnections(context.Background(), organizationId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.OrganizationListInterconnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -858,6 +892,8 @@ Other parameters are passed through a pointer to a apiOrganizationListInterconne
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -957,7 +993,7 @@ Name | Type | Description  | Notes
 
 ## UpdateInterconnection
 
-> Interconnection UpdateInterconnection(ctx, connectionId).InterconnectionUpdateInput(interconnectionUpdateInput).Execute()
+> Interconnection UpdateInterconnection(ctx, connectionId).InterconnectionUpdateInput(interconnectionUpdateInput).Include(include).Exclude(exclude).Execute()
 
 Update interconnection
 
@@ -978,10 +1014,12 @@ import (
 func main() {
     connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Interconnection UUID
     interconnectionUpdateInput := *openapiclient.NewInterconnectionUpdateInput() // InterconnectionUpdateInput | Updated interconnection details
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.UpdateInterconnection(context.Background(), connectionId).InterconnectionUpdateInput(interconnectionUpdateInput).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.UpdateInterconnection(context.Background(), connectionId).InterconnectionUpdateInput(interconnectionUpdateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.UpdateInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1008,6 +1046,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **interconnectionUpdateInput** | [**InterconnectionUpdateInput**](InterconnectionUpdateInput.md) | Updated interconnection details | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -1029,7 +1069,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVirtualCircuit
 
-> VirtualCircuit UpdateVirtualCircuit(ctx, id).VirtualCircuitUpdateInput(virtualCircuitUpdateInput).Execute()
+> VirtualCircuit UpdateVirtualCircuit(ctx, id).VirtualCircuitUpdateInput(virtualCircuitUpdateInput).Include(include).Exclude(exclude).Execute()
 
 Update a virtual circuit
 
@@ -1050,10 +1090,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Circuit UUID
     virtualCircuitUpdateInput := openapiclient.VirtualCircuitUpdateInput{VlanVirtualCircuitUpdateInput: openapiclient.NewVlanVirtualCircuitUpdateInput()} // VirtualCircuitUpdateInput | Updated Virtual Circuit details
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.UpdateVirtualCircuit(context.Background(), id).VirtualCircuitUpdateInput(virtualCircuitUpdateInput).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.UpdateVirtualCircuit(context.Background(), id).VirtualCircuitUpdateInput(virtualCircuitUpdateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.UpdateVirtualCircuit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1080,6 +1122,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **virtualCircuitUpdateInput** | [**VirtualCircuitUpdateInput**](VirtualCircuitUpdateInput.md) | Updated Virtual Circuit details | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

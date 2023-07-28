@@ -847,18 +847,11 @@ type ApiFindSpotMarketRequestByIdRequest struct {
 	ApiService *SpotMarketApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindSpotMarketRequestByIdRequest) Include(include []string) ApiFindSpotMarketRequestByIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindSpotMarketRequestByIdRequest) Exclude(exclude []string) ApiFindSpotMarketRequestByIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -908,9 +901,6 @@ func (a *SpotMarketApiService) FindSpotMarketRequestByIdExecute(r ApiFindSpotMar
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

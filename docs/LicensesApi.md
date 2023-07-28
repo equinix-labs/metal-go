@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLicense
 
-> License CreateLicense(ctx, id).LicenseCreateInput(licenseCreateInput).Execute()
+> License CreateLicense(ctx, id).LicenseCreateInput(licenseCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a License
 
@@ -35,10 +35,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     licenseCreateInput := *openapiclient.NewLicenseCreateInput() // LicenseCreateInput | License to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.CreateLicense(context.Background(), id).LicenseCreateInput(licenseCreateInput).Execute()
+    resp, r, err := apiClient.LicensesApi.CreateLicense(context.Background(), id).LicenseCreateInput(licenseCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.CreateLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +67,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **licenseCreateInput** | [**LicenseCreateInput**](LicenseCreateInput.md) | License to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -306,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLicense
 
-> License UpdateLicense(ctx, id).LicenseUpdateInput(licenseUpdateInput).Execute()
+> License UpdateLicense(ctx, id).LicenseUpdateInput(licenseUpdateInput).Include(include).Exclude(exclude).Execute()
 
 Update the license
 
@@ -327,10 +331,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | License UUID
     licenseUpdateInput := *openapiclient.NewLicenseUpdateInput() // LicenseUpdateInput | License to update
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.UpdateLicense(context.Background(), id).LicenseUpdateInput(licenseUpdateInput).Execute()
+    resp, r, err := apiClient.LicensesApi.UpdateLicense(context.Background(), id).LicenseUpdateInput(licenseUpdateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.UpdateLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -357,6 +363,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **licenseUpdateInput** | [**LicenseUpdateInput**](LicenseUpdateInput.md) | License to update | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

@@ -833,11 +833,25 @@ type ApiRequestIPReservationRequest struct {
 	ApiService                  *IPAddressesApiService
 	id                          string
 	requestIPReservationRequest *RequestIPReservationRequest
+	include                     *[]string
+	exclude                     *[]string
 }
 
 // IP Reservation Request to create
 func (r ApiRequestIPReservationRequest) RequestIPReservationRequest(requestIPReservationRequest RequestIPReservationRequest) ApiRequestIPReservationRequest {
 	r.requestIPReservationRequest = &requestIPReservationRequest
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiRequestIPReservationRequest) Include(include []string) ApiRequestIPReservationRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiRequestIPReservationRequest) Exclude(exclude []string) ApiRequestIPReservationRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -888,6 +902,12 @@ func (a *IPAddressesApiService) RequestIPReservationExecute(r ApiRequestIPReserv
 		return localVarReturnValue, nil, reportError("requestIPReservationRequest is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1005,7 +1025,21 @@ type ApiUpdateIPAddressRequest struct {
 	ctx                     context.Context
 	ApiService              *IPAddressesApiService
 	id                      string
+	include                 *[]string
+	exclude                 *[]string
 	iPAssignmentUpdateInput *IPAssignmentUpdateInput
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateIPAddressRequest) Include(include []string) ApiUpdateIPAddressRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateIPAddressRequest) Exclude(exclude []string) ApiUpdateIPAddressRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiUpdateIPAddressRequest) IPAssignmentUpdateInput(iPAssignmentUpdateInput IPAssignmentUpdateInput) ApiUpdateIPAddressRequest {
@@ -1057,6 +1091,12 @@ func (a *IPAddressesApiService) UpdateIPAddressExecute(r ApiUpdateIPAddressReque
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

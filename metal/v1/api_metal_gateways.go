@@ -230,10 +230,24 @@ type ApiCreateMetalGatewayElasticIpRequest struct {
 	ApiService                       *MetalGatewaysApiService
 	id                               string
 	metalGatewayElasticIpCreateInput *MetalGatewayElasticIpCreateInput
+	include                          *[]string
+	exclude                          *[]string
 }
 
 func (r ApiCreateMetalGatewayElasticIpRequest) MetalGatewayElasticIpCreateInput(metalGatewayElasticIpCreateInput MetalGatewayElasticIpCreateInput) ApiCreateMetalGatewayElasticIpRequest {
 	r.metalGatewayElasticIpCreateInput = &metalGatewayElasticIpCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateMetalGatewayElasticIpRequest) Include(include []string) ApiCreateMetalGatewayElasticIpRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateMetalGatewayElasticIpRequest) Exclude(exclude []string) ApiCreateMetalGatewayElasticIpRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -288,6 +302,12 @@ func (a *MetalGatewaysApiService) CreateMetalGatewayElasticIpExecute(r ApiCreate
 		return localVarReturnValue, nil, reportError("metalGatewayElasticIpCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

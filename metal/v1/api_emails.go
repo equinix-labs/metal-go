@@ -312,20 +312,6 @@ type ApiFindEmailByIdRequest struct {
 	ctx        context.Context
 	ApiService *EmailsApiService
 	id         string
-	include    *[]string
-	exclude    *[]string
-}
-
-// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindEmailByIdRequest) Include(include []string) ApiFindEmailByIdRequest {
-	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindEmailByIdRequest) Exclude(exclude []string) ApiFindEmailByIdRequest {
-	r.exclude = &exclude
-	return r
 }
 
 func (r ApiFindEmailByIdRequest) Execute() (*Email, *http.Response, error) {
@@ -372,12 +358,6 @@ func (a *EmailsApiService) FindEmailByIdExecute(r ApiFindEmailByIdRequest) (*Ema
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.include != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

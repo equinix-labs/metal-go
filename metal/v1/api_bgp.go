@@ -166,18 +166,11 @@ type ApiFindBgpConfigByProjectRequest struct {
 	ApiService *BGPApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindBgpConfigByProjectRequest) Include(include []string) ApiFindBgpConfigByProjectRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindBgpConfigByProjectRequest) Exclude(exclude []string) ApiFindBgpConfigByProjectRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -227,9 +220,6 @@ func (a *BGPApiService) FindBgpConfigByProjectExecute(r ApiFindBgpConfigByProjec
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -336,18 +326,11 @@ type ApiFindBgpSessionByIdRequest struct {
 	ApiService *BGPApiService
 	id         string
 	include    *[]string
-	exclude    *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindBgpSessionByIdRequest) Include(include []string) ApiFindBgpSessionByIdRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindBgpSessionByIdRequest) Exclude(exclude []string) ApiFindBgpSessionByIdRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -397,9 +380,6 @@ func (a *BGPApiService) FindBgpSessionByIdExecute(r ApiFindBgpSessionByIdRequest
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -795,11 +775,18 @@ type ApiRequestBgpConfigRequest struct {
 	ApiService            *BGPApiService
 	id                    string
 	bgpConfigRequestInput *BgpConfigRequestInput
+	include               *[]string
 }
 
 // BGP config Request to create
 func (r ApiRequestBgpConfigRequest) BgpConfigRequestInput(bgpConfigRequestInput BgpConfigRequestInput) ApiRequestBgpConfigRequest {
 	r.bgpConfigRequestInput = &bgpConfigRequestInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiRequestBgpConfigRequest) Include(include []string) ApiRequestBgpConfigRequest {
+	r.include = &include
 	return r
 }
 
@@ -847,6 +834,9 @@ func (a *BGPApiService) RequestBgpConfigExecute(r ApiRequestBgpConfigRequest) (*
 		return nil, reportError("bgpConfigRequestInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

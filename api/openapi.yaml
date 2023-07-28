@@ -413,18 +413,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -501,18 +489,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -866,6 +842,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "202":
           content:
@@ -899,6 +899,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -932,6 +956,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -1131,6 +1179,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -1262,6 +1334,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -1458,6 +1554,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -1599,6 +1719,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -1639,6 +1771,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -1672,6 +1816,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -2022,18 +2178,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -2335,30 +2479,6 @@ paths:
         schema:
           format: uuid
           type: string
-      - description: |-
-          Nested attributes to include. Included objects will return their full
-          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
-          nested objects.
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -2693,6 +2813,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -2740,6 +2884,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -2828,18 +2996,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -2951,18 +3107,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -3002,6 +3146,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -3183,6 +3339,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -3519,6 +3699,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -3800,18 +4004,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -3851,6 +4043,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -4220,6 +4424,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -4551,6 +4779,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -5028,18 +5280,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       - description: Page to return
         in: query
         name: page
@@ -5106,6 +5346,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InvitationInput'
       responses:
@@ -5216,18 +5468,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -5275,18 +5515,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -5343,6 +5571,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -5528,6 +5768,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -5582,18 +5846,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -5628,6 +5880,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -5662,6 +5938,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InterconnectionCreateInput'
       responses:
@@ -5745,18 +6045,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -5790,6 +6078,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -5922,18 +6222,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -5968,6 +6256,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -6021,6 +6321,18 @@ paths:
         name: bulk_enable
         schema:
           type: boolean
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -6068,6 +6380,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -6116,6 +6440,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -6173,6 +6509,18 @@ paths:
         name: bulk_disable
         schema:
           type: boolean
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -6219,6 +6567,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -6267,6 +6627,18 @@ paths:
         required: true
         schema:
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -6307,6 +6679,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -6370,16 +6754,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -6437,16 +6811,6 @@ paths:
           default:
           - port
           - virtual_network
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        in: query
-        name: exclude
-        schema:
           items:
             type: string
           type: array
@@ -6532,6 +6896,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -6601,18 +6977,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -6883,6 +7247,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -6948,18 +7336,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -6993,6 +7369,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -7052,18 +7440,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -7116,18 +7492,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -7175,6 +7539,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -7942,6 +8318,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -8076,6 +8476,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -8299,18 +8723,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -8338,6 +8750,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -8379,6 +8803,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -8837,6 +9273,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InterconnectionCreateInput'
       responses:
@@ -8873,18 +9333,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -8954,6 +9402,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InvitationInput'
       responses:
@@ -9051,18 +9511,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -9829,18 +10277,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -9891,18 +10327,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -9922,6 +10346,19 @@ paths:
     post:
       description: Creates a ssh key.
       operationId: createSSHKey
+      parameters:
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/SSHKeyCreateInput'
       responses:
@@ -10005,18 +10442,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -10056,6 +10481,18 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -10197,18 +10634,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -10320,6 +10745,31 @@ paths:
     put:
       description: Updates the currently logged-in user.
       operationId: updateCurrentUser
+      parameters:
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -10371,18 +10821,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          Nested attributes to exclude. Excluded objects will return only the href
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-          nested objects.
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -10408,6 +10846,19 @@ paths:
     post:
       description: Creates a API key for the current user.
       operationId: createAPIKey
+      parameters:
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -10769,6 +11220,31 @@ paths:
     post:
       description: Creates a user.
       operationId: createUser
+      parameters:
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -10912,6 +11388,18 @@ paths:
         required: true
         schema:
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "201":
           description: created
@@ -10934,6 +11422,19 @@ paths:
       description: Consumes an email verification token and verifies the user associated
         with it.
       operationId: consumeVerificationRequest
+      parameters:
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -11053,6 +11554,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "202":
           content:
@@ -11086,6 +11611,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -11119,6 +11668,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -11166,6 +11739,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -11211,6 +11808,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -11355,6 +11976,30 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -12113,6 +12758,9 @@ components:
             assigned_to_virtual_circuit: true
             assigned_to:
               href: href
+            tags:
+            - tags
+            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           ip_reservation:
             address: address
@@ -12831,6 +13479,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -13475,6 +14126,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -14705,6 +15359,9 @@ components:
             assigned_to_virtual_circuit: true
             assigned_to:
               href: href
+            tags:
+            - tags
+            - tags
           disbond_operation_supported: true
           data:
             bonded: true
@@ -14751,6 +15408,9 @@ components:
             assigned_to_virtual_circuit: true
             assigned_to:
               href: href
+            tags:
+            - tags
+            - tags
           disbond_operation_supported: true
           data:
             bonded: true
@@ -15401,6 +16061,8 @@ components:
           items:
             $ref: '#/components/schemas/SSHKeyInput'
           type: array
+        storage:
+          $ref: '#/components/schemas/Storage'
         tags:
           items:
             type: string
@@ -15691,6 +16353,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -15737,6 +16402,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -16282,6 +16950,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -16328,6 +16999,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -20579,6 +21253,9 @@ components:
           assigned_to_virtual_circuit: true
           assigned_to:
             href: href
+          tags:
+          - tags
+          - tags
         disbond_operation_supported: true
         data:
           bonded: true
@@ -20729,6 +21406,9 @@ components:
             assigned_to_virtual_circuit: true
             assigned_to:
               href: href
+            tags:
+            - tags
+            - tags
           disbond_operation_supported: true
           data:
             bonded: true
@@ -20845,6 +21525,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -20911,6 +21594,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -21445,6 +22131,9 @@ components:
         entity:
           href: href
         key: key
+        tags:
+        - tags
+        - tags
       properties:
         created_at:
           format: date-time
@@ -21465,6 +22154,10 @@ components:
         updated_at:
           format: date-time
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     SSHKeyCreateInput:
       example:
@@ -21473,6 +22166,9 @@ components:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         key: key
+        tags:
+        - tags
+        - tags
       properties:
         instances_ids:
           description: |-
@@ -21486,16 +22182,27 @@ components:
           type: string
         label:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     SSHKeyInput:
       example:
         label: label
         key: key
+        tags:
+        - tags
+        - tags
       properties:
         key:
           type: string
         label:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     SSHKeyList:
       example:
@@ -21509,6 +22216,9 @@ components:
           entity:
             href: href
           key: key
+          tags:
+          - tags
+          - tags
         - updated_at: 2000-01-23T04:56:07.000+00:00
           fingerprint: fingerprint
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -21518,6 +22228,9 @@ components:
           entity:
             href: href
           key: key
+          tags:
+          - tags
+          - tags
       properties:
         ssh_keys:
           items:
@@ -23011,6 +23724,9 @@ components:
         assigned_to_virtual_circuit: true
         assigned_to:
           href: href
+        tags:
+        - tags
+        - tags
       properties:
         assigned_to:
           $ref: '#/components/schemas/Href'
@@ -23047,6 +23763,10 @@ components:
           type: string
         vxlan:
           type: integer
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VirtualNetworkCreateInput:
       example:
@@ -23054,6 +23774,9 @@ components:
         metro: metro
         description: description
         facility: facility
+        tags:
+        - tags
+        - tags
       properties:
         description:
           type: string
@@ -23073,6 +23796,10 @@ components:
             \ be automatically selected."
           example: 1099
           type: integer
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VirtualNetworkList:
       example:
@@ -23107,6 +23834,9 @@ components:
           assigned_to_virtual_circuit: true
           assigned_to:
             href: href
+          tags:
+          - tags
+          - tags
         - vxlan: 4
           metal_gateways:
           - gateway_address: 10.1.2.1/27
@@ -23137,6 +23867,9 @@ components:
           assigned_to_virtual_circuit: true
           assigned_to:
             href: href
+          tags:
+          - tags
+          - tags
       properties:
         virtual_networks:
           items:
@@ -25107,6 +25840,9 @@ components:
           assigned_to_virtual_circuit: true
           assigned_to:
             href: href
+          tags:
+          - tags
+          - tags
         updated_at: 2000-01-23T04:56:07.000+00:00
         ip_reservation:
           address: address
@@ -25795,6 +26531,9 @@ components:
             assigned_to_virtual_circuit: true
             assigned_to:
               href: href
+            tags:
+            - tags
+            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           ip_reservation:
             address: address
@@ -26425,6 +27164,9 @@ components:
           assigned_to_virtual_circuit: true
           assigned_to:
             href: href
+          tags:
+          - tags
+          - tags
         updated_at: 2000-01-23T04:56:07.000+00:00
         prefix: 0.0.0.0/0
         next_hop: 192.168.1.254
@@ -26725,6 +27467,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -27355,6 +28100,9 @@ components:
             assigned_to_virtual_circuit: true
             assigned_to:
               href: href
+            tags:
+            - tags
+            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           prefix: 0.0.0.0/0
           next_hop: 192.168.1.254
@@ -27559,6 +28307,9 @@ components:
               assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
+              tags:
+              - tags
+              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -28189,6 +28940,9 @@ components:
             assigned_to_virtual_circuit: true
             assigned_to:
               href: href
+            tags:
+            - tags
+            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           prefix: 0.0.0.0/0
           next_hop: 192.168.1.254

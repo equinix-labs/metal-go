@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## DeleteVirtualNetwork
 
-> VirtualNetwork DeleteVirtualNetwork(ctx, id).Execute()
+> VirtualNetwork DeleteVirtualNetwork(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Delete a virtual network
 
@@ -109,10 +109,12 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Network UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VLANsApi.DeleteVirtualNetwork(context.Background(), id).Execute()
+    resp, r, err := apiClient.VLANsApi.DeleteVirtualNetwork(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.DeleteVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,6 +140,8 @@ Other parameters are passed through a pointer to a apiDeleteVirtualNetworkReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -237,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## GetVirtualNetwork
 
-> VirtualNetwork GetVirtualNetwork(ctx, id).Execute()
+> VirtualNetwork GetVirtualNetwork(ctx, id).Include(include).Exclude(exclude).Execute()
 
 Get a virtual network
 
@@ -257,10 +261,12 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Virtual Network UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VLANsApi.GetVirtualNetwork(context.Background(), id).Execute()
+    resp, r, err := apiClient.VLANsApi.GetVirtualNetwork(context.Background(), id).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VLANsApi.GetVirtualNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,6 +292,8 @@ Other parameters are passed through a pointer to a apiGetVirtualNetworkRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

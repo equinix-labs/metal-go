@@ -9,6 +9,7 @@ delete:
     schema:
       format: uuid
       type: string
+  - $ref: '../../../components/parameters/Include.yaml'
   responses:
     "200":
       content:
@@ -57,6 +58,7 @@ post:
     required: true
     schema:
       type: string
+  - $ref: '../../../components/parameters/Include.yaml'
   responses:
     "200":
       content:

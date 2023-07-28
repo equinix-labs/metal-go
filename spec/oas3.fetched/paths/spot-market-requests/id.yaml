@@ -50,7 +50,6 @@ get:
       format: uuid
       type: string
   - $ref: '../../components/parameters/Include.yaml'
-  - $ref: '../../components/parameters/Exclude.yaml'
   responses:
     "200":
       content:

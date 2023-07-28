@@ -27,11 +27,25 @@ type ApiCreateUserRequest struct {
 	ctx             context.Context
 	ApiService      *UsersApiService
 	userCreateInput *UserCreateInput
+	include         *[]string
+	exclude         *[]string
 }
 
 // User to create
 func (r ApiCreateUserRequest) UserCreateInput(userCreateInput UserCreateInput) ApiCreateUserRequest {
 	r.userCreateInput = &userCreateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateUserRequest) Include(include []string) ApiCreateUserRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiCreateUserRequest) Exclude(exclude []string) ApiCreateUserRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -79,6 +93,12 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *htt
 		return localVarReturnValue, nil, reportError("userCreateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -318,7 +338,6 @@ type ApiFindInvitationsRequest struct {
 	ctx        context.Context
 	ApiService *UsersApiService
 	include    *[]string
-	exclude    *[]string
 	page       *int32
 	perPage    *int32
 }
@@ -326,12 +345,6 @@ type ApiFindInvitationsRequest struct {
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
 func (r ApiFindInvitationsRequest) Include(include []string) ApiFindInvitationsRequest {
 	r.include = &include
-	return r
-}
-
-// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindInvitationsRequest) Exclude(exclude []string) ApiFindInvitationsRequest {
-	r.exclude = &exclude
 	return r
 }
 
@@ -390,9 +403,6 @@ func (a *UsersApiService) FindInvitationsExecute(r ApiFindInvitationsRequest) (*
 
 	if r.include != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
-	}
-	if r.exclude != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
@@ -976,11 +986,25 @@ type ApiUpdateCurrentUserRequest struct {
 	ctx             context.Context
 	ApiService      *UsersApiService
 	userUpdateInput *UserUpdateInput
+	include         *[]string
+	exclude         *[]string
 }
 
 // User to update
 func (r ApiUpdateCurrentUserRequest) UserUpdateInput(userUpdateInput UserUpdateInput) ApiUpdateCurrentUserRequest {
 	r.userUpdateInput = &userUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateCurrentUserRequest) Include(include []string) ApiUpdateCurrentUserRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateCurrentUserRequest) Exclude(exclude []string) ApiUpdateCurrentUserRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -1028,6 +1052,12 @@ func (a *UsersApiService) UpdateCurrentUserExecute(r ApiUpdateCurrentUserRequest
 		return localVarReturnValue, nil, reportError("userUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

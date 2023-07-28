@@ -9,6 +9,7 @@ post:
     schema:
       format: uuid
       type: string
+  - $ref: '../../../components/parameters/Include.yaml'
   requestBody:
     $ref: '../../../components/requestBodies/PortAssignInput.yaml'
   responses:

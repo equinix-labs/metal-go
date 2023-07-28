@@ -8,6 +8,7 @@ post:
     required: true
     schema:
       type: string
+  - $ref: '../components/parameters/Include.yaml'
   responses:
     "201":
       description: created
@@ -37,6 +38,8 @@ put:
           $ref: '../components/schemas/VerifyEmail.yaml'
     description: Email to create
     required: true
+  parameters:
+  - $ref: '../components/parameters/Include.yaml'
   responses:
     "200":
       description: ok

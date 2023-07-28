@@ -30,6 +30,9 @@ put:
           $ref: '../components/schemas/UserUpdateInput.yaml'
     description: User to update
     required: true
+  parameters:
+    - $ref: '../components/parameters/Include.yaml'
+    - $ref: '../components/parameters/Exclude.yaml'
   responses:
     "200":
       content:

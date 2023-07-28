@@ -33,6 +33,9 @@ post:
           $ref: '../components/schemas/UserCreateInput.yaml'
     description: User to create
     required: true
+  parameters:
+  - $ref: '../components/parameters/Include.yaml'
+  - $ref: '../components/parameters/Exclude.yaml'
   responses:
     "201":
       content:

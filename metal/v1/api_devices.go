@@ -28,11 +28,18 @@ type ApiCreateBgpSessionRequest struct {
 	ApiService      *DevicesApiService
 	id              string
 	bGPSessionInput *BGPSessionInput
+	include         *[]string
 }
 
 // BGP session to create
 func (r ApiCreateBgpSessionRequest) BGPSessionInput(bGPSessionInput BGPSessionInput) ApiCreateBgpSessionRequest {
 	r.bGPSessionInput = &bGPSessionInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiCreateBgpSessionRequest) Include(include []string) ApiCreateBgpSessionRequest {
+	r.include = &include
 	return r
 }
 
@@ -83,6 +90,9 @@ func (a *DevicesApiService) CreateBgpSessionExecute(r ApiCreateBgpSessionRequest
 		return localVarReturnValue, nil, reportError("bGPSessionInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -725,6 +735,13 @@ type ApiFindBgpSessionsRequest struct {
 	ctx        context.Context
 	ApiService *DevicesApiService
 	id         string
+	include    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiFindBgpSessionsRequest) Include(include []string) ApiFindBgpSessionsRequest {
+	r.include = &include
+	return r
 }
 
 func (r ApiFindBgpSessionsRequest) Execute() (*BgpSessionList, *http.Response, error) {
@@ -771,6 +788,9 @@ func (a *DevicesApiService) FindBgpSessionsExecute(r ApiFindBgpSessionsRequest) 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2642,6 +2662,13 @@ type ApiGetBgpNeighborDataRequest struct {
 	ctx        context.Context
 	ApiService *DevicesApiService
 	id         string
+	include    *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiGetBgpNeighborDataRequest) Include(include []string) ApiGetBgpNeighborDataRequest {
+	r.include = &include
+	return r
 }
 
 func (r ApiGetBgpNeighborDataRequest) Execute() (*BgpSessionNeighbors, *http.Response, error) {
@@ -2688,6 +2715,9 @@ func (a *DevicesApiService) GetBgpNeighborDataExecute(r ApiGetBgpNeighborDataReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2943,11 +2973,25 @@ type ApiUpdateDeviceRequest struct {
 	ApiService        *DevicesApiService
 	id                string
 	deviceUpdateInput *DeviceUpdateInput
+	include           *[]string
+	exclude           *[]string
 }
 
 // Facility to update
 func (r ApiUpdateDeviceRequest) DeviceUpdateInput(deviceUpdateInput DeviceUpdateInput) ApiUpdateDeviceRequest {
 	r.deviceUpdateInput = &deviceUpdateInput
+	return r
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiUpdateDeviceRequest) Include(include []string) ApiUpdateDeviceRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiUpdateDeviceRequest) Exclude(exclude []string) ApiUpdateDeviceRequest {
+	r.exclude = &exclude
 	return r
 }
 
@@ -2998,6 +3042,12 @@ func (a *DevicesApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Devi
 		return localVarReturnValue, nil, reportError("deviceUpdateInput is required and must be specified")
 	}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

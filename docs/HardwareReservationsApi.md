@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ActivateHardwareReservation
 
-> HardwareReservation ActivateHardwareReservation(ctx, id).ActivateHardwareReservationRequest(activateHardwareReservationRequest).Execute()
+> HardwareReservation ActivateHardwareReservation(ctx, id).Include(include).Exclude(exclude).ActivateHardwareReservationRequest(activateHardwareReservationRequest).Execute()
 
 Activate a spare hardware reservation
 
@@ -33,11 +33,13 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Hardware Reservation UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     activateHardwareReservationRequest := *openapiclient.NewActivateHardwareReservationRequest() // ActivateHardwareReservationRequest | Note to attach to the reservation (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HardwareReservationsApi.ActivateHardwareReservation(context.Background(), id).ActivateHardwareReservationRequest(activateHardwareReservationRequest).Execute()
+    resp, r, err := apiClient.HardwareReservationsApi.ActivateHardwareReservation(context.Background(), id).Include(include).Exclude(exclude).ActivateHardwareReservationRequest(activateHardwareReservationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HardwareReservationsApi.ActivateHardwareReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +65,8 @@ Other parameters are passed through a pointer to a apiActivateHardwareReservatio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **activateHardwareReservationRequest** | [**ActivateHardwareReservationRequest**](ActivateHardwareReservationRequest.md) | Note to attach to the reservation | 
 
 ### Return type
@@ -243,7 +247,7 @@ Name | Type | Description  | Notes
 
 ## MoveHardwareReservation
 
-> HardwareReservation MoveHardwareReservation(ctx, id).MoveHardwareReservationRequest(moveHardwareReservationRequest).Execute()
+> HardwareReservation MoveHardwareReservation(ctx, id).MoveHardwareReservationRequest(moveHardwareReservationRequest).Include(include).Exclude(exclude).Execute()
 
 Move a hardware reservation
 
@@ -264,10 +268,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Hardware Reservation UUID
     moveHardwareReservationRequest := *openapiclient.NewMoveHardwareReservationRequest() // MoveHardwareReservationRequest | Destination Project UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HardwareReservationsApi.MoveHardwareReservation(context.Background(), id).MoveHardwareReservationRequest(moveHardwareReservationRequest).Execute()
+    resp, r, err := apiClient.HardwareReservationsApi.MoveHardwareReservation(context.Background(), id).MoveHardwareReservationRequest(moveHardwareReservationRequest).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HardwareReservationsApi.MoveHardwareReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -294,6 +300,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **moveHardwareReservationRequest** | [**MoveHardwareReservationRequest**](MoveHardwareReservationRequest.md) | Destination Project UUID | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 

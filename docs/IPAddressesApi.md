@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ## RequestIPReservation
 
-> RequestIPReservation201Response RequestIPReservation(ctx, id).RequestIPReservationRequest(requestIPReservationRequest).Execute()
+> RequestIPReservation201Response RequestIPReservation(ctx, id).RequestIPReservationRequest(requestIPReservationRequest).Include(include).Exclude(exclude).Execute()
 
 Requesting IP reservations
 
@@ -397,10 +397,12 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     requestIPReservationRequest := openapiclient.requestIPReservation_request{IPReservationRequestInput: openapiclient.NewIPReservationRequestInput(int32(123), "Type_example")} // RequestIPReservationRequest | IP Reservation Request to create
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IPAddressesApi.RequestIPReservation(context.Background(), id).RequestIPReservationRequest(requestIPReservationRequest).Execute()
+    resp, r, err := apiClient.IPAddressesApi.RequestIPReservation(context.Background(), id).RequestIPReservationRequest(requestIPReservationRequest).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.RequestIPReservation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -427,6 +429,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **requestIPReservationRequest** | [**RequestIPReservationRequest**](RequestIPReservationRequest.md) | IP Reservation Request to create | 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -448,7 +452,7 @@ Name | Type | Description  | Notes
 
 ## UpdateIPAddress
 
-> FindIPAddressById200Response UpdateIPAddress(ctx, id).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
+> FindIPAddressById200Response UpdateIPAddress(ctx, id).Include(include).Exclude(exclude).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
 
 Update an ip address
 
@@ -468,11 +472,13 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | IP Address UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     iPAssignmentUpdateInput := *openapiclient.NewIPAssignmentUpdateInput() // IPAssignmentUpdateInput |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IPAddressesApi.UpdateIPAddress(context.Background(), id).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
+    resp, r, err := apiClient.IPAddressesApi.UpdateIPAddress(context.Background(), id).Include(include).Exclude(exclude).IPAssignmentUpdateInput(iPAssignmentUpdateInput).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAddressesApi.UpdateIPAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -498,6 +504,8 @@ Other parameters are passed through a pointer to a apiUpdateIPAddressRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **iPAssignmentUpdateInput** | [**IPAssignmentUpdateInput**](IPAssignmentUpdateInput.md) |  | 
 
 ### Return type
