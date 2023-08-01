@@ -12729,6 +12729,15 @@ components:
         metal_gateway:
           virtual_network:
             vxlan: 4
+            instances:
+            - href: href
+            - href: href
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            assigned_to_virtual_circuit: true
+            tags:
+            - tags
+            - tags
             metal_gateways:
             - gateway_address: 10.1.2.1/27
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -12745,22 +12754,14 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             metro_code: metro_code
-            instances:
-            - href: href
-            - href: href
             metro:
               href: href
-            description: description
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             facility:
               href: href
-            assigned_to_virtual_circuit: true
             assigned_to:
               href: href
-            tags:
-            - tags
-            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           ip_reservation:
             address: address
@@ -13450,6 +13451,15 @@ components:
         - metal_gateway:
             virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -13466,22 +13476,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -14097,6 +14099,15 @@ components:
         - metal_gateway:
             virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -14113,22 +14124,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -15330,6 +15333,15 @@ components:
         network_ports:
         - native_virtual_network:
             vxlan: 4
+            instances:
+            - href: href
+            - href: href
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            assigned_to_virtual_circuit: true
+            tags:
+            - tags
+            - tags
             metal_gateways:
             - gateway_address: 10.1.2.1/27
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -15346,22 +15358,14 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             metro_code: metro_code
-            instances:
-            - href: href
-            - href: href
             metro:
               href: href
-            description: description
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             facility:
               href: href
-            assigned_to_virtual_circuit: true
             assigned_to:
               href: href
-            tags:
-            - tags
-            - tags
           disbond_operation_supported: true
           data:
             bonded: true
@@ -15379,6 +15383,15 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - native_virtual_network:
             vxlan: 4
+            instances:
+            - href: href
+            - href: href
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            assigned_to_virtual_circuit: true
+            tags:
+            - tags
+            - tags
             metal_gateways:
             - gateway_address: 10.1.2.1/27
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -15395,22 +15408,14 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             metro_code: metro_code
-            instances:
-            - href: href
-            - href: href
             metro:
               href: href
-            description: description
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             facility:
               href: href
-            assigned_to_virtual_circuit: true
             assigned_to:
               href: href
-            tags:
-            - tags
-            - tags
           disbond_operation_supported: true
           data:
             bonded: true
@@ -16324,6 +16329,15 @@ components:
           network_ports:
           - native_virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -16340,22 +16354,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -16373,6 +16379,15 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - native_virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -16389,22 +16404,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -16921,6 +16928,15 @@ components:
           network_ports:
           - native_virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -16937,22 +16953,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -16970,6 +16978,15 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - native_virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -16986,22 +17003,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -21224,6 +21233,15 @@ components:
       example:
         native_virtual_network:
           vxlan: 4
+          instances:
+          - href: href
+          - href: href
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          assigned_to_virtual_circuit: true
+          tags:
+          - tags
+          - tags
           metal_gateways:
           - gateway_address: 10.1.2.1/27
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -21240,22 +21258,14 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           metro_code: metro_code
-          instances:
-          - href: href
-          - href: href
           metro:
             href: href
-          description: description
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           facility:
             href: href
-          assigned_to_virtual_circuit: true
           assigned_to:
             href: href
-          tags:
-          - tags
-          - tags
         disbond_operation_supported: true
         data:
           bonded: true
@@ -21377,6 +21387,15 @@ components:
         port:
           native_virtual_network:
             vxlan: 4
+            instances:
+            - href: href
+            - href: href
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            assigned_to_virtual_circuit: true
+            tags:
+            - tags
+            - tags
             metal_gateways:
             - gateway_address: 10.1.2.1/27
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -21393,22 +21412,14 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             metro_code: metro_code
-            instances:
-            - href: href
-            - href: href
             metro:
               href: href
-            description: description
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             facility:
               href: href
-            assigned_to_virtual_circuit: true
             assigned_to:
               href: href
-            tags:
-            - tags
-            - tags
           disbond_operation_supported: true
           data:
             bonded: true
@@ -21496,6 +21507,15 @@ components:
           port:
             native_virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -21512,22 +21532,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -21565,6 +21577,15 @@ components:
           port:
             native_virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -21581,22 +21602,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             disbond_operation_supported: true
             data:
               bonded: true
@@ -23695,6 +23708,15 @@ components:
     VirtualNetwork:
       example:
         vxlan: 4
+        instances:
+        - href: href
+        - href: href
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        assigned_to_virtual_circuit: true
+        tags:
+        - tags
+        - tags
         metal_gateways:
         - gateway_address: 10.1.2.1/27
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -23711,22 +23733,14 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: ready
         metro_code: metro_code
-        instances:
-        - href: href
-        - href: href
         metro:
           href: href
-        description: description
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         facility:
           href: href
-        assigned_to_virtual_circuit: true
         assigned_to:
           href: href
-        tags:
-        - tags
-        - tags
       properties:
         assigned_to:
           $ref: '#/components/schemas/Href'
@@ -23739,6 +23753,9 @@ components:
         facility:
           $ref: '#/components/schemas/Href'
         href:
+          type: string
+        created_at:
+          format: date-time
           type: string
         id:
           format: uuid
@@ -23805,6 +23822,15 @@ components:
       example:
         virtual_networks:
         - vxlan: 4
+          instances:
+          - href: href
+          - href: href
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          assigned_to_virtual_circuit: true
+          tags:
+          - tags
+          - tags
           metal_gateways:
           - gateway_address: 10.1.2.1/27
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -23821,23 +23847,24 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           metro_code: metro_code
-          instances:
-          - href: href
-          - href: href
           metro:
             href: href
-          description: description
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           facility:
             href: href
-          assigned_to_virtual_circuit: true
           assigned_to:
             href: href
-          tags:
-          - tags
-          - tags
         - vxlan: 4
+          instances:
+          - href: href
+          - href: href
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          assigned_to_virtual_circuit: true
+          tags:
+          - tags
+          - tags
           metal_gateways:
           - gateway_address: 10.1.2.1/27
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -23854,22 +23881,14 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           metro_code: metro_code
-          instances:
-          - href: href
-          - href: href
           metro:
             href: href
-          description: description
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           facility:
             href: href
-          assigned_to_virtual_circuit: true
           assigned_to:
             href: href
-          tags:
-          - tags
-          - tags
       properties:
         virtual_networks:
           items:
@@ -25811,6 +25830,15 @@ components:
       example:
         virtual_network:
           vxlan: 4
+          instances:
+          - href: href
+          - href: href
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          assigned_to_virtual_circuit: true
+          tags:
+          - tags
+          - tags
           metal_gateways:
           - gateway_address: 10.1.2.1/27
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -25827,22 +25855,14 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           metro_code: metro_code
-          instances:
-          - href: href
-          - href: href
           metro:
             href: href
-          description: description
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           facility:
             href: href
-          assigned_to_virtual_circuit: true
           assigned_to:
             href: href
-          tags:
-          - tags
-          - tags
         updated_at: 2000-01-23T04:56:07.000+00:00
         ip_reservation:
           address: address
@@ -26502,6 +26522,15 @@ components:
         metal_gateway:
           virtual_network:
             vxlan: 4
+            instances:
+            - href: href
+            - href: href
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            assigned_to_virtual_circuit: true
+            tags:
+            - tags
+            - tags
             metal_gateways:
             - gateway_address: 10.1.2.1/27
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -26518,22 +26547,14 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             metro_code: metro_code
-            instances:
-            - href: href
-            - href: href
             metro:
               href: href
-            description: description
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             facility:
               href: href
-            assigned_to_virtual_circuit: true
             assigned_to:
               href: href
-            tags:
-            - tags
-            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           ip_reservation:
             address: address
@@ -27135,6 +27156,15 @@ components:
             href: href
         virtual_network:
           vxlan: 4
+          instances:
+          - href: href
+          - href: href
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          assigned_to_virtual_circuit: true
+          tags:
+          - tags
+          - tags
           metal_gateways:
           - gateway_address: 10.1.2.1/27
             updated_at: 2000-01-23T04:56:07.000+00:00
@@ -27151,22 +27181,14 @@ components:
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: ready
           metro_code: metro_code
-          instances:
-          - href: href
-          - href: href
           metro:
             href: href
-          description: description
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           facility:
             href: href
-          assigned_to_virtual_circuit: true
           assigned_to:
             href: href
-          tags:
-          - tags
-          - tags
         updated_at: 2000-01-23T04:56:07.000+00:00
         prefix: 0.0.0.0/0
         next_hop: 192.168.1.254
@@ -27438,6 +27460,15 @@ components:
         - metal_gateway:
             virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -27454,22 +27485,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -28071,6 +28094,15 @@ components:
               href: href
           virtual_network:
             vxlan: 4
+            instances:
+            - href: href
+            - href: href
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            assigned_to_virtual_circuit: true
+            tags:
+            - tags
+            - tags
             metal_gateways:
             - gateway_address: 10.1.2.1/27
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -28087,22 +28119,14 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             metro_code: metro_code
-            instances:
-            - href: href
-            - href: href
             metro:
               href: href
-            description: description
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             facility:
               href: href
-            assigned_to_virtual_circuit: true
             assigned_to:
               href: href
-            tags:
-            - tags
-            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           prefix: 0.0.0.0/0
           next_hop: 192.168.1.254
@@ -28278,6 +28302,15 @@ components:
         - metal_gateway:
             virtual_network:
               vxlan: 4
+              instances:
+              - href: href
+              - href: href
+              description: description
+              created_at: 2000-01-23T04:56:07.000+00:00
+              assigned_to_virtual_circuit: true
+              tags:
+              - tags
+              - tags
               metal_gateways:
               - gateway_address: 10.1.2.1/27
                 updated_at: 2000-01-23T04:56:07.000+00:00
@@ -28294,22 +28327,14 @@ components:
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 state: ready
               metro_code: metro_code
-              instances:
-              - href: href
-              - href: href
               metro:
                 href: href
-              description: description
               href: href
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               facility:
                 href: href
-              assigned_to_virtual_circuit: true
               assigned_to:
                 href: href
-              tags:
-              - tags
-              - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             ip_reservation:
               address: address
@@ -28911,6 +28936,15 @@ components:
               href: href
           virtual_network:
             vxlan: 4
+            instances:
+            - href: href
+            - href: href
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            assigned_to_virtual_circuit: true
+            tags:
+            - tags
+            - tags
             metal_gateways:
             - gateway_address: 10.1.2.1/27
               updated_at: 2000-01-23T04:56:07.000+00:00
@@ -28927,22 +28961,14 @@ components:
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               state: ready
             metro_code: metro_code
-            instances:
-            - href: href
-            - href: href
             metro:
               href: href
-            description: description
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             facility:
               href: href
-            assigned_to_virtual_circuit: true
             assigned_to:
               href: href
-            tags:
-            - tags
-            - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           prefix: 0.0.0.0/0
           next_hop: 192.168.1.254
