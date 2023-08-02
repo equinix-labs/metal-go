@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Instances** | Pointer to [**[]Href**](Href.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
 **MetalGateways** | Pointer to [**[]MetalGatewayLite**](MetalGatewayLite.md) | A list of metal gateways currently associated to this Virtual Network. | [optional] 
@@ -160,6 +161,31 @@ SetHref sets Href field to given value.
 `func (o *VirtualNetwork) HasHref() bool`
 
 HasHref returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *VirtualNetwork) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *VirtualNetwork) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *VirtualNetwork) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *VirtualNetwork) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetId
 

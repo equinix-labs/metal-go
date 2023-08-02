@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the VirtualNetwork type satisfies the MappedNullable interface at compile time
@@ -22,11 +23,12 @@ var _ MappedNullable = &VirtualNetwork{}
 type VirtualNetwork struct {
 	AssignedTo *Href `json:"assigned_to,omitempty"`
 	// True if the virtual network is attached to a virtual circuit. False if not.
-	AssignedToVirtualCircuit *bool   `json:"assigned_to_virtual_circuit,omitempty"`
-	Description              *string `json:"description,omitempty"`
-	Facility                 *Href   `json:"facility,omitempty"`
-	Href                     *string `json:"href,omitempty"`
-	Id                       *string `json:"id,omitempty"`
+	AssignedToVirtualCircuit *bool      `json:"assigned_to_virtual_circuit,omitempty"`
+	Description              *string    `json:"description,omitempty"`
+	Facility                 *Href      `json:"facility,omitempty"`
+	Href                     *string    `json:"href,omitempty"`
+	CreatedAt                *time.Time `json:"created_at,omitempty"`
+	Id                       *string    `json:"id,omitempty"`
 	// A list of instances with ports currently associated to this Virtual Network.
 	Instances []Href `json:"instances,omitempty"`
 	// A list of metal gateways currently associated to this Virtual Network.
@@ -216,6 +218,38 @@ func (o *VirtualNetwork) HasHref() bool {
 // SetHref gets a reference to the given string and assigns it to the Href field.
 func (o *VirtualNetwork) SetHref(v string) {
 	o.Href = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *VirtualNetwork) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualNetwork) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *VirtualNetwork) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *VirtualNetwork) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -467,6 +501,9 @@ func (o VirtualNetwork) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Href) {
 		toSerialize["href"] = o.Href
 	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -511,6 +548,7 @@ func (o *VirtualNetwork) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "facility")
 		delete(additionalProperties, "href")
+		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "instances")
 		delete(additionalProperties, "metal_gateways")
