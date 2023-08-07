@@ -23,7 +23,8 @@ type BgpDynamicNeighborCreateInput struct {
 	// Network range of the dynamic BGP neighbor in CIDR format
 	BgpNeighborRange string `json:"bgp_neighbor_range"`
 	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn       int32 `json:"bgp_neighbor_asn"`
+	BgpNeighborAsn       int32    `json:"bgp_neighbor_asn"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -96,6 +97,38 @@ func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int32) {
 	o.BgpNeighborAsn = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *BgpDynamicNeighborCreateInput) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BgpDynamicNeighborCreateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *BgpDynamicNeighborCreateInput) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *BgpDynamicNeighborCreateInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o BgpDynamicNeighborCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,6 +141,9 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["bgp_neighbor_range"] = o.BgpNeighborRange
 	toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -128,6 +164,7 @@ func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "bgp_neighbor_range")
 		delete(additionalProperties, "bgp_neighbor_asn")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

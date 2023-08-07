@@ -13028,6 +13028,9 @@ components:
                 max_organizations: 3
                 two_factor_auth: two_factor_auth
                 email: email
+              tags:
+              - tags
+              - tags
               updated_at: 2000-01-23T04:56:07.000+00:00
               virtual_circuits:
               - subnet: 12.0.0.0/30
@@ -13304,6 +13307,9 @@ components:
               max_organizations: 3
               two_factor_auth: two_factor_auth
               email: email
+            tags:
+            - tags
+            - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
@@ -13374,6 +13380,9 @@ components:
           avatar_url: avatar_url
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
       properties:
         id:
           description: The unique identifier for the resource
@@ -13413,11 +13422,18 @@ components:
           format: date-time
           readOnly: true
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     BgpDynamicNeighborCreateInput:
       example:
         bgp_neighbor_asn: 12345
         bgp_neighbor_range: 192.168.1.0/25
+        tags:
+        - tags
+        - tags
       properties:
         bgp_neighbor_range:
           description: Network range of the dynamic BGP neighbor in CIDR format
@@ -13427,6 +13443,10 @@ components:
           description: The ASN of the dynamic BGP neighbor
           example: 12345
           type: integer
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - bgp_neighbor_asn
       - bgp_neighbor_range
@@ -13750,6 +13770,9 @@ components:
                   max_organizations: 3
                   two_factor_auth: two_factor_auth
                   email: email
+                tags:
+                - tags
+                - tags
                 updated_at: 2000-01-23T04:56:07.000+00:00
                 virtual_circuits:
                 - subnet: 12.0.0.0/30
@@ -14026,6 +14049,9 @@ components:
                 max_organizations: 3
                 two_factor_auth: two_factor_auth
                 email: email
+              tags:
+              - tags
+              - tags
               updated_at: 2000-01-23T04:56:07.000+00:00
               virtual_circuits:
               - subnet: 12.0.0.0/30
@@ -14096,6 +14122,9 @@ components:
             avatar_url: avatar_url
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tags:
+          - tags
+          - tags
         - metal_gateway:
             virtual_network:
               vxlan: 4
@@ -14398,6 +14427,9 @@ components:
                   max_organizations: 3
                   two_factor_auth: two_factor_auth
                   email: email
+                tags:
+                - tags
+                - tags
                 updated_at: 2000-01-23T04:56:07.000+00:00
                 virtual_circuits:
                 - subnet: 12.0.0.0/30
@@ -14674,6 +14706,9 @@ components:
                 max_organizations: 3
                 two_factor_auth: two_factor_auth
                 email: email
+              tags:
+              - tags
+              - tags
               updated_at: 2000-01-23T04:56:07.000+00:00
               virtual_circuits:
               - subnet: 12.0.0.0/30
@@ -14744,6 +14779,9 @@ components:
             avatar_url: avatar_url
             href: href
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tags:
+          - tags
+          - tags
       properties:
         bgp_dynamic_neighbors:
           items:
@@ -24148,6 +24186,9 @@ components:
           max_organizations: 3
           two_factor_auth: two_factor_auth
           email: email
+        tags:
+        - tags
+        - tags
         updated_at: 2000-01-23T04:56:07.000+00:00
         virtual_circuits:
         - subnet: 12.0.0.0/30
@@ -24256,6 +24297,10 @@ components:
         updated_at:
           format: date-time
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VrfCreateInput:
       example:
@@ -24269,6 +24314,9 @@ components:
         name: name
         bgp_dynamic_neighbors_enabled: true
         description: description
+        tags:
+        - tags
+        - tags
       properties:
         bgp_dynamic_neighbors_enabled:
           description: Toggle to enable the dynamic bgp neighbors feature on the VRF
@@ -24299,6 +24347,10 @@ components:
           type: string
         name:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - metro
       - name
@@ -24600,6 +24652,9 @@ components:
             max_organizations: 3
             two_factor_auth: two_factor_auth
             email: email
+          tags:
+          - tags
+          - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
@@ -25047,6 +25102,9 @@ components:
               max_organizations: 3
               two_factor_auth: two_factor_auth
               email: email
+            tags:
+            - tags
+            - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
@@ -25398,6 +25456,9 @@ components:
               max_organizations: 3
               two_factor_auth: two_factor_auth
               email: email
+            tags:
+            - tags
+            - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
@@ -25602,6 +25663,9 @@ components:
             max_organizations: 3
             two_factor_auth: two_factor_auth
             email: email
+          tags:
+          - tags
+          - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
@@ -25765,6 +25829,9 @@ components:
             max_organizations: 3
             two_factor_auth: two_factor_auth
             email: email
+          tags:
+          - tags
+          - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
@@ -26129,6 +26196,9 @@ components:
               max_organizations: 3
               two_factor_auth: two_factor_auth
               email: email
+            tags:
+            - tags
+            - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
@@ -26405,6 +26475,9 @@ components:
             max_organizations: 3
             two_factor_auth: two_factor_auth
             email: email
+          tags:
+          - tags
+          - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
@@ -26821,6 +26894,9 @@ components:
                 max_organizations: 3
                 two_factor_auth: two_factor_auth
                 email: email
+              tags:
+              - tags
+              - tags
               updated_at: 2000-01-23T04:56:07.000+00:00
               virtual_circuits:
               - subnet: 12.0.0.0/30
@@ -27097,6 +27173,9 @@ components:
               max_organizations: 3
               two_factor_auth: two_factor_auth
               email: email
+            tags:
+            - tags
+            - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
@@ -27303,6 +27382,9 @@ components:
             max_organizations: 3
             two_factor_auth: two_factor_auth
             email: email
+          tags:
+          - tags
+          - tags
           updated_at: 2000-01-23T04:56:07.000+00:00
           virtual_circuits:
           - subnet: 12.0.0.0/30
@@ -27361,6 +27443,9 @@ components:
         href: /routes/e1ff9c2b-051a-4688-965f-153e274f77e0
         type: static
         status: active
+        tags:
+        - tags
+        - tags
       properties:
         id:
           description: The unique identifier for the newly-created resource
@@ -27416,11 +27501,18 @@ components:
           example: /routes/e1ff9c2b-051a-4688-965f-153e274f77e0
           readOnly: true
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VrfRouteCreateInput:
       example:
         prefix: 0.0.0.0/0
         next_hop: 192.168.1.254
+        tags:
+        - tags
+        - tags
       properties:
         prefix:
           description: "The IPv4 prefix for the route, in CIDR-style notation. For\
@@ -27433,6 +27525,10 @@ components:
           example: 192.168.1.254
           format: ipv4
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - next_hop
       - prefix
@@ -27441,6 +27537,9 @@ components:
       example:
         prefix: 0.0.0.0/0
         next_hop: 192.168.1.254
+        tags:
+        - tags
+        - tags
       properties:
         prefix:
           description: "The IPv4 prefix for the route, in CIDR-style notation. For\
@@ -27453,6 +27552,10 @@ components:
           example: 192.168.1.254
           format: ipv4
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VrfRouteList:
       example:
@@ -27759,6 +27862,9 @@ components:
                   max_organizations: 3
                   two_factor_auth: two_factor_auth
                   email: email
+                tags:
+                - tags
+                - tags
                 updated_at: 2000-01-23T04:56:07.000+00:00
                 virtual_circuits:
                 - subnet: 12.0.0.0/30
@@ -28035,6 +28141,9 @@ components:
                 max_organizations: 3
                 two_factor_auth: two_factor_auth
                 email: email
+              tags:
+              - tags
+              - tags
               updated_at: 2000-01-23T04:56:07.000+00:00
               virtual_circuits:
               - subnet: 12.0.0.0/30
@@ -28241,6 +28350,9 @@ components:
               max_organizations: 3
               two_factor_auth: two_factor_auth
               email: email
+            tags:
+            - tags
+            - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
@@ -28299,6 +28411,9 @@ components:
           href: /routes/e1ff9c2b-051a-4688-965f-153e274f77e0
           type: static
           status: active
+          tags:
+          - tags
+          - tags
         - metal_gateway:
             virtual_network:
               vxlan: 4
@@ -28601,6 +28716,9 @@ components:
                   max_organizations: 3
                   two_factor_auth: two_factor_auth
                   email: email
+                tags:
+                - tags
+                - tags
                 updated_at: 2000-01-23T04:56:07.000+00:00
                 virtual_circuits:
                 - subnet: 12.0.0.0/30
@@ -28877,6 +28995,9 @@ components:
                 max_organizations: 3
                 two_factor_auth: two_factor_auth
                 email: email
+              tags:
+              - tags
+              - tags
               updated_at: 2000-01-23T04:56:07.000+00:00
               virtual_circuits:
               - subnet: 12.0.0.0/30
@@ -29083,6 +29204,9 @@ components:
               max_organizations: 3
               two_factor_auth: two_factor_auth
               email: email
+            tags:
+            - tags
+            - tags
             updated_at: 2000-01-23T04:56:07.000+00:00
             virtual_circuits:
             - subnet: 12.0.0.0/30
@@ -29141,6 +29265,9 @@ components:
           href: /routes/e1ff9c2b-051a-4688-965f-153e274f77e0
           type: static
           status: active
+          tags:
+          - tags
+          - tags
         meta:
           next:
             href: href
@@ -29174,6 +29301,9 @@ components:
         name: name
         bgp_dynamic_neighbors_enabled: true
         description: description
+        tags:
+        - tags
+        - tags
       properties:
         bgp_dynamic_neighbors_enabled:
           description: Toggle to enable the dynamic bgp neighbors feature on the VRF
@@ -29212,6 +29342,10 @@ components:
           type: integer
         name:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VrfVirtualCircuit:
       example:

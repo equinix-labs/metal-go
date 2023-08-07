@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **LocalAsn** | Pointer to **int32** |  | [optional] 
 **Metro** | **string** | The UUID (or metro code) for the Metro in which to create this VRF. | 
 **Name** | **string** |  | 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -221,6 +222,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetTags
+
+`func (o *VrfCreateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VrfCreateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VrfCreateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VrfCreateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

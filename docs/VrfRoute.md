@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **VirtualNetwork** | Pointer to [**VirtualNetwork**](VirtualNetwork.md) |  | [optional] 
 **Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] [readonly] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -309,6 +310,31 @@ SetHref sets Href field to given value.
 `func (o *VrfRoute) HasHref() bool`
 
 HasHref returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *VrfRoute) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VrfRoute) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VrfRoute) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VrfRoute) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -31,8 +31,9 @@ type VrfCreateInput struct {
 	IpRanges []string `json:"ip_ranges,omitempty"`
 	LocalAsn *int32   `json:"local_asn,omitempty"`
 	// The UUID (or metro code) for the Metro in which to create this VRF.
-	Metro                string `json:"metro"`
-	Name                 string `json:"name"`
+	Metro                string   `json:"metro"`
+	Name                 string   `json:"name"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -297,6 +298,38 @@ func (o *VrfCreateInput) SetName(v string) {
 	o.Name = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *VrfCreateInput) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfCreateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *VrfCreateInput) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *VrfCreateInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o VrfCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -327,6 +360,9 @@ func (o VrfCreateInput) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["metro"] = o.Metro
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -353,6 +389,7 @@ func (o *VrfCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "local_asn")
 		delete(additionalProperties, "metro")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 
