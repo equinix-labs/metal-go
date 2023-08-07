@@ -18,3 +18,7 @@ properties:
     description: The new `local_asn` value for the VRF. This field cannot be updated when there are active Interconnection Virtual Circuits associated to the VRF.
   name:
     type: string
+  tags:
+    items:
+      type: string
+    type: array
