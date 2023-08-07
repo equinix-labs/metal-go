@@ -45,4 +45,8 @@ properties:
   updated_at:
     format: date-time
     type: string
+  tags:
+    items:
+      type: string
+    type: array
 type: object

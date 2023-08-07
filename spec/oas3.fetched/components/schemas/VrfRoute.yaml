@@ -55,3 +55,7 @@ properties:
     type: string
     readOnly: true
     example: /routes/e1ff9c2b-051a-4688-965f-153e274f77e0
+  tags:
+    items:
+      type: string
+    type: array
