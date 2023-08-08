@@ -11,8 +11,8 @@ SPEC_PATCHED_DIR=spec/oas3.patched
 
 SPEC_FETCHED_FILE:=spec.fetched.json
 SPEC_PATCHED_FILE:=spec.patched.json
-OPENAPI_IMAGE_TAG=v6.6.0
-OPENAPI_IMAGE=openapitools/openapi-generator-cli:${OPENAPI_IMAGE_TAG}
+OPENAPI_IMAGE_TAG=3.0.46
+OPENAPI_IMAGE=swaggerapi/swagger-codegen-cli-v3:${OPENAPI_IMAGE_TAG}
 GIT_ORG=equinix-labs
 GIT_REPO=metal-go
 PACKAGE_PREFIX=metal
@@ -20,7 +20,7 @@ PACKAGE_MAJOR=v1
 PACKAGE_VERSION=$(shell cat version)
 CRI=docker # nerdctl
 
-OPENAPI_GENERATOR=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_IMAGE}
+OPENAPI_GENERATOR=${CRI} run --platform linux/amd64 --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_IMAGE}
 SPEC_FETCHER=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/workdir --entrypoint sh mikefarah/yq:4.30.8 script/download_spec.sh
 GOLANGCI_LINT=golangci-lint
 
@@ -50,12 +50,8 @@ clean:
 	rm -rf $(PACKAGE_PREFIX)
 
 gen:
-	${OPENAPI_GENERATOR} generate -g go \
-		--package-name ${PACKAGE_MAJOR} \
+	${OPENAPI_GENERATOR} generate -l go \
 		--http-user-agent "${GIT_REPO}/${PACKAGE_VERSION}" \
-		-p packageVersion=${PACKAGE_VERSION} \
-		-p isGoSubmodule=true \
-		-p disallowAdditionalPropertiesIfNotPresent=false \
 		--git-user-id ${GIT_ORG} \
 		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
