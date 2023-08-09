@@ -37,3 +37,7 @@ properties:
     format: date-time
     readOnly: true
     type: string
+  tags:
+    items:
+      type: string
+    type: array

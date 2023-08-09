@@ -23,7 +23,8 @@ type VrfRouteUpdateInput struct {
 	// The IPv4 prefix for the route, in CIDR-style notation. For a static default route, this will always be \"0.0.0.0/0\"
 	Prefix *string `json:"prefix,omitempty"`
 	// The IPv4 address within the VRF of the host that will handle this route
-	NextHop              *string `json:"next_hop,omitempty"`
+	NextHop              *string  `json:"next_hop,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,6 +111,38 @@ func (o *VrfRouteUpdateInput) SetNextHop(v string) {
 	o.NextHop = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *VrfRouteUpdateInput) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfRouteUpdateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *VrfRouteUpdateInput) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *VrfRouteUpdateInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o VrfRouteUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -125,6 +158,9 @@ func (o VrfRouteUpdateInput) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.NextHop) {
 		toSerialize["next_hop"] = o.NextHop
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -146,6 +182,7 @@ func (o *VrfRouteUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "prefix")
 		delete(additionalProperties, "next_hop")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 
