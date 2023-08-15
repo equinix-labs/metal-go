@@ -1,0 +1,270 @@
+# DedicatedPortCreateInput
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ContactEmail** | Pointer to **string** | The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key. | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Metro** | **string** | A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports. | 
+**Mode** | Pointer to **string** | The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
+**Name** | **string** |  | 
+**Project** | Pointer to **string** |  | [optional] 
+**Redundancy** | **string** | Either &#39;primary&#39; or &#39;redundant&#39;. | 
+**Speed** | Pointer to **int32** | A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps. | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Type** | **string** | When requesting for a dedicated port, the value of this field should be &#39;dedicated&#39;. | 
+
+## Methods
+
+### NewDedicatedPortCreateInput
+
+`func NewDedicatedPortCreateInput(metro string, name string, redundancy string, type_ string, ) *DedicatedPortCreateInput`
+
+NewDedicatedPortCreateInput instantiates a new DedicatedPortCreateInput object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewDedicatedPortCreateInputWithDefaults
+
+`func NewDedicatedPortCreateInputWithDefaults() *DedicatedPortCreateInput`
+
+NewDedicatedPortCreateInputWithDefaults instantiates a new DedicatedPortCreateInput object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetContactEmail
+
+`func (o *DedicatedPortCreateInput) GetContactEmail() string`
+
+GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
+
+### GetContactEmailOk
+
+`func (o *DedicatedPortCreateInput) GetContactEmailOk() (*string, bool)`
+
+GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContactEmail
+
+`func (o *DedicatedPortCreateInput) SetContactEmail(v string)`
+
+SetContactEmail sets ContactEmail field to given value.
+
+### HasContactEmail
+
+`func (o *DedicatedPortCreateInput) HasContactEmail() bool`
+
+HasContactEmail returns a boolean if a field has been set.
+
+### GetDescription
+
+`func (o *DedicatedPortCreateInput) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *DedicatedPortCreateInput) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *DedicatedPortCreateInput) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *DedicatedPortCreateInput) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### GetMetro
+
+`func (o *DedicatedPortCreateInput) GetMetro() string`
+
+GetMetro returns the Metro field if non-nil, zero value otherwise.
+
+### GetMetroOk
+
+`func (o *DedicatedPortCreateInput) GetMetroOk() (*string, bool)`
+
+GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetro
+
+`func (o *DedicatedPortCreateInput) SetMetro(v string)`
+
+SetMetro sets Metro field to given value.
+
+
+### GetMode
+
+`func (o *DedicatedPortCreateInput) GetMode() string`
+
+GetMode returns the Mode field if non-nil, zero value otherwise.
+
+### GetModeOk
+
+`func (o *DedicatedPortCreateInput) GetModeOk() (*string, bool)`
+
+GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMode
+
+`func (o *DedicatedPortCreateInput) SetMode(v string)`
+
+SetMode sets Mode field to given value.
+
+### HasMode
+
+`func (o *DedicatedPortCreateInput) HasMode() bool`
+
+HasMode returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *DedicatedPortCreateInput) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *DedicatedPortCreateInput) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *DedicatedPortCreateInput) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetProject
+
+`func (o *DedicatedPortCreateInput) GetProject() string`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *DedicatedPortCreateInput) GetProjectOk() (*string, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *DedicatedPortCreateInput) SetProject(v string)`
+
+SetProject sets Project field to given value.
+
+### HasProject
+
+`func (o *DedicatedPortCreateInput) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
+
+### GetRedundancy
+
+`func (o *DedicatedPortCreateInput) GetRedundancy() string`
+
+GetRedundancy returns the Redundancy field if non-nil, zero value otherwise.
+
+### GetRedundancyOk
+
+`func (o *DedicatedPortCreateInput) GetRedundancyOk() (*string, bool)`
+
+GetRedundancyOk returns a tuple with the Redundancy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedundancy
+
+`func (o *DedicatedPortCreateInput) SetRedundancy(v string)`
+
+SetRedundancy sets Redundancy field to given value.
+
+
+### GetSpeed
+
+`func (o *DedicatedPortCreateInput) GetSpeed() int32`
+
+GetSpeed returns the Speed field if non-nil, zero value otherwise.
+
+### GetSpeedOk
+
+`func (o *DedicatedPortCreateInput) GetSpeedOk() (*int32, bool)`
+
+GetSpeedOk returns a tuple with the Speed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpeed
+
+`func (o *DedicatedPortCreateInput) SetSpeed(v int32)`
+
+SetSpeed sets Speed field to given value.
+
+### HasSpeed
+
+`func (o *DedicatedPortCreateInput) HasSpeed() bool`
+
+HasSpeed returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *DedicatedPortCreateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *DedicatedPortCreateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *DedicatedPortCreateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *DedicatedPortCreateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *DedicatedPortCreateInput) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *DedicatedPortCreateInput) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DedicatedPortCreateInput) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

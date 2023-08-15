@@ -12359,8 +12359,9 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/InterconnectionCreateInput'
-      description: Interconnection details
+            $ref: '#/components/schemas/createOrganizationInterconnection_request'
+      description: Dedicated port or shared interconnection (also known as Fabric
+        VC) creation request
       required: true
     InvitationInput:
       content:
@@ -12698,6 +12699,8 @@ components:
         asn:
           description: Autonomous System Number for local BGP deployment.
           example: 65000
+          maximum: 4294967295
+          minimum: 0
           type: integer
         deployment_type:
           description: Wether the BGP deployment is local or global. Local deployments
@@ -13053,7 +13056,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               - subnet: 12.0.0.0/30
                 customer_ip: 12.0.0.2
                 description: description
@@ -13074,7 +13077,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               ip_ranges:
               - ip_ranges
               - ip_ranges
@@ -13332,7 +13335,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             - subnet: 12.0.0.0/30
               customer_ip: 12.0.0.2
               description: description
@@ -13353,7 +13356,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -13795,7 +13798,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 - subnet: 12.0.0.0/30
                   customer_ip: 12.0.0.2
                   description: description
@@ -13816,7 +13819,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 ip_ranges:
                 - ip_ranges
                 - ip_ranges
@@ -14074,7 +14077,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               - subnet: 12.0.0.0/30
                 customer_ip: 12.0.0.2
                 description: description
@@ -14095,7 +14098,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               ip_ranges:
               - ip_ranges
               - ip_ranges
@@ -14452,7 +14455,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 - subnet: 12.0.0.0/30
                   customer_ip: 12.0.0.2
                   description: description
@@ -14473,7 +14476,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 ip_ranges:
                 - ip_ranges
                 - ip_ranges
@@ -14731,7 +14734,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               - subnet: 12.0.0.0/30
                 customer_ip: 12.0.0.2
                 description: description
@@ -14752,7 +14755,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               ip_ranges:
               - ip_ranges
               - ip_ranges
@@ -15035,7 +15038,7 @@ components:
       type: object
     CapacityCheckPerMetroInfo:
       example:
-        quantity: quantity
+        quantity: 0
         metro: metro
         available: true
         plan: plan
@@ -15052,16 +15055,16 @@ components:
           type: string
         quantity:
           description: The number of servers sent to check capacity.
-          type: string
+          type: integer
       type: object
     CapacityCheckPerMetroList:
       example:
         servers:
-        - quantity: quantity
+        - quantity: 0
           metro: metro
           available: true
           plan: plan
-        - quantity: quantity
+        - quantity: 0
           metro: metro
           available: true
           plan: plan
@@ -15164,6 +15167,59 @@ components:
         start_date:
           format: date-time
           type: string
+      type: object
+    DedicatedPortCreateInput:
+      properties:
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        metro:
+          description: "A Metro ID or code. For interconnections with Dedicated Ports,\
+            \ this will be the location of the issued Dedicated Ports."
+          type: string
+        mode:
+          description: |-
+            The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.
+              The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.
+              In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+          enum:
+          - standard
+          - tunnel
+          example: standard
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        redundancy:
+          description: Either 'primary' or 'redundant'.
+          type: string
+        speed:
+          description: "A interconnection speed, in bps, mbps, or gbps. For Dedicated\
+            \ Ports, this can be 10Gbps or 100Gbps."
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: "When requesting for a dedicated port, the value of this field\
+            \ should be 'dedicated'."
+          enum:
+          - dedicated
+          type: string
+      required:
+      - metro
+      - name
+      - redundancy
+      - type
       type: object
     Device:
       example:
@@ -18905,134 +18961,6 @@ components:
         requested_by:
           $ref: '#/components/schemas/Href'
       type: object
-    InterconnectionCreateInput:
-      example:
-        vlans:
-        - 1000
-        - 1001
-        service_token_type: a_side
-        description: description
-        project: project
-        type: type
-        speed: 10000000000
-        contact_email: contact_email
-        tags:
-        - tags
-        - tags
-        mode: standard
-        metro: metro
-        name: name
-        redundancy: redundancy
-        vrfs:
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        contact_email:
-          description: The preferred email used for communication and notifications
-            about the Equinix Fabric interconnection. Required when using a Project
-            API key. Optional and defaults to the primary user email address when
-            using a User API key.
-          format: email
-          type: string
-        description:
-          type: string
-        metro:
-          description: "A Metro ID or code. For interconnections with Dedicated Ports,\
-            \ this will be the location of the issued Dedicated Ports. When creating\
-            \ Fabric VCs (Metal Billed), this is where interconnection will be originating\
-            \ from, as we pre-authorize the use of one of our shared ports as the\
-            \ origin of the interconnection using A-Side service tokens. We only allow\
-            \ local connections for Fabric VCs (Metal Billed), so the destination\
-            \ location must be the same as the origin. For Fabric VCs (Fabric Billed),\
-            \ or shared connections, this will be the destination of the interconnection.\
-            \ We allow remote connections for Fabric VCs (Fabric Billed), so the origin\
-            \ of the interconnection can be a different metro set here."
-          type: string
-        mode:
-          description: |-
-            The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.
-              The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.
-              In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-          enum:
-          - standard
-          - tunnel
-          example: standard
-          type: string
-        name:
-          type: string
-        project:
-          type: string
-        redundancy:
-          description: Either 'primary' or 'redundant'.
-          type: string
-        service_token_type:
-          description: "Either 'a_side' or 'z_side'. Setting this field to 'a_side'\
-            \ will create an interconnection with Fabric VCs (Metal Billed). Setting\
-            \ this field to 'z_side' will create an interconnection with Fabric VCs\
-            \ (Fabric Billed). This is required when the 'type' is 'shared', but this\
-            \ is not applicable when the 'type' is 'dedicated'. This parameter is\
-            \ included in the specification as a developer preview and is generally\
-            \ unavailable. Please contact our Support team for more details."
-          enum:
-          - a_side
-          - z_side
-          example: a_side
-          type: string
-        speed:
-          description: "A interconnection speed, in bps, mbps, or gbps. For Dedicated\
-            \ Ports, this can be 10Gbps or 100Gbps.\nFor Fabric VCs, this represents\
-            \ the maximum speed of the interconnection. For Fabric VCs (Metal Billed),\
-            \ this can only be one of the following: \n''50mbps'', ''200mbps'', ''500mbps'',\
-            \ ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation.\
-            \ For Fabric VCs (Fabric Billed), this field will always default to ''10gbps''\
-            \ even if it is not provided.\nFor example, ''500000000'', ''50m'', or'\
-            \ ''500mbps'' will all work as valid inputs."
-          example: 10000000000
-          type: integer
-        tags:
-          items:
-            type: string
-          type: array
-        type:
-          description: "Either 'shared' or 'dedicated'. The 'shared' type represents\
-            \ shared interconnections, or also known as Fabric VCs. The 'dedicated'\
-            \ type represents dedicated interconnections, or also known as Dedicated\
-            \ Ports."
-          type: string
-        vlans:
-          description: "A list of one or two metro-based VLANs that will be set on\
-            \ the virtual circuits of primary and/or secondary (if redundant) interconnections\
-            \ respectively when creating Fabric VCs. VLANs can also be set after the\
-            \ interconnection is created, but are required to fully activate the interconnection.\
-            \ This parameter is included in the specification as a developer preview\
-            \ and is generally unavailable. Please contact our Support team for more\
-            \ details."
-          example:
-          - 1000
-          - 1001
-          items:
-            type: integer
-          type: array
-        vrfs:
-          description: "Can only be set when creating Fabric VCs in VRF(s). This field\
-            \ holds a list of VRF UUIDs that will be set automatically on the virtual\
-            \ circuits on creation, and can hold up to two UUIDs. Two UUIDs are required\
-            \ when requesting redundant Fabric VCs. The first UUID will be set on\
-            \ the primary virtual circuit, while the second UUID will be set on the\
-            \ secondary. The two UUIDs can be the same if both the primary and secondary\
-            \ virtual circuits will be in the same VRF. This parameter is included\
-            \ in the specification as a developer preview and is generally unavailable.\
-            \ Please contact our Support team for more details."
-          items:
-            format: uuid
-            type: string
-          type: array
-      required:
-      - metro
-      - name
-      - redundancy
-      - type
-      type: object
     InterconnectionList:
       example:
         meta:
@@ -19221,6 +19149,7 @@ components:
           - active
           - deleting
           - expired
+          - delete_failed
           type: string
         switch_id:
           description: A switch 'short ID'
@@ -23933,6 +23862,87 @@ components:
             $ref: '#/components/schemas/VirtualNetwork'
           type: array
       type: object
+    VlanFabricVcCreateInput:
+      properties:
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        metro:
+          description: "A Metro ID or code. When creating Fabric VCs (Metal Billed),\
+            \ this is where interconnection will be originating from, as we pre-authorize\
+            \ the use of one of our shared ports as the origin of the interconnection\
+            \ using A-Side service tokens. We only allow local connections for Fabric\
+            \ VCs (Metal Billed), so the destination location must be the same as\
+            \ the origin. For Fabric VCs (Fabric Billed), or shared connections, this\
+            \ will be the destination of the interconnection. We allow remote connections\
+            \ for Fabric VCs (Fabric Billed), so the origin of the interconnection\
+            \ can be a different metro set here."
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        redundancy:
+          description: Either 'primary' or 'redundant'.
+          type: string
+        service_token_type:
+          description: "Either 'a_side' or 'z_side'. Setting this field to 'a_side'\
+            \ will create an interconnection with Fabric VCs (Metal Billed). Setting\
+            \ this field to 'z_side' will create an interconnection with Fabric VCs\
+            \ (Fabric Billed). This is required when the 'type' is 'shared', but this\
+            \ is not applicable when the 'type' is 'dedicated'. This parameter is\
+            \ included in the specification as a developer preview and is generally\
+            \ unavailable. Please contact our Support team for more details."
+          enum:
+          - a_side
+          - z_side
+          example: a_side
+          type: string
+        speed:
+          description: "A interconnection speed, in bps, mbps, or gbps. For Fabric\
+            \ VCs, this represents the maximum speed of the interconnection. For Fabric\
+            \ VCs (Metal Billed), this can only be one of the following: \n''50mbps'',\
+            \ ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'',\
+            \ and is required for creation. For Fabric VCs (Fabric Billed), this field\
+            \ will always default to ''10gbps'' even if it is not provided.\nFor example,\
+            \ ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs."
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: "When requesting for a Fabric VC, the value of this field should\
+            \ be 'shared'."
+          enum:
+          - shared
+          type: string
+        vlans:
+          description: "A list of one or two metro-based VLANs that will be set on\
+            \ the virtual circuits of primary and/or secondary (if redundant) interconnections\
+            \ respectively when creating Fabric VCs. VLANs can also be set after the\
+            \ interconnection is created, but are required to fully activate the virtual\
+            \ circuits."
+          example:
+          - 1000
+          - 1001
+          items:
+            type: integer
+          type: array
+      required:
+      - metro
+      - name
+      - redundancy
+      - service_token_type
+      - type
+      type: object
     VlanVirtualCircuit:
       properties:
         bill:
@@ -23966,27 +23976,31 @@ components:
             \ Please contact our Support team for more details."
           type: integer
         status:
-          description: "The status of a Virtual Circuit is always 'Pending' on creation.\
+          description: "The status of a Virtual Circuit is always 'pending' on creation.\
             \ The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was\
             \ not set yet on the Virtual Circuit and is the last step needed for full\
             \ activation. For Dedicated interconnections, as long as the Dedicated\
             \ Port has been associated to the Virtual Circuit and a NNI VNID has been\
-            \ set, it will turn to 'Waiting on Customer VLAN'. For Fabric VCs, it\
-            \ will only change to 'Waiting on Customer VLAN' once the corresponding\
-            \ Fabric connection has been found on the Fabric side. Once a Metro VLAN\
-            \ is set on the Virtual Circuit (which for Fabric VCs, can be set on creation)\
-            \ and the necessary set up is done, it will turn into 'Activating' status\
-            \ as it tries to activate the Virtual Circuit. Once the Virtual Circuit\
-            \ fully activates and is configured on the switch, it will turn to staus\
-            \ 'Active'. For Fabric VCs (Metal Billed), we will start billing the moment\
-            \ the status of the Virtual Circuit turns to 'Active'. If there are any\
-            \ changes to the VLAN after the Virtual Circuit is in an 'Active' status,\
-            \ the status will show 'Changing VLAN' if a new VLAN has been provided,\
-            \ or 'Deactivating' if we are removing the VLAN. When a deletion request\
-            \ is issued for the Virtual Circuit, it will move to a 'deleting' status\
-            \ until it is fully deleted. If the Virtual Circuit is on a Fabric VC,\
-            \ it can also change into an 'Expired' status if the associated service\
-            \ token has expired."
+            \ set, it will turn to 'waiting_on_customer_vlan'. For Fabric VCs, it\
+            \ will only change to 'waiting_on_customer_vlan' once the corresponding\
+            \ Fabric connection has been found on the Fabric side. If the Fabric service\
+            \ token associated with the Virtual Circuit hasn't been redeemed on Fabric\
+            \ within the expiry time, it will change to an `expired` status. Once\
+            \ a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can\
+            \ be set on creation of a Fabric VC) and the necessary set up is done,\
+            \ it will turn into 'Activating' status as it tries to activate the Virtual\
+            \ Circuit. Once the Virtual Circuit fully activates and is configured\
+            \ on the switch, it will turn to staus 'active'. For Fabric VCs (Metal\
+            \ Billed), we will start billing the moment the status of the Virtual\
+            \ Circuit turns to 'active'. If there are any changes to the VLAN after\
+            \ the Virtual Circuit is in an 'active' status, the status will show 'changing_vlan'\
+            \ if a new VLAN has been provided, or 'deactivating' if we are removing\
+            \ the VLAN. When a deletion request is issued for the Virtual Circuit,\
+            \ it will move to a 'deleting' status, and we will immediately unconfigure\
+            \ the switch for the Virtual Circuit and issue a deletion on any associated\
+            \ Fabric connections. If there are any associated Fabric connections,\
+            \ we will only fully delete the Virtual Circuit once we have checked that\
+            \ the Fabric connection was fully deprovisioned on Fabric."
           enum:
           - pending
           - waiting_on_customer_vlan
@@ -24211,7 +24225,7 @@ components:
           peer_asn: 7
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           md5: md5
-          status: status
+          status: pending
         - subnet: 12.0.0.0/30
           customer_ip: 12.0.0.2
           description: description
@@ -24232,7 +24246,7 @@ components:
           peer_asn: 7
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           md5: md5
-          status: status
+          status: pending
         ip_ranges:
         - ip_ranges
         - ip_ranges
@@ -24354,6 +24368,90 @@ components:
       required:
       - metro
       - name
+      type: object
+    VrfFabricVcCreateInput:
+      properties:
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        metro:
+          description: "A Metro ID or code. When creating Fabric VCs (Metal Billed),\
+            \ this is where interconnection will be originating from, as we pre-authorize\
+            \ the use of one of our shared ports as the origin of the interconnection\
+            \ using A-Side service tokens. We only allow local connections for Fabric\
+            \ VCs (Metal Billed), so the destination location must be the same as\
+            \ the origin. For Fabric VCs (Fabric Billed), or shared connections, this\
+            \ will be the destination of the interconnection. We allow remote connections\
+            \ for Fabric VCs (Fabric Billed), so the origin of the interconnection\
+            \ can be a different metro set here."
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        redundancy:
+          description: Either 'primary' or 'redundant'.
+          type: string
+        service_token_type:
+          description: "Either 'a_side' or 'z_side'. Setting this field to 'a_side'\
+            \ will create an interconnection with Fabric VCs (Metal Billed). Setting\
+            \ this field to 'z_side' will create an interconnection with Fabric VCs\
+            \ (Fabric Billed). This is required when the 'type' is 'shared', but this\
+            \ is not applicable when the 'type' is 'dedicated'. This parameter is\
+            \ included in the specification as a developer preview and is generally\
+            \ unavailable. Please contact our Support team for more details."
+          enum:
+          - a_side
+          - z_side
+          example: a_side
+          type: string
+        speed:
+          description: "A interconnection speed, in bps, mbps, or gbps. For Fabric\
+            \ VCs, this represents the maximum speed of the interconnection. For Fabric\
+            \ VCs (Metal Billed), this can only be one of the following: \n''50mbps'',\
+            \ ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'',\
+            \ and is required for creation. For Fabric VCs (Fabric Billed), this field\
+            \ will always default to ''10gbps'' even if it is not provided.\nFor example,\
+            \ ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs."
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: "When requesting for a Fabric VC, the value of this field should\
+            \ be 'shared'."
+          enum:
+          - shared
+          type: string
+        vrfs:
+          description: "This field holds a list of VRF UUIDs that will be set automatically\
+            \ on the virtual circuits of Fabric VCs on creation, and can hold up to\
+            \ two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs.\
+            \ The first UUID will be set on the primary virtual circuit, while the\
+            \ second UUID will be set on the secondary. The two UUIDs can be the same\
+            \ if both the primary and secondary virtual circuits will be in the same\
+            \ VRF. This parameter is included in the specification as a developer\
+            \ preview and is generally unavailable. Please contact our Support team\
+            \ for more details."
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - metro
+      - name
+      - redundancy
+      - service_token_type
+      - type
+      - vrfs
       type: object
     VrfIpRangeCreateInput:
       description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"\
@@ -24677,7 +24775,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           - subnet: 12.0.0.0/30
             customer_ip: 12.0.0.2
             description: description
@@ -24698,7 +24796,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -25127,7 +25225,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             - subnet: 12.0.0.0/30
               customer_ip: 12.0.0.2
               description: description
@@ -25148,7 +25246,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -25481,7 +25579,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             - subnet: 12.0.0.0/30
               customer_ip: 12.0.0.2
               description: description
@@ -25502,7 +25600,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -25688,7 +25786,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           - subnet: 12.0.0.0/30
             customer_ip: 12.0.0.2
             description: description
@@ -25709,7 +25807,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -25854,7 +25952,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           - subnet: 12.0.0.0/30
             customer_ip: 12.0.0.2
             description: description
@@ -25875,7 +25973,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -26221,7 +26319,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             - subnet: 12.0.0.0/30
               customer_ip: 12.0.0.2
               description: description
@@ -26242,7 +26340,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -26500,7 +26598,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           - subnet: 12.0.0.0/30
             customer_ip: 12.0.0.2
             description: description
@@ -26521,7 +26619,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -26919,7 +27017,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               - subnet: 12.0.0.0/30
                 customer_ip: 12.0.0.2
                 description: description
@@ -26940,7 +27038,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               ip_ranges:
               - ip_ranges
               - ip_ranges
@@ -27198,7 +27296,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             - subnet: 12.0.0.0/30
               customer_ip: 12.0.0.2
               description: description
@@ -27219,7 +27317,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -27407,7 +27505,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           - subnet: 12.0.0.0/30
             customer_ip: 12.0.0.2
             description: description
@@ -27428,7 +27526,7 @@ components:
             peer_asn: 7
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             md5: md5
-            status: status
+            status: pending
           ip_ranges:
           - ip_ranges
           - ip_ranges
@@ -27887,7 +27985,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 - subnet: 12.0.0.0/30
                   customer_ip: 12.0.0.2
                   description: description
@@ -27908,7 +28006,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 ip_ranges:
                 - ip_ranges
                 - ip_ranges
@@ -28166,7 +28264,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               - subnet: 12.0.0.0/30
                 customer_ip: 12.0.0.2
                 description: description
@@ -28187,7 +28285,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               ip_ranges:
               - ip_ranges
               - ip_ranges
@@ -28375,7 +28473,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             - subnet: 12.0.0.0/30
               customer_ip: 12.0.0.2
               description: description
@@ -28396,7 +28494,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -28741,7 +28839,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 - subnet: 12.0.0.0/30
                   customer_ip: 12.0.0.2
                   description: description
@@ -28762,7 +28860,7 @@ components:
                   peer_asn: 7
                   id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                   md5: md5
-                  status: status
+                  status: pending
                 ip_ranges:
                 - ip_ranges
                 - ip_ranges
@@ -29020,7 +29118,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               - subnet: 12.0.0.0/30
                 customer_ip: 12.0.0.2
                 description: description
@@ -29041,7 +29139,7 @@ components:
                 peer_asn: 7
                 id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
                 md5: md5
-                status: status
+                status: pending
               ip_ranges:
               - ip_ranges
               - ip_ranges
@@ -29229,7 +29327,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             - subnet: 12.0.0.0/30
               customer_ip: 12.0.0.2
               description: description
@@ -29250,7 +29348,7 @@ components:
               peer_asn: 7
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               md5: md5
-              status: status
+              status: pending
             ip_ranges:
             - ip_ranges
             - ip_ranges
@@ -29369,7 +29467,7 @@ components:
         peer_asn: 7
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         md5: md5
-        status: status
+        status: pending
       properties:
         customer_ip:
           description: "An IP address from the subnet that will be used on the Customer\
@@ -29409,6 +29507,29 @@ components:
           description: integer representing bps speed
           type: integer
         status:
+          description: "The status changes of a VRF virtual circuit are generally\
+            \ the same as Virtual Circuits that aren't in a VRF. However, for VRF\
+            \ Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details'\
+            \ once the Fabric service token associated with the virtual circuit has\
+            \ been redeemed on Fabric, and Metal has found the associated Fabric connection.\
+            \ At this point, users can update the subnet, MD5 password, customer IP\
+            \ and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports,\
+            \ we require all peering details to be set on creation of a VRF Virtual\
+            \ Circuit. The status will change to `changing_peering_details` whenever\
+            \ an active VRF Virtual Circuit has any of its peering details updated."
+          enum:
+          - pending
+          - waiting_on_peering_details
+          - activating
+          - changing_peering_details
+          - deactivating
+          - deleting
+          - active
+          - expired
+          - activation_failed
+          - changing_peering_details_failed
+          - deactivation_failed
+          - delete_failed
           type: string
         subnet:
           description: "The /30 or /31 subnet of one of the VRF IP Blocks that will\
@@ -29824,6 +29945,11 @@ components:
       oneOf:
       - $ref: '#/components/schemas/MetalGateway'
       - $ref: '#/components/schemas/VrfMetalGateway'
+    createOrganizationInterconnection_request:
+      oneOf:
+      - $ref: '#/components/schemas/DedicatedPortCreateInput'
+      - $ref: '#/components/schemas/VlanFabricVcCreateInput'
+      - $ref: '#/components/schemas/VrfFabricVcCreateInput'
     createDevice_request:
       oneOf:
       - $ref: '#/components/schemas/DeviceCreateInMetroInput'

@@ -179,17 +179,17 @@ func (a *InterconnectionsApiService) CreateInterconnectionPortVirtualCircuitExec
 }
 
 type ApiCreateOrganizationInterconnectionRequest struct {
-	ctx                        context.Context
-	ApiService                 *InterconnectionsApiService
-	organizationId             string
-	interconnectionCreateInput *InterconnectionCreateInput
-	include                    *[]string
-	exclude                    *[]string
+	ctx                                      context.Context
+	ApiService                               *InterconnectionsApiService
+	organizationId                           string
+	createOrganizationInterconnectionRequest *CreateOrganizationInterconnectionRequest
+	include                                  *[]string
+	exclude                                  *[]string
 }
 
-// Interconnection details
-func (r ApiCreateOrganizationInterconnectionRequest) InterconnectionCreateInput(interconnectionCreateInput InterconnectionCreateInput) ApiCreateOrganizationInterconnectionRequest {
-	r.interconnectionCreateInput = &interconnectionCreateInput
+// Dedicated port or shared interconnection (also known as Fabric VC) creation request
+func (r ApiCreateOrganizationInterconnectionRequest) CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest CreateOrganizationInterconnectionRequest) ApiCreateOrganizationInterconnectionRequest {
+	r.createOrganizationInterconnectionRequest = &createOrganizationInterconnectionRequest
 	return r
 }
 
@@ -248,8 +248,8 @@ func (a *InterconnectionsApiService) CreateOrganizationInterconnectionExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.interconnectionCreateInput == nil {
-		return localVarReturnValue, nil, reportError("interconnectionCreateInput is required and must be specified")
+	if r.createOrganizationInterconnectionRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInterconnectionRequest is required and must be specified")
 	}
 
 	if r.include != nil {
@@ -276,7 +276,7 @@ func (a *InterconnectionsApiService) CreateOrganizationInterconnectionExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.interconnectionCreateInput
+	localVarPostBody = r.createOrganizationInterconnectionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -361,17 +361,17 @@ func (a *InterconnectionsApiService) CreateOrganizationInterconnectionExecute(r 
 }
 
 type ApiCreateProjectInterconnectionRequest struct {
-	ctx                        context.Context
-	ApiService                 *InterconnectionsApiService
-	projectId                  string
-	interconnectionCreateInput *InterconnectionCreateInput
-	include                    *[]string
-	exclude                    *[]string
+	ctx                                      context.Context
+	ApiService                               *InterconnectionsApiService
+	projectId                                string
+	createOrganizationInterconnectionRequest *CreateOrganizationInterconnectionRequest
+	include                                  *[]string
+	exclude                                  *[]string
 }
 
-// Interconnection details
-func (r ApiCreateProjectInterconnectionRequest) InterconnectionCreateInput(interconnectionCreateInput InterconnectionCreateInput) ApiCreateProjectInterconnectionRequest {
-	r.interconnectionCreateInput = &interconnectionCreateInput
+// Dedicated port or shared interconnection (also known as Fabric VC) creation request
+func (r ApiCreateProjectInterconnectionRequest) CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest CreateOrganizationInterconnectionRequest) ApiCreateProjectInterconnectionRequest {
+	r.createOrganizationInterconnectionRequest = &createOrganizationInterconnectionRequest
 	return r
 }
 
@@ -430,8 +430,8 @@ func (a *InterconnectionsApiService) CreateProjectInterconnectionExecute(r ApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.interconnectionCreateInput == nil {
-		return localVarReturnValue, nil, reportError("interconnectionCreateInput is required and must be specified")
+	if r.createOrganizationInterconnectionRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInterconnectionRequest is required and must be specified")
 	}
 
 	if r.include != nil {
@@ -458,7 +458,7 @@ func (a *InterconnectionsApiService) CreateProjectInterconnectionExecute(r ApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.interconnectionCreateInput
+	localVarPostBody = r.createOrganizationInterconnectionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

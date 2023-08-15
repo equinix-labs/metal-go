@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Port** | [**Href**](Href.md) |  | 
 **Project** | [**Href**](Href.md) |  | 
 **Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
-**Status** | **string** |  | 
+**Status** | **string** | The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren&#39;t in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to &#39;waiting_on_peering_details&#39; once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to &#x60;changing_peering_details&#x60; whenever an active VRF Virtual Circuit has any of its peering details updated. | 
 **Tags** | **[]string** |  | 
 **VirtualNetwork** | [**Href**](Href.md) |  | 
 **Vnid** | **int32** |  | 

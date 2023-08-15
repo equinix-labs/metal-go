@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInterconnection
 
-> Interconnection CreateOrganizationInterconnection(ctx, organizationId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
+> Interconnection CreateOrganizationInterconnection(ctx, organizationId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Include(include).Exclude(exclude).Execute()
 
 Request a new interconnection for the organization
 
@@ -119,13 +119,13 @@ import (
 
 func main() {
     organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
-    interconnectionCreateInput := *openapiclient.NewInterconnectionCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example") // InterconnectionCreateInput | Interconnection details
+    createOrganizationInterconnectionRequest := openapiclient.createOrganizationInterconnection_request{DedicatedPortCreateInput: openapiclient.NewDedicatedPortCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example")} // CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.CreateOrganizationInterconnection(context.Background(), organizationId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.CreateOrganizationInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -151,7 +151,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationIntercon
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **interconnectionCreateInput** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Interconnection details | 
+ **createOrganizationInterconnectionRequest** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md) | Dedicated port or shared interconnection (also known as Fabric VC) creation request | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectInterconnection
 
-> Interconnection CreateProjectInterconnection(ctx, projectId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
+> Interconnection CreateProjectInterconnection(ctx, projectId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Include(include).Exclude(exclude).Execute()
 
 Request a new interconnection for the project's organization
 
@@ -195,13 +195,13 @@ import (
 
 func main() {
     projectId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the project
-    interconnectionCreateInput := *openapiclient.NewInterconnectionCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example") // InterconnectionCreateInput | Interconnection details
+    createOrganizationInterconnectionRequest := openapiclient.createOrganizationInterconnection_request{DedicatedPortCreateInput: openapiclient.NewDedicatedPortCreateInput("Metro_example", "Name_example", "Redundancy_example", "Type_example")} // CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InterconnectionsApi.CreateProjectInterconnection(context.Background(), projectId).InterconnectionCreateInput(interconnectionCreateInput).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.InterconnectionsApi.CreateProjectInterconnection(context.Background(), projectId).CreateOrganizationInterconnectionRequest(createOrganizationInterconnectionRequest).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InterconnectionsApi.CreateProjectInterconnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -227,7 +227,7 @@ Other parameters are passed through a pointer to a apiCreateProjectInterconnecti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **interconnectionCreateInput** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md) | Interconnection details | 
+ **createOrganizationInterconnectionRequest** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md) | Dedicated port or shared interconnection (also known as Fabric VC) creation request | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
