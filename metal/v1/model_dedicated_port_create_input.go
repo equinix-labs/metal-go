@@ -15,15 +15,15 @@ import (
 	"encoding/json"
 )
 
-// checks if the InterconnectionCreateInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &InterconnectionCreateInput{}
+// checks if the DedicatedPortCreateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DedicatedPortCreateInput{}
 
-// InterconnectionCreateInput struct for InterconnectionCreateInput
-type InterconnectionCreateInput struct {
+// DedicatedPortCreateInput struct for DedicatedPortCreateInput
+type DedicatedPortCreateInput struct {
 	// The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.
 	ContactEmail *string `json:"contact_email,omitempty"`
 	Description  *string `json:"description,omitempty"`
-	// A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports. When creating Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed), or shared connections, this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.
+	// A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports.
 	Metro string `json:"metro"`
 	// The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
 	Mode    *string `json:"mode,omitempty"`
@@ -31,28 +31,22 @@ type InterconnectionCreateInput struct {
 	Project *string `json:"project,omitempty"`
 	// Either 'primary' or 'redundant'.
 	Redundancy string `json:"redundancy"`
-	// Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	ServiceTokenType *string `json:"service_token_type,omitempty"`
-	// A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.
+	// A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.
 	Speed *int32   `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
-	// Either 'shared' or 'dedicated'. The 'shared' type represents shared interconnections, or also known as Fabric VCs. The 'dedicated' type represents dedicated interconnections, or also known as Dedicated Ports.
-	Type string `json:"type"`
-	// A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the interconnection. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	Vlans []int32 `json:"vlans,omitempty"`
-	// Can only be set when creating Fabric VCs in VRF(s). This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	Vrfs                 []string `json:"vrfs,omitempty"`
+	// When requesting for a dedicated port, the value of this field should be 'dedicated'.
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _InterconnectionCreateInput InterconnectionCreateInput
+type _DedicatedPortCreateInput DedicatedPortCreateInput
 
-// NewInterconnectionCreateInput instantiates a new InterconnectionCreateInput object
+// NewDedicatedPortCreateInput instantiates a new DedicatedPortCreateInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInterconnectionCreateInput(metro string, name string, redundancy string, type_ string) *InterconnectionCreateInput {
-	this := InterconnectionCreateInput{}
+func NewDedicatedPortCreateInput(metro string, name string, redundancy string, type_ string) *DedicatedPortCreateInput {
+	this := DedicatedPortCreateInput{}
 	this.Metro = metro
 	this.Name = name
 	this.Redundancy = redundancy
@@ -60,16 +54,16 @@ func NewInterconnectionCreateInput(metro string, name string, redundancy string,
 	return &this
 }
 
-// NewInterconnectionCreateInputWithDefaults instantiates a new InterconnectionCreateInput object
+// NewDedicatedPortCreateInputWithDefaults instantiates a new DedicatedPortCreateInput object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInterconnectionCreateInputWithDefaults() *InterconnectionCreateInput {
-	this := InterconnectionCreateInput{}
+func NewDedicatedPortCreateInputWithDefaults() *DedicatedPortCreateInput {
+	this := DedicatedPortCreateInput{}
 	return &this
 }
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetContactEmail() string {
+func (o *DedicatedPortCreateInput) GetContactEmail() string {
 	if o == nil || IsNil(o.ContactEmail) {
 		var ret string
 		return ret
@@ -79,7 +73,7 @@ func (o *InterconnectionCreateInput) GetContactEmail() string {
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetContactEmailOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetContactEmailOk() (*string, bool) {
 	if o == nil || IsNil(o.ContactEmail) {
 		return nil, false
 	}
@@ -87,7 +81,7 @@ func (o *InterconnectionCreateInput) GetContactEmailOk() (*string, bool) {
 }
 
 // HasContactEmail returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasContactEmail() bool {
+func (o *DedicatedPortCreateInput) HasContactEmail() bool {
 	if o != nil && !IsNil(o.ContactEmail) {
 		return true
 	}
@@ -96,12 +90,12 @@ func (o *InterconnectionCreateInput) HasContactEmail() bool {
 }
 
 // SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
-func (o *InterconnectionCreateInput) SetContactEmail(v string) {
+func (o *DedicatedPortCreateInput) SetContactEmail(v string) {
 	o.ContactEmail = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetDescription() string {
+func (o *DedicatedPortCreateInput) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -111,7 +105,7 @@ func (o *InterconnectionCreateInput) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetDescriptionOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -119,7 +113,7 @@ func (o *InterconnectionCreateInput) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasDescription() bool {
+func (o *DedicatedPortCreateInput) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -128,12 +122,12 @@ func (o *InterconnectionCreateInput) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *InterconnectionCreateInput) SetDescription(v string) {
+func (o *DedicatedPortCreateInput) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetMetro returns the Metro field value
-func (o *InterconnectionCreateInput) GetMetro() string {
+func (o *DedicatedPortCreateInput) GetMetro() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -144,7 +138,7 @@ func (o *InterconnectionCreateInput) GetMetro() string {
 
 // GetMetroOk returns a tuple with the Metro field value
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetMetroOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetMetroOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -152,12 +146,12 @@ func (o *InterconnectionCreateInput) GetMetroOk() (*string, bool) {
 }
 
 // SetMetro sets field value
-func (o *InterconnectionCreateInput) SetMetro(v string) {
+func (o *DedicatedPortCreateInput) SetMetro(v string) {
 	o.Metro = v
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetMode() string {
+func (o *DedicatedPortCreateInput) GetMode() string {
 	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
@@ -167,7 +161,7 @@ func (o *InterconnectionCreateInput) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetModeOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetModeOk() (*string, bool) {
 	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
@@ -175,7 +169,7 @@ func (o *InterconnectionCreateInput) GetModeOk() (*string, bool) {
 }
 
 // HasMode returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasMode() bool {
+func (o *DedicatedPortCreateInput) HasMode() bool {
 	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
@@ -184,12 +178,12 @@ func (o *InterconnectionCreateInput) HasMode() bool {
 }
 
 // SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *InterconnectionCreateInput) SetMode(v string) {
+func (o *DedicatedPortCreateInput) SetMode(v string) {
 	o.Mode = &v
 }
 
 // GetName returns the Name field value
-func (o *InterconnectionCreateInput) GetName() string {
+func (o *DedicatedPortCreateInput) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -200,7 +194,7 @@ func (o *InterconnectionCreateInput) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetNameOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -208,12 +202,12 @@ func (o *InterconnectionCreateInput) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *InterconnectionCreateInput) SetName(v string) {
+func (o *DedicatedPortCreateInput) SetName(v string) {
 	o.Name = v
 }
 
 // GetProject returns the Project field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetProject() string {
+func (o *DedicatedPortCreateInput) GetProject() string {
 	if o == nil || IsNil(o.Project) {
 		var ret string
 		return ret
@@ -223,7 +217,7 @@ func (o *InterconnectionCreateInput) GetProject() string {
 
 // GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetProjectOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetProjectOk() (*string, bool) {
 	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
@@ -231,7 +225,7 @@ func (o *InterconnectionCreateInput) GetProjectOk() (*string, bool) {
 }
 
 // HasProject returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasProject() bool {
+func (o *DedicatedPortCreateInput) HasProject() bool {
 	if o != nil && !IsNil(o.Project) {
 		return true
 	}
@@ -240,12 +234,12 @@ func (o *InterconnectionCreateInput) HasProject() bool {
 }
 
 // SetProject gets a reference to the given string and assigns it to the Project field.
-func (o *InterconnectionCreateInput) SetProject(v string) {
+func (o *DedicatedPortCreateInput) SetProject(v string) {
 	o.Project = &v
 }
 
 // GetRedundancy returns the Redundancy field value
-func (o *InterconnectionCreateInput) GetRedundancy() string {
+func (o *DedicatedPortCreateInput) GetRedundancy() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -256,7 +250,7 @@ func (o *InterconnectionCreateInput) GetRedundancy() string {
 
 // GetRedundancyOk returns a tuple with the Redundancy field value
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetRedundancyOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetRedundancyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -264,44 +258,12 @@ func (o *InterconnectionCreateInput) GetRedundancyOk() (*string, bool) {
 }
 
 // SetRedundancy sets field value
-func (o *InterconnectionCreateInput) SetRedundancy(v string) {
+func (o *DedicatedPortCreateInput) SetRedundancy(v string) {
 	o.Redundancy = v
 }
 
-// GetServiceTokenType returns the ServiceTokenType field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetServiceTokenType() string {
-	if o == nil || IsNil(o.ServiceTokenType) {
-		var ret string
-		return ret
-	}
-	return *o.ServiceTokenType
-}
-
-// GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetServiceTokenTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.ServiceTokenType) {
-		return nil, false
-	}
-	return o.ServiceTokenType, true
-}
-
-// HasServiceTokenType returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasServiceTokenType() bool {
-	if o != nil && !IsNil(o.ServiceTokenType) {
-		return true
-	}
-
-	return false
-}
-
-// SetServiceTokenType gets a reference to the given string and assigns it to the ServiceTokenType field.
-func (o *InterconnectionCreateInput) SetServiceTokenType(v string) {
-	o.ServiceTokenType = &v
-}
-
 // GetSpeed returns the Speed field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetSpeed() int32 {
+func (o *DedicatedPortCreateInput) GetSpeed() int32 {
 	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
@@ -311,7 +273,7 @@ func (o *InterconnectionCreateInput) GetSpeed() int32 {
 
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetSpeedOk() (*int32, bool) {
+func (o *DedicatedPortCreateInput) GetSpeedOk() (*int32, bool) {
 	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
@@ -319,7 +281,7 @@ func (o *InterconnectionCreateInput) GetSpeedOk() (*int32, bool) {
 }
 
 // HasSpeed returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasSpeed() bool {
+func (o *DedicatedPortCreateInput) HasSpeed() bool {
 	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
@@ -328,12 +290,12 @@ func (o *InterconnectionCreateInput) HasSpeed() bool {
 }
 
 // SetSpeed gets a reference to the given int32 and assigns it to the Speed field.
-func (o *InterconnectionCreateInput) SetSpeed(v int32) {
+func (o *DedicatedPortCreateInput) SetSpeed(v int32) {
 	o.Speed = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetTags() []string {
+func (o *DedicatedPortCreateInput) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
@@ -343,7 +305,7 @@ func (o *InterconnectionCreateInput) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetTagsOk() ([]string, bool) {
+func (o *DedicatedPortCreateInput) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -351,7 +313,7 @@ func (o *InterconnectionCreateInput) GetTagsOk() ([]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasTags() bool {
+func (o *DedicatedPortCreateInput) HasTags() bool {
 	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
@@ -360,12 +322,12 @@ func (o *InterconnectionCreateInput) HasTags() bool {
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *InterconnectionCreateInput) SetTags(v []string) {
+func (o *DedicatedPortCreateInput) SetTags(v []string) {
 	o.Tags = v
 }
 
 // GetType returns the Type field value
-func (o *InterconnectionCreateInput) GetType() string {
+func (o *DedicatedPortCreateInput) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -376,7 +338,7 @@ func (o *InterconnectionCreateInput) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetTypeOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -384,75 +346,11 @@ func (o *InterconnectionCreateInput) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *InterconnectionCreateInput) SetType(v string) {
+func (o *DedicatedPortCreateInput) SetType(v string) {
 	o.Type = v
 }
 
-// GetVlans returns the Vlans field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetVlans() []int32 {
-	if o == nil || IsNil(o.Vlans) {
-		var ret []int32
-		return ret
-	}
-	return o.Vlans
-}
-
-// GetVlansOk returns a tuple with the Vlans field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetVlansOk() ([]int32, bool) {
-	if o == nil || IsNil(o.Vlans) {
-		return nil, false
-	}
-	return o.Vlans, true
-}
-
-// HasVlans returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasVlans() bool {
-	if o != nil && !IsNil(o.Vlans) {
-		return true
-	}
-
-	return false
-}
-
-// SetVlans gets a reference to the given []int32 and assigns it to the Vlans field.
-func (o *InterconnectionCreateInput) SetVlans(v []int32) {
-	o.Vlans = v
-}
-
-// GetVrfs returns the Vrfs field value if set, zero value otherwise.
-func (o *InterconnectionCreateInput) GetVrfs() []string {
-	if o == nil || IsNil(o.Vrfs) {
-		var ret []string
-		return ret
-	}
-	return o.Vrfs
-}
-
-// GetVrfsOk returns a tuple with the Vrfs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InterconnectionCreateInput) GetVrfsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Vrfs) {
-		return nil, false
-	}
-	return o.Vrfs, true
-}
-
-// HasVrfs returns a boolean if a field has been set.
-func (o *InterconnectionCreateInput) HasVrfs() bool {
-	if o != nil && !IsNil(o.Vrfs) {
-		return true
-	}
-
-	return false
-}
-
-// SetVrfs gets a reference to the given []string and assigns it to the Vrfs field.
-func (o *InterconnectionCreateInput) SetVrfs(v []string) {
-	o.Vrfs = v
-}
-
-func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
+func (o DedicatedPortCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -460,7 +358,7 @@ func (o InterconnectionCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
+func (o DedicatedPortCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
@@ -477,9 +375,6 @@ func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["project"] = o.Project
 	}
 	toSerialize["redundancy"] = o.Redundancy
-	if !IsNil(o.ServiceTokenType) {
-		toSerialize["service_token_type"] = o.ServiceTokenType
-	}
 	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
@@ -487,12 +382,6 @@ func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["type"] = o.Type
-	if !IsNil(o.Vlans) {
-		toSerialize["vlans"] = o.Vlans
-	}
-	if !IsNil(o.Vrfs) {
-		toSerialize["vrfs"] = o.Vrfs
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -501,11 +390,11 @@ func (o InterconnectionCreateInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *InterconnectionCreateInput) UnmarshalJSON(bytes []byte) (err error) {
-	varInterconnectionCreateInput := _InterconnectionCreateInput{}
+func (o *DedicatedPortCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	varDedicatedPortCreateInput := _DedicatedPortCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varInterconnectionCreateInput); err == nil {
-		*o = InterconnectionCreateInput(varInterconnectionCreateInput)
+	if err = json.Unmarshal(bytes, &varDedicatedPortCreateInput); err == nil {
+		*o = DedicatedPortCreateInput(varDedicatedPortCreateInput)
 	}
 
 	additionalProperties := make(map[string]interface{})
@@ -518,50 +407,47 @@ func (o *InterconnectionCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "project")
 		delete(additionalProperties, "redundancy")
-		delete(additionalProperties, "service_token_type")
 		delete(additionalProperties, "speed")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "vlans")
-		delete(additionalProperties, "vrfs")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableInterconnectionCreateInput struct {
-	value *InterconnectionCreateInput
+type NullableDedicatedPortCreateInput struct {
+	value *DedicatedPortCreateInput
 	isSet bool
 }
 
-func (v NullableInterconnectionCreateInput) Get() *InterconnectionCreateInput {
+func (v NullableDedicatedPortCreateInput) Get() *DedicatedPortCreateInput {
 	return v.value
 }
 
-func (v *NullableInterconnectionCreateInput) Set(val *InterconnectionCreateInput) {
+func (v *NullableDedicatedPortCreateInput) Set(val *DedicatedPortCreateInput) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInterconnectionCreateInput) IsSet() bool {
+func (v NullableDedicatedPortCreateInput) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInterconnectionCreateInput) Unset() {
+func (v *NullableDedicatedPortCreateInput) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInterconnectionCreateInput(val *InterconnectionCreateInput) *NullableInterconnectionCreateInput {
-	return &NullableInterconnectionCreateInput{value: val, isSet: true}
+func NewNullableDedicatedPortCreateInput(val *DedicatedPortCreateInput) *NullableDedicatedPortCreateInput {
+	return &NullableDedicatedPortCreateInput{value: val, isSet: true}
 }
 
-func (v NullableInterconnectionCreateInput) MarshalJSON() ([]byte, error) {
+func (v NullableDedicatedPortCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInterconnectionCreateInput) UnmarshalJSON(src []byte) error {
+func (v *NullableDedicatedPortCreateInput) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

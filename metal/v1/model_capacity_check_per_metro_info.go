@@ -27,7 +27,7 @@ type CapacityCheckPerMetroInfo struct {
 	// The plan ID or slug sent to check capacity.
 	Plan *string `json:"plan,omitempty"`
 	// The number of servers sent to check capacity.
-	Quantity             *string `json:"quantity,omitempty"`
+	Quantity             *int32 `json:"quantity,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -147,9 +147,9 @@ func (o *CapacityCheckPerMetroInfo) SetPlan(v string) {
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *CapacityCheckPerMetroInfo) GetQuantity() string {
+func (o *CapacityCheckPerMetroInfo) GetQuantity() int32 {
 	if o == nil || IsNil(o.Quantity) {
-		var ret string
+		var ret int32
 		return ret
 	}
 	return *o.Quantity
@@ -157,7 +157,7 @@ func (o *CapacityCheckPerMetroInfo) GetQuantity() string {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CapacityCheckPerMetroInfo) GetQuantityOk() (*string, bool) {
+func (o *CapacityCheckPerMetroInfo) GetQuantityOk() (*int32, bool) {
 	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -173,8 +173,8 @@ func (o *CapacityCheckPerMetroInfo) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
-func (o *CapacityCheckPerMetroInfo) SetQuantity(v string) {
+// SetQuantity gets a reference to the given int32 and assigns it to the Quantity field.
+func (o *CapacityCheckPerMetroInfo) SetQuantity(v int32) {
 	o.Quantity = &v
 }
 

@@ -11,5 +11,5 @@ properties:
     type: string
   quantity:
     description: The number of servers sent to check capacity.
-    type: string
+    type: integer
 type: object

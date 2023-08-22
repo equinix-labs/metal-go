@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Available** | Pointer to **bool** | Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough. | [optional] 
 **Metro** | Pointer to **string** | The metro ID or code sent to check capacity. | [optional] 
 **Plan** | Pointer to **string** | The plan ID or slug sent to check capacity. | [optional] 
-**Quantity** | Pointer to **string** | The number of servers sent to check capacity. | [optional] 
+**Quantity** | Pointer to **int32** | The number of servers sent to check capacity. | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasPlan returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *CapacityCheckPerMetroInfo) GetQuantity() string`
+`func (o *CapacityCheckPerMetroInfo) GetQuantity() int32`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *CapacityCheckPerMetroInfo) GetQuantityOk() (*string, bool)`
+`func (o *CapacityCheckPerMetroInfo) GetQuantityOk() (*int32, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *CapacityCheckPerMetroInfo) SetQuantity(v string)`
+`func (o *CapacityCheckPerMetroInfo) SetQuantity(v int32)`
 
 SetQuantity sets Quantity field to given value.
 

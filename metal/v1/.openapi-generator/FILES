@@ -79,8 +79,10 @@ docs/Coordinates.md
 docs/CreateDeviceRequest.md
 docs/CreateEmailInput.md
 docs/CreateMetalGatewayRequest.md
+docs/CreateOrganizationInterconnectionRequest.md
 docs/CreateSelfServiceReservationRequest.md
 docs/CreateSelfServiceReservationRequestPeriod.md
+docs/DedicatedPortCreateInput.md
 docs/Device.md
 docs/DeviceActionInput.md
 docs/DeviceActionsInner.md
@@ -138,7 +140,6 @@ docs/InstancesBatchCreateInput.md
 docs/InstancesBatchCreateInputBatchesInner.md
 docs/InstancesBatchCreateInputBatchesInnerAllOf.md
 docs/Interconnection.md
-docs/InterconnectionCreateInput.md
 docs/InterconnectionList.md
 docs/InterconnectionMetro.md
 docs/InterconnectionPort.md
@@ -292,11 +293,13 @@ docs/VirtualCircuitUpdateInput.md
 docs/VirtualNetwork.md
 docs/VirtualNetworkCreateInput.md
 docs/VirtualNetworkList.md
+docs/VlanFabricVcCreateInput.md
 docs/VlanVirtualCircuit.md
 docs/VlanVirtualCircuitCreateInput.md
 docs/VlanVirtualCircuitUpdateInput.md
 docs/Vrf.md
 docs/VrfCreateInput.md
+docs/VrfFabricVcCreateInput.md
 docs/VrfIpReservation.md
 docs/VrfIpReservationCreateInput.md
 docs/VrfIpReservationList.md
@@ -346,8 +349,10 @@ model_coordinates.go
 model_create_device_request.go
 model_create_email_input.go
 model_create_metal_gateway_request.go
+model_create_organization_interconnection_request.go
 model_create_self_service_reservation_request.go
 model_create_self_service_reservation_request_period.go
+model_dedicated_port_create_input.go
 model_device.go
 model_device_action_input.go
 model_device_actions_inner.go
@@ -385,7 +390,6 @@ model_instances_batch_create_input.go
 model_instances_batch_create_input_batches_inner.go
 model_instances_batch_create_input_batches_inner_all_of.go
 model_interconnection.go
-model_interconnection_create_input.go
 model_interconnection_list.go
 model_interconnection_metro.go
 model_interconnection_port.go
@@ -525,11 +529,13 @@ model_virtual_circuit_update_input.go
 model_virtual_network.go
 model_virtual_network_create_input.go
 model_virtual_network_list.go
+model_vlan_fabric_vc_create_input.go
 model_vlan_virtual_circuit.go
 model_vlan_virtual_circuit_create_input.go
 model_vlan_virtual_circuit_update_input.go
 model_vrf.go
 model_vrf_create_input.go
+model_vrf_fabric_vc_create_input.go
 model_vrf_ip_reservation.go
 model_vrf_ip_reservation_create_input.go
 model_vrf_ip_reservation_list.go

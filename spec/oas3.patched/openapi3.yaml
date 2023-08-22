@@ -173,6 +173,8 @@ components:
       $ref: './components/schemas/CreateEmailInput.yaml'
     CreateSelfServiceReservationRequest:
       $ref: './components/schemas/CreateSelfServiceReservationRequest.yaml'
+    DedicatedPortCreateInput:
+      $ref: './components/schemas/DedicatedPortCreateInput.yaml'
     Device:
       $ref: './components/schemas/Device.yaml'
     DeviceCreateInput:
@@ -239,8 +241,6 @@ components:
       $ref: './components/schemas/InstancesBatchCreateInput.yaml'
     Interconnection:
       $ref: './components/schemas/Interconnection.yaml'
-    InterconnectionCreateInput:
-      $ref: './components/schemas/InterconnectionCreateInput.yaml'
     InterconnectionList:
       $ref: './components/schemas/InterconnectionList.yaml'
     InterconnectionPort:
@@ -441,6 +441,8 @@ components:
       $ref: './components/schemas/VirtualNetworkCreateInput.yaml'
     VirtualNetworkList:
       $ref: './components/schemas/VirtualNetworkList.yaml'
+    VlanFabricVcCreateInput:
+      $ref: './components/schemas/VlanFabricVcCreateInput.yaml'
     VlanVirtualCircuit:
       $ref: './components/schemas/VlanVirtualCircuit.yaml'
     VlanVirtualCircuitCreateInput:
@@ -451,6 +453,8 @@ components:
       $ref: './components/schemas/Vrf.yaml'
     VrfCreateInput:
       $ref: './components/schemas/VrfCreateInput.yaml'
+    VrfFabricVcCreateInput:
+      $ref: './components/schemas/VrfFabricVcCreateInput.yaml'
     VrfIpRangeCreateInput:
       $ref: './components/schemas/VrfIpRangeCreateInput.yaml'
     VrfIpRangeList:

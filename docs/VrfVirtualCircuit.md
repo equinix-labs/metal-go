@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **PeerAsn** | Pointer to **int32** | The peer ASN that will be used with the VRF on the Virtual Circuit. | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren&#39;t in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to &#39;waiting_on_peering_details&#39; once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to &#x60;changing_peering_details&#x60; whenever an active VRF Virtual Circuit has any of its peering details updated. | [optional] 
 **Subnet** | Pointer to **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
