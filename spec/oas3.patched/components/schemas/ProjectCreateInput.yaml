@@ -9,6 +9,10 @@ properties:
   payment_method_id:
     format: uuid
     type: string
+  tags:
+    items:
+      type: string
+    type: array
 required:
 - name
 type: object

@@ -23,8 +23,9 @@ type ProjectUpdateInput struct {
 	BackendTransferEnabled *bool                  `json:"backend_transfer_enabled,omitempty"`
 	Customdata             map[string]interface{} `json:"customdata,omitempty"`
 	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name                 *string `json:"name,omitempty"`
-	PaymentMethodId      *string `json:"payment_method_id,omitempty"`
+	Name                 *string  `json:"name,omitempty"`
+	PaymentMethodId      *string  `json:"payment_method_id,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -175,6 +176,38 @@ func (o *ProjectUpdateInput) SetPaymentMethodId(v string) {
 	o.PaymentMethodId = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *ProjectUpdateInput) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectUpdateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *ProjectUpdateInput) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *ProjectUpdateInput) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o ProjectUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -196,6 +229,9 @@ func (o ProjectUpdateInput) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -219,6 +255,7 @@ func (o *ProjectUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "customdata")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "payment_method_id")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 
