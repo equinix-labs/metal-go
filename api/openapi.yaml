@@ -21786,6 +21786,9 @@ components:
         organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         customdata: "{}"
+        tags:
+        - tags
+        - tags
       properties:
         customdata:
           type: object
@@ -21801,6 +21804,10 @@ components:
         payment_method_id:
           format: uuid
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - name
       type: object
@@ -21809,6 +21816,9 @@ components:
         payment_method_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         customdata: "{}"
+        tags:
+        - tags
+        - tags
       properties:
         customdata:
           type: object
@@ -21821,6 +21831,10 @@ components:
         payment_method_id:
           format: uuid
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - name
       type: object
@@ -22016,6 +22030,9 @@ components:
         name: name
         backend_transfer_enabled: true
         customdata: "{}"
+        tags:
+        - tags
+        - tags
       properties:
         backend_transfer_enabled:
           type: boolean
@@ -22030,6 +22047,10 @@ components:
         payment_method_id:
           format: uuid
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     ProjectUsage:
       example:
@@ -23998,9 +24019,11 @@ components:
             \ the VLAN. When a deletion request is issued for the Virtual Circuit,\
             \ it will move to a 'deleting' status, and we will immediately unconfigure\
             \ the switch for the Virtual Circuit and issue a deletion on any associated\
-            \ Fabric connections. If there are any associated Fabric connections,\
-            \ we will only fully delete the Virtual Circuit once we have checked that\
-            \ the Fabric connection was fully deprovisioned on Fabric."
+            \ Fabric connections. Any associated Metro VLANs on the virtual circuit\
+            \ will also be unassociated after the switch has been successfully unconfigured.\
+            \ If there are any associated Fabric connections, we will only fully delete\
+            \ the Virtual Circuit once we have checked that the Fabric connection\
+            \ was fully deprovisioned on Fabric."
           enum:
           - pending
           - waiting_on_customer_vlan

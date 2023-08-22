@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Name** | Pointer to **string** | The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis. | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetPaymentMethodId sets PaymentMethodId field to given value.
 `func (o *ProjectUpdateInput) HasPaymentMethodId() bool`
 
 HasPaymentMethodId returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *ProjectUpdateInput) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *ProjectUpdateInput) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *ProjectUpdateInput) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *ProjectUpdateInput) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
