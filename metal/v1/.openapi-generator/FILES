@@ -93,6 +93,8 @@ docs/DeviceCreatedBy.md
 docs/DeviceList.md
 docs/DeviceMetro.md
 docs/DeviceProjectLite.md
+docs/DeviceState.md
+docs/DeviceStateFlexible.md
 docs/DeviceUpdateInput.md
 docs/DeviceUsage.md
 docs/DeviceUsageList.md
@@ -363,6 +365,8 @@ model_device_created_by.go
 model_device_list.go
 model_device_metro.go
 model_device_project_lite.go
+model_device_state.go
+model_device_state_flexible.go
 model_device_update_input.go
 model_device_usage.go
 model_device_usage_list.go
