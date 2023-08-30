@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BillingAccountName** | Pointer to **string** | The billing account name of the Equinix Fabric account. | [optional] 
 **ContactEmail** | Pointer to **string** | The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Metro** | **string** | A Metro ID or code. When creating Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed), or shared connections, this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here. | 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **Speed** | Pointer to **int32** | A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  &#39;&#39;50mbps&#39;&#39;, &#39;&#39;200mbps&#39;&#39;, &#39;&#39;500mbps&#39;&#39;, &#39;&#39;1gbps&#39;&#39;, &#39;&#39;2gbps&#39;&#39;, &#39;&#39;5gbps&#39;&#39; or &#39;&#39;10gbps&#39;&#39;, and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to &#39;&#39;10gbps&#39;&#39; even if it is not provided. For example, &#39;&#39;500000000&#39;&#39;, &#39;&#39;50m&#39;&#39;, or&#39; &#39;&#39;500mbps&#39;&#39; will all work as valid inputs. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** | When requesting for a Fabric VC, the value of this field should be &#39;shared&#39;. | 
+**UseCase** | Pointer to **string** | The intended use case of the dedicated port. | [optional] 
 **ServiceTokenType** | **string** | Either &#39;a_side&#39; or &#39;z_side&#39;. Setting this field to &#39;a_side&#39; will create an interconnection with Fabric VCs (Metal Billed). Setting this field to &#39;z_side&#39; will create an interconnection with Fabric VCs (Fabric Billed). This is required when the &#39;type&#39; is &#39;shared&#39;, but this is not applicable when the &#39;type&#39; is &#39;dedicated&#39;. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | 
 **Vlans** | Pointer to **[]int32** | A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits. | [optional] 
 **Vrfs** | **[]string** | This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits of Fabric VCs on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | 
@@ -36,6 +38,31 @@ will change when the set of required properties is changed
 NewCreateOrganizationInterconnectionRequestWithDefaults instantiates a new CreateOrganizationInterconnectionRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBillingAccountName
+
+`func (o *CreateOrganizationInterconnectionRequest) GetBillingAccountName() string`
+
+GetBillingAccountName returns the BillingAccountName field if non-nil, zero value otherwise.
+
+### GetBillingAccountNameOk
+
+`func (o *CreateOrganizationInterconnectionRequest) GetBillingAccountNameOk() (*string, bool)`
+
+GetBillingAccountNameOk returns a tuple with the BillingAccountName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingAccountName
+
+`func (o *CreateOrganizationInterconnectionRequest) SetBillingAccountName(v string)`
+
+SetBillingAccountName sets BillingAccountName field to given value.
+
+### HasBillingAccountName
+
+`func (o *CreateOrganizationInterconnectionRequest) HasBillingAccountName() bool`
+
+HasBillingAccountName returns a boolean if a field has been set.
 
 ### GetContactEmail
 
@@ -266,6 +293,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetUseCase
+
+`func (o *CreateOrganizationInterconnectionRequest) GetUseCase() string`
+
+GetUseCase returns the UseCase field if non-nil, zero value otherwise.
+
+### GetUseCaseOk
+
+`func (o *CreateOrganizationInterconnectionRequest) GetUseCaseOk() (*string, bool)`
+
+GetUseCaseOk returns a tuple with the UseCase field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseCase
+
+`func (o *CreateOrganizationInterconnectionRequest) SetUseCase(v string)`
+
+SetUseCase sets UseCase field to given value.
+
+### HasUseCase
+
+`func (o *CreateOrganizationInterconnectionRequest) HasUseCase() bool`
+
+HasUseCase returns a boolean if a field has been set.
 
 ### GetServiceTokenType
 

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BillingAccountName** | Pointer to **string** | The billing account name of the Equinix Fabric account. | [optional] 
 **ContactEmail** | Pointer to **string** | The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Metro** | **string** | A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports. | 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **Speed** | Pointer to **int32** | A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Type** | **string** | When requesting for a dedicated port, the value of this field should be &#39;dedicated&#39;. | 
+**UseCase** | Pointer to **string** | The intended use case of the dedicated port. | [optional] 
 
 ## Methods
 
@@ -33,6 +35,31 @@ will change when the set of required properties is changed
 NewDedicatedPortCreateInputWithDefaults instantiates a new DedicatedPortCreateInput object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBillingAccountName
+
+`func (o *DedicatedPortCreateInput) GetBillingAccountName() string`
+
+GetBillingAccountName returns the BillingAccountName field if non-nil, zero value otherwise.
+
+### GetBillingAccountNameOk
+
+`func (o *DedicatedPortCreateInput) GetBillingAccountNameOk() (*string, bool)`
+
+GetBillingAccountNameOk returns a tuple with the BillingAccountName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingAccountName
+
+`func (o *DedicatedPortCreateInput) SetBillingAccountName(v string)`
+
+SetBillingAccountName sets BillingAccountName field to given value.
+
+### HasBillingAccountName
+
+`func (o *DedicatedPortCreateInput) HasBillingAccountName() bool`
+
+HasBillingAccountName returns a boolean if a field has been set.
 
 ### GetContactEmail
 
@@ -263,6 +290,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetUseCase
+
+`func (o *DedicatedPortCreateInput) GetUseCase() string`
+
+GetUseCase returns the UseCase field if non-nil, zero value otherwise.
+
+### GetUseCaseOk
+
+`func (o *DedicatedPortCreateInput) GetUseCaseOk() (*string, bool)`
+
+GetUseCaseOk returns a tuple with the UseCase field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseCase
+
+`func (o *DedicatedPortCreateInput) SetUseCase(v string)`
+
+SetUseCase sets UseCase field to given value.
+
+### HasUseCase
+
+`func (o *DedicatedPortCreateInput) HasUseCase() bool`
+
+HasUseCase returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

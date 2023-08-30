@@ -1,4 +1,7 @@
 properties:
+  billing_account_name:
+    description: The billing account name of the Equinix Fabric account.
+    type: string
   contact_email:
     description: The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.
     type: string
@@ -39,6 +42,9 @@ properties:
     type: string
     enum:
     - dedicated
+  use_case:
+    description: The intended use case of the dedicated port.
+    type: string
 required:
 - name
 - metro
