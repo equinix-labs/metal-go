@@ -15170,6 +15170,9 @@ components:
       type: object
     DedicatedPortCreateInput:
       properties:
+        billing_account_name:
+          description: The billing account name of the Equinix Fabric account.
+          type: string
         contact_email:
           description: The preferred email used for communication and notifications
             about the Equinix Fabric interconnection. Required when using a Project
@@ -15214,6 +15217,9 @@ components:
             \ should be 'dedicated'."
           enum:
           - dedicated
+          type: string
+        use_case:
+          description: The intended use case of the dedicated port.
           type: string
       required:
       - metro

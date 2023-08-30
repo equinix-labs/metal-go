@@ -20,6 +20,8 @@ var _ MappedNullable = &DedicatedPortCreateInput{}
 
 // DedicatedPortCreateInput struct for DedicatedPortCreateInput
 type DedicatedPortCreateInput struct {
+	// The billing account name of the Equinix Fabric account.
+	BillingAccountName *string `json:"billing_account_name,omitempty"`
 	// The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.
 	ContactEmail *string `json:"contact_email,omitempty"`
 	Description  *string `json:"description,omitempty"`
@@ -35,7 +37,9 @@ type DedicatedPortCreateInput struct {
 	Speed *int32   `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
 	// When requesting for a dedicated port, the value of this field should be 'dedicated'.
-	Type                 string `json:"type"`
+	Type string `json:"type"`
+	// The intended use case of the dedicated port.
+	UseCase              *string `json:"use_case,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,6 +64,38 @@ func NewDedicatedPortCreateInput(metro string, name string, redundancy string, t
 func NewDedicatedPortCreateInputWithDefaults() *DedicatedPortCreateInput {
 	this := DedicatedPortCreateInput{}
 	return &this
+}
+
+// GetBillingAccountName returns the BillingAccountName field value if set, zero value otherwise.
+func (o *DedicatedPortCreateInput) GetBillingAccountName() string {
+	if o == nil || IsNil(o.BillingAccountName) {
+		var ret string
+		return ret
+	}
+	return *o.BillingAccountName
+}
+
+// GetBillingAccountNameOk returns a tuple with the BillingAccountName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DedicatedPortCreateInput) GetBillingAccountNameOk() (*string, bool) {
+	if o == nil || IsNil(o.BillingAccountName) {
+		return nil, false
+	}
+	return o.BillingAccountName, true
+}
+
+// HasBillingAccountName returns a boolean if a field has been set.
+func (o *DedicatedPortCreateInput) HasBillingAccountName() bool {
+	if o != nil && !IsNil(o.BillingAccountName) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingAccountName gets a reference to the given string and assigns it to the BillingAccountName field.
+func (o *DedicatedPortCreateInput) SetBillingAccountName(v string) {
+	o.BillingAccountName = &v
 }
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
@@ -350,6 +386,38 @@ func (o *DedicatedPortCreateInput) SetType(v string) {
 	o.Type = v
 }
 
+// GetUseCase returns the UseCase field value if set, zero value otherwise.
+func (o *DedicatedPortCreateInput) GetUseCase() string {
+	if o == nil || IsNil(o.UseCase) {
+		var ret string
+		return ret
+	}
+	return *o.UseCase
+}
+
+// GetUseCaseOk returns a tuple with the UseCase field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DedicatedPortCreateInput) GetUseCaseOk() (*string, bool) {
+	if o == nil || IsNil(o.UseCase) {
+		return nil, false
+	}
+	return o.UseCase, true
+}
+
+// HasUseCase returns a boolean if a field has been set.
+func (o *DedicatedPortCreateInput) HasUseCase() bool {
+	if o != nil && !IsNil(o.UseCase) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseCase gets a reference to the given string and assigns it to the UseCase field.
+func (o *DedicatedPortCreateInput) SetUseCase(v string) {
+	o.UseCase = &v
+}
+
 func (o DedicatedPortCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -360,6 +428,9 @@ func (o DedicatedPortCreateInput) MarshalJSON() ([]byte, error) {
 
 func (o DedicatedPortCreateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BillingAccountName) {
+		toSerialize["billing_account_name"] = o.BillingAccountName
+	}
 	if !IsNil(o.ContactEmail) {
 		toSerialize["contact_email"] = o.ContactEmail
 	}
@@ -382,6 +453,9 @@ func (o DedicatedPortCreateInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["type"] = o.Type
+	if !IsNil(o.UseCase) {
+		toSerialize["use_case"] = o.UseCase
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -400,6 +474,7 @@ func (o *DedicatedPortCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "billing_account_name")
 		delete(additionalProperties, "contact_email")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "metro")
@@ -410,6 +485,7 @@ func (o *DedicatedPortCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "speed")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "use_case")
 		o.AdditionalProperties = additionalProperties
 	}
 
