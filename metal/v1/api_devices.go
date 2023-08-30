@@ -2034,6 +2034,26 @@ func (r ApiFindOrganizationDevicesRequest) Execute() (*DeviceList, *http.Respons
 	return r.ApiService.FindOrganizationDevicesExecute(r)
 }
 
+func (r ApiFindOrganizationDevicesRequest) ExecuteWithPagination() ([]Device, error) {
+	var devices []Device
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		devices = append(devices, page.Devices...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+	}
+
+	return devices, nil
+}
+
 /*
 FindOrganizationDevices Retrieve all devices of an organization
 
@@ -2302,6 +2322,26 @@ func (r ApiFindProjectDevicesRequest) PerPage(perPage int32) ApiFindProjectDevic
 
 func (r ApiFindProjectDevicesRequest) Execute() (*DeviceList, *http.Response, error) {
 	return r.ApiService.FindProjectDevicesExecute(r)
+}
+
+func (r ApiFindProjectDevicesRequest) ExecuteWithPagination() ([]Device, error) {
+	var devices []Device
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		devices = append(devices, page.Devices...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+	}
+
+	return devices, nil
 }
 
 /*

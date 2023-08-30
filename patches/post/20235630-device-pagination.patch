@@ -1,0 +1,58 @@
+diff --git a/metal/v1/api_devices.go b/metal/v1/api_devices.go
+index 2dc180a..5191167 100644
+--- a/metal/v1/api_devices.go
++++ b/metal/v1/api_devices.go
+@@ -2034,6 +2034,26 @@ func (r ApiFindOrganizationDevicesRequest) Execute() (*DeviceList, *http.Respons
+ 	return r.ApiService.FindOrganizationDevicesExecute(r)
+ }
+ 
++func (r ApiFindOrganizationDevicesRequest) ExecuteWithPagination() ([]Device, error) {
++	var devices []Device
++
++	pageNumber := int32(1)
++
++	for {
++		page, _, err := r.Page(pageNumber).Execute()
++		if err != nil {
++			return nil, err
++		}
++
++		devices = append(devices, page.Devices...)
++		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
++			break
++		}
++	}
++
++	return devices, nil
++}
++
+ /*
+ FindOrganizationDevices Retrieve all devices of an organization
+ 
+@@ -2304,6 +2324,26 @@ func (r ApiFindProjectDevicesRequest) Execute() (*DeviceList, *http.Response, er
+ 	return r.ApiService.FindProjectDevicesExecute(r)
+ }
+ 
++func (r ApiFindProjectDevicesRequest) ExecuteWithPagination() ([]Device, error) {
++	var devices []Device
++
++	pageNumber := int32(1)
++
++	for {
++		page, _, err := r.Page(pageNumber).Execute()
++		if err != nil {
++			return nil, err
++		}
++
++		devices = append(devices, page.Devices...)
++		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
++			break
++		}
++	}
++
++	return devices, nil
++}
++
+ /*
+ FindProjectDevices Retrieve all devices of a project
+ 
