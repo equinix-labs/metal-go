@@ -21,6 +21,7 @@ var _ MappedNullable = &IPReservationList{}
 // IPReservationList struct for IPReservationList
 type IPReservationList struct {
 	IpAddresses          []IPReservationListIpAddressesInner `json:"ip_addresses,omitempty"`
+	Meta                 *Meta                               `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,6 +76,38 @@ func (o *IPReservationList) SetIpAddresses(v []IPReservationListIpAddressesInner
 	o.IpAddresses = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *IPReservationList) GetMeta() Meta {
+	if o == nil || IsNil(o.Meta) {
+		var ret Meta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPReservationList) GetMetaOk() (*Meta, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *IPReservationList) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *IPReservationList) SetMeta(v Meta) {
+	o.Meta = &v
+}
+
 func (o IPReservationList) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -87,6 +120,9 @@ func (o IPReservationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.IpAddresses) {
 		toSerialize["ip_addresses"] = o.IpAddresses
+	}
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -107,6 +143,7 @@ func (o *IPReservationList) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "ip_addresses")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 
