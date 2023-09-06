@@ -18770,11 +18770,27 @@ components:
         ip_addresses:
         - null
         - null
+        meta:
+          next:
+            href: href
+          total: 0
+          last:
+            href: href
+          previous:
+            href: href
+          last_page: 1
+          self:
+            href: href
+          first:
+            href: href
+          current_page: 6
       properties:
         ip_addresses:
           items:
             $ref: '#/components/schemas/IPReservationList_ip_addresses_inner'
           type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
     IPReservationRequestInput:
       properties:
