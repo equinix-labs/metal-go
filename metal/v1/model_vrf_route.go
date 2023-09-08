@@ -454,17 +454,27 @@ func (o VrfRoute) MarshalJSON() ([]byte, error) {
 
 func (o VrfRoute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: id is readOnly
-	// skip: status is readOnly
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.Prefix) {
 		toSerialize["prefix"] = o.Prefix
 	}
 	if !IsNil(o.NextHop) {
 		toSerialize["next_hop"] = o.NextHop
 	}
-	// skip: type is readOnly
-	// skip: created_at is readOnly
-	// skip: updated_at is readOnly
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	if !IsNil(o.MetalGateway) {
 		toSerialize["metal_gateway"] = o.MetalGateway
 	}
@@ -474,7 +484,9 @@ func (o VrfRoute) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Vrf) {
 		toSerialize["vrf"] = o.Vrf
 	}
-	// skip: href is readOnly
+	if !IsNil(o.Href) {
+		toSerialize["href"] = o.Href
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}

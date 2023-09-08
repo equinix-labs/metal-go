@@ -386,7 +386,9 @@ func (o BgpDynamicNeighbor) MarshalJSON() ([]byte, error) {
 
 func (o BgpDynamicNeighbor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: id is readOnly
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	if !IsNil(o.BgpNeighborAsn) {
 		toSerialize["bgp_neighbor_asn"] = o.BgpNeighborAsn
 	}
@@ -396,13 +398,21 @@ func (o BgpDynamicNeighbor) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MetalGateway) {
 		toSerialize["metal_gateway"] = o.MetalGateway
 	}
-	// skip: state is readOnly
-	// skip: href is readOnly
-	// skip: created_at is readOnly
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.Href) {
+		toSerialize["href"] = o.Href
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
-	// skip: updated_at is readOnly
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}

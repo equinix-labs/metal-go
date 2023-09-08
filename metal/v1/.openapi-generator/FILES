@@ -138,10 +138,8 @@ docs/IPReservationRequestInput.md
 docs/IncidentsApi.md
 docs/InstancesBatchCreateInput.md
 docs/InstancesBatchCreateInputBatchesInner.md
-docs/InstancesBatchCreateInputBatchesInnerAllOf.md
 docs/Interconnection.md
 docs/InterconnectionList.md
-docs/InterconnectionMetro.md
 docs/InterconnectionPort.md
 docs/InterconnectionPortList.md
 docs/InterconnectionUpdateInput.md
@@ -388,10 +386,8 @@ model_hardware_reservation_list.go
 model_href.go
 model_instances_batch_create_input.go
 model_instances_batch_create_input_batches_inner.go
-model_instances_batch_create_input_batches_inner_all_of.go
 model_interconnection.go
 model_interconnection_list.go
-model_interconnection_metro.go
 model_interconnection_port.go
 model_interconnection_port_list.go
 model_interconnection_update_input.go

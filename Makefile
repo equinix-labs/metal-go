@@ -1,4 +1,4 @@
-.PHONY: all gen patch fetch
+.PHONY: all pull fetch patch generate clean gen mod docs move-other patch-post fmt test stage
 
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
@@ -11,7 +11,7 @@ SPEC_PATCHED_DIR=spec/oas3.patched
 
 SPEC_FETCHED_FILE:=spec.fetched.json
 SPEC_PATCHED_FILE:=spec.patched.json
-OPENAPI_IMAGE_TAG=v6.6.0
+OPENAPI_IMAGE_TAG=v7.0.0
 OPENAPI_IMAGE=openapitools/openapi-generator-cli:${OPENAPI_IMAGE_TAG}
 GIT_ORG=equinix-labs
 GIT_REPO=metal-go
@@ -24,7 +24,9 @@ OPENAPI_GENERATOR=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):
 SPEC_FETCHER=${CRI} run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/workdir --entrypoint sh mikefarah/yq:4.30.8 script/download_spec.sh
 GOLANGCI_LINT=golangci-lint
 
-all: pull fetch patch clean gen mod docs move-other patch-post fmt test stage
+all: pull fetch patch generate stage
+
+generate: clean codegen mod docs move-other patch-post fmt test
 
 pull:
 	${CRI} pull ${OPENAPI_IMAGE}
@@ -49,10 +51,11 @@ patch-post:
 clean:
 	rm -rf $(PACKAGE_PREFIX)
 
-gen:
+codegen:
 	${OPENAPI_GENERATOR} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \
 		--http-user-agent "${GIT_REPO}/${PACKAGE_VERSION}" \
+		--api-name-suffix Api \
 		-p packageVersion=${PACKAGE_VERSION} \
 		-p isGoSubmodule=true \
 		-p disallowAdditionalPropertiesIfNotPresent=false \
