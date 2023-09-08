@@ -15038,7 +15038,7 @@ components:
       type: object
     CapacityCheckPerMetroInfo:
       example:
-        quantity: 0
+        quantity: quantity
         metro: metro
         available: true
         plan: plan
@@ -15055,16 +15055,16 @@ components:
           type: string
         quantity:
           description: The number of servers sent to check capacity.
-          type: integer
+          type: string
       type: object
     CapacityCheckPerMetroList:
       example:
         servers:
-        - quantity: 0
+        - quantity: quantity
           metro: metro
           available: true
           plan: plan
-        - quantity: 0
+        - quantity: quantity
           metro: metro
           available: true
           plan: plan
