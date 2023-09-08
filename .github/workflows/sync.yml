@@ -42,7 +42,7 @@ jobs:
       id: generate
       if: ${{ always() && steps.patch.conclusion == 'success' }}
       run: |
-        make clean gen mod docs move-other patch-post fmt test
+        make generate
         git add api docs metal API.md go.mod go.sum
         echo `git commit -m 'sync: generate client with ${{ steps.date.outputs.date }} spec'`
     - name: Create Pull Request

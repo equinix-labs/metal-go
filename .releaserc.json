@@ -27,7 +27,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "echo -n '${nextRelease.version}' > version && make clean gen mod docs move-other patch-post fmt"
+          "prepareCmd": "echo -n '${nextRelease.version}' > version && make generate"
         }
       ],
       [
