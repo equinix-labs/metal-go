@@ -171,9 +171,13 @@ func (o PlanSpecsFeatures) ToMap() (map[string]interface{}, error) {
 func (o *PlanSpecsFeatures) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanSpecsFeatures := _PlanSpecsFeatures{}
 
-	if err = json.Unmarshal(bytes, &varPlanSpecsFeatures); err == nil {
-		*o = PlanSpecsFeatures(varPlanSpecsFeatures)
+	err = json.Unmarshal(bytes, &varPlanSpecsFeatures)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanSpecsFeatures(varPlanSpecsFeatures)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -677,9 +677,13 @@ func (o Organization) ToMap() (map[string]interface{}, error) {
 func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	varOrganization := _Organization{}
 
-	if err = json.Unmarshal(bytes, &varOrganization); err == nil {
-		*o = Organization(varOrganization)
+	err = json.Unmarshal(bytes, &varOrganization)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Organization(varOrganization)
 
 	additionalProperties := make(map[string]interface{})
 

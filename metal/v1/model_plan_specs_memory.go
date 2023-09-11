@@ -99,9 +99,13 @@ func (o PlanSpecsMemory) ToMap() (map[string]interface{}, error) {
 func (o *PlanSpecsMemory) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanSpecsMemory := _PlanSpecsMemory{}
 
-	if err = json.Unmarshal(bytes, &varPlanSpecsMemory); err == nil {
-		*o = PlanSpecsMemory(varPlanSpecsMemory)
+	err = json.Unmarshal(bytes, &varPlanSpecsMemory)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanSpecsMemory(varPlanSpecsMemory)
 
 	additionalProperties := make(map[string]interface{})
 

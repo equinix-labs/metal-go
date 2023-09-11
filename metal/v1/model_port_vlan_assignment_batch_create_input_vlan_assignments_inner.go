@@ -171,9 +171,13 @@ func (o PortVlanAssignmentBatchCreateInputVlanAssignmentsInner) ToMap() (map[str
 func (o *PortVlanAssignmentBatchCreateInputVlanAssignmentsInner) UnmarshalJSON(bytes []byte) (err error) {
 	varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner := _PortVlanAssignmentBatchCreateInputVlanAssignmentsInner{}
 
-	if err = json.Unmarshal(bytes, &varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner); err == nil {
-		*o = PortVlanAssignmentBatchCreateInputVlanAssignmentsInner(varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner)
+	err = json.Unmarshal(bytes, &varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PortVlanAssignmentBatchCreateInputVlanAssignmentsInner(varPortVlanAssignmentBatchCreateInputVlanAssignmentsInner)
 
 	additionalProperties := make(map[string]interface{})
 

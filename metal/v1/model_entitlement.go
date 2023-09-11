@@ -472,9 +472,13 @@ func (o Entitlement) ToMap() (map[string]interface{}, error) {
 func (o *Entitlement) UnmarshalJSON(bytes []byte) (err error) {
 	varEntitlement := _Entitlement{}
 
-	if err = json.Unmarshal(bytes, &varEntitlement); err == nil {
-		*o = Entitlement(varEntitlement)
+	err = json.Unmarshal(bytes, &varEntitlement)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Entitlement(varEntitlement)
 
 	additionalProperties := make(map[string]interface{})
 

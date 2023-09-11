@@ -315,9 +315,13 @@ func (o LineItem) ToMap() (map[string]interface{}, error) {
 func (o *LineItem) UnmarshalJSON(bytes []byte) (err error) {
 	varLineItem := _LineItem{}
 
-	if err = json.Unmarshal(bytes, &varLineItem); err == nil {
-		*o = LineItem(varLineItem)
+	err = json.Unmarshal(bytes, &varLineItem)
+
+	if err != nil {
+		return err
 	}
+
+	*o = LineItem(varLineItem)
 
 	additionalProperties := make(map[string]interface{})
 

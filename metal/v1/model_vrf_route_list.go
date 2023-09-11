@@ -135,9 +135,13 @@ func (o VrfRouteList) ToMap() (map[string]interface{}, error) {
 func (o *VrfRouteList) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfRouteList := _VrfRouteList{}
 
-	if err = json.Unmarshal(bytes, &varVrfRouteList); err == nil {
-		*o = VrfRouteList(varVrfRouteList)
+	err = json.Unmarshal(bytes, &varVrfRouteList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfRouteList(varVrfRouteList)
 
 	additionalProperties := make(map[string]interface{})
 

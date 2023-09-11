@@ -99,9 +99,13 @@ func (o RecoveryCodeList) ToMap() (map[string]interface{}, error) {
 func (o *RecoveryCodeList) UnmarshalJSON(bytes []byte) (err error) {
 	varRecoveryCodeList := _RecoveryCodeList{}
 
-	if err = json.Unmarshal(bytes, &varRecoveryCodeList); err == nil {
-		*o = RecoveryCodeList(varRecoveryCodeList)
+	err = json.Unmarshal(bytes, &varRecoveryCodeList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RecoveryCodeList(varRecoveryCodeList)
 
 	additionalProperties := make(map[string]interface{})
 

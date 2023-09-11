@@ -99,9 +99,13 @@ func (o InstancesBatchCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *InstancesBatchCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varInstancesBatchCreateInput := _InstancesBatchCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varInstancesBatchCreateInput); err == nil {
-		*o = InstancesBatchCreateInput(varInstancesBatchCreateInput)
+	err = json.Unmarshal(bytes, &varInstancesBatchCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InstancesBatchCreateInput(varInstancesBatchCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

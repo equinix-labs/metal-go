@@ -650,9 +650,13 @@ func (o UserCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *UserCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varUserCreateInput := _UserCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varUserCreateInput); err == nil {
-		*o = UserCreateInput(varUserCreateInput)
+	err = json.Unmarshal(bytes, &varUserCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UserCreateInput(varUserCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

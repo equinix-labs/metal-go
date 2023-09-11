@@ -153,9 +153,13 @@ func (o PaymentMethodCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *PaymentMethodCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varPaymentMethodCreateInput := _PaymentMethodCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varPaymentMethodCreateInput); err == nil {
-		*o = PaymentMethodCreateInput(varPaymentMethodCreateInput)
+	err = json.Unmarshal(bytes, &varPaymentMethodCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PaymentMethodCreateInput(varPaymentMethodCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

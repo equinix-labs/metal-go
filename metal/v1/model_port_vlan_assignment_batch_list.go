@@ -99,9 +99,13 @@ func (o PortVlanAssignmentBatchList) ToMap() (map[string]interface{}, error) {
 func (o *PortVlanAssignmentBatchList) UnmarshalJSON(bytes []byte) (err error) {
 	varPortVlanAssignmentBatchList := _PortVlanAssignmentBatchList{}
 
-	if err = json.Unmarshal(bytes, &varPortVlanAssignmentBatchList); err == nil {
-		*o = PortVlanAssignmentBatchList(varPortVlanAssignmentBatchList)
+	err = json.Unmarshal(bytes, &varPortVlanAssignmentBatchList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PortVlanAssignmentBatchList(varPortVlanAssignmentBatchList)
 
 	additionalProperties := make(map[string]interface{})
 

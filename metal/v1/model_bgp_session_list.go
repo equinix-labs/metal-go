@@ -99,9 +99,13 @@ func (o BgpSessionList) ToMap() (map[string]interface{}, error) {
 func (o *BgpSessionList) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpSessionList := _BgpSessionList{}
 
-	if err = json.Unmarshal(bytes, &varBgpSessionList); err == nil {
-		*o = BgpSessionList(varBgpSessionList)
+	err = json.Unmarshal(bytes, &varBgpSessionList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpSessionList(varBgpSessionList)
 
 	additionalProperties := make(map[string]interface{})
 

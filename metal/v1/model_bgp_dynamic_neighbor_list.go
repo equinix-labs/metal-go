@@ -135,9 +135,13 @@ func (o BgpDynamicNeighborList) ToMap() (map[string]interface{}, error) {
 func (o *BgpDynamicNeighborList) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpDynamicNeighborList := _BgpDynamicNeighborList{}
 
-	if err = json.Unmarshal(bytes, &varBgpDynamicNeighborList); err == nil {
-		*o = BgpDynamicNeighborList(varBgpDynamicNeighborList)
+	err = json.Unmarshal(bytes, &varBgpDynamicNeighborList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpDynamicNeighborList(varBgpDynamicNeighborList)
 
 	additionalProperties := make(map[string]interface{})
 

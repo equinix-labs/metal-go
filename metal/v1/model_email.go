@@ -243,9 +243,13 @@ func (o Email) ToMap() (map[string]interface{}, error) {
 func (o *Email) UnmarshalJSON(bytes []byte) (err error) {
 	varEmail := _Email{}
 
-	if err = json.Unmarshal(bytes, &varEmail); err == nil {
-		*o = Email(varEmail)
+	err = json.Unmarshal(bytes, &varEmail)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Email(varEmail)
 
 	additionalProperties := make(map[string]interface{})
 

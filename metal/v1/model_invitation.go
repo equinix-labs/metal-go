@@ -460,9 +460,13 @@ func (o Invitation) ToMap() (map[string]interface{}, error) {
 func (o *Invitation) UnmarshalJSON(bytes []byte) (err error) {
 	varInvitation := _Invitation{}
 
-	if err = json.Unmarshal(bytes, &varInvitation); err == nil {
-		*o = Invitation(varInvitation)
+	err = json.Unmarshal(bytes, &varInvitation)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Invitation(varInvitation)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -135,9 +135,13 @@ func (o Coordinates) ToMap() (map[string]interface{}, error) {
 func (o *Coordinates) UnmarshalJSON(bytes []byte) (err error) {
 	varCoordinates := _Coordinates{}
 
-	if err = json.Unmarshal(bytes, &varCoordinates); err == nil {
-		*o = Coordinates(varCoordinates)
+	err = json.Unmarshal(bytes, &varCoordinates)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Coordinates(varCoordinates)
 
 	additionalProperties := make(map[string]interface{})
 

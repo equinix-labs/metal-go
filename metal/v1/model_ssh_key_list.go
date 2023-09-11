@@ -99,9 +99,13 @@ func (o SSHKeyList) ToMap() (map[string]interface{}, error) {
 func (o *SSHKeyList) UnmarshalJSON(bytes []byte) (err error) {
 	varSSHKeyList := _SSHKeyList{}
 
-	if err = json.Unmarshal(bytes, &varSSHKeyList); err == nil {
-		*o = SSHKeyList(varSSHKeyList)
+	err = json.Unmarshal(bytes, &varSSHKeyList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SSHKeyList(varSSHKeyList)
 
 	additionalProperties := make(map[string]interface{})
 

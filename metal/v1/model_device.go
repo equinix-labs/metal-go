@@ -1588,9 +1588,13 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 func (o *Device) UnmarshalJSON(bytes []byte) (err error) {
 	varDevice := _Device{}
 
-	if err = json.Unmarshal(bytes, &varDevice); err == nil {
-		*o = Device(varDevice)
+	err = json.Unmarshal(bytes, &varDevice)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Device(varDevice)
 
 	additionalProperties := make(map[string]interface{})
 

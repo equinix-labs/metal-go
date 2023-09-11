@@ -352,9 +352,13 @@ func (o PortVlanAssignment) ToMap() (map[string]interface{}, error) {
 func (o *PortVlanAssignment) UnmarshalJSON(bytes []byte) (err error) {
 	varPortVlanAssignment := _PortVlanAssignment{}
 
-	if err = json.Unmarshal(bytes, &varPortVlanAssignment); err == nil {
-		*o = PortVlanAssignment(varPortVlanAssignment)
+	err = json.Unmarshal(bytes, &varPortVlanAssignment)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PortVlanAssignment(varPortVlanAssignment)
 
 	additionalProperties := make(map[string]interface{})
 

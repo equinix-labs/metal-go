@@ -425,9 +425,13 @@ func (o VrfMetalGateway) ToMap() (map[string]interface{}, error) {
 func (o *VrfMetalGateway) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfMetalGateway := _VrfMetalGateway{}
 
-	if err = json.Unmarshal(bytes, &varVrfMetalGateway); err == nil {
-		*o = VrfMetalGateway(varVrfMetalGateway)
+	err = json.Unmarshal(bytes, &varVrfMetalGateway)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfMetalGateway(varVrfMetalGateway)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -99,9 +99,13 @@ func (o VirtualNetworkList) ToMap() (map[string]interface{}, error) {
 func (o *VirtualNetworkList) UnmarshalJSON(bytes []byte) (err error) {
 	varVirtualNetworkList := _VirtualNetworkList{}
 
-	if err = json.Unmarshal(bytes, &varVirtualNetworkList); err == nil {
-		*o = VirtualNetworkList(varVirtualNetworkList)
+	err = json.Unmarshal(bytes, &varVirtualNetworkList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VirtualNetworkList(varVirtualNetworkList)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -250,9 +250,13 @@ func (o VirtualNetworkCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *VirtualNetworkCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varVirtualNetworkCreateInput := _VirtualNetworkCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varVirtualNetworkCreateInput); err == nil {
-		*o = VirtualNetworkCreateInput(varVirtualNetworkCreateInput)
+	err = json.Unmarshal(bytes, &varVirtualNetworkCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VirtualNetworkCreateInput(varVirtualNetworkCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

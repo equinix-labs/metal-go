@@ -717,9 +717,13 @@ func (o Metadata) ToMap() (map[string]interface{}, error) {
 func (o *Metadata) UnmarshalJSON(bytes []byte) (err error) {
 	varMetadata := _Metadata{}
 
-	if err = json.Unmarshal(bytes, &varMetadata); err == nil {
-		*o = Metadata(varMetadata)
+	err = json.Unmarshal(bytes, &varMetadata)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Metadata(varMetadata)
 
 	additionalProperties := make(map[string]interface{})
 

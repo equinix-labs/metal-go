@@ -119,9 +119,13 @@ func (o VrfMetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *VrfMetalGatewayCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfMetalGatewayCreateInput := _VrfMetalGatewayCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varVrfMetalGatewayCreateInput); err == nil {
-		*o = VrfMetalGatewayCreateInput(varVrfMetalGatewayCreateInput)
+	err = json.Unmarshal(bytes, &varVrfMetalGatewayCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfMetalGatewayCreateInput(varVrfMetalGatewayCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -463,9 +463,13 @@ func (o OperatingSystem) ToMap() (map[string]interface{}, error) {
 func (o *OperatingSystem) UnmarshalJSON(bytes []byte) (err error) {
 	varOperatingSystem := _OperatingSystem{}
 
-	if err = json.Unmarshal(bytes, &varOperatingSystem); err == nil {
-		*o = OperatingSystem(varOperatingSystem)
+	err = json.Unmarshal(bytes, &varOperatingSystem)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OperatingSystem(varOperatingSystem)
 
 	additionalProperties := make(map[string]interface{})
 

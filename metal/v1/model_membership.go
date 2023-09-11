@@ -316,9 +316,13 @@ func (o Membership) ToMap() (map[string]interface{}, error) {
 func (o *Membership) UnmarshalJSON(bytes []byte) (err error) {
 	varMembership := _Membership{}
 
-	if err = json.Unmarshal(bytes, &varMembership); err == nil {
-		*o = Membership(varMembership)
+	err = json.Unmarshal(bytes, &varMembership)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Membership(varMembership)
 
 	additionalProperties := make(map[string]interface{})
 

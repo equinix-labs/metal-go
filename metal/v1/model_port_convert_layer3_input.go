@@ -99,9 +99,13 @@ func (o PortConvertLayer3Input) ToMap() (map[string]interface{}, error) {
 func (o *PortConvertLayer3Input) UnmarshalJSON(bytes []byte) (err error) {
 	varPortConvertLayer3Input := _PortConvertLayer3Input{}
 
-	if err = json.Unmarshal(bytes, &varPortConvertLayer3Input); err == nil {
-		*o = PortConvertLayer3Input(varPortConvertLayer3Input)
+	err = json.Unmarshal(bytes, &varPortConvertLayer3Input)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PortConvertLayer3Input(varPortConvertLayer3Input)
 
 	additionalProperties := make(map[string]interface{})
 

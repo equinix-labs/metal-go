@@ -468,9 +468,13 @@ func (o VrfVirtualCircuitCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *VrfVirtualCircuitCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfVirtualCircuitCreateInput := _VrfVirtualCircuitCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varVrfVirtualCircuitCreateInput); err == nil {
-		*o = VrfVirtualCircuitCreateInput(varVrfVirtualCircuitCreateInput)
+	err = json.Unmarshal(bytes, &varVrfVirtualCircuitCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfVirtualCircuitCreateInput(varVrfVirtualCircuitCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

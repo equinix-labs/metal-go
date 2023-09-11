@@ -99,9 +99,13 @@ func (o VirtualCircuitList) ToMap() (map[string]interface{}, error) {
 func (o *VirtualCircuitList) UnmarshalJSON(bytes []byte) (err error) {
 	varVirtualCircuitList := _VirtualCircuitList{}
 
-	if err = json.Unmarshal(bytes, &varVirtualCircuitList); err == nil {
-		*o = VirtualCircuitList(varVirtualCircuitList)
+	err = json.Unmarshal(bytes, &varVirtualCircuitList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VirtualCircuitList(varVirtualCircuitList)
 
 	additionalProperties := make(map[string]interface{})
 

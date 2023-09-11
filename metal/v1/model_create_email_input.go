@@ -90,9 +90,13 @@ func (o CreateEmailInput) ToMap() (map[string]interface{}, error) {
 func (o *CreateEmailInput) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateEmailInput := _CreateEmailInput{}
 
-	if err = json.Unmarshal(bytes, &varCreateEmailInput); err == nil {
-		*o = CreateEmailInput(varCreateEmailInput)
+	err = json.Unmarshal(bytes, &varCreateEmailInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateEmailInput(varCreateEmailInput)
 
 	additionalProperties := make(map[string]interface{})
 

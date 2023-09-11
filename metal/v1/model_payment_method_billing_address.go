@@ -171,9 +171,13 @@ func (o PaymentMethodBillingAddress) ToMap() (map[string]interface{}, error) {
 func (o *PaymentMethodBillingAddress) UnmarshalJSON(bytes []byte) (err error) {
 	varPaymentMethodBillingAddress := _PaymentMethodBillingAddress{}
 
-	if err = json.Unmarshal(bytes, &varPaymentMethodBillingAddress); err == nil {
-		*o = PaymentMethodBillingAddress(varPaymentMethodBillingAddress)
+	err = json.Unmarshal(bytes, &varPaymentMethodBillingAddress)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PaymentMethodBillingAddress(varPaymentMethodBillingAddress)
 
 	additionalProperties := make(map[string]interface{})
 

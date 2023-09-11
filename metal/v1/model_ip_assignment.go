@@ -750,9 +750,13 @@ func (o IPAssignment) ToMap() (map[string]interface{}, error) {
 func (o *IPAssignment) UnmarshalJSON(bytes []byte) (err error) {
 	varIPAssignment := _IPAssignment{}
 
-	if err = json.Unmarshal(bytes, &varIPAssignment); err == nil {
-		*o = IPAssignment(varIPAssignment)
+	err = json.Unmarshal(bytes, &varIPAssignment)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IPAssignment(varIPAssignment)
 
 	additionalProperties := make(map[string]interface{})
 

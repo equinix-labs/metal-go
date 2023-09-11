@@ -1126,9 +1126,13 @@ func (o InstancesBatchCreateInputBatchesInner) ToMap() (map[string]interface{}, 
 func (o *InstancesBatchCreateInputBatchesInner) UnmarshalJSON(bytes []byte) (err error) {
 	varInstancesBatchCreateInputBatchesInner := _InstancesBatchCreateInputBatchesInner{}
 
-	if err = json.Unmarshal(bytes, &varInstancesBatchCreateInputBatchesInner); err == nil {
-		*o = InstancesBatchCreateInputBatchesInner(varInstancesBatchCreateInputBatchesInner)
+	err = json.Unmarshal(bytes, &varInstancesBatchCreateInputBatchesInner)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InstancesBatchCreateInputBatchesInner(varInstancesBatchCreateInputBatchesInner)
 
 	additionalProperties := make(map[string]interface{})
 

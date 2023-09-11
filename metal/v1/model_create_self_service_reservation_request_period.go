@@ -135,9 +135,13 @@ func (o CreateSelfServiceReservationRequestPeriod) ToMap() (map[string]interface
 func (o *CreateSelfServiceReservationRequestPeriod) UnmarshalJSON(bytes []byte) (err error) {
 	varCreateSelfServiceReservationRequestPeriod := _CreateSelfServiceReservationRequestPeriod{}
 
-	if err = json.Unmarshal(bytes, &varCreateSelfServiceReservationRequestPeriod); err == nil {
-		*o = CreateSelfServiceReservationRequestPeriod(varCreateSelfServiceReservationRequestPeriod)
+	err = json.Unmarshal(bytes, &varCreateSelfServiceReservationRequestPeriod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CreateSelfServiceReservationRequestPeriod(varCreateSelfServiceReservationRequestPeriod)
 
 	additionalProperties := make(map[string]interface{})
 

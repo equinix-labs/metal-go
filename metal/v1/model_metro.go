@@ -207,9 +207,13 @@ func (o Metro) ToMap() (map[string]interface{}, error) {
 func (o *Metro) UnmarshalJSON(bytes []byte) (err error) {
 	varMetro := _Metro{}
 
-	if err = json.Unmarshal(bytes, &varMetro); err == nil {
-		*o = Metro(varMetro)
+	err = json.Unmarshal(bytes, &varMetro)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Metro(varMetro)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -208,9 +208,13 @@ func (o SSHKeyCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *SSHKeyCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varSSHKeyCreateInput := _SSHKeyCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varSSHKeyCreateInput); err == nil {
-		*o = SSHKeyCreateInput(varSSHKeyCreateInput)
+	err = json.Unmarshal(bytes, &varSSHKeyCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SSHKeyCreateInput(varSSHKeyCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

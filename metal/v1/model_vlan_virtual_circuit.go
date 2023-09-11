@@ -474,9 +474,13 @@ func (o VlanVirtualCircuit) ToMap() (map[string]interface{}, error) {
 func (o *VlanVirtualCircuit) UnmarshalJSON(bytes []byte) (err error) {
 	varVlanVirtualCircuit := _VlanVirtualCircuit{}
 
-	if err = json.Unmarshal(bytes, &varVlanVirtualCircuit); err == nil {
-		*o = VlanVirtualCircuit(varVlanVirtualCircuit)
+	err = json.Unmarshal(bytes, &varVlanVirtualCircuit)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VlanVirtualCircuit(varVlanVirtualCircuit)
 
 	additionalProperties := make(map[string]interface{})
 

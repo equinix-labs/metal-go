@@ -390,9 +390,13 @@ func (o OrganizationInput) ToMap() (map[string]interface{}, error) {
 func (o *OrganizationInput) UnmarshalJSON(bytes []byte) (err error) {
 	varOrganizationInput := _OrganizationInput{}
 
-	if err = json.Unmarshal(bytes, &varOrganizationInput); err == nil {
-		*o = OrganizationInput(varOrganizationInput)
+	err = json.Unmarshal(bytes, &varOrganizationInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OrganizationInput(varOrganizationInput)
 
 	additionalProperties := make(map[string]interface{})
 

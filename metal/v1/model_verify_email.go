@@ -91,9 +91,13 @@ func (o VerifyEmail) ToMap() (map[string]interface{}, error) {
 func (o *VerifyEmail) UnmarshalJSON(bytes []byte) (err error) {
 	varVerifyEmail := _VerifyEmail{}
 
-	if err = json.Unmarshal(bytes, &varVerifyEmail); err == nil {
-		*o = VerifyEmail(varVerifyEmail)
+	err = json.Unmarshal(bytes, &varVerifyEmail)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VerifyEmail(varVerifyEmail)
 
 	additionalProperties := make(map[string]interface{})
 

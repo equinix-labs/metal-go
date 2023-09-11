@@ -99,9 +99,13 @@ func (o OperatingSystemList) ToMap() (map[string]interface{}, error) {
 func (o *OperatingSystemList) UnmarshalJSON(bytes []byte) (err error) {
 	varOperatingSystemList := _OperatingSystemList{}
 
-	if err = json.Unmarshal(bytes, &varOperatingSystemList); err == nil {
-		*o = OperatingSystemList(varOperatingSystemList)
+	err = json.Unmarshal(bytes, &varOperatingSystemList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = OperatingSystemList(varOperatingSystemList)
 
 	additionalProperties := make(map[string]interface{})
 

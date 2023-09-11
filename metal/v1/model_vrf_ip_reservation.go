@@ -910,9 +910,13 @@ func (o VrfIpReservation) ToMap() (map[string]interface{}, error) {
 func (o *VrfIpReservation) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfIpReservation := _VrfIpReservation{}
 
-	if err = json.Unmarshal(bytes, &varVrfIpReservation); err == nil {
-		*o = VrfIpReservation(varVrfIpReservation)
+	err = json.Unmarshal(bytes, &varVrfIpReservation)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfIpReservation(varVrfIpReservation)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -380,9 +380,13 @@ func (o BgpSession) ToMap() (map[string]interface{}, error) {
 func (o *BgpSession) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpSession := _BgpSession{}
 
-	if err = json.Unmarshal(bytes, &varBgpSession); err == nil {
-		*o = BgpSession(varBgpSession)
+	err = json.Unmarshal(bytes, &varBgpSession)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpSession(varBgpSession)
 
 	additionalProperties := make(map[string]interface{})
 

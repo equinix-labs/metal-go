@@ -755,9 +755,13 @@ func (o Interconnection) ToMap() (map[string]interface{}, error) {
 func (o *Interconnection) UnmarshalJSON(bytes []byte) (err error) {
 	varInterconnection := _Interconnection{}
 
-	if err = json.Unmarshal(bytes, &varInterconnection); err == nil {
-		*o = Interconnection(varInterconnection)
+	err = json.Unmarshal(bytes, &varInterconnection)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Interconnection(varInterconnection)
 
 	additionalProperties := make(map[string]interface{})
 

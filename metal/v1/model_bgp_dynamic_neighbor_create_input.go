@@ -155,9 +155,13 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpDynamicNeighborCreateInput := _BgpDynamicNeighborCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput); err == nil {
-		*o = BgpDynamicNeighborCreateInput(varBgpDynamicNeighborCreateInput)
+	err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpDynamicNeighborCreateInput(varBgpDynamicNeighborCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

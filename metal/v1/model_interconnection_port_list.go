@@ -99,9 +99,13 @@ func (o InterconnectionPortList) ToMap() (map[string]interface{}, error) {
 func (o *InterconnectionPortList) UnmarshalJSON(bytes []byte) (err error) {
 	varInterconnectionPortList := _InterconnectionPortList{}
 
-	if err = json.Unmarshal(bytes, &varInterconnectionPortList); err == nil {
-		*o = InterconnectionPortList(varInterconnectionPortList)
+	err = json.Unmarshal(bytes, &varInterconnectionPortList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InterconnectionPortList(varInterconnectionPortList)
 
 	additionalProperties := make(map[string]interface{})
 

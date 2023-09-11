@@ -99,9 +99,13 @@ func (o ProjectUsageList) ToMap() (map[string]interface{}, error) {
 func (o *ProjectUsageList) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectUsageList := _ProjectUsageList{}
 
-	if err = json.Unmarshal(bytes, &varProjectUsageList); err == nil {
-		*o = ProjectUsageList(varProjectUsageList)
+	err = json.Unmarshal(bytes, &varProjectUsageList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectUsageList(varProjectUsageList)
 
 	additionalProperties := make(map[string]interface{})
 

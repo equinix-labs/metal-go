@@ -99,9 +99,13 @@ func (o SelfServiceReservationList) ToMap() (map[string]interface{}, error) {
 func (o *SelfServiceReservationList) UnmarshalJSON(bytes []byte) (err error) {
 	varSelfServiceReservationList := _SelfServiceReservationList{}
 
-	if err = json.Unmarshal(bytes, &varSelfServiceReservationList); err == nil {
-		*o = SelfServiceReservationList(varSelfServiceReservationList)
+	err = json.Unmarshal(bytes, &varSelfServiceReservationList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SelfServiceReservationList(varSelfServiceReservationList)
 
 	additionalProperties := make(map[string]interface{})
 

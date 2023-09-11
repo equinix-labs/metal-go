@@ -118,9 +118,13 @@ func (o FindTrafficTimeframeParameter) ToMap() (map[string]interface{}, error) {
 func (o *FindTrafficTimeframeParameter) UnmarshalJSON(bytes []byte) (err error) {
 	varFindTrafficTimeframeParameter := _FindTrafficTimeframeParameter{}
 
-	if err = json.Unmarshal(bytes, &varFindTrafficTimeframeParameter); err == nil {
-		*o = FindTrafficTimeframeParameter(varFindTrafficTimeframeParameter)
+	err = json.Unmarshal(bytes, &varFindTrafficTimeframeParameter)
+
+	if err != nil {
+		return err
 	}
+
+	*o = FindTrafficTimeframeParameter(varFindTrafficTimeframeParameter)
 
 	additionalProperties := make(map[string]interface{})
 

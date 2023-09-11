@@ -283,9 +283,13 @@ func (o VrfIpReservationCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *VrfIpReservationCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfIpReservationCreateInput := _VrfIpReservationCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varVrfIpReservationCreateInput); err == nil {
-		*o = VrfIpReservationCreateInput(varVrfIpReservationCreateInput)
+	err = json.Unmarshal(bytes, &varVrfIpReservationCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfIpReservationCreateInput(varVrfIpReservationCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

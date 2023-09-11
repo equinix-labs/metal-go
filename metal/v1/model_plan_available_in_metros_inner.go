@@ -136,9 +136,13 @@ func (o PlanAvailableInMetrosInner) ToMap() (map[string]interface{}, error) {
 func (o *PlanAvailableInMetrosInner) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanAvailableInMetrosInner := _PlanAvailableInMetrosInner{}
 
-	if err = json.Unmarshal(bytes, &varPlanAvailableInMetrosInner); err == nil {
-		*o = PlanAvailableInMetrosInner(varPlanAvailableInMetrosInner)
+	err = json.Unmarshal(bytes, &varPlanAvailableInMetrosInner)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanAvailableInMetrosInner(varPlanAvailableInMetrosInner)
 
 	additionalProperties := make(map[string]interface{})
 

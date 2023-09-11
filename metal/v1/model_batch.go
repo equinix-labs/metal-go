@@ -352,9 +352,13 @@ func (o Batch) ToMap() (map[string]interface{}, error) {
 func (o *Batch) UnmarshalJSON(bytes []byte) (err error) {
 	varBatch := _Batch{}
 
-	if err = json.Unmarshal(bytes, &varBatch); err == nil {
-		*o = Batch(varBatch)
+	err = json.Unmarshal(bytes, &varBatch)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Batch(varBatch)
 
 	additionalProperties := make(map[string]interface{})
 

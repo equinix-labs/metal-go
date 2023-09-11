@@ -135,9 +135,13 @@ func (o LicenseUpdateInput) ToMap() (map[string]interface{}, error) {
 func (o *LicenseUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varLicenseUpdateInput := _LicenseUpdateInput{}
 
-	if err = json.Unmarshal(bytes, &varLicenseUpdateInput); err == nil {
-		*o = LicenseUpdateInput(varLicenseUpdateInput)
+	err = json.Unmarshal(bytes, &varLicenseUpdateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = LicenseUpdateInput(varLicenseUpdateInput)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -126,9 +126,13 @@ func (o IPAssignmentInput) ToMap() (map[string]interface{}, error) {
 func (o *IPAssignmentInput) UnmarshalJSON(bytes []byte) (err error) {
 	varIPAssignmentInput := _IPAssignmentInput{}
 
-	if err = json.Unmarshal(bytes, &varIPAssignmentInput); err == nil {
-		*o = IPAssignmentInput(varIPAssignmentInput)
+	err = json.Unmarshal(bytes, &varIPAssignmentInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IPAssignmentInput(varIPAssignmentInput)
 
 	additionalProperties := make(map[string]interface{})
 

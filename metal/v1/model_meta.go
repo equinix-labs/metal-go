@@ -351,9 +351,13 @@ func (o Meta) ToMap() (map[string]interface{}, error) {
 func (o *Meta) UnmarshalJSON(bytes []byte) (err error) {
 	varMeta := _Meta{}
 
-	if err = json.Unmarshal(bytes, &varMeta); err == nil {
-		*o = Meta(varMeta)
+	err = json.Unmarshal(bytes, &varMeta)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Meta(varMeta)
 
 	additionalProperties := make(map[string]interface{})
 

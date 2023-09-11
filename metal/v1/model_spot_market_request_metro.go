@@ -207,9 +207,13 @@ func (o SpotMarketRequestMetro) ToMap() (map[string]interface{}, error) {
 func (o *SpotMarketRequestMetro) UnmarshalJSON(bytes []byte) (err error) {
 	varSpotMarketRequestMetro := _SpotMarketRequestMetro{}
 
-	if err = json.Unmarshal(bytes, &varSpotMarketRequestMetro); err == nil {
-		*o = SpotMarketRequestMetro(varSpotMarketRequestMetro)
+	err = json.Unmarshal(bytes, &varSpotMarketRequestMetro)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SpotMarketRequestMetro(varSpotMarketRequestMetro)
 
 	additionalProperties := make(map[string]interface{})
 

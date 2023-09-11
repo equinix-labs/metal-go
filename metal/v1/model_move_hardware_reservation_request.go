@@ -99,9 +99,13 @@ func (o MoveHardwareReservationRequest) ToMap() (map[string]interface{}, error) 
 func (o *MoveHardwareReservationRequest) UnmarshalJSON(bytes []byte) (err error) {
 	varMoveHardwareReservationRequest := _MoveHardwareReservationRequest{}
 
-	if err = json.Unmarshal(bytes, &varMoveHardwareReservationRequest); err == nil {
-		*o = MoveHardwareReservationRequest(varMoveHardwareReservationRequest)
+	err = json.Unmarshal(bytes, &varMoveHardwareReservationRequest)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MoveHardwareReservationRequest(varMoveHardwareReservationRequest)
 
 	additionalProperties := make(map[string]interface{})
 

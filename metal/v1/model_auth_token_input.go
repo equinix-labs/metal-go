@@ -135,9 +135,13 @@ func (o AuthTokenInput) ToMap() (map[string]interface{}, error) {
 func (o *AuthTokenInput) UnmarshalJSON(bytes []byte) (err error) {
 	varAuthTokenInput := _AuthTokenInput{}
 
-	if err = json.Unmarshal(bytes, &varAuthTokenInput); err == nil {
-		*o = AuthTokenInput(varAuthTokenInput)
+	err = json.Unmarshal(bytes, &varAuthTokenInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = AuthTokenInput(varAuthTokenInput)
 
 	additionalProperties := make(map[string]interface{})
 
