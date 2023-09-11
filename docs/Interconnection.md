@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**Metro** | Pointer to [**InterconnectionMetro**](InterconnectionMetro.md) |  | [optional] 
+**Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 **Mode** | Pointer to **string** | The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
@@ -145,20 +145,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetMetro
 
-`func (o *Interconnection) GetMetro() InterconnectionMetro`
+`func (o *Interconnection) GetMetro() Metro`
 
 GetMetro returns the Metro field if non-nil, zero value otherwise.
 
 ### GetMetroOk
 
-`func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool)`
+`func (o *Interconnection) GetMetroOk() (*Metro, bool)`
 
 GetMetroOk returns a tuple with the Metro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetro
 
-`func (o *Interconnection) SetMetro(v InterconnectionMetro)`
+`func (o *Interconnection) SetMetro(v Metro)`
 
 SetMetro sets Metro field to given value.
 

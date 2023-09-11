@@ -21,11 +21,11 @@ var _ MappedNullable = &Interconnection{}
 
 // Interconnection struct for Interconnection
 type Interconnection struct {
-	ContactEmail *string               `json:"contact_email,omitempty"`
-	Description  *string               `json:"description,omitempty"`
-	Facility     *Href                 `json:"facility,omitempty"`
-	Id           *string               `json:"id,omitempty"`
-	Metro        *InterconnectionMetro `json:"metro,omitempty"`
+	ContactEmail *string `json:"contact_email,omitempty"`
+	Description  *string `json:"description,omitempty"`
+	Facility     *Href   `json:"facility,omitempty"`
+	Id           *string `json:"id,omitempty"`
+	Metro        *Metro  `json:"metro,omitempty"`
 	// The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
 	Mode         *string `json:"mode,omitempty"`
 	Name         *string `json:"name,omitempty"`
@@ -198,9 +198,9 @@ func (o *Interconnection) SetId(v string) {
 }
 
 // GetMetro returns the Metro field value if set, zero value otherwise.
-func (o *Interconnection) GetMetro() InterconnectionMetro {
+func (o *Interconnection) GetMetro() Metro {
 	if o == nil || IsNil(o.Metro) {
-		var ret InterconnectionMetro
+		var ret Metro
 		return ret
 	}
 	return *o.Metro
@@ -208,7 +208,7 @@ func (o *Interconnection) GetMetro() InterconnectionMetro {
 
 // GetMetroOk returns a tuple with the Metro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetMetroOk() (*InterconnectionMetro, bool) {
+func (o *Interconnection) GetMetroOk() (*Metro, bool) {
 	if o == nil || IsNil(o.Metro) {
 		return nil, false
 	}
@@ -224,8 +224,8 @@ func (o *Interconnection) HasMetro() bool {
 	return false
 }
 
-// SetMetro gets a reference to the given InterconnectionMetro and assigns it to the Metro field.
-func (o *Interconnection) SetMetro(v InterconnectionMetro) {
+// SetMetro gets a reference to the given Metro and assigns it to the Metro field.
+func (o *Interconnection) SetMetro(v Metro) {
 	o.Metro = &v
 }
 

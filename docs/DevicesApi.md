@@ -1097,6 +1097,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "github.com/equinix-labs/metal-go/metal/v1"
 )
 
@@ -1105,7 +1106,7 @@ func main() {
     direction := "direction_example" // string | Traffic direction
     interval := "interval_example" // string | Traffic interval (optional)
     bucket := "bucket_example" // string | Traffic bucket (optional)
-    timeframe := map[string][]openapiclient.FindTrafficTimeframeParameter{"key": map[string]interface{}{ ... }} // FindTrafficTimeframeParameter |  (optional)
+    timeframe := *openapiclient.NewFindTrafficTimeframeParameter(time.Now(), time.Now()) // FindTrafficTimeframeParameter |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
