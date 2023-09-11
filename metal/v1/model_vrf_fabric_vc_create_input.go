@@ -13,10 +13,197 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VrfFabricVcCreateInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VrfFabricVcCreateInput{}
+
+// VrfFabricVcCreateInputServiceTokenType Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
+type VrfFabricVcCreateInputServiceTokenType string
+
+// List of VrfFabricVcCreateInputServiceTokenType
+const (
+	VRFFABRICVCCREATEINPUT_A_SIDE VrfFabricVcCreateInputServiceTokenType = "a_side"
+	VRFFABRICVCCREATEINPUT_Z_SIDE VrfFabricVcCreateInputServiceTokenType = "z_side"
+)
+
+// All allowed values of VrfFabricVcCreateInputServiceTokenType enum
+var AllowedVrfFabricVcCreateInputServiceTokenTypeEnumValues = []VrfFabricVcCreateInputServiceTokenType{
+	"a_side",
+	"z_side",
+}
+
+func (v *VrfFabricVcCreateInputServiceTokenType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := VrfFabricVcCreateInputServiceTokenType(value)
+	for _, existing := range AllowedVrfFabricVcCreateInputServiceTokenTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid VrfFabricVcCreateInputServiceTokenType", value)
+}
+
+// NewVrfFabricVcCreateInputServiceTokenTypeFromValue returns a pointer to a valid VrfFabricVcCreateInputServiceTokenType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewVrfFabricVcCreateInputServiceTokenTypeFromValue(v string) (*VrfFabricVcCreateInputServiceTokenType, error) {
+	ev := VrfFabricVcCreateInputServiceTokenType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for VrfFabricVcCreateInputServiceTokenType: valid values are %v", v, AllowedVrfFabricVcCreateInputServiceTokenTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v VrfFabricVcCreateInputServiceTokenType) IsValid() bool {
+	for _, existing := range AllowedVrfFabricVcCreateInputServiceTokenTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ServiceTokenType value
+func (v VrfFabricVcCreateInputServiceTokenType) Ptr() *VrfFabricVcCreateInputServiceTokenType {
+	return &v
+}
+
+type NullableVrfFabricVcCreateInputServiceTokenType struct {
+	value *VrfFabricVcCreateInputServiceTokenType
+	isSet bool
+}
+
+func (v NullableVrfFabricVcCreateInputServiceTokenType) Get() *VrfFabricVcCreateInputServiceTokenType {
+	return v.value
+}
+
+func (v *NullableVrfFabricVcCreateInputServiceTokenType) Set(val *VrfFabricVcCreateInputServiceTokenType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableVrfFabricVcCreateInputServiceTokenType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableVrfFabricVcCreateInputServiceTokenType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableVrfFabricVcCreateInputServiceTokenType(val *VrfFabricVcCreateInputServiceTokenType) *NullableVrfFabricVcCreateInputServiceTokenType {
+	return &NullableVrfFabricVcCreateInputServiceTokenType{value: val, isSet: true}
+}
+
+func (v NullableVrfFabricVcCreateInputServiceTokenType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableVrfFabricVcCreateInputServiceTokenType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// VrfFabricVcCreateInputType When requesting for a Fabric VC, the value of this field should be 'shared'.
+type VrfFabricVcCreateInputType string
+
+// List of VrfFabricVcCreateInputType
+const (
+	VRFFABRICVCCREATEINPUT_SHARED VrfFabricVcCreateInputType = "shared"
+)
+
+// All allowed values of VrfFabricVcCreateInputType enum
+var AllowedVrfFabricVcCreateInputTypeEnumValues = []VrfFabricVcCreateInputType{
+	"shared",
+}
+
+func (v *VrfFabricVcCreateInputType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := VrfFabricVcCreateInputType(value)
+	for _, existing := range AllowedVrfFabricVcCreateInputTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid VrfFabricVcCreateInputType", value)
+}
+
+// NewVrfFabricVcCreateInputTypeFromValue returns a pointer to a valid VrfFabricVcCreateInputType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewVrfFabricVcCreateInputTypeFromValue(v string) (*VrfFabricVcCreateInputType, error) {
+	ev := VrfFabricVcCreateInputType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for VrfFabricVcCreateInputType: valid values are %v", v, AllowedVrfFabricVcCreateInputTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v VrfFabricVcCreateInputType) IsValid() bool {
+	for _, existing := range AllowedVrfFabricVcCreateInputTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Type value
+func (v VrfFabricVcCreateInputType) Ptr() *VrfFabricVcCreateInputType {
+	return &v
+}
+
+type NullableVrfFabricVcCreateInputType struct {
+	value *VrfFabricVcCreateInputType
+	isSet bool
+}
+
+func (v NullableVrfFabricVcCreateInputType) Get() *VrfFabricVcCreateInputType {
+	return v.value
+}
+
+func (v *NullableVrfFabricVcCreateInputType) Set(val *VrfFabricVcCreateInputType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableVrfFabricVcCreateInputType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableVrfFabricVcCreateInputType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableVrfFabricVcCreateInputType(val *VrfFabricVcCreateInputType) *NullableVrfFabricVcCreateInputType {
+	return &NullableVrfFabricVcCreateInputType{value: val, isSet: true}
+}
+
+func (v NullableVrfFabricVcCreateInputType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableVrfFabricVcCreateInputType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // VrfFabricVcCreateInput struct for VrfFabricVcCreateInput
 type VrfFabricVcCreateInput struct {

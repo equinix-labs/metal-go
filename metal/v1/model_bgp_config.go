@@ -13,11 +13,202 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the BgpConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BgpConfig{}
+
+// BgpConfigDeploymentType In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.
+type BgpConfigDeploymentType string
+
+// List of BgpConfigDeploymentType
+const (
+	BGPCONFIG_GLOBAL BgpConfigDeploymentType = "global"
+	BGPCONFIG_LOCAL  BgpConfigDeploymentType = "local"
+)
+
+// All allowed values of BgpConfigDeploymentType enum
+var AllowedBgpConfigDeploymentTypeEnumValues = []BgpConfigDeploymentType{
+	"global",
+	"local",
+}
+
+func (v *BgpConfigDeploymentType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := BgpConfigDeploymentType(value)
+	for _, existing := range AllowedBgpConfigDeploymentTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid BgpConfigDeploymentType", value)
+}
+
+// NewBgpConfigDeploymentTypeFromValue returns a pointer to a valid BgpConfigDeploymentType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewBgpConfigDeploymentTypeFromValue(v string) (*BgpConfigDeploymentType, error) {
+	ev := BgpConfigDeploymentType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for BgpConfigDeploymentType: valid values are %v", v, AllowedBgpConfigDeploymentTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v BgpConfigDeploymentType) IsValid() bool {
+	for _, existing := range AllowedBgpConfigDeploymentTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to DeploymentType value
+func (v BgpConfigDeploymentType) Ptr() *BgpConfigDeploymentType {
+	return &v
+}
+
+type NullableBgpConfigDeploymentType struct {
+	value *BgpConfigDeploymentType
+	isSet bool
+}
+
+func (v NullableBgpConfigDeploymentType) Get() *BgpConfigDeploymentType {
+	return v.value
+}
+
+func (v *NullableBgpConfigDeploymentType) Set(val *BgpConfigDeploymentType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBgpConfigDeploymentType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBgpConfigDeploymentType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBgpConfigDeploymentType(val *BgpConfigDeploymentType) *NullableBgpConfigDeploymentType {
+	return &NullableBgpConfigDeploymentType{value: val, isSet: true}
+}
+
+func (v NullableBgpConfigDeploymentType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBgpConfigDeploymentType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// BgpConfigStatus Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.
+type BgpConfigStatus string
+
+// List of BgpConfigStatus
+const (
+	BGPCONFIG_REQUESTED BgpConfigStatus = "requested"
+	BGPCONFIG_ENABLED   BgpConfigStatus = "enabled"
+	BGPCONFIG_DISABLED  BgpConfigStatus = "disabled"
+)
+
+// All allowed values of BgpConfigStatus enum
+var AllowedBgpConfigStatusEnumValues = []BgpConfigStatus{
+	"requested",
+	"enabled",
+	"disabled",
+}
+
+func (v *BgpConfigStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := BgpConfigStatus(value)
+	for _, existing := range AllowedBgpConfigStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid BgpConfigStatus", value)
+}
+
+// NewBgpConfigStatusFromValue returns a pointer to a valid BgpConfigStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewBgpConfigStatusFromValue(v string) (*BgpConfigStatus, error) {
+	ev := BgpConfigStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for BgpConfigStatus: valid values are %v", v, AllowedBgpConfigStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v BgpConfigStatus) IsValid() bool {
+	for _, existing := range AllowedBgpConfigStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Status value
+func (v BgpConfigStatus) Ptr() *BgpConfigStatus {
+	return &v
+}
+
+type NullableBgpConfigStatus struct {
+	value *BgpConfigStatus
+	isSet bool
+}
+
+func (v NullableBgpConfigStatus) Get() *BgpConfigStatus {
+	return v.value
+}
+
+func (v *NullableBgpConfigStatus) Set(val *BgpConfigStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBgpConfigStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBgpConfigStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBgpConfigStatus(val *BgpConfigStatus) *NullableBgpConfigStatus {
+	return &NullableBgpConfigStatus{value: val, isSet: true}
+}
+
+func (v NullableBgpConfigStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBgpConfigStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // BgpConfig struct for BgpConfig
 type BgpConfig struct {

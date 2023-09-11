@@ -13,10 +13,105 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InterconnectionUpdateInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InterconnectionUpdateInput{}
+
+// InterconnectionUpdateInputMode The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+type InterconnectionUpdateInputMode string
+
+// List of InterconnectionUpdateInputMode
+const (
+	INTERCONNECTIONUPDATEINPUT_STANDARD InterconnectionUpdateInputMode = "standard"
+	INTERCONNECTIONUPDATEINPUT_TUNNEL   InterconnectionUpdateInputMode = "tunnel"
+)
+
+// All allowed values of InterconnectionUpdateInputMode enum
+var AllowedInterconnectionUpdateInputModeEnumValues = []InterconnectionUpdateInputMode{
+	"standard",
+	"tunnel",
+}
+
+func (v *InterconnectionUpdateInputMode) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := InterconnectionUpdateInputMode(value)
+	for _, existing := range AllowedInterconnectionUpdateInputModeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InterconnectionUpdateInputMode", value)
+}
+
+// NewInterconnectionUpdateInputModeFromValue returns a pointer to a valid InterconnectionUpdateInputMode
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInterconnectionUpdateInputModeFromValue(v string) (*InterconnectionUpdateInputMode, error) {
+	ev := InterconnectionUpdateInputMode(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InterconnectionUpdateInputMode: valid values are %v", v, AllowedInterconnectionUpdateInputModeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InterconnectionUpdateInputMode) IsValid() bool {
+	for _, existing := range AllowedInterconnectionUpdateInputModeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Mode value
+func (v InterconnectionUpdateInputMode) Ptr() *InterconnectionUpdateInputMode {
+	return &v
+}
+
+type NullableInterconnectionUpdateInputMode struct {
+	value *InterconnectionUpdateInputMode
+	isSet bool
+}
+
+func (v NullableInterconnectionUpdateInputMode) Get() *InterconnectionUpdateInputMode {
+	return v.value
+}
+
+func (v *NullableInterconnectionUpdateInputMode) Set(val *InterconnectionUpdateInputMode) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInterconnectionUpdateInputMode) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInterconnectionUpdateInputMode) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInterconnectionUpdateInputMode(val *InterconnectionUpdateInputMode) *NullableInterconnectionUpdateInputMode {
+	return &NullableInterconnectionUpdateInputMode{value: val, isSet: true}
+}
+
+func (v NullableInterconnectionUpdateInputMode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInterconnectionUpdateInputMode) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // InterconnectionUpdateInput struct for InterconnectionUpdateInput
 type InterconnectionUpdateInput struct {

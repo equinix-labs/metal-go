@@ -13,11 +13,296 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the FabricServiceToken type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FabricServiceToken{}
+
+// FabricServiceTokenRole Either primary or secondary, depending on which interconnection the service token is associated to.
+type FabricServiceTokenRole string
+
+// List of FabricServiceTokenRole
+const (
+	FABRICSERVICETOKEN_PRIMARY   FabricServiceTokenRole = "primary"
+	FABRICSERVICETOKEN_SECONDARY FabricServiceTokenRole = "secondary"
+)
+
+// All allowed values of FabricServiceTokenRole enum
+var AllowedFabricServiceTokenRoleEnumValues = []FabricServiceTokenRole{
+	"primary",
+	"secondary",
+}
+
+func (v *FabricServiceTokenRole) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := FabricServiceTokenRole(value)
+	for _, existing := range AllowedFabricServiceTokenRoleEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid FabricServiceTokenRole", value)
+}
+
+// NewFabricServiceTokenRoleFromValue returns a pointer to a valid FabricServiceTokenRole
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewFabricServiceTokenRoleFromValue(v string) (*FabricServiceTokenRole, error) {
+	ev := FabricServiceTokenRole(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for FabricServiceTokenRole: valid values are %v", v, AllowedFabricServiceTokenRoleEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v FabricServiceTokenRole) IsValid() bool {
+	for _, existing := range AllowedFabricServiceTokenRoleEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Role value
+func (v FabricServiceTokenRole) Ptr() *FabricServiceTokenRole {
+	return &v
+}
+
+type NullableFabricServiceTokenRole struct {
+	value *FabricServiceTokenRole
+	isSet bool
+}
+
+func (v NullableFabricServiceTokenRole) Get() *FabricServiceTokenRole {
+	return v.value
+}
+
+func (v *NullableFabricServiceTokenRole) Set(val *FabricServiceTokenRole) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableFabricServiceTokenRole) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableFabricServiceTokenRole) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableFabricServiceTokenRole(val *FabricServiceTokenRole) *NullableFabricServiceTokenRole {
+	return &NullableFabricServiceTokenRole{value: val, isSet: true}
+}
+
+func (v NullableFabricServiceTokenRole) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableFabricServiceTokenRole) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// FabricServiceTokenServiceTokenType Either 'a_side' or 'z_side', depending on which type of Fabric VC was requested.
+type FabricServiceTokenServiceTokenType string
+
+// List of FabricServiceTokenServiceTokenType
+const (
+	FABRICSERVICETOKEN_A_SIDE FabricServiceTokenServiceTokenType = "a_side"
+	FABRICSERVICETOKEN_Z_SIDE FabricServiceTokenServiceTokenType = "z_side"
+)
+
+// All allowed values of FabricServiceTokenServiceTokenType enum
+var AllowedFabricServiceTokenServiceTokenTypeEnumValues = []FabricServiceTokenServiceTokenType{
+	"a_side",
+	"z_side",
+}
+
+func (v *FabricServiceTokenServiceTokenType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := FabricServiceTokenServiceTokenType(value)
+	for _, existing := range AllowedFabricServiceTokenServiceTokenTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid FabricServiceTokenServiceTokenType", value)
+}
+
+// NewFabricServiceTokenServiceTokenTypeFromValue returns a pointer to a valid FabricServiceTokenServiceTokenType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewFabricServiceTokenServiceTokenTypeFromValue(v string) (*FabricServiceTokenServiceTokenType, error) {
+	ev := FabricServiceTokenServiceTokenType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for FabricServiceTokenServiceTokenType: valid values are %v", v, AllowedFabricServiceTokenServiceTokenTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v FabricServiceTokenServiceTokenType) IsValid() bool {
+	for _, existing := range AllowedFabricServiceTokenServiceTokenTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ServiceTokenType value
+func (v FabricServiceTokenServiceTokenType) Ptr() *FabricServiceTokenServiceTokenType {
+	return &v
+}
+
+type NullableFabricServiceTokenServiceTokenType struct {
+	value *FabricServiceTokenServiceTokenType
+	isSet bool
+}
+
+func (v NullableFabricServiceTokenServiceTokenType) Get() *FabricServiceTokenServiceTokenType {
+	return v.value
+}
+
+func (v *NullableFabricServiceTokenServiceTokenType) Set(val *FabricServiceTokenServiceTokenType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableFabricServiceTokenServiceTokenType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableFabricServiceTokenServiceTokenType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableFabricServiceTokenServiceTokenType(val *FabricServiceTokenServiceTokenType) *NullableFabricServiceTokenServiceTokenType {
+	return &NullableFabricServiceTokenServiceTokenType{value: val, isSet: true}
+}
+
+func (v NullableFabricServiceTokenServiceTokenType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableFabricServiceTokenServiceTokenType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// FabricServiceTokenState The state of the service token that corresponds with the service token state on Fabric. An 'inactive' state refers to a token that has not been redeemed yet on the Fabric side, an 'active' state refers to a token that has already been redeemed, and an 'expired' state refers to a token that has reached its expiry time.
+type FabricServiceTokenState string
+
+// List of FabricServiceTokenState
+const (
+	FABRICSERVICETOKEN_INACTIVE FabricServiceTokenState = "inactive"
+	FABRICSERVICETOKEN_ACTIVE   FabricServiceTokenState = "active"
+	FABRICSERVICETOKEN_EXPIRED  FabricServiceTokenState = "expired"
+)
+
+// All allowed values of FabricServiceTokenState enum
+var AllowedFabricServiceTokenStateEnumValues = []FabricServiceTokenState{
+	"inactive",
+	"active",
+	"expired",
+}
+
+func (v *FabricServiceTokenState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := FabricServiceTokenState(value)
+	for _, existing := range AllowedFabricServiceTokenStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid FabricServiceTokenState", value)
+}
+
+// NewFabricServiceTokenStateFromValue returns a pointer to a valid FabricServiceTokenState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewFabricServiceTokenStateFromValue(v string) (*FabricServiceTokenState, error) {
+	ev := FabricServiceTokenState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for FabricServiceTokenState: valid values are %v", v, AllowedFabricServiceTokenStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v FabricServiceTokenState) IsValid() bool {
+	for _, existing := range AllowedFabricServiceTokenStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to State value
+func (v FabricServiceTokenState) Ptr() *FabricServiceTokenState {
+	return &v
+}
+
+type NullableFabricServiceTokenState struct {
+	value *FabricServiceTokenState
+	isSet bool
+}
+
+func (v NullableFabricServiceTokenState) Get() *FabricServiceTokenState {
+	return v.value
+}
+
+func (v *NullableFabricServiceTokenState) Set(val *FabricServiceTokenState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableFabricServiceTokenState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableFabricServiceTokenState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableFabricServiceTokenState(val *FabricServiceTokenState) *NullableFabricServiceTokenState {
+	return &NullableFabricServiceTokenState{value: val, isSet: true}
+}
+
+func (v NullableFabricServiceTokenState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableFabricServiceTokenState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // FabricServiceToken struct for FabricServiceToken
 type FabricServiceToken struct {

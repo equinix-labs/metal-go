@@ -13,10 +13,105 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ProjectCreateFromRootInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProjectCreateFromRootInput{}
+
+// ProjectCreateFromRootInputType The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.
+type ProjectCreateFromRootInputType string
+
+// List of ProjectCreateFromRootInputType
+const (
+	PROJECTCREATEFROMROOTINPUT_DEFAULT ProjectCreateFromRootInputType = "default"
+	PROJECTCREATEFROMROOTINPUT_VMCE    ProjectCreateFromRootInputType = "vmce"
+)
+
+// All allowed values of ProjectCreateFromRootInputType enum
+var AllowedProjectCreateFromRootInputTypeEnumValues = []ProjectCreateFromRootInputType{
+	"default",
+	"vmce",
+}
+
+func (v *ProjectCreateFromRootInputType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := ProjectCreateFromRootInputType(value)
+	for _, existing := range AllowedProjectCreateFromRootInputTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ProjectCreateFromRootInputType", value)
+}
+
+// NewProjectCreateFromRootInputTypeFromValue returns a pointer to a valid ProjectCreateFromRootInputType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewProjectCreateFromRootInputTypeFromValue(v string) (*ProjectCreateFromRootInputType, error) {
+	ev := ProjectCreateFromRootInputType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ProjectCreateFromRootInputType: valid values are %v", v, AllowedProjectCreateFromRootInputTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ProjectCreateFromRootInputType) IsValid() bool {
+	for _, existing := range AllowedProjectCreateFromRootInputTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Type value
+func (v ProjectCreateFromRootInputType) Ptr() *ProjectCreateFromRootInputType {
+	return &v
+}
+
+type NullableProjectCreateFromRootInputType struct {
+	value *ProjectCreateFromRootInputType
+	isSet bool
+}
+
+func (v NullableProjectCreateFromRootInputType) Get() *ProjectCreateFromRootInputType {
+	return v.value
+}
+
+func (v *NullableProjectCreateFromRootInputType) Set(val *ProjectCreateFromRootInputType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProjectCreateFromRootInputType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProjectCreateFromRootInputType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProjectCreateFromRootInputType(val *ProjectCreateFromRootInputType) *NullableProjectCreateFromRootInputType {
+	return &NullableProjectCreateFromRootInputType{value: val, isSet: true}
+}
+
+func (v NullableProjectCreateFromRootInputType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableProjectCreateFromRootInputType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // ProjectCreateFromRootInput struct for ProjectCreateFromRootInput
 type ProjectCreateFromRootInput struct {

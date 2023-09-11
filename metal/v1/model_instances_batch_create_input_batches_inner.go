@@ -13,11 +13,110 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the InstancesBatchCreateInputBatchesInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstancesBatchCreateInputBatchesInner{}
+
+// InstancesBatchCreateInputBatchesInnerBillingCycle The billing cycle of the device.
+type InstancesBatchCreateInputBatchesInnerBillingCycle string
+
+// List of InstancesBatchCreateInputBatchesInnerBillingCycle
+const (
+	INSTANCESBATCHCREATEINPUTBATCHESINNER_HOURLY  InstancesBatchCreateInputBatchesInnerBillingCycle = "hourly"
+	INSTANCESBATCHCREATEINPUTBATCHESINNER_DAILY   InstancesBatchCreateInputBatchesInnerBillingCycle = "daily"
+	INSTANCESBATCHCREATEINPUTBATCHESINNER_MONTHLY InstancesBatchCreateInputBatchesInnerBillingCycle = "monthly"
+	INSTANCESBATCHCREATEINPUTBATCHESINNER_YEARLY  InstancesBatchCreateInputBatchesInnerBillingCycle = "yearly"
+)
+
+// All allowed values of InstancesBatchCreateInputBatchesInnerBillingCycle enum
+var AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues = []InstancesBatchCreateInputBatchesInnerBillingCycle{
+	"hourly",
+	"daily",
+	"monthly",
+	"yearly",
+}
+
+func (v *InstancesBatchCreateInputBatchesInnerBillingCycle) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := InstancesBatchCreateInputBatchesInnerBillingCycle(value)
+	for _, existing := range AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstancesBatchCreateInputBatchesInnerBillingCycle", value)
+}
+
+// NewInstancesBatchCreateInputBatchesInnerBillingCycleFromValue returns a pointer to a valid InstancesBatchCreateInputBatchesInnerBillingCycle
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstancesBatchCreateInputBatchesInnerBillingCycleFromValue(v string) (*InstancesBatchCreateInputBatchesInnerBillingCycle, error) {
+	ev := InstancesBatchCreateInputBatchesInnerBillingCycle(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstancesBatchCreateInputBatchesInnerBillingCycle: valid values are %v", v, AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstancesBatchCreateInputBatchesInnerBillingCycle) IsValid() bool {
+	for _, existing := range AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to BillingCycle value
+func (v InstancesBatchCreateInputBatchesInnerBillingCycle) Ptr() *InstancesBatchCreateInputBatchesInnerBillingCycle {
+	return &v
+}
+
+type NullableInstancesBatchCreateInputBatchesInnerBillingCycle struct {
+	value *InstancesBatchCreateInputBatchesInnerBillingCycle
+	isSet bool
+}
+
+func (v NullableInstancesBatchCreateInputBatchesInnerBillingCycle) Get() *InstancesBatchCreateInputBatchesInnerBillingCycle {
+	return v.value
+}
+
+func (v *NullableInstancesBatchCreateInputBatchesInnerBillingCycle) Set(val *InstancesBatchCreateInputBatchesInnerBillingCycle) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstancesBatchCreateInputBatchesInnerBillingCycle) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstancesBatchCreateInputBatchesInnerBillingCycle) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstancesBatchCreateInputBatchesInnerBillingCycle(val *InstancesBatchCreateInputBatchesInnerBillingCycle) *NullableInstancesBatchCreateInputBatchesInnerBillingCycle {
+	return &NullableInstancesBatchCreateInputBatchesInnerBillingCycle{value: val, isSet: true}
+}
+
+func (v NullableInstancesBatchCreateInputBatchesInnerBillingCycle) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstancesBatchCreateInputBatchesInnerBillingCycle) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // InstancesBatchCreateInputBatchesInner struct for InstancesBatchCreateInputBatchesInner
 type InstancesBatchCreateInputBatchesInner struct {

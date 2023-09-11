@@ -13,10 +13,107 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PlanSpecsNicsInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PlanSpecsNicsInner{}
+
+// PlanSpecsNicsInnerType the model 'PlanSpecsNicsInnerType'
+type PlanSpecsNicsInnerType string
+
+// List of PlanSpecsNicsInnerType
+const (
+	PLANSPECSNICSINNER__1_GBPS  PlanSpecsNicsInnerType = "1Gbps"
+	PLANSPECSNICSINNER__10_GBPS PlanSpecsNicsInnerType = "10Gbps"
+	PLANSPECSNICSINNER__25_GBPS PlanSpecsNicsInnerType = "25Gbps"
+)
+
+// All allowed values of PlanSpecsNicsInnerType enum
+var AllowedPlanSpecsNicsInnerTypeEnumValues = []PlanSpecsNicsInnerType{
+	"1Gbps",
+	"10Gbps",
+	"25Gbps",
+}
+
+func (v *PlanSpecsNicsInnerType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := PlanSpecsNicsInnerType(value)
+	for _, existing := range AllowedPlanSpecsNicsInnerTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PlanSpecsNicsInnerType", value)
+}
+
+// NewPlanSpecsNicsInnerTypeFromValue returns a pointer to a valid PlanSpecsNicsInnerType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPlanSpecsNicsInnerTypeFromValue(v string) (*PlanSpecsNicsInnerType, error) {
+	ev := PlanSpecsNicsInnerType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PlanSpecsNicsInnerType: valid values are %v", v, AllowedPlanSpecsNicsInnerTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PlanSpecsNicsInnerType) IsValid() bool {
+	for _, existing := range AllowedPlanSpecsNicsInnerTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Type value
+func (v PlanSpecsNicsInnerType) Ptr() *PlanSpecsNicsInnerType {
+	return &v
+}
+
+type NullablePlanSpecsNicsInnerType struct {
+	value *PlanSpecsNicsInnerType
+	isSet bool
+}
+
+func (v NullablePlanSpecsNicsInnerType) Get() *PlanSpecsNicsInnerType {
+	return v.value
+}
+
+func (v *NullablePlanSpecsNicsInnerType) Set(val *PlanSpecsNicsInnerType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePlanSpecsNicsInnerType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePlanSpecsNicsInnerType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePlanSpecsNicsInnerType(val *PlanSpecsNicsInnerType) *NullablePlanSpecsNicsInnerType {
+	return &NullablePlanSpecsNicsInnerType{value: val, isSet: true}
+}
+
+func (v NullablePlanSpecsNicsInnerType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePlanSpecsNicsInnerType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // PlanSpecsNicsInner struct for PlanSpecsNicsInner
 type PlanSpecsNicsInner struct {

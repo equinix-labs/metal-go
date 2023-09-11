@@ -13,11 +13,106 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the PortVlanAssignment type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PortVlanAssignment{}
+
+// PortVlanAssignmentState the model 'PortVlanAssignmentState'
+type PortVlanAssignmentState string
+
+// List of PortVlanAssignmentState
+const (
+	PORTVLANASSIGNMENT_ASSIGNED    PortVlanAssignmentState = "assigned"
+	PORTVLANASSIGNMENT_UNASSIGNING PortVlanAssignmentState = "unassigning"
+)
+
+// All allowed values of PortVlanAssignmentState enum
+var AllowedPortVlanAssignmentStateEnumValues = []PortVlanAssignmentState{
+	"assigned",
+	"unassigning",
+}
+
+func (v *PortVlanAssignmentState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := PortVlanAssignmentState(value)
+	for _, existing := range AllowedPortVlanAssignmentStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PortVlanAssignmentState", value)
+}
+
+// NewPortVlanAssignmentStateFromValue returns a pointer to a valid PortVlanAssignmentState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPortVlanAssignmentStateFromValue(v string) (*PortVlanAssignmentState, error) {
+	ev := PortVlanAssignmentState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PortVlanAssignmentState: valid values are %v", v, AllowedPortVlanAssignmentStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PortVlanAssignmentState) IsValid() bool {
+	for _, existing := range AllowedPortVlanAssignmentStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to State value
+func (v PortVlanAssignmentState) Ptr() *PortVlanAssignmentState {
+	return &v
+}
+
+type NullablePortVlanAssignmentState struct {
+	value *PortVlanAssignmentState
+	isSet bool
+}
+
+func (v NullablePortVlanAssignmentState) Get() *PortVlanAssignmentState {
+	return v.value
+}
+
+func (v *NullablePortVlanAssignmentState) Set(val *PortVlanAssignmentState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePortVlanAssignmentState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePortVlanAssignmentState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePortVlanAssignmentState(val *PortVlanAssignmentState) *NullablePortVlanAssignmentState {
+	return &NullablePortVlanAssignmentState{value: val, isSet: true}
+}
+
+func (v NullablePortVlanAssignmentState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePortVlanAssignmentState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // PortVlanAssignment struct for PortVlanAssignment
 type PortVlanAssignment struct {

@@ -13,11 +13,108 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the VrfMetalGateway type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VrfMetalGateway{}
+
+// VrfMetalGatewayState The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
+type VrfMetalGatewayState string
+
+// List of VrfMetalGatewayState
+const (
+	VRFMETALGATEWAY_READY    VrfMetalGatewayState = "ready"
+	VRFMETALGATEWAY_ACTIVE   VrfMetalGatewayState = "active"
+	VRFMETALGATEWAY_DELETING VrfMetalGatewayState = "deleting"
+)
+
+// All allowed values of VrfMetalGatewayState enum
+var AllowedVrfMetalGatewayStateEnumValues = []VrfMetalGatewayState{
+	"ready",
+	"active",
+	"deleting",
+}
+
+func (v *VrfMetalGatewayState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := VrfMetalGatewayState(value)
+	for _, existing := range AllowedVrfMetalGatewayStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid VrfMetalGatewayState", value)
+}
+
+// NewVrfMetalGatewayStateFromValue returns a pointer to a valid VrfMetalGatewayState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewVrfMetalGatewayStateFromValue(v string) (*VrfMetalGatewayState, error) {
+	ev := VrfMetalGatewayState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for VrfMetalGatewayState: valid values are %v", v, AllowedVrfMetalGatewayStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v VrfMetalGatewayState) IsValid() bool {
+	for _, existing := range AllowedVrfMetalGatewayStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to State value
+func (v VrfMetalGatewayState) Ptr() *VrfMetalGatewayState {
+	return &v
+}
+
+type NullableVrfMetalGatewayState struct {
+	value *VrfMetalGatewayState
+	isSet bool
+}
+
+func (v NullableVrfMetalGatewayState) Get() *VrfMetalGatewayState {
+	return v.value
+}
+
+func (v *NullableVrfMetalGatewayState) Set(val *VrfMetalGatewayState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableVrfMetalGatewayState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableVrfMetalGatewayState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableVrfMetalGatewayState(val *VrfMetalGatewayState) *NullableVrfMetalGatewayState {
+	return &NullableVrfMetalGatewayState{value: val, isSet: true}
+}
+
+func (v NullableVrfMetalGatewayState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableVrfMetalGatewayState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // VrfMetalGateway struct for VrfMetalGateway
 type VrfMetalGateway struct {

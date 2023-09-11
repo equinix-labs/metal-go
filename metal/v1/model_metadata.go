@@ -13,10 +13,121 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Metadata type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Metadata{}
+
+// MetadataState The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.
+type MetadataState string
+
+// List of MetadataState
+const (
+	METADATA_QUEUED         MetadataState = "queued"
+	METADATA_PROVISIONING   MetadataState = "provisioning"
+	METADATA_DEPROVISIONING MetadataState = "deprovisioning"
+	METADATA_REINSTALLING   MetadataState = "reinstalling"
+	METADATA_ACTIVE         MetadataState = "active"
+	METADATA_INACTIVE       MetadataState = "inactive"
+	METADATA_FAILED         MetadataState = "failed"
+	METADATA_POWERING_ON    MetadataState = "powering_on"
+	METADATA_POWERING_OFF   MetadataState = "powering_off"
+	METADATA_DELETED        MetadataState = "deleted"
+)
+
+// All allowed values of MetadataState enum
+var AllowedMetadataStateEnumValues = []MetadataState{
+	"queued",
+	"provisioning",
+	"deprovisioning",
+	"reinstalling",
+	"active",
+	"inactive",
+	"failed",
+	"powering_on",
+	"powering_off",
+	"deleted",
+}
+
+func (v *MetadataState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := MetadataState(value)
+	for _, existing := range AllowedMetadataStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid MetadataState", value)
+}
+
+// NewMetadataStateFromValue returns a pointer to a valid MetadataState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewMetadataStateFromValue(v string) (*MetadataState, error) {
+	ev := MetadataState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for MetadataState: valid values are %v", v, AllowedMetadataStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v MetadataState) IsValid() bool {
+	for _, existing := range AllowedMetadataStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to State value
+func (v MetadataState) Ptr() *MetadataState {
+	return &v
+}
+
+type NullableMetadataState struct {
+	value *MetadataState
+	isSet bool
+}
+
+func (v NullableMetadataState) Get() *MetadataState {
+	return v.value
+}
+
+func (v *NullableMetadataState) Set(val *MetadataState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetadataState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMetadataState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetadataState(val *MetadataState) *NullableMetadataState {
+	return &NullableMetadataState{value: val, isSet: true}
+}
+
+func (v NullableMetadataState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableMetadataState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // Metadata struct for Metadata
 type Metadata struct {

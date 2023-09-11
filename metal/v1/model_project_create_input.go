@@ -13,10 +13,105 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ProjectCreateInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProjectCreateInput{}
+
+// ProjectCreateInputType The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.
+type ProjectCreateInputType string
+
+// List of ProjectCreateInputType
+const (
+	PROJECTCREATEINPUT_DEFAULT ProjectCreateInputType = "default"
+	PROJECTCREATEINPUT_VMCE    ProjectCreateInputType = "vmce"
+)
+
+// All allowed values of ProjectCreateInputType enum
+var AllowedProjectCreateInputTypeEnumValues = []ProjectCreateInputType{
+	"default",
+	"vmce",
+}
+
+func (v *ProjectCreateInputType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := ProjectCreateInputType(value)
+	for _, existing := range AllowedProjectCreateInputTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ProjectCreateInputType", value)
+}
+
+// NewProjectCreateInputTypeFromValue returns a pointer to a valid ProjectCreateInputType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewProjectCreateInputTypeFromValue(v string) (*ProjectCreateInputType, error) {
+	ev := ProjectCreateInputType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ProjectCreateInputType: valid values are %v", v, AllowedProjectCreateInputTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ProjectCreateInputType) IsValid() bool {
+	for _, existing := range AllowedProjectCreateInputTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Type value
+func (v ProjectCreateInputType) Ptr() *ProjectCreateInputType {
+	return &v
+}
+
+type NullableProjectCreateInputType struct {
+	value *ProjectCreateInputType
+	isSet bool
+}
+
+func (v NullableProjectCreateInputType) Get() *ProjectCreateInputType {
+	return v.value
+}
+
+func (v *NullableProjectCreateInputType) Set(val *ProjectCreateInputType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProjectCreateInputType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProjectCreateInputType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProjectCreateInputType(val *ProjectCreateInputType) *NullableProjectCreateInputType {
+	return &NullableProjectCreateInputType{value: val, isSet: true}
+}
+
+func (v NullableProjectCreateInputType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableProjectCreateInputType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // ProjectCreateInput struct for ProjectCreateInput
 type ProjectCreateInput struct {

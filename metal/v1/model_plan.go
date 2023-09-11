@@ -13,10 +13,201 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Plan type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Plan{}
+
+// PlanDeploymentTypes the model 'PlanDeploymentTypes'
+type PlanDeploymentTypes string
+
+// List of PlanDeploymentTypes
+const (
+	PLAN_ON_DEMAND   PlanDeploymentTypes = "on_demand"
+	PLAN_SPOT_MARKET PlanDeploymentTypes = "spot_market"
+)
+
+// All allowed values of PlanDeploymentTypes enum
+var AllowedPlanDeploymentTypesEnumValues = []PlanDeploymentTypes{
+	"on_demand",
+	"spot_market",
+}
+
+func (v *PlanDeploymentTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := PlanDeploymentTypes(value)
+	for _, existing := range AllowedPlanDeploymentTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PlanDeploymentTypes", value)
+}
+
+// NewPlanDeploymentTypesFromValue returns a pointer to a valid PlanDeploymentTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPlanDeploymentTypesFromValue(v string) (*PlanDeploymentTypes, error) {
+	ev := PlanDeploymentTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PlanDeploymentTypes: valid values are %v", v, AllowedPlanDeploymentTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PlanDeploymentTypes) IsValid() bool {
+	for _, existing := range AllowedPlanDeploymentTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to DeploymentTypes value
+func (v PlanDeploymentTypes) Ptr() *PlanDeploymentTypes {
+	return &v
+}
+
+type NullablePlanDeploymentTypes struct {
+	value *PlanDeploymentTypes
+	isSet bool
+}
+
+func (v NullablePlanDeploymentTypes) Get() *PlanDeploymentTypes {
+	return v.value
+}
+
+func (v *NullablePlanDeploymentTypes) Set(val *PlanDeploymentTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePlanDeploymentTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePlanDeploymentTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePlanDeploymentTypes(val *PlanDeploymentTypes) *NullablePlanDeploymentTypes {
+	return &NullablePlanDeploymentTypes{value: val, isSet: true}
+}
+
+func (v NullablePlanDeploymentTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePlanDeploymentTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// PlanType The plan type
+type PlanType string
+
+// List of PlanType
+const (
+	PLAN_STANDARD           PlanType = "standard"
+	PLAN_WORKLOAD_OPTIMIZED PlanType = "workload_optimized"
+	PLAN_CUSTOM             PlanType = "custom"
+)
+
+// All allowed values of PlanType enum
+var AllowedPlanTypeEnumValues = []PlanType{
+	"standard",
+	"workload_optimized",
+	"custom",
+}
+
+func (v *PlanType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := PlanType(value)
+	for _, existing := range AllowedPlanTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PlanType", value)
+}
+
+// NewPlanTypeFromValue returns a pointer to a valid PlanType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPlanTypeFromValue(v string) (*PlanType, error) {
+	ev := PlanType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PlanType: valid values are %v", v, AllowedPlanTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PlanType) IsValid() bool {
+	for _, existing := range AllowedPlanTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Type value
+func (v PlanType) Ptr() *PlanType {
+	return &v
+}
+
+type NullablePlanType struct {
+	value *PlanType
+	isSet bool
+}
+
+func (v NullablePlanType) Get() *PlanType {
+	return v.value
+}
+
+func (v *NullablePlanType) Set(val *PlanType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePlanType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePlanType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePlanType(val *PlanType) *NullablePlanType {
+	return &NullablePlanType{value: val, isSet: true}
+}
+
+func (v NullablePlanType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePlanType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // Plan struct for Plan
 type Plan struct {

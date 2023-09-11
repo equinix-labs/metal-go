@@ -13,11 +13,110 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the DeviceCreateInMetroInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeviceCreateInMetroInput{}
+
+// DeviceCreateInMetroInputBillingCycle The billing cycle of the device.
+type DeviceCreateInMetroInputBillingCycle string
+
+// List of DeviceCreateInMetroInputBillingCycle
+const (
+	DEVICECREATEINMETROINPUT_HOURLY  DeviceCreateInMetroInputBillingCycle = "hourly"
+	DEVICECREATEINMETROINPUT_DAILY   DeviceCreateInMetroInputBillingCycle = "daily"
+	DEVICECREATEINMETROINPUT_MONTHLY DeviceCreateInMetroInputBillingCycle = "monthly"
+	DEVICECREATEINMETROINPUT_YEARLY  DeviceCreateInMetroInputBillingCycle = "yearly"
+)
+
+// All allowed values of DeviceCreateInMetroInputBillingCycle enum
+var AllowedDeviceCreateInMetroInputBillingCycleEnumValues = []DeviceCreateInMetroInputBillingCycle{
+	"hourly",
+	"daily",
+	"monthly",
+	"yearly",
+}
+
+func (v *DeviceCreateInMetroInputBillingCycle) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := DeviceCreateInMetroInputBillingCycle(value)
+	for _, existing := range AllowedDeviceCreateInMetroInputBillingCycleEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid DeviceCreateInMetroInputBillingCycle", value)
+}
+
+// NewDeviceCreateInMetroInputBillingCycleFromValue returns a pointer to a valid DeviceCreateInMetroInputBillingCycle
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewDeviceCreateInMetroInputBillingCycleFromValue(v string) (*DeviceCreateInMetroInputBillingCycle, error) {
+	ev := DeviceCreateInMetroInputBillingCycle(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for DeviceCreateInMetroInputBillingCycle: valid values are %v", v, AllowedDeviceCreateInMetroInputBillingCycleEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v DeviceCreateInMetroInputBillingCycle) IsValid() bool {
+	for _, existing := range AllowedDeviceCreateInMetroInputBillingCycleEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to BillingCycle value
+func (v DeviceCreateInMetroInputBillingCycle) Ptr() *DeviceCreateInMetroInputBillingCycle {
+	return &v
+}
+
+type NullableDeviceCreateInMetroInputBillingCycle struct {
+	value *DeviceCreateInMetroInputBillingCycle
+	isSet bool
+}
+
+func (v NullableDeviceCreateInMetroInputBillingCycle) Get() *DeviceCreateInMetroInputBillingCycle {
+	return v.value
+}
+
+func (v *NullableDeviceCreateInMetroInputBillingCycle) Set(val *DeviceCreateInMetroInputBillingCycle) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeviceCreateInMetroInputBillingCycle) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeviceCreateInMetroInputBillingCycle) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeviceCreateInMetroInputBillingCycle(val *DeviceCreateInMetroInputBillingCycle) *NullableDeviceCreateInMetroInputBillingCycle {
+	return &NullableDeviceCreateInMetroInputBillingCycle{value: val, isSet: true}
+}
+
+func (v NullableDeviceCreateInMetroInputBillingCycle) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDeviceCreateInMetroInputBillingCycle) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // DeviceCreateInMetroInput struct for DeviceCreateInMetroInput
 type DeviceCreateInMetroInput struct {

@@ -13,11 +13,108 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the MetalGatewayLite type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MetalGatewayLite{}
+
+// MetalGatewayLiteState The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
+type MetalGatewayLiteState string
+
+// List of MetalGatewayLiteState
+const (
+	METALGATEWAYLITE_READY    MetalGatewayLiteState = "ready"
+	METALGATEWAYLITE_ACTIVE   MetalGatewayLiteState = "active"
+	METALGATEWAYLITE_DELETING MetalGatewayLiteState = "deleting"
+)
+
+// All allowed values of MetalGatewayLiteState enum
+var AllowedMetalGatewayLiteStateEnumValues = []MetalGatewayLiteState{
+	"ready",
+	"active",
+	"deleting",
+}
+
+func (v *MetalGatewayLiteState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := MetalGatewayLiteState(value)
+	for _, existing := range AllowedMetalGatewayLiteStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid MetalGatewayLiteState", value)
+}
+
+// NewMetalGatewayLiteStateFromValue returns a pointer to a valid MetalGatewayLiteState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewMetalGatewayLiteStateFromValue(v string) (*MetalGatewayLiteState, error) {
+	ev := MetalGatewayLiteState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for MetalGatewayLiteState: valid values are %v", v, AllowedMetalGatewayLiteStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v MetalGatewayLiteState) IsValid() bool {
+	for _, existing := range AllowedMetalGatewayLiteStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to State value
+func (v MetalGatewayLiteState) Ptr() *MetalGatewayLiteState {
+	return &v
+}
+
+type NullableMetalGatewayLiteState struct {
+	value *MetalGatewayLiteState
+	isSet bool
+}
+
+func (v NullableMetalGatewayLiteState) Get() *MetalGatewayLiteState {
+	return v.value
+}
+
+func (v *NullableMetalGatewayLiteState) Set(val *MetalGatewayLiteState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetalGatewayLiteState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMetalGatewayLiteState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetalGatewayLiteState(val *MetalGatewayLiteState) *NullableMetalGatewayLiteState {
+	return &NullableMetalGatewayLiteState{value: val, isSet: true}
+}
+
+func (v NullableMetalGatewayLiteState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableMetalGatewayLiteState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // MetalGatewayLite struct for MetalGatewayLite
 type MetalGatewayLite struct {

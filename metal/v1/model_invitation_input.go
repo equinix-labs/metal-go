@@ -13,10 +13,109 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InvitationInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InvitationInput{}
+
+// InvitationInputRoles the model 'InvitationInputRoles'
+type InvitationInputRoles string
+
+// List of InvitationInputRoles
+const (
+	INVITATIONINPUT_ADMIN                InvitationInputRoles = "admin"
+	INVITATIONINPUT_BILLING              InvitationInputRoles = "billing"
+	INVITATIONINPUT_COLLABORATOR         InvitationInputRoles = "collaborator"
+	INVITATIONINPUT_LIMITED_COLLABORATOR InvitationInputRoles = "limited_collaborator"
+)
+
+// All allowed values of InvitationInputRoles enum
+var AllowedInvitationInputRolesEnumValues = []InvitationInputRoles{
+	"admin",
+	"billing",
+	"collaborator",
+	"limited_collaborator",
+}
+
+func (v *InvitationInputRoles) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := InvitationInputRoles(value)
+	for _, existing := range AllowedInvitationInputRolesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InvitationInputRoles", value)
+}
+
+// NewInvitationInputRolesFromValue returns a pointer to a valid InvitationInputRoles
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInvitationInputRolesFromValue(v string) (*InvitationInputRoles, error) {
+	ev := InvitationInputRoles(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InvitationInputRoles: valid values are %v", v, AllowedInvitationInputRolesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InvitationInputRoles) IsValid() bool {
+	for _, existing := range AllowedInvitationInputRolesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Roles value
+func (v InvitationInputRoles) Ptr() *InvitationInputRoles {
+	return &v
+}
+
+type NullableInvitationInputRoles struct {
+	value *InvitationInputRoles
+	isSet bool
+}
+
+func (v NullableInvitationInputRoles) Get() *InvitationInputRoles {
+	return v.value
+}
+
+func (v *NullableInvitationInputRoles) Set(val *InvitationInputRoles) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInvitationInputRoles) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInvitationInputRoles) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInvitationInputRoles(val *InvitationInputRoles) *NullableInvitationInputRoles {
+	return &NullableInvitationInputRoles{value: val, isSet: true}
+}
+
+func (v NullableInvitationInputRoles) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInvitationInputRoles) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // InvitationInput struct for InvitationInput
 type InvitationInput struct {

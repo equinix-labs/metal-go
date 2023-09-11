@@ -13,11 +13,106 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the AuthTokenProject type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AuthTokenProject{}
+
+// AuthTokenProjectType The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
+type AuthTokenProjectType string
+
+// List of AuthTokenProjectType
+const (
+	AUTHTOKENPROJECT_DEFAULT AuthTokenProjectType = "default"
+	AUTHTOKENPROJECT_VMCE    AuthTokenProjectType = "vmce"
+)
+
+// All allowed values of AuthTokenProjectType enum
+var AllowedAuthTokenProjectTypeEnumValues = []AuthTokenProjectType{
+	"default",
+	"vmce",
+}
+
+func (v *AuthTokenProjectType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := AuthTokenProjectType(value)
+	for _, existing := range AllowedAuthTokenProjectTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid AuthTokenProjectType", value)
+}
+
+// NewAuthTokenProjectTypeFromValue returns a pointer to a valid AuthTokenProjectType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewAuthTokenProjectTypeFromValue(v string) (*AuthTokenProjectType, error) {
+	ev := AuthTokenProjectType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for AuthTokenProjectType: valid values are %v", v, AllowedAuthTokenProjectTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v AuthTokenProjectType) IsValid() bool {
+	for _, existing := range AllowedAuthTokenProjectTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Type value
+func (v AuthTokenProjectType) Ptr() *AuthTokenProjectType {
+	return &v
+}
+
+type NullableAuthTokenProjectType struct {
+	value *AuthTokenProjectType
+	isSet bool
+}
+
+func (v NullableAuthTokenProjectType) Get() *AuthTokenProjectType {
+	return v.value
+}
+
+func (v *NullableAuthTokenProjectType) Set(val *AuthTokenProjectType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAuthTokenProjectType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAuthTokenProjectType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAuthTokenProjectType(val *AuthTokenProjectType) *NullableAuthTokenProjectType {
+	return &NullableAuthTokenProjectType{value: val, isSet: true}
+}
+
+func (v NullableAuthTokenProjectType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAuthTokenProjectType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // AuthTokenProject struct for AuthTokenProject
 type AuthTokenProject struct {

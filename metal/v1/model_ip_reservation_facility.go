@@ -13,10 +13,111 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the IPReservationFacility type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &IPReservationFacility{}
+
+// IPReservationFacilityFeatures the model 'IPReservationFacilityFeatures'
+type IPReservationFacilityFeatures string
+
+// List of IPReservationFacilityFeatures
+const (
+	IPRESERVATIONFACILITY_BAREMETAL        IPReservationFacilityFeatures = "baremetal"
+	IPRESERVATIONFACILITY_BACKEND_TRANSFER IPReservationFacilityFeatures = "backend_transfer"
+	IPRESERVATIONFACILITY_LAYER_2          IPReservationFacilityFeatures = "layer_2"
+	IPRESERVATIONFACILITY_GLOBAL_IPV4      IPReservationFacilityFeatures = "global_ipv4"
+	IPRESERVATIONFACILITY_IBX              IPReservationFacilityFeatures = "ibx"
+)
+
+// All allowed values of IPReservationFacilityFeatures enum
+var AllowedIPReservationFacilityFeaturesEnumValues = []IPReservationFacilityFeatures{
+	"baremetal",
+	"backend_transfer",
+	"layer_2",
+	"global_ipv4",
+	"ibx",
+}
+
+func (v *IPReservationFacilityFeatures) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := IPReservationFacilityFeatures(value)
+	for _, existing := range AllowedIPReservationFacilityFeaturesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid IPReservationFacilityFeatures", value)
+}
+
+// NewIPReservationFacilityFeaturesFromValue returns a pointer to a valid IPReservationFacilityFeatures
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewIPReservationFacilityFeaturesFromValue(v string) (*IPReservationFacilityFeatures, error) {
+	ev := IPReservationFacilityFeatures(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for IPReservationFacilityFeatures: valid values are %v", v, AllowedIPReservationFacilityFeaturesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v IPReservationFacilityFeatures) IsValid() bool {
+	for _, existing := range AllowedIPReservationFacilityFeaturesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Features value
+func (v IPReservationFacilityFeatures) Ptr() *IPReservationFacilityFeatures {
+	return &v
+}
+
+type NullableIPReservationFacilityFeatures struct {
+	value *IPReservationFacilityFeatures
+	isSet bool
+}
+
+func (v NullableIPReservationFacilityFeatures) Get() *IPReservationFacilityFeatures {
+	return v.value
+}
+
+func (v *NullableIPReservationFacilityFeatures) Set(val *IPReservationFacilityFeatures) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIPReservationFacilityFeatures) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableIPReservationFacilityFeatures) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIPReservationFacilityFeatures(val *IPReservationFacilityFeatures) *NullableIPReservationFacilityFeatures {
+	return &NullableIPReservationFacilityFeatures{value: val, isSet: true}
+}
+
+func (v NullableIPReservationFacilityFeatures) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableIPReservationFacilityFeatures) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // IPReservationFacility struct for IPReservationFacility
 type IPReservationFacility struct {

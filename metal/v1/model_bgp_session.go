@@ -13,11 +13,202 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the BgpSession type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BgpSession{}
+
+// BgpSessionAddressFamily the model 'BgpSessionAddressFamily'
+type BgpSessionAddressFamily string
+
+// List of BgpSessionAddressFamily
+const (
+	BGPSESSION_IPV4 BgpSessionAddressFamily = "ipv4"
+	BGPSESSION_IPV6 BgpSessionAddressFamily = "ipv6"
+)
+
+// All allowed values of BgpSessionAddressFamily enum
+var AllowedBgpSessionAddressFamilyEnumValues = []BgpSessionAddressFamily{
+	"ipv4",
+	"ipv6",
+}
+
+func (v *BgpSessionAddressFamily) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := BgpSessionAddressFamily(value)
+	for _, existing := range AllowedBgpSessionAddressFamilyEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid BgpSessionAddressFamily", value)
+}
+
+// NewBgpSessionAddressFamilyFromValue returns a pointer to a valid BgpSessionAddressFamily
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewBgpSessionAddressFamilyFromValue(v string) (*BgpSessionAddressFamily, error) {
+	ev := BgpSessionAddressFamily(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for BgpSessionAddressFamily: valid values are %v", v, AllowedBgpSessionAddressFamilyEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v BgpSessionAddressFamily) IsValid() bool {
+	for _, existing := range AllowedBgpSessionAddressFamilyEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to AddressFamily value
+func (v BgpSessionAddressFamily) Ptr() *BgpSessionAddressFamily {
+	return &v
+}
+
+type NullableBgpSessionAddressFamily struct {
+	value *BgpSessionAddressFamily
+	isSet bool
+}
+
+func (v NullableBgpSessionAddressFamily) Get() *BgpSessionAddressFamily {
+	return v.value
+}
+
+func (v *NullableBgpSessionAddressFamily) Set(val *BgpSessionAddressFamily) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBgpSessionAddressFamily) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBgpSessionAddressFamily) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBgpSessionAddressFamily(val *BgpSessionAddressFamily) *NullableBgpSessionAddressFamily {
+	return &NullableBgpSessionAddressFamily{value: val, isSet: true}
+}
+
+func (v NullableBgpSessionAddressFamily) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBgpSessionAddressFamily) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// BgpSessionStatus  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch.
+type BgpSessionStatus string
+
+// List of BgpSessionStatus
+const (
+	BGPSESSION_UNKNOWN BgpSessionStatus = "unknown"
+	BGPSESSION_UP      BgpSessionStatus = "up"
+	BGPSESSION_DOWN    BgpSessionStatus = "down"
+)
+
+// All allowed values of BgpSessionStatus enum
+var AllowedBgpSessionStatusEnumValues = []BgpSessionStatus{
+	"unknown",
+	"up",
+	"down",
+}
+
+func (v *BgpSessionStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := BgpSessionStatus(value)
+	for _, existing := range AllowedBgpSessionStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid BgpSessionStatus", value)
+}
+
+// NewBgpSessionStatusFromValue returns a pointer to a valid BgpSessionStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewBgpSessionStatusFromValue(v string) (*BgpSessionStatus, error) {
+	ev := BgpSessionStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for BgpSessionStatus: valid values are %v", v, AllowedBgpSessionStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v BgpSessionStatus) IsValid() bool {
+	for _, existing := range AllowedBgpSessionStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to Status value
+func (v BgpSessionStatus) Ptr() *BgpSessionStatus {
+	return &v
+}
+
+type NullableBgpSessionStatus struct {
+	value *BgpSessionStatus
+	isSet bool
+}
+
+func (v NullableBgpSessionStatus) Get() *BgpSessionStatus {
+	return v.value
+}
+
+func (v *NullableBgpSessionStatus) Set(val *BgpSessionStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBgpSessionStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBgpSessionStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBgpSessionStatus(val *BgpSessionStatus) *NullableBgpSessionStatus {
+	return &NullableBgpSessionStatus{value: val, isSet: true}
+}
+
+func (v NullableBgpSessionStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBgpSessionStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // BgpSession struct for BgpSession
 type BgpSession struct {

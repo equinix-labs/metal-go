@@ -13,11 +13,108 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the IPAssignment type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &IPAssignment{}
+
+// IPAssignmentState Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network.
+type IPAssignmentState string
+
+// List of IPAssignmentState
+const (
+	IPASSIGNMENT_PENDING  IPAssignmentState = "pending"
+	IPASSIGNMENT_ACTIVE   IPAssignmentState = "active"
+	IPASSIGNMENT_DELETING IPAssignmentState = "deleting"
+)
+
+// All allowed values of IPAssignmentState enum
+var AllowedIPAssignmentStateEnumValues = []IPAssignmentState{
+	"pending",
+	"active",
+	"deleting",
+}
+
+func (v *IPAssignmentState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := IPAssignmentState(value)
+	for _, existing := range AllowedIPAssignmentStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid IPAssignmentState", value)
+}
+
+// NewIPAssignmentStateFromValue returns a pointer to a valid IPAssignmentState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewIPAssignmentStateFromValue(v string) (*IPAssignmentState, error) {
+	ev := IPAssignmentState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for IPAssignmentState: valid values are %v", v, AllowedIPAssignmentStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v IPAssignmentState) IsValid() bool {
+	for _, existing := range AllowedIPAssignmentStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to State value
+func (v IPAssignmentState) Ptr() *IPAssignmentState {
+	return &v
+}
+
+type NullableIPAssignmentState struct {
+	value *IPAssignmentState
+	isSet bool
+}
+
+func (v NullableIPAssignmentState) Get() *IPAssignmentState {
+	return v.value
+}
+
+func (v *NullableIPAssignmentState) Set(val *IPAssignmentState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIPAssignmentState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableIPAssignmentState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIPAssignmentState(val *IPAssignmentState) *NullableIPAssignmentState {
+	return &NullableIPAssignmentState{value: val, isSet: true}
+}
+
+func (v NullableIPAssignmentState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableIPAssignmentState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // IPAssignment struct for IPAssignment
 type IPAssignment struct {
