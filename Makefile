@@ -1,4 +1,4 @@
-.PHONY: all pull fetch patch generate clean codegen mod docs move-other patch-post fmt test stage
+.PHONY: all pull fetch patch generate clean codegen mod docs move-other patch-post fix-imports fmt test stage
 
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
@@ -26,7 +26,7 @@ GOLANGCI_LINT=golangci-lint
 
 all: pull fetch patch generate stage
 
-generate: clean codegen mod docs move-other patch-post fmt test
+generate: clean codegen mod docs move-other patch-post fix-imports fmt test
 
 pull:
 	${CRI} pull ${OPENAPI_IMAGE}
@@ -95,6 +95,9 @@ move-other:
 
 lint:
 	@$(GOLANGCI_LINT) run -v --no-config --fast=false --fix --disable-all --enable goimports $(PACKAGE_PREFIX)
+
+fix-imports:
+	go run golang.org/x/tools/cmd/goimports@latest -l -w $(PACKAGE_PREFIX)
 
 fmt:
 	go run mvdan.cc/gofumpt@v0.3.1 -l -w $(PACKAGE_PREFIX)
