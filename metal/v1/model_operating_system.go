@@ -449,7 +449,9 @@ func (o OperatingSystem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
-	// skip: default_operating_system is readOnly
+	if !IsNil(o.DefaultOperatingSystem) {
+		toSerialize["default_operating_system"] = o.DefaultOperatingSystem
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

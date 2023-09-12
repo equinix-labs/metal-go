@@ -462,10 +462,8 @@ Class | Method | HTTP request | Description
  - [IPReservationRequestInput](docs/IPReservationRequestInput.md)
  - [InstancesBatchCreateInput](docs/InstancesBatchCreateInput.md)
  - [InstancesBatchCreateInputBatchesInner](docs/InstancesBatchCreateInputBatchesInner.md)
- - [InstancesBatchCreateInputBatchesInnerAllOf](docs/InstancesBatchCreateInputBatchesInnerAllOf.md)
  - [Interconnection](docs/Interconnection.md)
  - [InterconnectionList](docs/InterconnectionList.md)
- - [InterconnectionMetro](docs/InterconnectionMetro.md)
  - [InterconnectionPort](docs/InterconnectionPort.md)
  - [InterconnectionPortList](docs/InterconnectionPortList.md)
  - [InterconnectionUpdateInput](docs/InterconnectionUpdateInput.md)
@@ -624,6 +622,19 @@ Authentication schemes defined for the API:
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-Auth-Token and passed in as the auth context for each request.
+
+Example
+
+```golang
+auth := context.WithValue(
+		context.Background(),
+		sw.ContextAPIKeys,
+		map[string]sw.APIKey{
+			"X-Auth-Token": {Key: "API_KEY_STRING"},
+		},
+	)
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ## Documentation for Utility Methods
