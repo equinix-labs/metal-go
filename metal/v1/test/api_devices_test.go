@@ -210,6 +210,30 @@ func Test_v1_DevicesApiService(t *testing.T) {
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 
+	t.Run("Test DevicesApiService GetDeviceFirmwareSets", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetDeviceFirmwareSets(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
+	t.Run("Test DevicesApiService GetDeviceHealthRollup", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetDeviceHealthRollup(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+	})
+
 	t.Run("Test DevicesApiService PerformAction", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 

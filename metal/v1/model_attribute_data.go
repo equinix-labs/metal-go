@@ -15,194 +15,170 @@ import (
 	"encoding/json"
 )
 
-// checks if the ProjectCreateInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProjectCreateInput{}
+// checks if the AttributeData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AttributeData{}
 
-// ProjectCreateInput struct for ProjectCreateInput
-type ProjectCreateInput struct {
-	Customdata map[string]interface{} `json:"customdata,omitempty"`
-	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name            string  `json:"name"`
-	PaymentMethodId *string `json:"payment_method_id,omitempty"`
-	// The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.
-	Type                 *string  `json:"type,omitempty"`
-	Tags                 []string `json:"tags,omitempty"`
+// AttributeData struct for AttributeData
+type AttributeData struct {
+	// Boolean flag to know if the firmware set is the latest for the model and vendor
+	Latest *bool `json:"latest,omitempty"`
+	// Model on which this firmware set can be applied
+	Model *string `json:"model,omitempty"`
+	// Vendor on which this firmware set can be applied
+	Vendor *string `json:"vendor,omitempty"`
+	// Plan where the firmware set can be applied
+	Plan                 *string `json:"plan,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ProjectCreateInput ProjectCreateInput
+type _AttributeData AttributeData
 
-// NewProjectCreateInput instantiates a new ProjectCreateInput object
+// NewAttributeData instantiates a new AttributeData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectCreateInput(name string) *ProjectCreateInput {
-	this := ProjectCreateInput{}
-	this.Name = name
+func NewAttributeData() *AttributeData {
+	this := AttributeData{}
 	return &this
 }
 
-// NewProjectCreateInputWithDefaults instantiates a new ProjectCreateInput object
+// NewAttributeDataWithDefaults instantiates a new AttributeData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectCreateInputWithDefaults() *ProjectCreateInput {
-	this := ProjectCreateInput{}
+func NewAttributeDataWithDefaults() *AttributeData {
+	this := AttributeData{}
 	return &this
 }
 
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || IsNil(o.Customdata) {
-		var ret map[string]interface{}
+// GetLatest returns the Latest field value if set, zero value otherwise.
+func (o *AttributeData) GetLatest() bool {
+	if o == nil || IsNil(o.Latest) {
+		var ret bool
 		return ret
 	}
-	return o.Customdata
+	return *o.Latest
 }
 
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// GetLatestOk returns a tuple with the Latest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Customdata) {
-		return map[string]interface{}{}, false
+func (o *AttributeData) GetLatestOk() (*bool, bool) {
+	if o == nil || IsNil(o.Latest) {
+		return nil, false
 	}
-	return o.Customdata, true
+	return o.Latest, true
 }
 
-// HasCustomdata returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasCustomdata() bool {
-	if o != nil && !IsNil(o.Customdata) {
+// HasLatest returns a boolean if a field has been set.
+func (o *AttributeData) HasLatest() bool {
+	if o != nil && !IsNil(o.Latest) {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *ProjectCreateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
+// SetLatest gets a reference to the given bool and assigns it to the Latest field.
+func (o *AttributeData) SetLatest(v bool) {
+	o.Latest = &v
 }
 
-// GetName returns the Name field value
-func (o *ProjectCreateInput) GetName() string {
-	if o == nil {
+// GetModel returns the Model field value if set, zero value otherwise.
+func (o *AttributeData) GetModel() string {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Model
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetNameOk() (*string, bool) {
-	if o == nil {
+func (o *AttributeData) GetModelOk() (*string, bool) {
+	if o == nil || IsNil(o.Model) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Model, true
 }
 
-// SetName sets field value
-func (o *ProjectCreateInput) SetName(v string) {
-	o.Name = v
+// HasModel returns a boolean if a field has been set.
+func (o *AttributeData) HasModel() bool {
+	if o != nil && !IsNil(o.Model) {
+		return true
+	}
+
+	return false
 }
 
-// GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetPaymentMethodId() string {
-	if o == nil || IsNil(o.PaymentMethodId) {
+// SetModel gets a reference to the given string and assigns it to the Model field.
+func (o *AttributeData) SetModel(v string) {
+	o.Model = &v
+}
+
+// GetVendor returns the Vendor field value if set, zero value otherwise.
+func (o *AttributeData) GetVendor() string {
+	if o == nil || IsNil(o.Vendor) {
 		var ret string
 		return ret
 	}
-	return *o.PaymentMethodId
+	return *o.Vendor
 }
 
-// GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field value if set, nil otherwise
+// GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetPaymentMethodIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PaymentMethodId) {
+func (o *AttributeData) GetVendorOk() (*string, bool) {
+	if o == nil || IsNil(o.Vendor) {
 		return nil, false
 	}
-	return o.PaymentMethodId, true
+	return o.Vendor, true
 }
 
-// HasPaymentMethodId returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasPaymentMethodId() bool {
-	if o != nil && !IsNil(o.PaymentMethodId) {
+// HasVendor returns a boolean if a field has been set.
+func (o *AttributeData) HasVendor() bool {
+	if o != nil && !IsNil(o.Vendor) {
 		return true
 	}
 
 	return false
 }
 
-// SetPaymentMethodId gets a reference to the given string and assigns it to the PaymentMethodId field.
-func (o *ProjectCreateInput) SetPaymentMethodId(v string) {
-	o.PaymentMethodId = &v
+// SetVendor gets a reference to the given string and assigns it to the Vendor field.
+func (o *AttributeData) SetVendor(v string) {
+	o.Vendor = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetType() string {
-	if o == nil || IsNil(o.Type) {
+// GetPlan returns the Plan field value if set, zero value otherwise.
+func (o *AttributeData) GetPlan() string {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
-	return *o.Type
+	return *o.Plan
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+func (o *AttributeData) GetPlanOk() (*string, bool) {
+	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
-	return o.Type, true
+	return o.Plan, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+// HasPlan returns a boolean if a field has been set.
+func (o *AttributeData) HasPlan() bool {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ProjectCreateInput) SetType(v string) {
-	o.Type = &v
+// SetPlan gets a reference to the given string and assigns it to the Plan field.
+func (o *AttributeData) SetPlan(v string) {
+	o.Plan = &v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *ProjectCreateInput) SetTags(v []string) {
-	o.Tags = v
-}
-
-func (o ProjectCreateInput) MarshalJSON() ([]byte, error) {
+func (o AttributeData) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -210,20 +186,19 @@ func (o ProjectCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ProjectCreateInput) ToMap() (map[string]interface{}, error) {
+func (o AttributeData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Customdata) {
-		toSerialize["customdata"] = o.Customdata
+	if !IsNil(o.Latest) {
+		toSerialize["latest"] = o.Latest
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.PaymentMethodId) {
-		toSerialize["payment_method_id"] = o.PaymentMethodId
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if !IsNil(o.Vendor) {
+		toSerialize["vendor"] = o.Vendor
 	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if !IsNil(o.Plan) {
+		toSerialize["plan"] = o.Plan
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -233,63 +208,62 @@ func (o ProjectCreateInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProjectCreateInput) UnmarshalJSON(bytes []byte) (err error) {
-	varProjectCreateInput := _ProjectCreateInput{}
+func (o *AttributeData) UnmarshalJSON(bytes []byte) (err error) {
+	varAttributeData := _AttributeData{}
 
-	err = json.Unmarshal(bytes, &varProjectCreateInput)
+	err = json.Unmarshal(bytes, &varAttributeData)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ProjectCreateInput(varProjectCreateInput)
+	*o = AttributeData(varAttributeData)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "customdata")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "payment_method_id")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "tags")
+		delete(additionalProperties, "latest")
+		delete(additionalProperties, "model")
+		delete(additionalProperties, "vendor")
+		delete(additionalProperties, "plan")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableProjectCreateInput struct {
-	value *ProjectCreateInput
+type NullableAttributeData struct {
+	value *AttributeData
 	isSet bool
 }
 
-func (v NullableProjectCreateInput) Get() *ProjectCreateInput {
+func (v NullableAttributeData) Get() *AttributeData {
 	return v.value
 }
 
-func (v *NullableProjectCreateInput) Set(val *ProjectCreateInput) {
+func (v *NullableAttributeData) Set(val *AttributeData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectCreateInput) IsSet() bool {
+func (v NullableAttributeData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectCreateInput) Unset() {
+func (v *NullableAttributeData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectCreateInput(val *ProjectCreateInput) *NullableProjectCreateInput {
-	return &NullableProjectCreateInput{value: val, isSet: true}
+func NewNullableAttributeData(val *AttributeData) *NullableAttributeData {
+	return &NullableAttributeData{value: val, isSet: true}
 }
 
-func (v NullableProjectCreateInput) MarshalJSON() ([]byte, error) {
+func (v NullableAttributeData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectCreateInput) UnmarshalJSON(src []byte) error {
+func (v *NullableAttributeData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

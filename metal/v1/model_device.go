@@ -21,22 +21,24 @@ var _ MappedNullable = &Device{}
 
 // Device struct for Device
 type Device struct {
-	AlwaysPxe           *bool                  `json:"always_pxe,omitempty"`
-	BillingCycle        *string                `json:"billing_cycle,omitempty"`
-	BondingMode         *int32                 `json:"bonding_mode,omitempty"`
-	CreatedAt           *time.Time             `json:"created_at,omitempty"`
-	CreatedBy           *DeviceCreatedBy       `json:"created_by,omitempty"`
-	Customdata          map[string]interface{} `json:"customdata,omitempty"`
-	Description         *string                `json:"description,omitempty"`
-	Facility            *Facility              `json:"facility,omitempty"`
-	HardwareReservation *HardwareReservation   `json:"hardware_reservation,omitempty"`
-	Hostname            *string                `json:"hostname,omitempty"`
-	Href                *string                `json:"href,omitempty"`
-	Id                  *string                `json:"id,omitempty"`
-	ImageUrl            *string                `json:"image_url,omitempty"`
-	IpAddresses         []IPAssignment         `json:"ip_addresses,omitempty"`
-	IpxeScriptUrl       *string                `json:"ipxe_script_url,omitempty"`
-	Iqn                 *string                `json:"iqn,omitempty"`
+	AlwaysPxe    *bool                  `json:"always_pxe,omitempty"`
+	BillingCycle *string                `json:"billing_cycle,omitempty"`
+	BondingMode  *int32                 `json:"bonding_mode,omitempty"`
+	CreatedAt    *time.Time             `json:"created_at,omitempty"`
+	CreatedBy    *DeviceCreatedBy       `json:"created_by,omitempty"`
+	Customdata   map[string]interface{} `json:"customdata,omitempty"`
+	Description  *string                `json:"description,omitempty"`
+	Facility     *Facility              `json:"facility,omitempty"`
+	// The UUID of the firmware set to associate with the device.
+	FirmwareSetId       *string              `json:"firmware_set_id,omitempty"`
+	HardwareReservation *HardwareReservation `json:"hardware_reservation,omitempty"`
+	Hostname            *string              `json:"hostname,omitempty"`
+	Href                *string              `json:"href,omitempty"`
+	Id                  *string              `json:"id,omitempty"`
+	ImageUrl            *string              `json:"image_url,omitempty"`
+	IpAddresses         []IPAssignment       `json:"ip_addresses,omitempty"`
+	IpxeScriptUrl       *string              `json:"ipxe_script_url,omitempty"`
+	Iqn                 *string              `json:"iqn,omitempty"`
 	// Prevents accidental deletion of this resource when set to true.
 	Locked *bool        `json:"locked,omitempty"`
 	Metro  *DeviceMetro `json:"metro,omitempty"`
@@ -351,6 +353,38 @@ func (o *Device) HasFacility() bool {
 // SetFacility gets a reference to the given Facility and assigns it to the Facility field.
 func (o *Device) SetFacility(v Facility) {
 	o.Facility = &v
+}
+
+// GetFirmwareSetId returns the FirmwareSetId field value if set, zero value otherwise.
+func (o *Device) GetFirmwareSetId() string {
+	if o == nil || IsNil(o.FirmwareSetId) {
+		var ret string
+		return ret
+	}
+	return *o.FirmwareSetId
+}
+
+// GetFirmwareSetIdOk returns a tuple with the FirmwareSetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetFirmwareSetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.FirmwareSetId) {
+		return nil, false
+	}
+	return o.FirmwareSetId, true
+}
+
+// HasFirmwareSetId returns a boolean if a field has been set.
+func (o *Device) HasFirmwareSetId() bool {
+	if o != nil && !IsNil(o.FirmwareSetId) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareSetId gets a reference to the given string and assigns it to the FirmwareSetId field.
+func (o *Device) SetFirmwareSetId(v string) {
+	o.FirmwareSetId = &v
 }
 
 // GetHardwareReservation returns the HardwareReservation field value if set, zero value otherwise.
@@ -1475,6 +1509,9 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Facility) {
 		toSerialize["facility"] = o.Facility
 	}
+	if !IsNil(o.FirmwareSetId) {
+		toSerialize["firmware_set_id"] = o.FirmwareSetId
+	}
 	if !IsNil(o.HardwareReservation) {
 		toSerialize["hardware_reservation"] = o.HardwareReservation
 	}
@@ -1607,6 +1644,7 @@ func (o *Device) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "customdata")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "facility")
+		delete(additionalProperties, "firmware_set_id")
 		delete(additionalProperties, "hardware_reservation")
 		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "href")

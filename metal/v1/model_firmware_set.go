@@ -13,77 +13,76 @@ package v1
 
 import (
 	"encoding/json"
+	"time"
 )
 
-// checks if the ProjectCreateInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProjectCreateInput{}
+// checks if the FirmwareSet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FirmwareSet{}
 
-// ProjectCreateInput struct for ProjectCreateInput
-type ProjectCreateInput struct {
-	Customdata map[string]interface{} `json:"customdata,omitempty"`
-	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name            string  `json:"name"`
-	PaymentMethodId *string `json:"payment_method_id,omitempty"`
-	// The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.
-	Type                 *string  `json:"type,omitempty"`
-	Tags                 []string `json:"tags,omitempty"`
+// FirmwareSet Represents a Firmware Set
+type FirmwareSet struct {
+	// Firmware Set UUID
+	Uuid string `json:"uuid"`
+	// Firmware Set Name
+	Name string `json:"name"`
+	// Datetime when the block was created.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// Datetime when the block was updated.
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Represents a list of attributes
+	Attributes []Attribute `json:"attributes,omitempty"`
+	// List of components versions
+	ComponentFirmware    []Component `json:"component_firmware,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ProjectCreateInput ProjectCreateInput
+type _FirmwareSet FirmwareSet
 
-// NewProjectCreateInput instantiates a new ProjectCreateInput object
+// NewFirmwareSet instantiates a new FirmwareSet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectCreateInput(name string) *ProjectCreateInput {
-	this := ProjectCreateInput{}
+func NewFirmwareSet(uuid string, name string) *FirmwareSet {
+	this := FirmwareSet{}
+	this.Uuid = uuid
 	this.Name = name
 	return &this
 }
 
-// NewProjectCreateInputWithDefaults instantiates a new ProjectCreateInput object
+// NewFirmwareSetWithDefaults instantiates a new FirmwareSet object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectCreateInputWithDefaults() *ProjectCreateInput {
-	this := ProjectCreateInput{}
+func NewFirmwareSetWithDefaults() *FirmwareSet {
+	this := FirmwareSet{}
 	return &this
 }
 
-// GetCustomdata returns the Customdata field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetCustomdata() map[string]interface{} {
-	if o == nil || IsNil(o.Customdata) {
-		var ret map[string]interface{}
+// GetUuid returns the Uuid field value
+func (o *FirmwareSet) GetUuid() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return o.Customdata
+
+	return o.Uuid
 }
 
-// GetCustomdataOk returns a tuple with the Customdata field value if set, nil otherwise
+// GetUuidOk returns a tuple with the Uuid field value
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetCustomdataOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Customdata) {
-		return map[string]interface{}{}, false
+func (o *FirmwareSet) GetUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return o.Customdata, true
+	return &o.Uuid, true
 }
 
-// HasCustomdata returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasCustomdata() bool {
-	if o != nil && !IsNil(o.Customdata) {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomdata gets a reference to the given map[string]interface{} and assigns it to the Customdata field.
-func (o *ProjectCreateInput) SetCustomdata(v map[string]interface{}) {
-	o.Customdata = v
+// SetUuid sets field value
+func (o *FirmwareSet) SetUuid(v string) {
+	o.Uuid = v
 }
 
 // GetName returns the Name field value
-func (o *ProjectCreateInput) GetName() string {
+func (o *FirmwareSet) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -94,7 +93,7 @@ func (o *ProjectCreateInput) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetNameOk() (*string, bool) {
+func (o *FirmwareSet) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -102,107 +101,139 @@ func (o *ProjectCreateInput) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ProjectCreateInput) SetName(v string) {
+func (o *FirmwareSet) SetName(v string) {
 	o.Name = v
 }
 
-// GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetPaymentMethodId() string {
-	if o == nil || IsNil(o.PaymentMethodId) {
-		var ret string
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *FirmwareSet) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret time.Time
 		return ret
 	}
-	return *o.PaymentMethodId
+	return *o.CreatedAt
 }
 
-// GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetPaymentMethodIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PaymentMethodId) {
+func (o *FirmwareSet) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return o.PaymentMethodId, true
+	return o.CreatedAt, true
 }
 
-// HasPaymentMethodId returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasPaymentMethodId() bool {
-	if o != nil && !IsNil(o.PaymentMethodId) {
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *FirmwareSet) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetPaymentMethodId gets a reference to the given string and assigns it to the PaymentMethodId field.
-func (o *ProjectCreateInput) SetPaymentMethodId(v string) {
-	o.PaymentMethodId = &v
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *FirmwareSet) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *FirmwareSet) GetUpdatedAt() time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret time.Time
 		return ret
 	}
-	return *o.Type
+	return *o.UpdatedAt
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+func (o *FirmwareSet) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return o.Type, true
+	return o.UpdatedAt, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *FirmwareSet) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ProjectCreateInput) SetType(v string) {
-	o.Type = &v
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *FirmwareSet) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *FirmwareSet) GetAttributes() []Attribute {
+	if o == nil || IsNil(o.Attributes) {
+		var ret []Attribute
 		return ret
 	}
-	return o.Tags
+	return o.Attributes
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
+func (o *FirmwareSet) GetAttributesOk() ([]Attribute, bool) {
+	if o == nil || IsNil(o.Attributes) {
 		return nil, false
 	}
-	return o.Tags, true
+	return o.Attributes, true
 }
 
-// HasTags returns a boolean if a field has been set.
-func (o *ProjectCreateInput) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
+// HasAttributes returns a boolean if a field has been set.
+func (o *FirmwareSet) HasAttributes() bool {
+	if o != nil && !IsNil(o.Attributes) {
 		return true
 	}
 
 	return false
 }
 
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *ProjectCreateInput) SetTags(v []string) {
-	o.Tags = v
+// SetAttributes gets a reference to the given []Attribute and assigns it to the Attributes field.
+func (o *FirmwareSet) SetAttributes(v []Attribute) {
+	o.Attributes = v
 }
 
-func (o ProjectCreateInput) MarshalJSON() ([]byte, error) {
+// GetComponentFirmware returns the ComponentFirmware field value if set, zero value otherwise.
+func (o *FirmwareSet) GetComponentFirmware() []Component {
+	if o == nil || IsNil(o.ComponentFirmware) {
+		var ret []Component
+		return ret
+	}
+	return o.ComponentFirmware
+}
+
+// GetComponentFirmwareOk returns a tuple with the ComponentFirmware field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FirmwareSet) GetComponentFirmwareOk() ([]Component, bool) {
+	if o == nil || IsNil(o.ComponentFirmware) {
+		return nil, false
+	}
+	return o.ComponentFirmware, true
+}
+
+// HasComponentFirmware returns a boolean if a field has been set.
+func (o *FirmwareSet) HasComponentFirmware() bool {
+	if o != nil && !IsNil(o.ComponentFirmware) {
+		return true
+	}
+
+	return false
+}
+
+// SetComponentFirmware gets a reference to the given []Component and assigns it to the ComponentFirmware field.
+func (o *FirmwareSet) SetComponentFirmware(v []Component) {
+	o.ComponentFirmware = v
+}
+
+func (o FirmwareSet) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -210,20 +241,21 @@ func (o ProjectCreateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ProjectCreateInput) ToMap() (map[string]interface{}, error) {
+func (o FirmwareSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Customdata) {
-		toSerialize["customdata"] = o.Customdata
-	}
+	toSerialize["uuid"] = o.Uuid
 	toSerialize["name"] = o.Name
-	if !IsNil(o.PaymentMethodId) {
-		toSerialize["payment_method_id"] = o.PaymentMethodId
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if !IsNil(o.Attributes) {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if !IsNil(o.ComponentFirmware) {
+		toSerialize["component_firmware"] = o.ComponentFirmware
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -233,63 +265,64 @@ func (o ProjectCreateInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProjectCreateInput) UnmarshalJSON(bytes []byte) (err error) {
-	varProjectCreateInput := _ProjectCreateInput{}
+func (o *FirmwareSet) UnmarshalJSON(bytes []byte) (err error) {
+	varFirmwareSet := _FirmwareSet{}
 
-	err = json.Unmarshal(bytes, &varProjectCreateInput)
+	err = json.Unmarshal(bytes, &varFirmwareSet)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ProjectCreateInput(varProjectCreateInput)
+	*o = FirmwareSet(varFirmwareSet)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "customdata")
+		delete(additionalProperties, "uuid")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "payment_method_id")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "tags")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "component_firmware")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableProjectCreateInput struct {
-	value *ProjectCreateInput
+type NullableFirmwareSet struct {
+	value *FirmwareSet
 	isSet bool
 }
 
-func (v NullableProjectCreateInput) Get() *ProjectCreateInput {
+func (v NullableFirmwareSet) Get() *FirmwareSet {
 	return v.value
 }
 
-func (v *NullableProjectCreateInput) Set(val *ProjectCreateInput) {
+func (v *NullableFirmwareSet) Set(val *FirmwareSet) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectCreateInput) IsSet() bool {
+func (v NullableFirmwareSet) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectCreateInput) Unset() {
+func (v *NullableFirmwareSet) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectCreateInput(val *ProjectCreateInput) *NullableProjectCreateInput {
-	return &NullableProjectCreateInput{value: val, isSet: true}
+func NewNullableFirmwareSet(val *FirmwareSet) *NullableFirmwareSet {
+	return &NullableFirmwareSet{value: val, isSet: true}
 }
 
-func (v NullableProjectCreateInput) MarshalJSON() ([]byte, error) {
+func (v NullableFirmwareSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectCreateInput) UnmarshalJSON(src []byte) error {
+func (v *NullableFirmwareSet) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

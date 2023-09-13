@@ -179,6 +179,9 @@ tags:
     Facility Management. Check out the product docs to learn more about [Facilities](https://metal.equinix.com/developers/docs/locations/).
   name: Facilities
 - description: |
+    Firmware Sets Management. Notice: Firmware Sets are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+  name: Firmware Sets
+- description: |
     Global BGP Range Management
   externalDocs:
     url: https://metal.equinix.com/developers/docs/bgp/global-bgp/
@@ -1583,7 +1586,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DeviceUpdateInput'
-        description: Facility to update
+        description: Device to update
         required: true
       responses:
         "200":
@@ -1899,6 +1902,40 @@ paths:
       summary: Retrieve the custom metadata of an instance
       tags:
       - Devices
+  /devices/{id}/diagnostics/health/rollup:
+    get:
+      description: Returns the health rollup status of the device.
+      operationId: getDeviceHealthRollup
+      parameters:
+      - description: Device UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceHealthRollup'
+          description: Successful operation
+        "401":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "404":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Device's Health Status
+      tags:
+      - Devices
   /devices/{id}/events:
     get:
       description: Returns a list of events pertaining to a specific device
@@ -1981,6 +2018,42 @@ paths:
       summary: Retrieve device's events
       tags:
       - Events
+  /devices/{id}/firmware-sets:
+    get:
+      description: "Returns the firmware set associated with the device. If a custom\
+        \ firmware set is associated with the device, then it is returned. Otherwise,\
+        \ if a default firmware set is available it is returned."
+      operationId: getDeviceFirmwareSets
+      parameters:
+      - description: Device UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareSetResponse'
+          description: Successful operation
+        "401":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "404":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Device's associated Firmware Set
+      tags:
+      - Devices
   /devices/{id}/ips:
     get:
       description: Returns all ip assignments for a device.
@@ -5263,6 +5336,50 @@ paths:
       summary: Retrieve all facilities visible by the organization
       tags:
       - Facilities
+  /organizations/{id}/firmware-sets:
+    get:
+      description: Returns all firmware sets associated with the organization.
+      operationId: getOrganizationFirmwareSets
+      parameters:
+      - description: Organization UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: page number to return
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: items returned per page.
+        in: query
+        name: per_page
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareSetListResponse'
+          description: Successful operation
+        "401":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "404":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Organization's Firmware Sets
+      tags:
+      - Firmware Sets
   /organizations/{id}/invitations:
     get:
       description: Returns all invitations in an organization.
@@ -8070,6 +8187,50 @@ paths:
       summary: Retrieve all facilities visible by the project
       tags:
       - Facilities
+  /projects/{id}/firmware-sets:
+    get:
+      description: Returns all firmware sets associated with the project or organization.
+      operationId: getProjectFirmwareSets
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: page number to return
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: items returned per page.
+        in: query
+        name: per_page
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareSetListResponse'
+          description: Successful operation
+        "401":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "404":
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Project's Firmware Sets
+      tags:
+      - Firmware Sets
   /projects/{id}/global-bgp-ranges:
     get:
       description: Returns all global bgp ranges for a project
@@ -12385,6 +12546,10 @@ components:
             $ref: '#/components/schemas/SSHKeyCreateInput'
       description: ssh key to create
       required: true
+  responses:
+    Error:
+      description: Error responses are included with 4xx and 5xx HTTP responses from
+        the API service. Either "error" or "errors" will be set.
   schemas:
     Address:
       example:
@@ -12416,6 +12581,59 @@ components:
       - address
       - country
       - zip_code
+      type: object
+    Attribute:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        data:
+          vendor: vendor
+          model: model
+          plan: plan
+          latest: true
+        namespace: namespace
+        created_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        namespace:
+          description: Attribute namespace
+          readOnly: true
+          type: string
+        created_at:
+          description: Datetime when the block was created.
+          format: date-time
+          readOnly: true
+          type: string
+        updated_at:
+          description: Datetime when the block was updated.
+          format: date-time
+          readOnly: true
+          type: string
+        data:
+          $ref: '#/components/schemas/AttributeData'
+      type: object
+    AttributeData:
+      example:
+        vendor: vendor
+        model: model
+        plan: plan
+        latest: true
+      properties:
+        latest:
+          description: Boolean flag to know if the firmware set is the latest for
+            the model and vendor
+          readOnly: true
+          type: boolean
+        model:
+          description: Model on which this firmware set can be applied
+          readOnly: true
+          type: string
+        vendor:
+          description: Vendor on which this firmware set can be applied
+          readOnly: true
+          type: string
+        plan:
+          description: Plan where the firmware set can be applied
+          readOnly: true
+          type: string
       type: object
     AuthToken:
       example:
@@ -12777,6 +12995,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -12854,6 +13073,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -12937,6 +13157,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -13130,6 +13351,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -13216,6 +13438,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -13519,6 +13742,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -13596,6 +13820,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -13679,6 +13904,7 @@ components:
                   - href: href
                   - href: href
                   created_at: 2000-01-23T04:56:07.000+00:00
+                  type: default
                   memberships:
                   - href: href
                   - href: href
@@ -13872,6 +14098,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -13958,6 +14185,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -14176,6 +14404,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -14253,6 +14482,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -14336,6 +14566,7 @@ components:
                   - href: href
                   - href: href
                   created_at: 2000-01-23T04:56:07.000+00:00
+                  type: default
                   memberships:
                   - href: href
                   - href: href
@@ -14529,6 +14760,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -14615,6 +14847,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -15118,6 +15351,77 @@ components:
           $ref: '#/components/schemas/CapacityLevelPerBaremetal'
         type: object
       type: object
+    Component:
+      example:
+        component: bmc
+        filename: filename
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        vendor: equinix
+        upstream_url: upstream_url
+        checksum: checksum
+        created_at: 2000-01-23T04:56:07.000+00:00
+        model:
+        - romed8hm3
+        - romed8hm3
+        repository_url: repository_url
+        uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+        version: 1.5.0
+      properties:
+        uuid:
+          description: Component UUID
+          example: 0516463a-47ee-4809-9a66-ece8c740eed9
+          format: uuid
+          readOnly: true
+          type: string
+        vendor:
+          description: Component vendor
+          example: equinix
+          readOnly: true
+          type: string
+        model:
+          description: List of models where this component version can be applied
+          items:
+            example: romed8hm3
+            type: string
+          readOnly: true
+          type: array
+        filename:
+          description: name of the file
+          readOnly: true
+          type: string
+        version:
+          description: Version of the component
+          example: 1.5.0
+          readOnly: true
+          type: string
+        component:
+          description: Component type
+          example: bmc
+          readOnly: true
+          type: string
+        checksum:
+          description: File checksum
+          readOnly: true
+          type: string
+        upstream_url:
+          description: Location of the file
+          readOnly: true
+          type: string
+        repository_url:
+          description: Location of the file in the repository
+          readOnly: true
+          type: string
+        created_at:
+          description: Datetime when the block was created.
+          format: date-time
+          readOnly: true
+          type: string
+        updated_at:
+          description: Datetime when the block was updated.
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
     Coordinates:
       example:
         latitude: latitude
@@ -15290,6 +15594,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -15550,6 +15855,7 @@ components:
           pricing: "{}"
           slug: slug
           distro_label: distro_label
+        firmware_set_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         billing_cycle: billing_cycle
         customdata:
           key: ""
@@ -15639,6 +15945,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -15849,6 +16156,10 @@ components:
           type: string
         facility:
           $ref: '#/components/schemas/Facility'
+        firmware_set_id:
+          description: The UUID of the firmware set to associate with the device.
+          format: uuid
+          type: string
         hardware_reservation:
           $ref: '#/components/schemas/HardwareReservation'
         hostname:
@@ -16215,6 +16526,26 @@ components:
       - operating_system
       - plan
       type: object
+    DeviceHealthRollup:
+      description: Represents a Device Health Status
+      example:
+        health_rollup: ok
+        updated_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        health_rollup:
+          description: Health Status
+          enum:
+          - ok
+          - warning
+          - critical
+          readOnly: true
+          type: string
+        updated_at:
+          description: Last update of health status.
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
     DeviceCreateInFacilityInput:
       allOf:
       - $ref: '#/components/schemas/FacilityInput'
@@ -16286,6 +16617,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -16546,6 +16878,7 @@ components:
             pricing: "{}"
             slug: slug
             distro_label: distro_label
+          firmware_set_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           billing_cycle: billing_cycle
           customdata:
             key: ""
@@ -16635,6 +16968,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -16885,6 +17219,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -17145,6 +17480,7 @@ components:
             pricing: "{}"
             slug: slug
             distro_label: distro_label
+          firmware_set_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           billing_cycle: billing_cycle
           customdata:
             key: ""
@@ -17234,6 +17570,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -17453,6 +17790,7 @@ components:
         spot_instance: true
         network_frozen: true
         description: description
+        firmware_set_id: firmware_set_id
         always_pxe: true
         billing_cycle: billing_cycle
         customdata:
@@ -17474,6 +17812,8 @@ components:
         description:
           type: string
         hostname:
+          type: string
+        firmware_set_id:
           type: string
         ipxe_script_url:
           type: string
@@ -17882,6 +18222,280 @@ components:
             $ref: '#/components/schemas/Facility'
           type: array
       type: object
+    FirmwareSet:
+      description: Represents a Firmware Set
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        attributes:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          data:
+            vendor: vendor
+            model: model
+            plan: plan
+            latest: true
+          namespace: namespace
+          created_at: 2000-01-23T04:56:07.000+00:00
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          data:
+            vendor: vendor
+            model: model
+            plan: plan
+            latest: true
+          namespace: namespace
+          created_at: 2000-01-23T04:56:07.000+00:00
+        uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+        component_firmware:
+        - component: bmc
+          filename: filename
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          vendor: equinix
+          upstream_url: upstream_url
+          checksum: checksum
+          created_at: 2000-01-23T04:56:07.000+00:00
+          model:
+          - romed8hm3
+          - romed8hm3
+          repository_url: repository_url
+          uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+          version: 1.5.0
+        - component: bmc
+          filename: filename
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          vendor: equinix
+          upstream_url: upstream_url
+          checksum: checksum
+          created_at: 2000-01-23T04:56:07.000+00:00
+          model:
+          - romed8hm3
+          - romed8hm3
+          repository_url: repository_url
+          uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+          version: 1.5.0
+      properties:
+        uuid:
+          description: Firmware Set UUID
+          example: 0516463a-47ee-4809-9a66-ece8c740eed9
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: Firmware Set Name
+          readOnly: true
+          type: string
+        created_at:
+          description: Datetime when the block was created.
+          format: date-time
+          readOnly: true
+          type: string
+        updated_at:
+          description: Datetime when the block was updated.
+          format: date-time
+          readOnly: true
+          type: string
+        attributes:
+          description: Represents a list of attributes
+          items:
+            $ref: '#/components/schemas/Attribute'
+          type: array
+        component_firmware:
+          description: List of components versions
+          items:
+            $ref: '#/components/schemas/Component'
+          type: array
+      required:
+      - name
+      - uuid
+      type: object
+    FirmwareSetList:
+      description: Represents a list of FirmwareSets
+      items:
+        $ref: '#/components/schemas/FirmwareSet'
+      type: array
+    FirmwareSetListResponse:
+      description: Represents collection of Firmware Sets
+      example:
+        total_record_count: 5
+        records:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          attributes:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            data:
+              vendor: vendor
+              model: model
+              plan: plan
+              latest: true
+            namespace: namespace
+            created_at: 2000-01-23T04:56:07.000+00:00
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            data:
+              vendor: vendor
+              model: model
+              plan: plan
+              latest: true
+            namespace: namespace
+            created_at: 2000-01-23T04:56:07.000+00:00
+          uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+          component_firmware:
+          - component: bmc
+            filename: filename
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vendor: equinix
+            upstream_url: upstream_url
+            checksum: checksum
+            created_at: 2000-01-23T04:56:07.000+00:00
+            model:
+            - romed8hm3
+            - romed8hm3
+            repository_url: repository_url
+            uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+            version: 1.5.0
+          - component: bmc
+            filename: filename
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vendor: equinix
+            upstream_url: upstream_url
+            checksum: checksum
+            created_at: 2000-01-23T04:56:07.000+00:00
+            model:
+            - romed8hm3
+            - romed8hm3
+            repository_url: repository_url
+            uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+            version: 1.5.0
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          attributes:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            data:
+              vendor: vendor
+              model: model
+              plan: plan
+              latest: true
+            namespace: namespace
+            created_at: 2000-01-23T04:56:07.000+00:00
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            data:
+              vendor: vendor
+              model: model
+              plan: plan
+              latest: true
+            namespace: namespace
+            created_at: 2000-01-23T04:56:07.000+00:00
+          uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+          component_firmware:
+          - component: bmc
+            filename: filename
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vendor: equinix
+            upstream_url: upstream_url
+            checksum: checksum
+            created_at: 2000-01-23T04:56:07.000+00:00
+            model:
+            - romed8hm3
+            - romed8hm3
+            repository_url: repository_url
+            uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+            version: 1.5.0
+          - component: bmc
+            filename: filename
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vendor: equinix
+            upstream_url: upstream_url
+            checksum: checksum
+            created_at: 2000-01-23T04:56:07.000+00:00
+            model:
+            - romed8hm3
+            - romed8hm3
+            repository_url: repository_url
+            uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+            version: 1.5.0
+        page: 6
+        total_pages: 5
+        page_count: 1
+        page_size: 0
+      properties:
+        page_size:
+          description: Max number of items returned in a page
+          type: integer
+        page:
+          description: Page returned
+          type: integer
+        page_count:
+          description: Items returned in current page
+          type: integer
+        total_pages:
+          description: Total count of pages
+          type: integer
+        total_record_count:
+          description: Total count of items
+          type: integer
+        records:
+          description: Represents a list of FirmwareSets
+          items:
+            $ref: '#/components/schemas/FirmwareSet'
+          type: array
+      type: object
+    FirmwareSetResponse:
+      description: Represents single Firmware set response
+      example:
+        record:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          attributes:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            data:
+              vendor: vendor
+              model: model
+              plan: plan
+              latest: true
+            namespace: namespace
+            created_at: 2000-01-23T04:56:07.000+00:00
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            data:
+              vendor: vendor
+              model: model
+              plan: plan
+              latest: true
+            namespace: namespace
+            created_at: 2000-01-23T04:56:07.000+00:00
+          uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+          component_firmware:
+          - component: bmc
+            filename: filename
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vendor: equinix
+            upstream_url: upstream_url
+            checksum: checksum
+            created_at: 2000-01-23T04:56:07.000+00:00
+            model:
+            - romed8hm3
+            - romed8hm3
+            repository_url: repository_url
+            uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+            version: 1.5.0
+          - component: bmc
+            filename: filename
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            vendor: equinix
+            upstream_url: upstream_url
+            checksum: checksum
+            created_at: 2000-01-23T04:56:07.000+00:00
+            model:
+            - romed8hm3
+            - romed8hm3
+            repository_url: repository_url
+            uuid: 0516463a-47ee-4809-9a66-ece8c740eed9
+            version: 1.5.0
+      properties:
+        record:
+          $ref: '#/components/schemas/FirmwareSet'
+      type: object
     GlobalBgpRange:
       example:
         address_family: 6
@@ -17936,6 +18550,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -18165,6 +18780,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -18330,6 +18946,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -21689,6 +22306,7 @@ components:
         - href: href
         - href: href
         created_at: 2000-01-23T04:56:07.000+00:00
+        type: default
         memberships:
         - href: href
         - href: href
@@ -21811,6 +22429,13 @@ components:
           items:
             $ref: '#/components/schemas/Href'
           type: array
+        type:
+          description: The type of the project. Projects of type `vmce` are part of
+            an in development feature and not available to all customers.
+          enum:
+          - default
+          - vmce
+          type: string
         tags:
           items:
             type: string
@@ -21822,6 +22447,7 @@ components:
         organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         customdata: "{}"
+        type: default
         tags:
         - tags
         - tags
@@ -21840,6 +22466,14 @@ components:
         payment_method_id:
           format: uuid
           type: string
+        type:
+          description: The type of the project. If no type is specified the project
+            type will automatically be `default` Projects of type 'vmce' are part
+            of an in development feature and not available to all customers.
+          enum:
+          - default
+          - vmce
+          type: string
         tags:
           items:
             type: string
@@ -21852,6 +22486,7 @@ components:
         payment_method_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         customdata: "{}"
+        type: default
         tags:
         - tags
         - tags
@@ -21866,6 +22501,14 @@ components:
           type: string
         payment_method_id:
           format: uuid
+          type: string
+        type:
+          description: The type of the project. If no type is specified the project
+            type will automatically be `default` Projects of type 'vmce' are part
+            of an in development feature and not available to all customers.
+          enum:
+          - default
+          - vmce
           type: string
         tags:
           items:
@@ -21895,6 +22538,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -21970,6 +22614,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -24165,6 +24810,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -24555,6 +25201,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -24632,6 +25279,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -24715,6 +25363,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -25005,6 +25654,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -25082,6 +25732,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -25165,6 +25816,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -25359,6 +26011,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -25436,6 +26089,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -25519,6 +26173,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -25726,6 +26381,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -25892,6 +26548,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -26099,6 +26756,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -26176,6 +26834,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -26259,6 +26918,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -26452,6 +27112,7 @@ components:
           - href: href
           - href: href
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: default
           memberships:
           - href: href
           - href: href
@@ -26538,6 +27199,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -26797,6 +27459,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -26874,6 +27537,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -26957,6 +27621,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -27150,6 +27815,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -27236,6 +27902,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -27445,6 +28112,7 @@ components:
             - href: href
             - href: href
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: default
             memberships:
             - href: href
             - href: href
@@ -27765,6 +28433,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -27842,6 +28511,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -27925,6 +28595,7 @@ components:
                   - href: href
                   - href: href
                   created_at: 2000-01-23T04:56:07.000+00:00
+                  type: default
                   memberships:
                   - href: href
                   - href: href
@@ -28118,6 +28789,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -28204,6 +28876,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -28413,6 +29086,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -28619,6 +29293,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -28696,6 +29371,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -28779,6 +29455,7 @@ components:
                   - href: href
                   - href: href
                   created_at: 2000-01-23T04:56:07.000+00:00
+                  type: default
                   memberships:
                   - href: href
                   - href: href
@@ -28972,6 +29649,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href
@@ -29058,6 +29736,7 @@ components:
                 - href: href
                 - href: href
                 created_at: 2000-01-23T04:56:07.000+00:00
+                type: default
                 memberships:
                 - href: href
                 - href: href
@@ -29267,6 +29946,7 @@ components:
               - href: href
               - href: href
               created_at: 2000-01-23T04:56:07.000+00:00
+              type: default
               memberships:
               - href: href
               - href: href

@@ -11,6 +11,7 @@ api_devices.go
 api_emails.go
 api_events.go
 api_facilities.go
+api_firmware_sets.go
 api_hardware_reservations.go
 api_incidents.go
 api_interconnections.go
@@ -45,6 +46,8 @@ client.go
 configuration.go
 docs/ActivateHardwareReservationRequest.md
 docs/Address.md
+docs/Attribute.md
+docs/AttributeData.md
 docs/AuthToken.md
 docs/AuthTokenInput.md
 docs/AuthTokenList.md
@@ -75,6 +78,7 @@ docs/CapacityCheckPerMetroList.md
 docs/CapacityInput.md
 docs/CapacityLevelPerBaremetal.md
 docs/CapacityList.md
+docs/Component.md
 docs/Coordinates.md
 docs/CreateDeviceRequest.md
 docs/CreateEmailInput.md
@@ -90,6 +94,7 @@ docs/DeviceCreateInFacilityInput.md
 docs/DeviceCreateInMetroInput.md
 docs/DeviceCreateInput.md
 docs/DeviceCreatedBy.md
+docs/DeviceHealthRollup.md
 docs/DeviceList.md
 docs/DeviceMetro.md
 docs/DeviceProjectLite.md
@@ -115,6 +120,10 @@ docs/Filesystem.md
 docs/FindIPAddressById200Response.md
 docs/FindMetalGatewayById200Response.md
 docs/FindTrafficTimeframeParameter.md
+docs/FirmwareSet.md
+docs/FirmwareSetListResponse.md
+docs/FirmwareSetResponse.md
+docs/FirmwareSetsApi.md
 docs/GlobalBgpRange.md
 docs/GlobalBgpRangeList.md
 docs/HardwareReservation.md
@@ -317,6 +326,8 @@ go.mod
 go.sum
 model_activate_hardware_reservation_request.go
 model_address.go
+model_attribute.go
+model_attribute_data.go
 model_auth_token.go
 model_auth_token_input.go
 model_auth_token_list.go
@@ -343,6 +354,7 @@ model_capacity_check_per_metro_list.go
 model_capacity_input.go
 model_capacity_level_per_baremetal.go
 model_capacity_list.go
+model_component.go
 model_coordinates.go
 model_create_device_request.go
 model_create_email_input.go
@@ -358,6 +370,7 @@ model_device_create_in_facility_input.go
 model_device_create_in_metro_input.go
 model_device_create_input.go
 model_device_created_by.go
+model_device_health_rollup.go
 model_device_list.go
 model_device_metro.go
 model_device_project_lite.go
@@ -379,6 +392,9 @@ model_filesystem.go
 model_find_ip_address_by_id_200_response.go
 model_find_metal_gateway_by_id_200_response.go
 model_find_traffic_timeframe_parameter.go
+model_firmware_set.go
+model_firmware_set_list_response.go
+model_firmware_set_response.go
 model_global_bgp_range.go
 model_global_bgp_range_list.go
 model_hardware_reservation.go
@@ -555,6 +571,7 @@ test/api_devices_test.go
 test/api_emails_test.go
 test/api_events_test.go
 test/api_facilities_test.go
+test/api_firmware_sets_test.go
 test/api_hardware_reservations_test.go
 test/api_incidents_test.go
 test/api_interconnections_test.go
