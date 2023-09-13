@@ -147,12 +147,12 @@ type VlanVirtualCircuit struct {
 	// For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	Speed *int32 `json:"speed,omitempty"`
 	// The status of a Virtual Circuit is always 'pending' on creation. The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to 'waiting_on_customer_vlan'. For Fabric VCs, it will only change to 'waiting_on_customer_vlan' once the corresponding Fabric connection has been found on the Fabric side. If the Fabric service token associated with the Virtual Circuit hasn't been redeemed on Fabric within the expiry time, it will change to an `expired` status. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation of a Fabric VC) and the necessary set up is done, it will turn into 'Activating' status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus 'active'. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to 'active'. If there are any changes to the VLAN after the Virtual Circuit is in an 'active' status, the status will show 'changing_vlan' if a new VLAN has been provided, or 'deactivating' if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a 'deleting' status, and we will immediately unconfigure the switch for the Virtual Circuit and issue a deletion on any associated Fabric connections. Any associated Metro VLANs on the virtual circuit will also be unassociated after the switch has been successfully unconfigured. If there are any associated Fabric connections, we will only fully delete the Virtual Circuit once we have checked that the Fabric connection was fully deprovisioned on Fabric.
-	Status               string     `json:"status"`
-	Tags                 []string   `json:"tags"`
-	VirtualNetwork       Href       `json:"virtual_network"`
-	Vnid                 int32      `json:"vnid"`
-	CreatedAt            *time.Time `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	Status               VlanVirtualCircuitStatus `json:"status"`
+	Tags                 []string                 `json:"tags"`
+	VirtualNetwork       Href                     `json:"virtual_network"`
+	Vnid                 int32                    `json:"vnid"`
+	CreatedAt            *time.Time               `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time               `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -162,7 +162,7 @@ type _VlanVirtualCircuit VlanVirtualCircuit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVlanVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status string, tags []string, virtualNetwork Href, vnid int32) *VlanVirtualCircuit {
+func NewVlanVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status VlanVirtualCircuitStatus, tags []string, virtualNetwork Href, vnid int32) *VlanVirtualCircuit {
 	this := VlanVirtualCircuit{}
 	this.Bill = bill
 	this.Description = description
@@ -389,9 +389,9 @@ func (o *VlanVirtualCircuit) SetSpeed(v int32) {
 }
 
 // GetStatus returns the Status field value
-func (o *VlanVirtualCircuit) GetStatus() string {
+func (o *VlanVirtualCircuit) GetStatus() VlanVirtualCircuitStatus {
 	if o == nil {
-		var ret string
+		var ret VlanVirtualCircuitStatus
 		return ret
 	}
 
@@ -400,7 +400,7 @@ func (o *VlanVirtualCircuit) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *VlanVirtualCircuit) GetStatusOk() (*string, bool) {
+func (o *VlanVirtualCircuit) GetStatusOk() (*VlanVirtualCircuitStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -408,7 +408,7 @@ func (o *VlanVirtualCircuit) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *VlanVirtualCircuit) SetStatus(v string) {
+func (o *VlanVirtualCircuit) SetStatus(v VlanVirtualCircuitStatus) {
 	o.Status = v
 }
 

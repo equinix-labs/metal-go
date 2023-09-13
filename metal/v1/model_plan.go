@@ -216,11 +216,11 @@ type Plan struct {
 	// Shows which metros the plan is available in, and the metro-based price if it is different from the default price.
 	AvailableInMetros []PlanAvailableInMetrosInner `json:"available_in_metros,omitempty"`
 	// Categories of the plan, like compute or storage. A Plan can belong to multiple categories.
-	Categories      []string `json:"categories,omitempty"`
-	Class           *string  `json:"class,omitempty"`
-	Description     *string  `json:"description,omitempty"`
-	DeploymentTypes []string `json:"deployment_types,omitempty"`
-	Id              *string  `json:"id,omitempty"`
+	Categories      []string            `json:"categories,omitempty"`
+	Class           *string             `json:"class,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	DeploymentTypes PlanDeploymentTypes `json:"deployment_types,omitempty"`
+	Id              *string             `json:"id,omitempty"`
 	// Deprecated. Always return false
 	Legacy  *bool                  `json:"legacy,omitempty"`
 	Line    *string                `json:"line,omitempty"`
@@ -229,7 +229,7 @@ type Plan struct {
 	Slug    *string                `json:"slug,omitempty"`
 	Specs   *PlanSpecs             `json:"specs,omitempty"`
 	// The plan type
-	Type                 *string `json:"type,omitempty"`
+	Type                 *PlanType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -413,9 +413,9 @@ func (o *Plan) SetDescription(v string) {
 }
 
 // GetDeploymentTypes returns the DeploymentTypes field value if set, zero value otherwise.
-func (o *Plan) GetDeploymentTypes() []string {
+func (o *Plan) GetDeploymentTypes() PlanDeploymentTypes {
 	if o == nil || IsNil(o.DeploymentTypes) {
-		var ret []string
+		var ret PlanDeploymentTypes
 		return ret
 	}
 	return o.DeploymentTypes
@@ -423,9 +423,9 @@ func (o *Plan) GetDeploymentTypes() []string {
 
 // GetDeploymentTypesOk returns a tuple with the DeploymentTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetDeploymentTypesOk() ([]string, bool) {
+func (o *Plan) GetDeploymentTypesOk() (PlanDeploymentTypes, bool) {
 	if o == nil || IsNil(o.DeploymentTypes) {
-		return nil, false
+		return o.DeploymentTypes, false
 	}
 	return o.DeploymentTypes, true
 }
@@ -440,7 +440,7 @@ func (o *Plan) HasDeploymentTypes() bool {
 }
 
 // SetDeploymentTypes gets a reference to the given []string and assigns it to the DeploymentTypes field.
-func (o *Plan) SetDeploymentTypes(v []string) {
+func (o *Plan) SetDeploymentTypes(v PlanDeploymentTypes) {
 	o.DeploymentTypes = v
 }
 
@@ -669,9 +669,9 @@ func (o *Plan) SetSpecs(v PlanSpecs) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Plan) GetType() string {
+func (o *Plan) GetType() PlanType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret PlanType
 		return ret
 	}
 	return *o.Type
@@ -679,9 +679,9 @@ func (o *Plan) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetTypeOk() (*string, bool) {
+func (o *Plan) GetTypeOk() (*PlanType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return nil, false
+		return o.Type, false
 	}
 	return o.Type, true
 }
@@ -696,7 +696,7 @@ func (o *Plan) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Plan) SetType(v string) {
+func (o *Plan) SetType(v PlanType) {
 	o.Type = &v
 }
 

@@ -125,10 +125,10 @@ type VrfMetalGateway struct {
 	IpReservation *VrfIpReservation `json:"ip_reservation,omitempty"`
 	Project       *Project          `json:"project,omitempty"`
 	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State                *string         `json:"state,omitempty"`
-	UpdatedAt            *time.Time      `json:"updated_at,omitempty"`
-	VirtualNetwork       *VirtualNetwork `json:"virtual_network,omitempty"`
-	Vrf                  *Vrf            `json:"vrf,omitempty"`
+	State                *VrfMetalGatewayState `json:"state,omitempty"`
+	UpdatedAt            *time.Time            `json:"updated_at,omitempty"`
+	VirtualNetwork       *VirtualNetwork       `json:"virtual_network,omitempty"`
+	Vrf                  *Vrf                  `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -344,9 +344,9 @@ func (o *VrfMetalGateway) SetProject(v Project) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *VrfMetalGateway) GetState() string {
+func (o *VrfMetalGateway) GetState() VrfMetalGatewayState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret VrfMetalGatewayState
 		return ret
 	}
 	return *o.State
@@ -354,9 +354,9 @@ func (o *VrfMetalGateway) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfMetalGateway) GetStateOk() (*string, bool) {
+func (o *VrfMetalGateway) GetStateOk() (*VrfMetalGatewayState, bool) {
 	if o == nil || IsNil(o.State) {
-		return nil, false
+		return o.State, false
 	}
 	return o.State, true
 }
@@ -371,7 +371,7 @@ func (o *VrfMetalGateway) HasState() bool {
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *VrfMetalGateway) SetState(v string) {
+func (o *VrfMetalGateway) SetState(v VrfMetalGatewayState) {
 	o.State = &v
 }
 

@@ -175,8 +175,8 @@ type Device struct {
 	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
 	SshKeys      []Href   `json:"ssh_keys,omitempty"`
 	// The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.
-	State   *string  `json:"state,omitempty"`
-	Storage *Storage `json:"storage,omitempty"`
+	State   *DeviceState `json:"state,omitempty"`
+	Storage *Storage     `json:"storage,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
@@ -1267,9 +1267,9 @@ func (o *Device) SetSshKeys(v []Href) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *Device) GetState() string {
+func (o *Device) GetState() DeviceState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret DeviceState
 		return ret
 	}
 	return *o.State
@@ -1277,9 +1277,9 @@ func (o *Device) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Device) GetStateOk() (*string, bool) {
+func (o *Device) GetStateOk() (*DeviceState, bool) {
 	if o == nil || IsNil(o.State) {
-		return nil, false
+		return o.State, false
 	}
 	return o.State, true
 }
@@ -1294,7 +1294,7 @@ func (o *Device) HasState() bool {
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *Device) SetState(v string) {
+func (o *Device) SetState(v DeviceState) {
 	o.State = &v
 }
 

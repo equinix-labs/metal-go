@@ -213,10 +213,10 @@ func (v *NullablePlanSpecsDrivesInnerCategory) UnmarshalJSON(src []byte) error {
 
 // PlanSpecsDrivesInner struct for PlanSpecsDrivesInner
 type PlanSpecsDrivesInner struct {
-	Count                *int32  `json:"count,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	Size                 *string `json:"size,omitempty"`
-	Category             *string `json:"category,omitempty"`
+	Count                *int32                        `json:"count,omitempty"`
+	Type                 *PlanSpecsDrivesInnerType     `json:"type,omitempty"`
+	Size                 *string                       `json:"size,omitempty"`
+	Category             *PlanSpecsDrivesInnerCategory `json:"category,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -272,9 +272,9 @@ func (o *PlanSpecsDrivesInner) SetCount(v int32) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *PlanSpecsDrivesInner) GetType() string {
+func (o *PlanSpecsDrivesInner) GetType() PlanSpecsDrivesInnerType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret PlanSpecsDrivesInnerType
 		return ret
 	}
 	return *o.Type
@@ -282,9 +282,9 @@ func (o *PlanSpecsDrivesInner) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanSpecsDrivesInner) GetTypeOk() (*string, bool) {
+func (o *PlanSpecsDrivesInner) GetTypeOk() (*PlanSpecsDrivesInnerType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return nil, false
+		return o.Type, false
 	}
 	return o.Type, true
 }
@@ -299,7 +299,7 @@ func (o *PlanSpecsDrivesInner) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PlanSpecsDrivesInner) SetType(v string) {
+func (o *PlanSpecsDrivesInner) SetType(v PlanSpecsDrivesInnerType) {
 	o.Type = &v
 }
 
@@ -336,9 +336,9 @@ func (o *PlanSpecsDrivesInner) SetSize(v string) {
 }
 
 // GetCategory returns the Category field value if set, zero value otherwise.
-func (o *PlanSpecsDrivesInner) GetCategory() string {
+func (o *PlanSpecsDrivesInner) GetCategory() PlanSpecsDrivesInnerCategory {
 	if o == nil || IsNil(o.Category) {
-		var ret string
+		var ret PlanSpecsDrivesInnerCategory
 		return ret
 	}
 	return *o.Category
@@ -346,9 +346,9 @@ func (o *PlanSpecsDrivesInner) GetCategory() string {
 
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanSpecsDrivesInner) GetCategoryOk() (*string, bool) {
+func (o *PlanSpecsDrivesInner) GetCategoryOk() (*PlanSpecsDrivesInnerCategory, bool) {
 	if o == nil || IsNil(o.Category) {
-		return nil, false
+		return o.Category, false
 	}
 	return o.Category, true
 }
@@ -363,7 +363,7 @@ func (o *PlanSpecsDrivesInner) HasCategory() bool {
 }
 
 // SetCategory gets a reference to the given string and assigns it to the Category field.
-func (o *PlanSpecsDrivesInner) SetCategory(v string) {
+func (o *PlanSpecsDrivesInner) SetCategory(v PlanSpecsDrivesInnerCategory) {
 	o.Category = &v
 }
 

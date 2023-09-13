@@ -207,8 +207,8 @@ func (v *NullableCreateSelfServiceReservationRequestPeriodUnit) UnmarshalJSON(sr
 
 // CreateSelfServiceReservationRequestPeriod struct for CreateSelfServiceReservationRequestPeriod
 type CreateSelfServiceReservationRequestPeriod struct {
-	Count                *int32  `json:"count,omitempty"`
-	Unit                 *string `json:"unit,omitempty"`
+	Count                *CreateSelfServiceReservationRequestPeriodCount `json:"count,omitempty"`
+	Unit                 *CreateSelfServiceReservationRequestPeriodUnit  `json:"unit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -232,9 +232,9 @@ func NewCreateSelfServiceReservationRequestPeriodWithDefaults() *CreateSelfServi
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *CreateSelfServiceReservationRequestPeriod) GetCount() int32 {
+func (o *CreateSelfServiceReservationRequestPeriod) GetCount() CreateSelfServiceReservationRequestPeriodCount {
 	if o == nil || IsNil(o.Count) {
-		var ret int32
+		var ret CreateSelfServiceReservationRequestPeriodCount
 		return ret
 	}
 	return *o.Count
@@ -242,9 +242,9 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetCount() int32 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*int32, bool) {
+func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*CreateSelfServiceReservationRequestPeriodCount, bool) {
 	if o == nil || IsNil(o.Count) {
-		return nil, false
+		return o.Count, false
 	}
 	return o.Count, true
 }
@@ -259,14 +259,14 @@ func (o *CreateSelfServiceReservationRequestPeriod) HasCount() bool {
 }
 
 // SetCount gets a reference to the given int32 and assigns it to the Count field.
-func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v int32) {
+func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v CreateSelfServiceReservationRequestPeriodCount) {
 	o.Count = &v
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() string {
+func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() CreateSelfServiceReservationRequestPeriodUnit {
 	if o == nil || IsNil(o.Unit) {
-		var ret string
+		var ret CreateSelfServiceReservationRequestPeriodUnit
 		return ret
 	}
 	return *o.Unit
@@ -274,9 +274,9 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() string {
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSelfServiceReservationRequestPeriod) GetUnitOk() (*string, bool) {
+func (o *CreateSelfServiceReservationRequestPeriod) GetUnitOk() (*CreateSelfServiceReservationRequestPeriodUnit, bool) {
 	if o == nil || IsNil(o.Unit) {
-		return nil, false
+		return o.Unit, false
 	}
 	return o.Unit, true
 }
@@ -291,7 +291,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) HasUnit() bool {
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.
-func (o *CreateSelfServiceReservationRequestPeriod) SetUnit(v string) {
+func (o *CreateSelfServiceReservationRequestPeriod) SetUnit(v CreateSelfServiceReservationRequestPeriodUnit) {
 	o.Unit = &v
 }
 

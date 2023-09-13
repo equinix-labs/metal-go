@@ -135,8 +135,8 @@ type Project struct {
 	UpdatedAt     *time.Time             `json:"updated_at,omitempty"`
 	Volumes       []Href                 `json:"volumes,omitempty"`
 	// The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
-	Type                 *string  `json:"type,omitempty"`
-	Tags                 []string `json:"tags,omitempty"`
+	Type                 *ProjectType `json:"type,omitempty"`
+	Tags                 []string     `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -704,9 +704,9 @@ func (o *Project) SetVolumes(v []Href) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Project) GetType() string {
+func (o *Project) GetType() ProjectType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret ProjectType
 		return ret
 	}
 	return *o.Type
@@ -714,9 +714,9 @@ func (o *Project) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetTypeOk() (*string, bool) {
+func (o *Project) GetTypeOk() (*ProjectType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return nil, false
+		return o.Type, false
 	}
 	return o.Type, true
 }
@@ -731,7 +731,7 @@ func (o *Project) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Project) SetType(v string) {
+func (o *Project) SetType(v ProjectType) {
 	o.Type = &v
 }
 

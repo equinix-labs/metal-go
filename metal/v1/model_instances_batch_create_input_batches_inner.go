@@ -128,7 +128,7 @@ type InstancesBatchCreateInputBatchesInner struct {
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
 	AlwaysPxe *bool `json:"always_pxe,omitempty"`
 	// The billing cycle of the device.
-	BillingCycle *string `json:"billing_cycle,omitempty"`
+	BillingCycle *InstancesBatchCreateInputBatchesInnerBillingCycle `json:"billing_cycle,omitempty"`
 	// Customdata is an arbitrary JSON value that can be accessed via the metadata service.
 	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// Any description of the device or how it will be used. This may be used to inform other API consumers with project access.
@@ -347,9 +347,9 @@ func (o *InstancesBatchCreateInputBatchesInner) SetAlwaysPxe(v bool) {
 }
 
 // GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
-func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() string {
+func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() InstancesBatchCreateInputBatchesInnerBillingCycle {
 	if o == nil || IsNil(o.BillingCycle) {
-		var ret string
+		var ret InstancesBatchCreateInputBatchesInnerBillingCycle
 		return ret
 	}
 	return *o.BillingCycle
@@ -357,9 +357,9 @@ func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() string {
 
 // GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*string, bool) {
+func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*InstancesBatchCreateInputBatchesInnerBillingCycle, bool) {
 	if o == nil || IsNil(o.BillingCycle) {
-		return nil, false
+		return o.BillingCycle, false
 	}
 	return o.BillingCycle, true
 }
@@ -374,7 +374,7 @@ func (o *InstancesBatchCreateInputBatchesInner) HasBillingCycle() bool {
 }
 
 // SetBillingCycle gets a reference to the given string and assigns it to the BillingCycle field.
-func (o *InstancesBatchCreateInputBatchesInner) SetBillingCycle(v string) {
+func (o *InstancesBatchCreateInputBatchesInner) SetBillingCycle(v InstancesBatchCreateInputBatchesInnerBillingCycle) {
 	o.BillingCycle = &v
 }
 

@@ -215,16 +215,16 @@ type DedicatedPortCreateInput struct {
 	// A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports.
 	Metro string `json:"metro"`
 	// The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-	Mode    *string `json:"mode,omitempty"`
-	Name    string  `json:"name"`
-	Project *string `json:"project,omitempty"`
+	Mode    *DedicatedPortCreateInputMode `json:"mode,omitempty"`
+	Name    string                        `json:"name"`
+	Project *string                       `json:"project,omitempty"`
 	// Either 'primary' or 'redundant'.
 	Redundancy string `json:"redundancy"`
 	// A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.
 	Speed *int32   `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
 	// When requesting for a dedicated port, the value of this field should be 'dedicated'.
-	Type string `json:"type"`
+	Type DedicatedPortCreateInputType `json:"type"`
 	// The intended use case of the dedicated port.
 	UseCase              *string `json:"use_case,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -236,7 +236,7 @@ type _DedicatedPortCreateInput DedicatedPortCreateInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDedicatedPortCreateInput(metro string, name string, redundancy string, type_ string) *DedicatedPortCreateInput {
+func NewDedicatedPortCreateInput(metro string, name string, redundancy string, type_ DedicatedPortCreateInputType) *DedicatedPortCreateInput {
 	this := DedicatedPortCreateInput{}
 	this.Metro = metro
 	this.Name = name
@@ -374,9 +374,9 @@ func (o *DedicatedPortCreateInput) SetMetro(v string) {
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *DedicatedPortCreateInput) GetMode() string {
+func (o *DedicatedPortCreateInput) GetMode() DedicatedPortCreateInputMode {
 	if o == nil || IsNil(o.Mode) {
-		var ret string
+		var ret DedicatedPortCreateInputMode
 		return ret
 	}
 	return *o.Mode
@@ -384,9 +384,9 @@ func (o *DedicatedPortCreateInput) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DedicatedPortCreateInput) GetModeOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetModeOk() (*DedicatedPortCreateInputMode, bool) {
 	if o == nil || IsNil(o.Mode) {
-		return nil, false
+		return o.Mode, false
 	}
 	return o.Mode, true
 }
@@ -401,7 +401,7 @@ func (o *DedicatedPortCreateInput) HasMode() bool {
 }
 
 // SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *DedicatedPortCreateInput) SetMode(v string) {
+func (o *DedicatedPortCreateInput) SetMode(v DedicatedPortCreateInputMode) {
 	o.Mode = &v
 }
 
@@ -550,9 +550,9 @@ func (o *DedicatedPortCreateInput) SetTags(v []string) {
 }
 
 // GetType returns the Type field value
-func (o *DedicatedPortCreateInput) GetType() string {
+func (o *DedicatedPortCreateInput) GetType() DedicatedPortCreateInputType {
 	if o == nil {
-		var ret string
+		var ret DedicatedPortCreateInputType
 		return ret
 	}
 
@@ -561,7 +561,7 @@ func (o *DedicatedPortCreateInput) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DedicatedPortCreateInput) GetTypeOk() (*string, bool) {
+func (o *DedicatedPortCreateInput) GetTypeOk() (*DedicatedPortCreateInputType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -569,7 +569,7 @@ func (o *DedicatedPortCreateInput) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *DedicatedPortCreateInput) SetType(v string) {
+func (o *DedicatedPortCreateInput) SetType(v DedicatedPortCreateInputType) {
 	o.Type = v
 }
 

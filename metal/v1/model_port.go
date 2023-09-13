@@ -223,11 +223,11 @@ type Port struct {
 	Id                        *string `json:"id,omitempty"`
 	Name                      *string `json:"name,omitempty"`
 	// Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports
-	Type *string `json:"type,omitempty"`
+	Type *PortType `json:"type,omitempty"`
 	// Composite network type of the bond
-	NetworkType          *string         `json:"network_type,omitempty"`
-	NativeVirtualNetwork *VirtualNetwork `json:"native_virtual_network,omitempty"`
-	VirtualNetworks      []Href          `json:"virtual_networks,omitempty"`
+	NetworkType          *PortNetworkType `json:"network_type,omitempty"`
+	NativeVirtualNetwork *VirtualNetwork  `json:"native_virtual_network,omitempty"`
+	VirtualNetworks      []Href           `json:"virtual_networks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -443,9 +443,9 @@ func (o *Port) SetName(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Port) GetType() string {
+func (o *Port) GetType() PortType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret PortType
 		return ret
 	}
 	return *o.Type
@@ -453,9 +453,9 @@ func (o *Port) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetTypeOk() (*string, bool) {
+func (o *Port) GetTypeOk() (*PortType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return nil, false
+		return o.Type, false
 	}
 	return o.Type, true
 }
@@ -470,14 +470,14 @@ func (o *Port) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Port) SetType(v string) {
+func (o *Port) SetType(v PortType) {
 	o.Type = &v
 }
 
 // GetNetworkType returns the NetworkType field value if set, zero value otherwise.
-func (o *Port) GetNetworkType() string {
+func (o *Port) GetNetworkType() PortNetworkType {
 	if o == nil || IsNil(o.NetworkType) {
-		var ret string
+		var ret PortNetworkType
 		return ret
 	}
 	return *o.NetworkType
@@ -485,9 +485,9 @@ func (o *Port) GetNetworkType() string {
 
 // GetNetworkTypeOk returns a tuple with the NetworkType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Port) GetNetworkTypeOk() (*string, bool) {
+func (o *Port) GetNetworkTypeOk() (*PortNetworkType, bool) {
 	if o == nil || IsNil(o.NetworkType) {
-		return nil, false
+		return o.NetworkType, false
 	}
 	return o.NetworkType, true
 }
@@ -502,7 +502,7 @@ func (o *Port) HasNetworkType() bool {
 }
 
 // SetNetworkType gets a reference to the given string and assigns it to the NetworkType field.
-func (o *Port) SetNetworkType(v string) {
+func (o *Port) SetNetworkType(v PortNetworkType) {
 	o.NetworkType = &v
 }
 

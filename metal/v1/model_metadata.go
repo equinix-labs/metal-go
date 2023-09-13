@@ -152,9 +152,9 @@ type Metadata struct {
 	SshKeys       []string               `json:"ssh_keys,omitempty"`
 	SwitchShortId *string                `json:"switch_short_id,omitempty"`
 	// The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.
-	State                *string  `json:"state,omitempty"`
-	Tags                 []string `json:"tags,omitempty"`
-	Volumes              []string `json:"volumes,omitempty"`
+	State                *MetadataState `json:"state,omitempty"`
+	Tags                 []string       `json:"tags,omitempty"`
+	Volumes              []string       `json:"volumes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -658,9 +658,9 @@ func (o *Metadata) SetSwitchShortId(v string) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *Metadata) GetState() string {
+func (o *Metadata) GetState() MetadataState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret MetadataState
 		return ret
 	}
 	return *o.State
@@ -668,9 +668,9 @@ func (o *Metadata) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Metadata) GetStateOk() (*string, bool) {
+func (o *Metadata) GetStateOk() (*MetadataState, bool) {
 	if o == nil || IsNil(o.State) {
-		return nil, false
+		return o.State, false
 	}
 	return o.State, true
 }
@@ -685,7 +685,7 @@ func (o *Metadata) HasState() bool {
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *Metadata) SetState(v string) {
+func (o *Metadata) SetState(v MetadataState) {
 	o.State = &v
 }
 

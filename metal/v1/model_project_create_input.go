@@ -120,8 +120,8 @@ type ProjectCreateInput struct {
 	Name            string  `json:"name"`
 	PaymentMethodId *string `json:"payment_method_id,omitempty"`
 	// The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.
-	Type                 *string  `json:"type,omitempty"`
-	Tags                 []string `json:"tags,omitempty"`
+	Type                 *ProjectCreateInputType `json:"type,omitempty"`
+	Tags                 []string                `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -234,9 +234,9 @@ func (o *ProjectCreateInput) SetPaymentMethodId(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *ProjectCreateInput) GetType() string {
+func (o *ProjectCreateInput) GetType() ProjectCreateInputType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret ProjectCreateInputType
 		return ret
 	}
 	return *o.Type
@@ -244,9 +244,9 @@ func (o *ProjectCreateInput) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateInput) GetTypeOk() (*string, bool) {
+func (o *ProjectCreateInput) GetTypeOk() (*ProjectCreateInputType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return nil, false
+		return o.Type, false
 	}
 	return o.Type, true
 }
@@ -261,7 +261,7 @@ func (o *ProjectCreateInput) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ProjectCreateInput) SetType(v string) {
+func (o *ProjectCreateInput) SetType(v ProjectCreateInputType) {
 	o.Type = &v
 }
 

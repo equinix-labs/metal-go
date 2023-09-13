@@ -216,9 +216,9 @@ type BgpConfig struct {
 	Asn       *int32     `json:"asn,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.
-	DeploymentType *string `json:"deployment_type,omitempty"`
-	Href           *string `json:"href,omitempty"`
-	Id             *string `json:"id,omitempty"`
+	DeploymentType *BgpConfigDeploymentType `json:"deployment_type,omitempty"`
+	Href           *string                  `json:"href,omitempty"`
+	Id             *string                  `json:"id,omitempty"`
 	// The maximum number of route filters allowed per server
 	MaxPrefix *int32 `json:"max_prefix,omitempty"`
 	// (Optional) Password for BGP session in plaintext (not a checksum)
@@ -232,7 +232,7 @@ type BgpConfig struct {
 	// The direct connections between neighboring routers that want to exchange routing information.
 	Sessions []BgpSession `json:"sessions,omitempty"`
 	// Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.
-	Status               *string `json:"status,omitempty"`
+	Status               *BgpConfigStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -324,9 +324,9 @@ func (o *BgpConfig) SetCreatedAt(v time.Time) {
 }
 
 // GetDeploymentType returns the DeploymentType field value if set, zero value otherwise.
-func (o *BgpConfig) GetDeploymentType() string {
+func (o *BgpConfig) GetDeploymentType() BgpConfigDeploymentType {
 	if o == nil || IsNil(o.DeploymentType) {
-		var ret string
+		var ret BgpConfigDeploymentType
 		return ret
 	}
 	return *o.DeploymentType
@@ -334,9 +334,9 @@ func (o *BgpConfig) GetDeploymentType() string {
 
 // GetDeploymentTypeOk returns a tuple with the DeploymentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetDeploymentTypeOk() (*string, bool) {
+func (o *BgpConfig) GetDeploymentTypeOk() (*BgpConfigDeploymentType, bool) {
 	if o == nil || IsNil(o.DeploymentType) {
-		return nil, false
+		return o.DeploymentType, false
 	}
 	return o.DeploymentType, true
 }
@@ -351,7 +351,7 @@ func (o *BgpConfig) HasDeploymentType() bool {
 }
 
 // SetDeploymentType gets a reference to the given string and assigns it to the DeploymentType field.
-func (o *BgpConfig) SetDeploymentType(v string) {
+func (o *BgpConfig) SetDeploymentType(v BgpConfigDeploymentType) {
 	o.DeploymentType = &v
 }
 
@@ -655,9 +655,9 @@ func (o *BgpConfig) SetSessions(v []BgpSession) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *BgpConfig) GetStatus() string {
+func (o *BgpConfig) GetStatus() BgpConfigStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret BgpConfigStatus
 		return ret
 	}
 	return *o.Status
@@ -665,9 +665,9 @@ func (o *BgpConfig) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetStatusOk() (*string, bool) {
+func (o *BgpConfig) GetStatusOk() (*BgpConfigStatus, bool) {
 	if o == nil || IsNil(o.Status) {
-		return nil, false
+		return o.Status, false
 	}
 	return o.Status, true
 }
@@ -682,7 +682,7 @@ func (o *BgpConfig) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *BgpConfig) SetStatus(v string) {
+func (o *BgpConfig) SetStatus(v BgpConfigStatus) {
 	o.Status = &v
 }
 

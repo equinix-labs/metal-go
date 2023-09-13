@@ -118,8 +118,8 @@ type InterconnectionUpdateInput struct {
 	ContactEmail *string `json:"contact_email,omitempty"`
 	Description  *string `json:"description,omitempty"`
 	// The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-	Mode *string `json:"mode,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Mode *InterconnectionUpdateInputMode `json:"mode,omitempty"`
+	Name *string                         `json:"name,omitempty"`
 	// Updating from 'redundant' to 'primary' will remove a secondary port, while updating from 'primary' to 'redundant' will add one.
 	Redundancy           *string  `json:"redundancy,omitempty"`
 	Tags                 []string `json:"tags,omitempty"`
@@ -210,9 +210,9 @@ func (o *InterconnectionUpdateInput) SetDescription(v string) {
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *InterconnectionUpdateInput) GetMode() string {
+func (o *InterconnectionUpdateInput) GetMode() InterconnectionUpdateInputMode {
 	if o == nil || IsNil(o.Mode) {
-		var ret string
+		var ret InterconnectionUpdateInputMode
 		return ret
 	}
 	return *o.Mode
@@ -220,9 +220,9 @@ func (o *InterconnectionUpdateInput) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionUpdateInput) GetModeOk() (*string, bool) {
+func (o *InterconnectionUpdateInput) GetModeOk() (*InterconnectionUpdateInputMode, bool) {
 	if o == nil || IsNil(o.Mode) {
-		return nil, false
+		return o.Mode, false
 	}
 	return o.Mode, true
 }
@@ -237,7 +237,7 @@ func (o *InterconnectionUpdateInput) HasMode() bool {
 }
 
 // SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *InterconnectionUpdateInput) SetMode(v string) {
+func (o *InterconnectionUpdateInput) SetMode(v InterconnectionUpdateInputMode) {
 	o.Mode = &v
 }
 

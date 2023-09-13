@@ -136,7 +136,7 @@ type IPAssignment struct {
 	ParentBlock   *ParentBlock       `json:"parent_block,omitempty"`
 	Public        *bool              `json:"public,omitempty"`
 	// Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network.
-	State *string `json:"state,omitempty"`
+	State *IPAssignmentState `json:"state,omitempty"`
 	// Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
 	NextHop              *string `json:"next_hop,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -706,9 +706,9 @@ func (o *IPAssignment) SetPublic(v bool) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *IPAssignment) GetState() string {
+func (o *IPAssignment) GetState() IPAssignmentState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret IPAssignmentState
 		return ret
 	}
 	return *o.State
@@ -716,9 +716,9 @@ func (o *IPAssignment) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAssignment) GetStateOk() (*string, bool) {
+func (o *IPAssignment) GetStateOk() (*IPAssignmentState, bool) {
 	if o == nil || IsNil(o.State) {
-		return nil, false
+		return o.State, false
 	}
 	return o.State, true
 }
@@ -733,7 +733,7 @@ func (o *IPAssignment) HasState() bool {
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *IPAssignment) SetState(v string) {
+func (o *IPAssignment) SetState(v IPAssignmentState) {
 	o.State = &v
 }
 

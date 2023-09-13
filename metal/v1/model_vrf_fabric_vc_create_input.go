@@ -217,12 +217,12 @@ type VrfFabricVcCreateInput struct {
 	// Either 'primary' or 'redundant'.
 	Redundancy string `json:"redundancy"`
 	// Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	ServiceTokenType string `json:"service_token_type"`
+	ServiceTokenType VrfFabricVcCreateInputServiceTokenType `json:"service_token_type"`
 	// A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.
 	Speed *int32   `json:"speed,omitempty"`
 	Tags  []string `json:"tags,omitempty"`
 	// When requesting for a Fabric VC, the value of this field should be 'shared'.
-	Type string `json:"type"`
+	Type VrfFabricVcCreateInputType `json:"type"`
 	// This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits of Fabric VCs on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
 	Vrfs                 []string `json:"vrfs"`
 	AdditionalProperties map[string]interface{}
@@ -234,7 +234,7 @@ type _VrfFabricVcCreateInput VrfFabricVcCreateInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType string, type_ string, vrfs []string) *VrfFabricVcCreateInput {
+func NewVrfFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType VrfFabricVcCreateInputServiceTokenType, type_ VrfFabricVcCreateInputType, vrfs []string) *VrfFabricVcCreateInput {
 	this := VrfFabricVcCreateInput{}
 	this.Metro = metro
 	this.Name = name
@@ -422,9 +422,9 @@ func (o *VrfFabricVcCreateInput) SetRedundancy(v string) {
 }
 
 // GetServiceTokenType returns the ServiceTokenType field value
-func (o *VrfFabricVcCreateInput) GetServiceTokenType() string {
+func (o *VrfFabricVcCreateInput) GetServiceTokenType() VrfFabricVcCreateInputServiceTokenType {
 	if o == nil {
-		var ret string
+		var ret VrfFabricVcCreateInputServiceTokenType
 		return ret
 	}
 
@@ -433,7 +433,7 @@ func (o *VrfFabricVcCreateInput) GetServiceTokenType() string {
 
 // GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value
 // and a boolean to check if the value has been set.
-func (o *VrfFabricVcCreateInput) GetServiceTokenTypeOk() (*string, bool) {
+func (o *VrfFabricVcCreateInput) GetServiceTokenTypeOk() (*VrfFabricVcCreateInputServiceTokenType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -441,7 +441,7 @@ func (o *VrfFabricVcCreateInput) GetServiceTokenTypeOk() (*string, bool) {
 }
 
 // SetServiceTokenType sets field value
-func (o *VrfFabricVcCreateInput) SetServiceTokenType(v string) {
+func (o *VrfFabricVcCreateInput) SetServiceTokenType(v VrfFabricVcCreateInputServiceTokenType) {
 	o.ServiceTokenType = v
 }
 
@@ -510,9 +510,9 @@ func (o *VrfFabricVcCreateInput) SetTags(v []string) {
 }
 
 // GetType returns the Type field value
-func (o *VrfFabricVcCreateInput) GetType() string {
+func (o *VrfFabricVcCreateInput) GetType() VrfFabricVcCreateInputType {
 	if o == nil {
-		var ret string
+		var ret VrfFabricVcCreateInputType
 		return ret
 	}
 
@@ -521,7 +521,7 @@ func (o *VrfFabricVcCreateInput) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *VrfFabricVcCreateInput) GetTypeOk() (*string, bool) {
+func (o *VrfFabricVcCreateInput) GetTypeOk() (*VrfFabricVcCreateInputType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -529,7 +529,7 @@ func (o *VrfFabricVcCreateInput) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *VrfFabricVcCreateInput) SetType(v string) {
+func (o *VrfFabricVcCreateInput) SetType(v VrfFabricVcCreateInputType) {
 	o.Type = v
 }
 

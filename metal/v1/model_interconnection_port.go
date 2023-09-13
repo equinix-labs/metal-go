@@ -218,9 +218,9 @@ type InterconnectionPort struct {
 	Id           *string `json:"id,omitempty"`
 	Organization *Href   `json:"organization,omitempty"`
 	// Either 'primary' or 'secondary'.
-	Role *string `json:"role,omitempty"`
+	Role *InterconnectionPortRole `json:"role,omitempty"`
 	// For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.
-	Status *string `json:"status,omitempty"`
+	Status *InterconnectionPortStatus `json:"status,omitempty"`
 	// A switch 'short ID'
 	SwitchId             *string          `json:"switch_id,omitempty"`
 	VirtualCircuits      []VirtualCircuit `json:"virtual_circuits,omitempty"`
@@ -315,9 +315,9 @@ func (o *InterconnectionPort) SetOrganization(v Href) {
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
-func (o *InterconnectionPort) GetRole() string {
+func (o *InterconnectionPort) GetRole() InterconnectionPortRole {
 	if o == nil || IsNil(o.Role) {
-		var ret string
+		var ret InterconnectionPortRole
 		return ret
 	}
 	return *o.Role
@@ -325,9 +325,9 @@ func (o *InterconnectionPort) GetRole() string {
 
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionPort) GetRoleOk() (*string, bool) {
+func (o *InterconnectionPort) GetRoleOk() (*InterconnectionPortRole, bool) {
 	if o == nil || IsNil(o.Role) {
-		return nil, false
+		return o.Role, false
 	}
 	return o.Role, true
 }
@@ -342,14 +342,14 @@ func (o *InterconnectionPort) HasRole() bool {
 }
 
 // SetRole gets a reference to the given string and assigns it to the Role field.
-func (o *InterconnectionPort) SetRole(v string) {
+func (o *InterconnectionPort) SetRole(v InterconnectionPortRole) {
 	o.Role = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *InterconnectionPort) GetStatus() string {
+func (o *InterconnectionPort) GetStatus() InterconnectionPortStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret InterconnectionPortStatus
 		return ret
 	}
 	return *o.Status
@@ -357,9 +357,9 @@ func (o *InterconnectionPort) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterconnectionPort) GetStatusOk() (*string, bool) {
+func (o *InterconnectionPort) GetStatusOk() (*InterconnectionPortStatus, bool) {
 	if o == nil || IsNil(o.Status) {
-		return nil, false
+		return o.Status, false
 	}
 	return o.Status, true
 }
@@ -374,7 +374,7 @@ func (o *InterconnectionPort) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *InterconnectionPort) SetStatus(v string) {
+func (o *InterconnectionPort) SetStatus(v InterconnectionPortStatus) {
 	o.Status = &v
 }
 

@@ -125,7 +125,7 @@ type PortVlanAssignmentBatch struct {
 	Id                   *string                                       `json:"id,omitempty"`
 	Port                 *Port                                         `json:"port,omitempty"`
 	Quantity             *int32                                        `json:"quantity,omitempty"`
-	State                *string                                       `json:"state,omitempty"`
+	State                *PortVlanAssignmentBatchState                 `json:"state,omitempty"`
 	UpdatedAt            *time.Time                                    `json:"updated_at,omitempty"`
 	VlanAssignments      []PortVlanAssignmentBatchVlanAssignmentsInner `json:"vlan_assignments,omitempty"`
 	Project              *Href                                         `json:"project,omitempty"`
@@ -312,9 +312,9 @@ func (o *PortVlanAssignmentBatch) SetQuantity(v int32) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatch) GetState() string {
+func (o *PortVlanAssignmentBatch) GetState() PortVlanAssignmentBatchState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret PortVlanAssignmentBatchState
 		return ret
 	}
 	return *o.State
@@ -322,9 +322,9 @@ func (o *PortVlanAssignmentBatch) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatch) GetStateOk() (*string, bool) {
+func (o *PortVlanAssignmentBatch) GetStateOk() (*PortVlanAssignmentBatchState, bool) {
 	if o == nil || IsNil(o.State) {
-		return nil, false
+		return o.State, false
 	}
 	return o.State, true
 }
@@ -339,7 +339,7 @@ func (o *PortVlanAssignmentBatch) HasState() bool {
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *PortVlanAssignmentBatch) SetState(v string) {
+func (o *PortVlanAssignmentBatch) SetState(v PortVlanAssignmentBatchState) {
 	o.State = &v
 }
 

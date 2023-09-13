@@ -313,11 +313,11 @@ type FabricServiceToken struct {
 	// The maximum speed that can be selected on the Fabric Portal when configuring a interconnection with either  an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this is what the billing is based off of, and can be one of the following options, '50mbps', '200mbps', '500mbps', '1gbps', '2gbps', '5gbps' or '10gbps'. For Fabric VCs (Fabric Billed), this will default to 10Gbps.
 	MaxAllowedSpeed *int32 `json:"max_allowed_speed,omitempty"`
 	// Either primary or secondary, depending on which interconnection the service token is associated to.
-	Role *string `json:"role,omitempty"`
+	Role *FabricServiceTokenRole `json:"role,omitempty"`
 	// Either 'a_side' or 'z_side', depending on which type of Fabric VC was requested.
-	ServiceTokenType *string `json:"service_token_type,omitempty"`
+	ServiceTokenType *FabricServiceTokenServiceTokenType `json:"service_token_type,omitempty"`
 	// The state of the service token that corresponds with the service token state on Fabric. An 'inactive' state refers to a token that has not been redeemed yet on the Fabric side, an 'active' state refers to a token that has already been redeemed, and an 'expired' state refers to a token that has reached its expiry time.
-	State                *string `json:"state,omitempty"`
+	State                *FabricServiceTokenState `json:"state,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -437,9 +437,9 @@ func (o *FabricServiceToken) SetMaxAllowedSpeed(v int32) {
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
-func (o *FabricServiceToken) GetRole() string {
+func (o *FabricServiceToken) GetRole() FabricServiceTokenRole {
 	if o == nil || IsNil(o.Role) {
-		var ret string
+		var ret FabricServiceTokenRole
 		return ret
 	}
 	return *o.Role
@@ -447,9 +447,9 @@ func (o *FabricServiceToken) GetRole() string {
 
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FabricServiceToken) GetRoleOk() (*string, bool) {
+func (o *FabricServiceToken) GetRoleOk() (*FabricServiceTokenRole, bool) {
 	if o == nil || IsNil(o.Role) {
-		return nil, false
+		return o.Role, false
 	}
 	return o.Role, true
 }
@@ -464,14 +464,14 @@ func (o *FabricServiceToken) HasRole() bool {
 }
 
 // SetRole gets a reference to the given string and assigns it to the Role field.
-func (o *FabricServiceToken) SetRole(v string) {
+func (o *FabricServiceToken) SetRole(v FabricServiceTokenRole) {
 	o.Role = &v
 }
 
 // GetServiceTokenType returns the ServiceTokenType field value if set, zero value otherwise.
-func (o *FabricServiceToken) GetServiceTokenType() string {
+func (o *FabricServiceToken) GetServiceTokenType() FabricServiceTokenServiceTokenType {
 	if o == nil || IsNil(o.ServiceTokenType) {
-		var ret string
+		var ret FabricServiceTokenServiceTokenType
 		return ret
 	}
 	return *o.ServiceTokenType
@@ -479,9 +479,9 @@ func (o *FabricServiceToken) GetServiceTokenType() string {
 
 // GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FabricServiceToken) GetServiceTokenTypeOk() (*string, bool) {
+func (o *FabricServiceToken) GetServiceTokenTypeOk() (*FabricServiceTokenServiceTokenType, bool) {
 	if o == nil || IsNil(o.ServiceTokenType) {
-		return nil, false
+		return o.ServiceTokenType, false
 	}
 	return o.ServiceTokenType, true
 }
@@ -496,14 +496,14 @@ func (o *FabricServiceToken) HasServiceTokenType() bool {
 }
 
 // SetServiceTokenType gets a reference to the given string and assigns it to the ServiceTokenType field.
-func (o *FabricServiceToken) SetServiceTokenType(v string) {
+func (o *FabricServiceToken) SetServiceTokenType(v FabricServiceTokenServiceTokenType) {
 	o.ServiceTokenType = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *FabricServiceToken) GetState() string {
+func (o *FabricServiceToken) GetState() FabricServiceTokenState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret FabricServiceTokenState
 		return ret
 	}
 	return *o.State
@@ -511,9 +511,9 @@ func (o *FabricServiceToken) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FabricServiceToken) GetStateOk() (*string, bool) {
+func (o *FabricServiceToken) GetStateOk() (*FabricServiceTokenState, bool) {
 	if o == nil || IsNil(o.State) {
-		return nil, false
+		return o.State, false
 	}
 	return o.State, true
 }
@@ -528,7 +528,7 @@ func (o *FabricServiceToken) HasState() bool {
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *FabricServiceToken) SetState(v string) {
+func (o *FabricServiceToken) SetState(v FabricServiceTokenState) {
 	o.State = &v
 }
 
