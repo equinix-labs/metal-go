@@ -106,7 +106,7 @@ put:
       application/json:
         schema:
           $ref: '../../components/schemas/DeviceUpdateInput.yaml'
-    description: Facility to update
+    description: Device to update
     required: true
   responses:
     "200":
