@@ -279,9 +279,13 @@ func (o UserUpdateInput) ToMap() (map[string]interface{}, error) {
 func (o *UserUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varUserUpdateInput := _UserUpdateInput{}
 
-	if err = json.Unmarshal(bytes, &varUserUpdateInput); err == nil {
-		*o = UserUpdateInput(varUserUpdateInput)
+	err = json.Unmarshal(bytes, &varUserUpdateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UserUpdateInput(varUserUpdateInput)
 
 	additionalProperties := make(map[string]interface{})
 

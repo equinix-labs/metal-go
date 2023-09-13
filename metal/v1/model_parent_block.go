@@ -207,9 +207,13 @@ func (o ParentBlock) ToMap() (map[string]interface{}, error) {
 func (o *ParentBlock) UnmarshalJSON(bytes []byte) (err error) {
 	varParentBlock := _ParentBlock{}
 
-	if err = json.Unmarshal(bytes, &varParentBlock); err == nil {
-		*o = ParentBlock(varParentBlock)
+	err = json.Unmarshal(bytes, &varParentBlock)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ParentBlock(varParentBlock)
 
 	additionalProperties := make(map[string]interface{})
 

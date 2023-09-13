@@ -193,9 +193,13 @@ func (o BgpConfigRequestInput) ToMap() (map[string]interface{}, error) {
 func (o *BgpConfigRequestInput) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpConfigRequestInput := _BgpConfigRequestInput{}
 
-	if err = json.Unmarshal(bytes, &varBgpConfigRequestInput); err == nil {
-		*o = BgpConfigRequestInput(varBgpConfigRequestInput)
+	err = json.Unmarshal(bytes, &varBgpConfigRequestInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpConfigRequestInput(varBgpConfigRequestInput)
 
 	additionalProperties := make(map[string]interface{})
 

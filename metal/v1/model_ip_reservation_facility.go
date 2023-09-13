@@ -316,9 +316,13 @@ func (o IPReservationFacility) ToMap() (map[string]interface{}, error) {
 func (o *IPReservationFacility) UnmarshalJSON(bytes []byte) (err error) {
 	varIPReservationFacility := _IPReservationFacility{}
 
-	if err = json.Unmarshal(bytes, &varIPReservationFacility); err == nil {
-		*o = IPReservationFacility(varIPReservationFacility)
+	err = json.Unmarshal(bytes, &varIPReservationFacility)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IPReservationFacility(varIPReservationFacility)
 
 	additionalProperties := make(map[string]interface{})
 

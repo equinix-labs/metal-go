@@ -316,9 +316,13 @@ func (o Facility) ToMap() (map[string]interface{}, error) {
 func (o *Facility) UnmarshalJSON(bytes []byte) (err error) {
 	varFacility := _Facility{}
 
-	if err = json.Unmarshal(bytes, &varFacility); err == nil {
-		*o = Facility(varFacility)
+	err = json.Unmarshal(bytes, &varFacility)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Facility(varFacility)
 
 	additionalProperties := make(map[string]interface{})
 

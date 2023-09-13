@@ -99,9 +99,13 @@ func (o Userdata) ToMap() (map[string]interface{}, error) {
 func (o *Userdata) UnmarshalJSON(bytes []byte) (err error) {
 	varUserdata := _Userdata{}
 
-	if err = json.Unmarshal(bytes, &varUserdata); err == nil {
-		*o = Userdata(varUserdata)
+	err = json.Unmarshal(bytes, &varUserdata)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Userdata(varUserdata)
 
 	additionalProperties := make(map[string]interface{})
 

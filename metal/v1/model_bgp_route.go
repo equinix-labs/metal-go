@@ -135,9 +135,13 @@ func (o BgpRoute) ToMap() (map[string]interface{}, error) {
 func (o *BgpRoute) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpRoute := _BgpRoute{}
 
-	if err = json.Unmarshal(bytes, &varBgpRoute); err == nil {
-		*o = BgpRoute(varBgpRoute)
+	err = json.Unmarshal(bytes, &varBgpRoute)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpRoute(varBgpRoute)
 
 	additionalProperties := make(map[string]interface{})
 

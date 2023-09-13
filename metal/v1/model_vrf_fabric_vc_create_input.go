@@ -412,9 +412,13 @@ func (o VrfFabricVcCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *VrfFabricVcCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfFabricVcCreateInput := _VrfFabricVcCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varVrfFabricVcCreateInput); err == nil {
-		*o = VrfFabricVcCreateInput(varVrfFabricVcCreateInput)
+	err = json.Unmarshal(bytes, &varVrfFabricVcCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfFabricVcCreateInput(varVrfFabricVcCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

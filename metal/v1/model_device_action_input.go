@@ -276,9 +276,13 @@ func (o DeviceActionInput) ToMap() (map[string]interface{}, error) {
 func (o *DeviceActionInput) UnmarshalJSON(bytes []byte) (err error) {
 	varDeviceActionInput := _DeviceActionInput{}
 
-	if err = json.Unmarshal(bytes, &varDeviceActionInput); err == nil {
-		*o = DeviceActionInput(varDeviceActionInput)
+	err = json.Unmarshal(bytes, &varDeviceActionInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = DeviceActionInput(varDeviceActionInput)
 
 	additionalProperties := make(map[string]interface{})
 

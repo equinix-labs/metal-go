@@ -99,9 +99,13 @@ func (o PlanAvailableInInnerPrice) ToMap() (map[string]interface{}, error) {
 func (o *PlanAvailableInInnerPrice) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanAvailableInInnerPrice := _PlanAvailableInInnerPrice{}
 
-	if err = json.Unmarshal(bytes, &varPlanAvailableInInnerPrice); err == nil {
-		*o = PlanAvailableInInnerPrice(varPlanAvailableInInnerPrice)
+	err = json.Unmarshal(bytes, &varPlanAvailableInInnerPrice)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanAvailableInInnerPrice(varPlanAvailableInInnerPrice)
 
 	additionalProperties := make(map[string]interface{})
 

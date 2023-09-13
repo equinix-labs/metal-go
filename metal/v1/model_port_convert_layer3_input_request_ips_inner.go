@@ -135,9 +135,13 @@ func (o PortConvertLayer3InputRequestIpsInner) ToMap() (map[string]interface{}, 
 func (o *PortConvertLayer3InputRequestIpsInner) UnmarshalJSON(bytes []byte) (err error) {
 	varPortConvertLayer3InputRequestIpsInner := _PortConvertLayer3InputRequestIpsInner{}
 
-	if err = json.Unmarshal(bytes, &varPortConvertLayer3InputRequestIpsInner); err == nil {
-		*o = PortConvertLayer3InputRequestIpsInner(varPortConvertLayer3InputRequestIpsInner)
+	err = json.Unmarshal(bytes, &varPortConvertLayer3InputRequestIpsInner)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PortConvertLayer3InputRequestIpsInner(varPortConvertLayer3InputRequestIpsInner)
 
 	additionalProperties := make(map[string]interface{})
 

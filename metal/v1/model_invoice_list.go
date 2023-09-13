@@ -99,9 +99,13 @@ func (o InvoiceList) ToMap() (map[string]interface{}, error) {
 func (o *InvoiceList) UnmarshalJSON(bytes []byte) (err error) {
 	varInvoiceList := _InvoiceList{}
 
-	if err = json.Unmarshal(bytes, &varInvoiceList); err == nil {
-		*o = InvoiceList(varInvoiceList)
+	err = json.Unmarshal(bytes, &varInvoiceList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InvoiceList(varInvoiceList)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -99,9 +99,13 @@ func (o AuthTokenList) ToMap() (map[string]interface{}, error) {
 func (o *AuthTokenList) UnmarshalJSON(bytes []byte) (err error) {
 	varAuthTokenList := _AuthTokenList{}
 
-	if err = json.Unmarshal(bytes, &varAuthTokenList); err == nil {
-		*o = AuthTokenList(varAuthTokenList)
+	err = json.Unmarshal(bytes, &varAuthTokenList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = AuthTokenList(varAuthTokenList)
 
 	additionalProperties := make(map[string]interface{})
 

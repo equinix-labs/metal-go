@@ -280,9 +280,13 @@ func (o TransferRequest) ToMap() (map[string]interface{}, error) {
 func (o *TransferRequest) UnmarshalJSON(bytes []byte) (err error) {
 	varTransferRequest := _TransferRequest{}
 
-	if err = json.Unmarshal(bytes, &varTransferRequest); err == nil {
-		*o = TransferRequest(varTransferRequest)
+	err = json.Unmarshal(bytes, &varTransferRequest)
+
+	if err != nil {
+		return err
 	}
+
+	*o = TransferRequest(varTransferRequest)
 
 	additionalProperties := make(map[string]interface{})
 

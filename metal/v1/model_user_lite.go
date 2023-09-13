@@ -416,9 +416,13 @@ func (o UserLite) ToMap() (map[string]interface{}, error) {
 func (o *UserLite) UnmarshalJSON(bytes []byte) (err error) {
 	varUserLite := _UserLite{}
 
-	if err = json.Unmarshal(bytes, &varUserLite); err == nil {
-		*o = UserLite(varUserLite)
+	err = json.Unmarshal(bytes, &varUserLite)
+
+	if err != nil {
+		return err
 	}
+
+	*o = UserLite(varUserLite)
 
 	additionalProperties := make(map[string]interface{})
 

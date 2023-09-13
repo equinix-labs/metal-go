@@ -99,9 +99,13 @@ func (o NewPassword) ToMap() (map[string]interface{}, error) {
 func (o *NewPassword) UnmarshalJSON(bytes []byte) (err error) {
 	varNewPassword := _NewPassword{}
 
-	if err = json.Unmarshal(bytes, &varNewPassword); err == nil {
-		*o = NewPassword(varNewPassword)
+	err = json.Unmarshal(bytes, &varNewPassword)
+
+	if err != nil {
+		return err
 	}
+
+	*o = NewPassword(varNewPassword)
 
 	additionalProperties := make(map[string]interface{})
 

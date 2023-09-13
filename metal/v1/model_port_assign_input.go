@@ -100,9 +100,13 @@ func (o PortAssignInput) ToMap() (map[string]interface{}, error) {
 func (o *PortAssignInput) UnmarshalJSON(bytes []byte) (err error) {
 	varPortAssignInput := _PortAssignInput{}
 
-	if err = json.Unmarshal(bytes, &varPortAssignInput); err == nil {
-		*o = PortAssignInput(varPortAssignInput)
+	err = json.Unmarshal(bytes, &varPortAssignInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PortAssignInput(varPortAssignInput)
 
 	additionalProperties := make(map[string]interface{})
 

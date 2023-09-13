@@ -137,9 +137,13 @@ func (o Error) ToMap() (map[string]interface{}, error) {
 func (o *Error) UnmarshalJSON(bytes []byte) (err error) {
 	varError := _Error{}
 
-	if err = json.Unmarshal(bytes, &varError); err == nil {
-		*o = Error(varError)
+	err = json.Unmarshal(bytes, &varError)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Error(varError)
 
 	additionalProperties := make(map[string]interface{})
 

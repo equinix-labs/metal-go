@@ -536,9 +536,13 @@ func (o VirtualNetwork) ToMap() (map[string]interface{}, error) {
 func (o *VirtualNetwork) UnmarshalJSON(bytes []byte) (err error) {
 	varVirtualNetwork := _VirtualNetwork{}
 
-	if err = json.Unmarshal(bytes, &varVirtualNetwork); err == nil {
-		*o = VirtualNetwork(varVirtualNetwork)
+	err = json.Unmarshal(bytes, &varVirtualNetwork)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VirtualNetwork(varVirtualNetwork)
 
 	additionalProperties := make(map[string]interface{})
 

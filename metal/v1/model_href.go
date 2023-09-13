@@ -90,9 +90,13 @@ func (o Href) ToMap() (map[string]interface{}, error) {
 func (o *Href) UnmarshalJSON(bytes []byte) (err error) {
 	varHref := _Href{}
 
-	if err = json.Unmarshal(bytes, &varHref); err == nil {
-		*o = Href(varHref)
+	err = json.Unmarshal(bytes, &varHref)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Href(varHref)
 
 	additionalProperties := make(map[string]interface{})
 

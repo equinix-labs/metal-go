@@ -99,9 +99,13 @@ func (o ActivateHardwareReservationRequest) ToMap() (map[string]interface{}, err
 func (o *ActivateHardwareReservationRequest) UnmarshalJSON(bytes []byte) (err error) {
 	varActivateHardwareReservationRequest := _ActivateHardwareReservationRequest{}
 
-	if err = json.Unmarshal(bytes, &varActivateHardwareReservationRequest); err == nil {
-		*o = ActivateHardwareReservationRequest(varActivateHardwareReservationRequest)
+	err = json.Unmarshal(bytes, &varActivateHardwareReservationRequest)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ActivateHardwareReservationRequest(varActivateHardwareReservationRequest)
 
 	additionalProperties := make(map[string]interface{})
 

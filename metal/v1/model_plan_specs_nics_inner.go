@@ -135,9 +135,13 @@ func (o PlanSpecsNicsInner) ToMap() (map[string]interface{}, error) {
 func (o *PlanSpecsNicsInner) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanSpecsNicsInner := _PlanSpecsNicsInner{}
 
-	if err = json.Unmarshal(bytes, &varPlanSpecsNicsInner); err == nil {
-		*o = PlanSpecsNicsInner(varPlanSpecsNicsInner)
+	err = json.Unmarshal(bytes, &varPlanSpecsNicsInner)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanSpecsNicsInner(varPlanSpecsNicsInner)
 
 	additionalProperties := make(map[string]interface{})
 

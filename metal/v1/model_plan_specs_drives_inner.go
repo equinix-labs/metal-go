@@ -207,9 +207,13 @@ func (o PlanSpecsDrivesInner) ToMap() (map[string]interface{}, error) {
 func (o *PlanSpecsDrivesInner) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanSpecsDrivesInner := _PlanSpecsDrivesInner{}
 
-	if err = json.Unmarshal(bytes, &varPlanSpecsDrivesInner); err == nil {
-		*o = PlanSpecsDrivesInner(varPlanSpecsDrivesInner)
+	err = json.Unmarshal(bytes, &varPlanSpecsDrivesInner)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanSpecsDrivesInner(varPlanSpecsDrivesInner)
 
 	additionalProperties := make(map[string]interface{})
 

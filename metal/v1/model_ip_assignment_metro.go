@@ -207,9 +207,13 @@ func (o IPAssignmentMetro) ToMap() (map[string]interface{}, error) {
 func (o *IPAssignmentMetro) UnmarshalJSON(bytes []byte) (err error) {
 	varIPAssignmentMetro := _IPAssignmentMetro{}
 
-	if err = json.Unmarshal(bytes, &varIPAssignmentMetro); err == nil {
-		*o = IPAssignmentMetro(varIPAssignmentMetro)
+	err = json.Unmarshal(bytes, &varIPAssignmentMetro)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IPAssignmentMetro(varIPAssignmentMetro)
 
 	additionalProperties := make(map[string]interface{})
 

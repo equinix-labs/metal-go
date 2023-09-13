@@ -99,9 +99,13 @@ func (o LicenseList) ToMap() (map[string]interface{}, error) {
 func (o *LicenseList) UnmarshalJSON(bytes []byte) (err error) {
 	varLicenseList := _LicenseList{}
 
-	if err = json.Unmarshal(bytes, &varLicenseList); err == nil {
-		*o = LicenseList(varLicenseList)
+	err = json.Unmarshal(bytes, &varLicenseList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = LicenseList(varLicenseList)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -99,9 +99,13 @@ func (o SpotPricesHistoryReport) ToMap() (map[string]interface{}, error) {
 func (o *SpotPricesHistoryReport) UnmarshalJSON(bytes []byte) (err error) {
 	varSpotPricesHistoryReport := _SpotPricesHistoryReport{}
 
-	if err = json.Unmarshal(bytes, &varSpotPricesHistoryReport); err == nil {
-		*o = SpotPricesHistoryReport(varSpotPricesHistoryReport)
+	err = json.Unmarshal(bytes, &varSpotPricesHistoryReport)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SpotPricesHistoryReport(varSpotPricesHistoryReport)
 
 	additionalProperties := make(map[string]interface{})
 

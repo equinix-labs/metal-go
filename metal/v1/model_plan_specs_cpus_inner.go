@@ -135,9 +135,13 @@ func (o PlanSpecsCpusInner) ToMap() (map[string]interface{}, error) {
 func (o *PlanSpecsCpusInner) UnmarshalJSON(bytes []byte) (err error) {
 	varPlanSpecsCpusInner := _PlanSpecsCpusInner{}
 
-	if err = json.Unmarshal(bytes, &varPlanSpecsCpusInner); err == nil {
-		*o = PlanSpecsCpusInner(varPlanSpecsCpusInner)
+	err = json.Unmarshal(bytes, &varPlanSpecsCpusInner)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PlanSpecsCpusInner(varPlanSpecsCpusInner)
 
 	additionalProperties := make(map[string]interface{})
 

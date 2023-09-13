@@ -171,9 +171,13 @@ func (o MetadataNetworkNetworkBonding) ToMap() (map[string]interface{}, error) {
 func (o *MetadataNetworkNetworkBonding) UnmarshalJSON(bytes []byte) (err error) {
 	varMetadataNetworkNetworkBonding := _MetadataNetworkNetworkBonding{}
 
-	if err = json.Unmarshal(bytes, &varMetadataNetworkNetworkBonding); err == nil {
-		*o = MetadataNetworkNetworkBonding(varMetadataNetworkNetworkBonding)
+	err = json.Unmarshal(bytes, &varMetadataNetworkNetworkBonding)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MetadataNetworkNetworkBonding(varMetadataNetworkNetworkBonding)
 
 	additionalProperties := make(map[string]interface{})
 

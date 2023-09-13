@@ -99,9 +99,13 @@ func (o IPAvailabilitiesList) ToMap() (map[string]interface{}, error) {
 func (o *IPAvailabilitiesList) UnmarshalJSON(bytes []byte) (err error) {
 	varIPAvailabilitiesList := _IPAvailabilitiesList{}
 
-	if err = json.Unmarshal(bytes, &varIPAvailabilitiesList); err == nil {
-		*o = IPAvailabilitiesList(varIPAvailabilitiesList)
+	err = json.Unmarshal(bytes, &varIPAvailabilitiesList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IPAvailabilitiesList(varIPAvailabilitiesList)
 
 	additionalProperties := make(map[string]interface{})
 

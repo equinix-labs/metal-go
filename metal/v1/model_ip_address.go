@@ -215,9 +215,13 @@ func (o IPAddress) ToMap() (map[string]interface{}, error) {
 func (o *IPAddress) UnmarshalJSON(bytes []byte) (err error) {
 	varIPAddress := _IPAddress{}
 
-	if err = json.Unmarshal(bytes, &varIPAddress); err == nil {
-		*o = IPAddress(varIPAddress)
+	err = json.Unmarshal(bytes, &varIPAddress)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IPAddress(varIPAddress)
 
 	additionalProperties := make(map[string]interface{})
 

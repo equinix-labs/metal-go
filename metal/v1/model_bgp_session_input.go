@@ -141,9 +141,13 @@ func (o BGPSessionInput) ToMap() (map[string]interface{}, error) {
 func (o *BGPSessionInput) UnmarshalJSON(bytes []byte) (err error) {
 	varBGPSessionInput := _BGPSessionInput{}
 
-	if err = json.Unmarshal(bytes, &varBGPSessionInput); err == nil {
-		*o = BGPSessionInput(varBGPSessionInput)
+	err = json.Unmarshal(bytes, &varBGPSessionInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BGPSessionInput(varBGPSessionInput)
 
 	additionalProperties := make(map[string]interface{})
 

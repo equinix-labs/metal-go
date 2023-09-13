@@ -135,9 +135,13 @@ func (o EventList) ToMap() (map[string]interface{}, error) {
 func (o *EventList) UnmarshalJSON(bytes []byte) (err error) {
 	varEventList := _EventList{}
 
-	if err = json.Unmarshal(bytes, &varEventList); err == nil {
-		*o = EventList(varEventList)
+	err = json.Unmarshal(bytes, &varEventList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = EventList(varEventList)
 
 	additionalProperties := make(map[string]interface{})
 

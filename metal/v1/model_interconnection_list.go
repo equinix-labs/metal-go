@@ -135,9 +135,13 @@ func (o InterconnectionList) ToMap() (map[string]interface{}, error) {
 func (o *InterconnectionList) UnmarshalJSON(bytes []byte) (err error) {
 	varInterconnectionList := _InterconnectionList{}
 
-	if err = json.Unmarshal(bytes, &varInterconnectionList); err == nil {
-		*o = InterconnectionList(varInterconnectionList)
+	err = json.Unmarshal(bytes, &varInterconnectionList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InterconnectionList(varInterconnectionList)
 
 	additionalProperties := make(map[string]interface{})
 

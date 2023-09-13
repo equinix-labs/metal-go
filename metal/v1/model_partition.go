@@ -171,9 +171,13 @@ func (o Partition) ToMap() (map[string]interface{}, error) {
 func (o *Partition) UnmarshalJSON(bytes []byte) (err error) {
 	varPartition := _Partition{}
 
-	if err = json.Unmarshal(bytes, &varPartition); err == nil {
-		*o = Partition(varPartition)
+	err = json.Unmarshal(bytes, &varPartition)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Partition(varPartition)
 
 	additionalProperties := make(map[string]interface{})
 

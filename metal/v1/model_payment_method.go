@@ -604,9 +604,13 @@ func (o PaymentMethod) ToMap() (map[string]interface{}, error) {
 func (o *PaymentMethod) UnmarshalJSON(bytes []byte) (err error) {
 	varPaymentMethod := _PaymentMethod{}
 
-	if err = json.Unmarshal(bytes, &varPaymentMethod); err == nil {
-		*o = PaymentMethod(varPaymentMethod)
+	err = json.Unmarshal(bytes, &varPaymentMethod)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PaymentMethod(varPaymentMethod)
 
 	additionalProperties := make(map[string]interface{})
 

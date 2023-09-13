@@ -388,9 +388,13 @@ func (o SSHKey) ToMap() (map[string]interface{}, error) {
 func (o *SSHKey) UnmarshalJSON(bytes []byte) (err error) {
 	varSSHKey := _SSHKey{}
 
-	if err = json.Unmarshal(bytes, &varSSHKey); err == nil {
-		*o = SSHKey(varSSHKey)
+	err = json.Unmarshal(bytes, &varSSHKey)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SSHKey(varSSHKey)
 
 	additionalProperties := make(map[string]interface{})
 

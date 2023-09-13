@@ -421,9 +421,13 @@ func (o VlanFabricVcCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *VlanFabricVcCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varVlanFabricVcCreateInput := _VlanFabricVcCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varVlanFabricVcCreateInput); err == nil {
-		*o = VlanFabricVcCreateInput(varVlanFabricVcCreateInput)
+	err = json.Unmarshal(bytes, &varVlanFabricVcCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VlanFabricVcCreateInput(varVlanFabricVcCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

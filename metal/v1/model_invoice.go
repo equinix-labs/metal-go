@@ -567,9 +567,13 @@ func (o Invoice) ToMap() (map[string]interface{}, error) {
 func (o *Invoice) UnmarshalJSON(bytes []byte) (err error) {
 	varInvoice := _Invoice{}
 
-	if err = json.Unmarshal(bytes, &varInvoice); err == nil {
-		*o = Invoice(varInvoice)
+	err = json.Unmarshal(bytes, &varInvoice)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Invoice(varInvoice)
 
 	additionalProperties := make(map[string]interface{})
 

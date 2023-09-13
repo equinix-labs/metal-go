@@ -99,9 +99,13 @@ func (o BatchesList) ToMap() (map[string]interface{}, error) {
 func (o *BatchesList) UnmarshalJSON(bytes []byte) (err error) {
 	varBatchesList := _BatchesList{}
 
-	if err = json.Unmarshal(bytes, &varBatchesList); err == nil {
-		*o = BatchesList(varBatchesList)
+	err = json.Unmarshal(bytes, &varBatchesList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BatchesList(varBatchesList)
 
 	additionalProperties := make(map[string]interface{})
 

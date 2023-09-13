@@ -99,9 +99,13 @@ func (o CapacityList) ToMap() (map[string]interface{}, error) {
 func (o *CapacityList) UnmarshalJSON(bytes []byte) (err error) {
 	varCapacityList := _CapacityList{}
 
-	if err = json.Unmarshal(bytes, &varCapacityList); err == nil {
-		*o = CapacityList(varCapacityList)
+	err = json.Unmarshal(bytes, &varCapacityList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CapacityList(varCapacityList)
 
 	additionalProperties := make(map[string]interface{})
 

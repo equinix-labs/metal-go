@@ -459,9 +459,13 @@ func (o SelfServiceReservationItemResponse) ToMap() (map[string]interface{}, err
 func (o *SelfServiceReservationItemResponse) UnmarshalJSON(bytes []byte) (err error) {
 	varSelfServiceReservationItemResponse := _SelfServiceReservationItemResponse{}
 
-	if err = json.Unmarshal(bytes, &varSelfServiceReservationItemResponse); err == nil {
-		*o = SelfServiceReservationItemResponse(varSelfServiceReservationItemResponse)
+	err = json.Unmarshal(bytes, &varSelfServiceReservationItemResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SelfServiceReservationItemResponse(varSelfServiceReservationItemResponse)
 
 	additionalProperties := make(map[string]interface{})
 

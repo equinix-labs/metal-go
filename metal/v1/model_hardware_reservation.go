@@ -575,9 +575,13 @@ func (o HardwareReservation) ToMap() (map[string]interface{}, error) {
 func (o *HardwareReservation) UnmarshalJSON(bytes []byte) (err error) {
 	varHardwareReservation := _HardwareReservation{}
 
-	if err = json.Unmarshal(bytes, &varHardwareReservation); err == nil {
-		*o = HardwareReservation(varHardwareReservation)
+	err = json.Unmarshal(bytes, &varHardwareReservation)
+
+	if err != nil {
+		return err
 	}
+
+	*o = HardwareReservation(varHardwareReservation)
 
 	additionalProperties := make(map[string]interface{})
 

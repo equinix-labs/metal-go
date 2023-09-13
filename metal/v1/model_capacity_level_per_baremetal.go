@@ -99,9 +99,13 @@ func (o CapacityLevelPerBaremetal) ToMap() (map[string]interface{}, error) {
 func (o *CapacityLevelPerBaremetal) UnmarshalJSON(bytes []byte) (err error) {
 	varCapacityLevelPerBaremetal := _CapacityLevelPerBaremetal{}
 
-	if err = json.Unmarshal(bytes, &varCapacityLevelPerBaremetal); err == nil {
-		*o = CapacityLevelPerBaremetal(varCapacityLevelPerBaremetal)
+	err = json.Unmarshal(bytes, &varCapacityLevelPerBaremetal)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CapacityLevelPerBaremetal(varCapacityLevelPerBaremetal)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -688,9 +688,13 @@ func (o Vrf) ToMap() (map[string]interface{}, error) {
 func (o *Vrf) UnmarshalJSON(bytes []byte) (err error) {
 	varVrf := _Vrf{}
 
-	if err = json.Unmarshal(bytes, &varVrf); err == nil {
-		*o = Vrf(varVrf)
+	err = json.Unmarshal(bytes, &varVrf)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Vrf(varVrf)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -424,9 +424,13 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	varEvent := _Event{}
 
-	if err = json.Unmarshal(bytes, &varEvent); err == nil {
-		*o = Event(varEvent)
+	err = json.Unmarshal(bytes, &varEvent)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Event(varEvent)
 
 	additionalProperties := make(map[string]interface{})
 

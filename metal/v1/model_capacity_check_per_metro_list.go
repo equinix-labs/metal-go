@@ -99,9 +99,13 @@ func (o CapacityCheckPerMetroList) ToMap() (map[string]interface{}, error) {
 func (o *CapacityCheckPerMetroList) UnmarshalJSON(bytes []byte) (err error) {
 	varCapacityCheckPerMetroList := _CapacityCheckPerMetroList{}
 
-	if err = json.Unmarshal(bytes, &varCapacityCheckPerMetroList); err == nil {
-		*o = CapacityCheckPerMetroList(varCapacityCheckPerMetroList)
+	err = json.Unmarshal(bytes, &varCapacityCheckPerMetroList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = CapacityCheckPerMetroList(varCapacityCheckPerMetroList)
 
 	additionalProperties := make(map[string]interface{})
 

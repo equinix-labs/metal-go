@@ -61,6 +61,7 @@ codegen:
 		-p disallowAdditionalPropertiesIfNotPresent=false \
 		--git-user-id ${GIT_ORG} \
 		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
+		-t /local/templates \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_DIR}/${SPEC_ROOT_FILE}
 

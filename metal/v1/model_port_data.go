@@ -137,9 +137,13 @@ func (o PortData) ToMap() (map[string]interface{}, error) {
 func (o *PortData) UnmarshalJSON(bytes []byte) (err error) {
 	varPortData := _PortData{}
 
-	if err = json.Unmarshal(bytes, &varPortData); err == nil {
-		*o = PortData(varPortData)
+	err = json.Unmarshal(bytes, &varPortData)
+
+	if err != nil {
+		return err
 	}
+
+	*o = PortData(varPortData)
 
 	additionalProperties := make(map[string]interface{})
 

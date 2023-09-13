@@ -135,9 +135,13 @@ func (o ProjectList) ToMap() (map[string]interface{}, error) {
 func (o *ProjectList) UnmarshalJSON(bytes []byte) (err error) {
 	varProjectList := _ProjectList{}
 
-	if err = json.Unmarshal(bytes, &varProjectList); err == nil {
-		*o = ProjectList(varProjectList)
+	err = json.Unmarshal(bytes, &varProjectList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ProjectList(varProjectList)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -288,9 +288,13 @@ func (o Address) ToMap() (map[string]interface{}, error) {
 func (o *Address) UnmarshalJSON(bytes []byte) (err error) {
 	varAddress := _Address{}
 
-	if err = json.Unmarshal(bytes, &varAddress); err == nil {
-		*o = Address(varAddress)
+	err = json.Unmarshal(bytes, &varAddress)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Address(varAddress)
 
 	additionalProperties := make(map[string]interface{})
 

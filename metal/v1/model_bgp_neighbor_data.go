@@ -433,9 +433,13 @@ func (o BgpNeighborData) ToMap() (map[string]interface{}, error) {
 func (o *BgpNeighborData) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpNeighborData := _BgpNeighborData{}
 
-	if err = json.Unmarshal(bytes, &varBgpNeighborData); err == nil {
-		*o = BgpNeighborData(varBgpNeighborData)
+	err = json.Unmarshal(bytes, &varBgpNeighborData)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpNeighborData(varBgpNeighborData)
 
 	additionalProperties := make(map[string]interface{})
 

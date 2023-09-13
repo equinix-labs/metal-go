@@ -171,9 +171,13 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 func (o *Storage) UnmarshalJSON(bytes []byte) (err error) {
 	varStorage := _Storage{}
 
-	if err = json.Unmarshal(bytes, &varStorage); err == nil {
-		*o = Storage(varStorage)
+	err = json.Unmarshal(bytes, &varStorage)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Storage(varStorage)
 
 	additionalProperties := make(map[string]interface{})
 

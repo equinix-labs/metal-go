@@ -207,9 +207,13 @@ func (o Mount) ToMap() (map[string]interface{}, error) {
 func (o *Mount) UnmarshalJSON(bytes []byte) (err error) {
 	varMount := _Mount{}
 
-	if err = json.Unmarshal(bytes, &varMount); err == nil {
-		*o = Mount(varMount)
+	err = json.Unmarshal(bytes, &varMount)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Mount(varMount)
 
 	additionalProperties := make(map[string]interface{})
 

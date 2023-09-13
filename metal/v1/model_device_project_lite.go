@@ -90,9 +90,13 @@ func (o DeviceProjectLite) ToMap() (map[string]interface{}, error) {
 func (o *DeviceProjectLite) UnmarshalJSON(bytes []byte) (err error) {
 	varDeviceProjectLite := _DeviceProjectLite{}
 
-	if err = json.Unmarshal(bytes, &varDeviceProjectLite); err == nil {
-		*o = DeviceProjectLite(varDeviceProjectLite)
+	err = json.Unmarshal(bytes, &varDeviceProjectLite)
+
+	if err != nil {
+		return err
 	}
+
+	*o = DeviceProjectLite(varDeviceProjectLite)
 
 	additionalProperties := make(map[string]interface{})
 

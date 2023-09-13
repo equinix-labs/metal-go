@@ -99,9 +99,13 @@ func (o TransferRequestInput) ToMap() (map[string]interface{}, error) {
 func (o *TransferRequestInput) UnmarshalJSON(bytes []byte) (err error) {
 	varTransferRequestInput := _TransferRequestInput{}
 
-	if err = json.Unmarshal(bytes, &varTransferRequestInput); err == nil {
-		*o = TransferRequestInput(varTransferRequestInput)
+	err = json.Unmarshal(bytes, &varTransferRequestInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = TransferRequestInput(varTransferRequestInput)
 
 	additionalProperties := make(map[string]interface{})
 

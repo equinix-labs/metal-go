@@ -91,9 +91,13 @@ func (o MetroInput) ToMap() (map[string]interface{}, error) {
 func (o *MetroInput) UnmarshalJSON(bytes []byte) (err error) {
 	varMetroInput := _MetroInput{}
 
-	if err = json.Unmarshal(bytes, &varMetroInput); err == nil {
-		*o = MetroInput(varMetroInput)
+	err = json.Unmarshal(bytes, &varMetroInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MetroInput(varMetroInput)
 
 	additionalProperties := make(map[string]interface{})
 

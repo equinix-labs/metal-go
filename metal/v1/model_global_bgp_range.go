@@ -243,9 +243,13 @@ func (o GlobalBgpRange) ToMap() (map[string]interface{}, error) {
 func (o *GlobalBgpRange) UnmarshalJSON(bytes []byte) (err error) {
 	varGlobalBgpRange := _GlobalBgpRange{}
 
-	if err = json.Unmarshal(bytes, &varGlobalBgpRange); err == nil {
-		*o = GlobalBgpRange(varGlobalBgpRange)
+	err = json.Unmarshal(bytes, &varGlobalBgpRange)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GlobalBgpRange(varGlobalBgpRange)
 
 	additionalProperties := make(map[string]interface{})
 

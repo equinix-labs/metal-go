@@ -501,9 +501,13 @@ func (o VrfRoute) ToMap() (map[string]interface{}, error) {
 func (o *VrfRoute) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfRoute := _VrfRoute{}
 
-	if err = json.Unmarshal(bytes, &varVrfRoute); err == nil {
-		*o = VrfRoute(varVrfRoute)
+	err = json.Unmarshal(bytes, &varVrfRoute)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfRoute(varVrfRoute)
 
 	additionalProperties := make(map[string]interface{})
 

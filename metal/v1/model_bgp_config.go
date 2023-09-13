@@ -555,9 +555,13 @@ func (o BgpConfig) ToMap() (map[string]interface{}, error) {
 func (o *BgpConfig) UnmarshalJSON(bytes []byte) (err error) {
 	varBgpConfig := _BgpConfig{}
 
-	if err = json.Unmarshal(bytes, &varBgpConfig); err == nil {
-		*o = BgpConfig(varBgpConfig)
+	err = json.Unmarshal(bytes, &varBgpConfig)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BgpConfig(varBgpConfig)
 
 	additionalProperties := make(map[string]interface{})
 

@@ -171,9 +171,13 @@ func (o Disk) ToMap() (map[string]interface{}, error) {
 func (o *Disk) UnmarshalJSON(bytes []byte) (err error) {
 	varDisk := _Disk{}
 
-	if err = json.Unmarshal(bytes, &varDisk); err == nil {
-		*o = Disk(varDisk)
+	err = json.Unmarshal(bytes, &varDisk)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Disk(varDisk)
 
 	additionalProperties := make(map[string]interface{})
 

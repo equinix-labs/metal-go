@@ -1021,9 +1021,13 @@ func (o DeviceCreateInMetroInput) ToMap() (map[string]interface{}, error) {
 func (o *DeviceCreateInMetroInput) UnmarshalJSON(bytes []byte) (err error) {
 	varDeviceCreateInMetroInput := _DeviceCreateInMetroInput{}
 
-	if err = json.Unmarshal(bytes, &varDeviceCreateInMetroInput); err == nil {
-		*o = DeviceCreateInMetroInput(varDeviceCreateInMetroInput)
+	err = json.Unmarshal(bytes, &varDeviceCreateInMetroInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = DeviceCreateInMetroInput(varDeviceCreateInMetroInput)
 
 	additionalProperties := make(map[string]interface{})
 

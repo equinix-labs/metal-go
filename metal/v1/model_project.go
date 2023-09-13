@@ -713,9 +713,13 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
 	varProject := _Project{}
 
-	if err = json.Unmarshal(bytes, &varProject); err == nil {
-		*o = Project(varProject)
+	err = json.Unmarshal(bytes, &varProject)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Project(varProject)
 
 	additionalProperties := make(map[string]interface{})
 

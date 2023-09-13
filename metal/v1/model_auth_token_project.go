@@ -713,9 +713,13 @@ func (o AuthTokenProject) ToMap() (map[string]interface{}, error) {
 func (o *AuthTokenProject) UnmarshalJSON(bytes []byte) (err error) {
 	varAuthTokenProject := _AuthTokenProject{}
 
-	if err = json.Unmarshal(bytes, &varAuthTokenProject); err == nil {
-		*o = AuthTokenProject(varAuthTokenProject)
+	err = json.Unmarshal(bytes, &varAuthTokenProject)
+
+	if err != nil {
+		return err
 	}
+
+	*o = AuthTokenProject(varAuthTokenProject)
 
 	additionalProperties := make(map[string]interface{})
 

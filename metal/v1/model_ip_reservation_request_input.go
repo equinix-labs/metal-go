@@ -370,9 +370,13 @@ func (o IPReservationRequestInput) ToMap() (map[string]interface{}, error) {
 func (o *IPReservationRequestInput) UnmarshalJSON(bytes []byte) (err error) {
 	varIPReservationRequestInput := _IPReservationRequestInput{}
 
-	if err = json.Unmarshal(bytes, &varIPReservationRequestInput); err == nil {
-		*o = IPReservationRequestInput(varIPReservationRequestInput)
+	err = json.Unmarshal(bytes, &varIPReservationRequestInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = IPReservationRequestInput(varIPReservationRequestInput)
 
 	additionalProperties := make(map[string]interface{})
 

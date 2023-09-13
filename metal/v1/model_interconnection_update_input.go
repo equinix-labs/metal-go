@@ -281,9 +281,13 @@ func (o InterconnectionUpdateInput) ToMap() (map[string]interface{}, error) {
 func (o *InterconnectionUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varInterconnectionUpdateInput := _InterconnectionUpdateInput{}
 
-	if err = json.Unmarshal(bytes, &varInterconnectionUpdateInput); err == nil {
-		*o = InterconnectionUpdateInput(varInterconnectionUpdateInput)
+	err = json.Unmarshal(bytes, &varInterconnectionUpdateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InterconnectionUpdateInput(varInterconnectionUpdateInput)
 
 	additionalProperties := make(map[string]interface{})
 

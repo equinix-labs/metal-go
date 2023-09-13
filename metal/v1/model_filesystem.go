@@ -99,9 +99,13 @@ func (o Filesystem) ToMap() (map[string]interface{}, error) {
 func (o *Filesystem) UnmarshalJSON(bytes []byte) (err error) {
 	varFilesystem := _Filesystem{}
 
-	if err = json.Unmarshal(bytes, &varFilesystem); err == nil {
-		*o = Filesystem(varFilesystem)
+	err = json.Unmarshal(bytes, &varFilesystem)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Filesystem(varFilesystem)
 
 	additionalProperties := make(map[string]interface{})
 

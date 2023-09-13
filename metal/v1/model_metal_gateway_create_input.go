@@ -165,9 +165,13 @@ func (o MetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 func (o *MetalGatewayCreateInput) UnmarshalJSON(bytes []byte) (err error) {
 	varMetalGatewayCreateInput := _MetalGatewayCreateInput{}
 
-	if err = json.Unmarshal(bytes, &varMetalGatewayCreateInput); err == nil {
-		*o = MetalGatewayCreateInput(varMetalGatewayCreateInput)
+	err = json.Unmarshal(bytes, &varMetalGatewayCreateInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MetalGatewayCreateInput(varMetalGatewayCreateInput)
 
 	additionalProperties := make(map[string]interface{})
 

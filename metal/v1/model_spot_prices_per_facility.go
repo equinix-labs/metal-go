@@ -387,9 +387,13 @@ func (o SpotPricesPerFacility) ToMap() (map[string]interface{}, error) {
 func (o *SpotPricesPerFacility) UnmarshalJSON(bytes []byte) (err error) {
 	varSpotPricesPerFacility := _SpotPricesPerFacility{}
 
-	if err = json.Unmarshal(bytes, &varSpotPricesPerFacility); err == nil {
-		*o = SpotPricesPerFacility(varSpotPricesPerFacility)
+	err = json.Unmarshal(bytes, &varSpotPricesPerFacility)
+
+	if err != nil {
+		return err
 	}
+
+	*o = SpotPricesPerFacility(varSpotPricesPerFacility)
 
 	additionalProperties := make(map[string]interface{})
 

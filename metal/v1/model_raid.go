@@ -171,9 +171,13 @@ func (o Raid) ToMap() (map[string]interface{}, error) {
 func (o *Raid) UnmarshalJSON(bytes []byte) (err error) {
 	varRaid := _Raid{}
 
-	if err = json.Unmarshal(bytes, &varRaid); err == nil {
-		*o = Raid(varRaid)
+	err = json.Unmarshal(bytes, &varRaid)
+
+	if err != nil {
+		return err
 	}
+
+	*o = Raid(varRaid)
 
 	additionalProperties := make(map[string]interface{})
 

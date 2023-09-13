@@ -234,9 +234,13 @@ func (o InvitationInput) ToMap() (map[string]interface{}, error) {
 func (o *InvitationInput) UnmarshalJSON(bytes []byte) (err error) {
 	varInvitationInput := _InvitationInput{}
 
-	if err = json.Unmarshal(bytes, &varInvitationInput); err == nil {
-		*o = InvitationInput(varInvitationInput)
+	err = json.Unmarshal(bytes, &varInvitationInput)
+
+	if err != nil {
+		return err
 	}
+
+	*o = InvitationInput(varInvitationInput)
 
 	additionalProperties := make(map[string]interface{})
 

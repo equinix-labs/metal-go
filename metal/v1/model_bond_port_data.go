@@ -137,9 +137,13 @@ func (o BondPortData) ToMap() (map[string]interface{}, error) {
 func (o *BondPortData) UnmarshalJSON(bytes []byte) (err error) {
 	varBondPortData := _BondPortData{}
 
-	if err = json.Unmarshal(bytes, &varBondPortData); err == nil {
-		*o = BondPortData(varBondPortData)
+	err = json.Unmarshal(bytes, &varBondPortData)
+
+	if err != nil {
+		return err
 	}
+
+	*o = BondPortData(varBondPortData)
 
 	additionalProperties := make(map[string]interface{})
 

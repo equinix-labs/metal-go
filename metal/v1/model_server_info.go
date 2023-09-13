@@ -214,9 +214,13 @@ func (o ServerInfo) ToMap() (map[string]interface{}, error) {
 func (o *ServerInfo) UnmarshalJSON(bytes []byte) (err error) {
 	varServerInfo := _ServerInfo{}
 
-	if err = json.Unmarshal(bytes, &varServerInfo); err == nil {
-		*o = ServerInfo(varServerInfo)
+	err = json.Unmarshal(bytes, &varServerInfo)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServerInfo(varServerInfo)
 
 	additionalProperties := make(map[string]interface{})
 

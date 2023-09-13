@@ -99,9 +99,13 @@ func (o VrfList) ToMap() (map[string]interface{}, error) {
 func (o *VrfList) UnmarshalJSON(bytes []byte) (err error) {
 	varVrfList := _VrfList{}
 
-	if err = json.Unmarshal(bytes, &varVrfList); err == nil {
-		*o = VrfList(varVrfList)
+	err = json.Unmarshal(bytes, &varVrfList)
+
+	if err != nil {
+		return err
 	}
+
+	*o = VrfList(varVrfList)
 
 	additionalProperties := make(map[string]interface{})
 

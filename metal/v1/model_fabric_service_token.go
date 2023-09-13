@@ -286,9 +286,13 @@ func (o FabricServiceToken) ToMap() (map[string]interface{}, error) {
 func (o *FabricServiceToken) UnmarshalJSON(bytes []byte) (err error) {
 	varFabricServiceToken := _FabricServiceToken{}
 
-	if err = json.Unmarshal(bytes, &varFabricServiceToken); err == nil {
-		*o = FabricServiceToken(varFabricServiceToken)
+	err = json.Unmarshal(bytes, &varFabricServiceToken)
+
+	if err != nil {
+		return err
 	}
+
+	*o = FabricServiceToken(varFabricServiceToken)
 
 	additionalProperties := make(map[string]interface{})
 
