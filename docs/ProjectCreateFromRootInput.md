@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis. | 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** | The type of the project. If no type is specified the project type will automatically be &#x60;default&#x60; Projects of type &#39;vmce&#39; are part of an in development feature and not available to all customers. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -123,6 +124,31 @@ SetPaymentMethodId sets PaymentMethodId field to given value.
 `func (o *ProjectCreateFromRootInput) HasPaymentMethodId() bool`
 
 HasPaymentMethodId returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *ProjectCreateFromRootInput) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ProjectCreateFromRootInput) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ProjectCreateFromRootInput) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *ProjectCreateFromRootInput) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetTags
 

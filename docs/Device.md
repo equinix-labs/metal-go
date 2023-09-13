@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
 **Description** | Pointer to **string** |  | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
+**FirmwareSetId** | Pointer to **string** | The UUID of the firmware set to associate with the device. | [optional] 
 **HardwareReservation** | Pointer to [**HardwareReservation**](HardwareReservation.md) |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
@@ -265,6 +266,31 @@ SetFacility sets Facility field to given value.
 `func (o *Device) HasFacility() bool`
 
 HasFacility returns a boolean if a field has been set.
+
+### GetFirmwareSetId
+
+`func (o *Device) GetFirmwareSetId() string`
+
+GetFirmwareSetId returns the FirmwareSetId field if non-nil, zero value otherwise.
+
+### GetFirmwareSetIdOk
+
+`func (o *Device) GetFirmwareSetIdOk() (*string, bool)`
+
+GetFirmwareSetIdOk returns a tuple with the FirmwareSetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareSetId
+
+`func (o *Device) SetFirmwareSetId(v string)`
+
+SetFirmwareSetId sets FirmwareSetId field to given value.
+
+### HasFirmwareSetId
+
+`func (o *Device) HasFirmwareSetId() bool`
+
+HasFirmwareSetId returns a boolean if a field has been set.
 
 ### GetHardwareReservation
 

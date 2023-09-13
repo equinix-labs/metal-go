@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
 **Description** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
+**FirmwareSetId** | Pointer to **string** |  | [optional] 
 **IpxeScriptUrl** | Pointer to **string** |  | [optional] 
 **Locked** | Pointer to **bool** | Whether the device should be locked, preventing accidental deletion. | [optional] 
 **NetworkFrozen** | Pointer to **bool** | If true, this instance can not be converted to a different network type. | [optional] 
@@ -159,6 +160,31 @@ SetHostname sets Hostname field to given value.
 `func (o *DeviceUpdateInput) HasHostname() bool`
 
 HasHostname returns a boolean if a field has been set.
+
+### GetFirmwareSetId
+
+`func (o *DeviceUpdateInput) GetFirmwareSetId() string`
+
+GetFirmwareSetId returns the FirmwareSetId field if non-nil, zero value otherwise.
+
+### GetFirmwareSetIdOk
+
+`func (o *DeviceUpdateInput) GetFirmwareSetIdOk() (*string, bool)`
+
+GetFirmwareSetIdOk returns a tuple with the FirmwareSetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmwareSetId
+
+`func (o *DeviceUpdateInput) SetFirmwareSetId(v string)`
+
+SetFirmwareSetId sets FirmwareSetId field to given value.
+
+### HasFirmwareSetId
+
+`func (o *DeviceUpdateInput) HasFirmwareSetId() bool`
+
+HasFirmwareSetId returns a boolean if a field has been set.
 
 ### GetIpxeScriptUrl
 

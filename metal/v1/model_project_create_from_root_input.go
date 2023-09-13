@@ -22,9 +22,11 @@ var _ MappedNullable = &ProjectCreateFromRootInput{}
 type ProjectCreateFromRootInput struct {
 	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name                 string   `json:"name"`
-	OrganizationId       *string  `json:"organization_id,omitempty"`
-	PaymentMethodId      *string  `json:"payment_method_id,omitempty"`
+	Name            string  `json:"name"`
+	OrganizationId  *string `json:"organization_id,omitempty"`
+	PaymentMethodId *string `json:"payment_method_id,omitempty"`
+	// The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.
+	Type                 *string  `json:"type,omitempty"`
 	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -169,6 +171,38 @@ func (o *ProjectCreateFromRootInput) SetPaymentMethodId(v string) {
 	o.PaymentMethodId = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ProjectCreateFromRootInput) GetType() string {
+	if o == nil || IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectCreateFromRootInput) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ProjectCreateFromRootInput) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *ProjectCreateFromRootInput) SetType(v string) {
+	o.Type = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ProjectCreateFromRootInput) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -221,6 +255,9 @@ func (o ProjectCreateFromRootInput) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -250,6 +287,7 @@ func (o *ProjectCreateFromRootInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "payment_method_id")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}

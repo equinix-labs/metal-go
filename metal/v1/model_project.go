@@ -32,14 +32,16 @@ type Project struct {
 	Members     []Href                 `json:"members,omitempty"`
 	Memberships []Href                 `json:"memberships,omitempty"`
 	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name                 *string                `json:"name,omitempty"`
-	NetworkStatus        map[string]interface{} `json:"network_status,omitempty"`
-	Organization         *Organization          `json:"organization,omitempty"`
-	PaymentMethod        *Href                  `json:"payment_method,omitempty"`
-	SshKeys              []Href                 `json:"ssh_keys,omitempty"`
-	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
-	Volumes              []Href                 `json:"volumes,omitempty"`
-	Tags                 []string               `json:"tags,omitempty"`
+	Name          *string                `json:"name,omitempty"`
+	NetworkStatus map[string]interface{} `json:"network_status,omitempty"`
+	Organization  *Organization          `json:"organization,omitempty"`
+	PaymentMethod *Href                  `json:"payment_method,omitempty"`
+	SshKeys       []Href                 `json:"ssh_keys,omitempty"`
+	UpdatedAt     *time.Time             `json:"updated_at,omitempty"`
+	Volumes       []Href                 `json:"volumes,omitempty"`
+	// The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
+	Type                 *string  `json:"type,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -606,6 +608,38 @@ func (o *Project) SetVolumes(v []Href) {
 	o.Volumes = v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Project) GetType() string {
+	if o == nil || IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Project) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Project) SetType(v string) {
+	o.Type = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Project) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -699,6 +733,9 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -741,6 +778,7 @@ func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "ssh_keys")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "volumes")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}

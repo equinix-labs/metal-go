@@ -20,6 +20,8 @@ Method | HTTP request | Description
 [**FindProjectDevices**](DevicesApi.md#FindProjectDevices) | **Get** /projects/{id}/devices | Retrieve all devices of a project
 [**FindTraffic**](DevicesApi.md#FindTraffic) | **Get** /devices/{id}/traffic | Retrieve device traffic
 [**GetBgpNeighborData**](DevicesApi.md#GetBgpNeighborData) | **Get** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
+[**GetDeviceFirmwareSets**](DevicesApi.md#GetDeviceFirmwareSets) | **Get** /devices/{id}/firmware-sets | Get Device&#39;s associated Firmware Set
+[**GetDeviceHealthRollup**](DevicesApi.md#GetDeviceHealthRollup) | **Get** /devices/{id}/diagnostics/health/rollup | Get Device&#39;s Health Status
 [**PerformAction**](DevicesApi.md#PerformAction) | **Post** /devices/{id}/actions | Perform an action
 [**UpdateDevice**](DevicesApi.md#UpdateDevice) | **Put** /devices/{id} | Update the device
 
@@ -1229,6 +1231,146 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetDeviceFirmwareSets
+
+> FirmwareSetResponse GetDeviceFirmwareSets(ctx, id).Execute()
+
+Get Device's associated Firmware Set
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.GetDeviceFirmwareSets(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetDeviceFirmwareSets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDeviceFirmwareSets`: FirmwareSetResponse
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetDeviceFirmwareSets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Device UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDeviceFirmwareSetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**FirmwareSetResponse**](FirmwareSetResponse.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDeviceHealthRollup
+
+> DeviceHealthRollup GetDeviceHealthRollup(ctx, id).Execute()
+
+Get Device's Health Status
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/equinix-labs/metal-go/metal/v1"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DevicesApi.GetDeviceHealthRollup(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetDeviceHealthRollup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDeviceHealthRollup`: DeviceHealthRollup
+    fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetDeviceHealthRollup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Device UUID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDeviceHealthRollupRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DeviceHealthRollup**](DeviceHealthRollup.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PerformAction
 
 > PerformAction(ctx, id).DeviceActionInput(deviceActionInput).Execute()
@@ -1321,7 +1463,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    deviceUpdateInput := *openapiclient.NewDeviceUpdateInput() // DeviceUpdateInput | Facility to update
+    deviceUpdateInput := *openapiclient.NewDeviceUpdateInput() // DeviceUpdateInput | Device to update
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -1353,7 +1495,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **deviceUpdateInput** | [**DeviceUpdateInput**](DeviceUpdateInput.md) | Facility to update | 
+ **deviceUpdateInput** | [**DeviceUpdateInput**](DeviceUpdateInput.md) | Device to update | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 

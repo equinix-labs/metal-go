@@ -25,6 +25,7 @@ type DeviceUpdateInput struct {
 	Customdata    map[string]interface{} `json:"customdata,omitempty"`
 	Description   *string                `json:"description,omitempty"`
 	Hostname      *string                `json:"hostname,omitempty"`
+	FirmwareSetId *string                `json:"firmware_set_id,omitempty"`
 	IpxeScriptUrl *string                `json:"ipxe_script_url,omitempty"`
 	// Whether the device should be locked, preventing accidental deletion.
 	Locked *bool `json:"locked,omitempty"`
@@ -214,6 +215,38 @@ func (o *DeviceUpdateInput) HasHostname() bool {
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
 func (o *DeviceUpdateInput) SetHostname(v string) {
 	o.Hostname = &v
+}
+
+// GetFirmwareSetId returns the FirmwareSetId field value if set, zero value otherwise.
+func (o *DeviceUpdateInput) GetFirmwareSetId() string {
+	if o == nil || IsNil(o.FirmwareSetId) {
+		var ret string
+		return ret
+	}
+	return *o.FirmwareSetId
+}
+
+// GetFirmwareSetIdOk returns a tuple with the FirmwareSetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceUpdateInput) GetFirmwareSetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.FirmwareSetId) {
+		return nil, false
+	}
+	return o.FirmwareSetId, true
+}
+
+// HasFirmwareSetId returns a boolean if a field has been set.
+func (o *DeviceUpdateInput) HasFirmwareSetId() bool {
+	if o != nil && !IsNil(o.FirmwareSetId) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwareSetId gets a reference to the given string and assigns it to the FirmwareSetId field.
+func (o *DeviceUpdateInput) SetFirmwareSetId(v string) {
+	o.FirmwareSetId = &v
 }
 
 // GetIpxeScriptUrl returns the IpxeScriptUrl field value if set, zero value otherwise.
@@ -433,6 +466,9 @@ func (o DeviceUpdateInput) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
+	if !IsNil(o.FirmwareSetId) {
+		toSerialize["firmware_set_id"] = o.FirmwareSetId
+	}
 	if !IsNil(o.IpxeScriptUrl) {
 		toSerialize["ipxe_script_url"] = o.IpxeScriptUrl
 	}
@@ -478,6 +514,7 @@ func (o *DeviceUpdateInput) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "customdata")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "firmware_set_id")
 		delete(additionalProperties, "ipxe_script_url")
 		delete(additionalProperties, "locked")
 		delete(additionalProperties, "network_frozen")

@@ -51,6 +51,12 @@ properties:
     items:
       $ref: './Href.yaml'
     type: array
+  type:
+    type: string
+    description: The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
+    enum:
+      - default
+      - vmce
   tags:
     items:
       type: string
