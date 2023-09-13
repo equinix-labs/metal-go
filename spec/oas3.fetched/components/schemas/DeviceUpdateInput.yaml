@@ -11,6 +11,8 @@ properties:
     type: string
   hostname:
     type: string
+  firmware_set_id:
+    type: string
   ipxe_script_url:
     type: string
   locked:

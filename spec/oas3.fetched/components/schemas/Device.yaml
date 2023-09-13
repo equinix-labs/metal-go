@@ -20,6 +20,10 @@ properties:
     type: string
   facility:
     $ref: './Facility.yaml'
+  firmware_set_id:
+    description: The UUID of the firmware set to associate with the device.
+    format: uuid
+    type: string
   hardware_reservation:
     $ref: './Href.yaml'
   hostname:
