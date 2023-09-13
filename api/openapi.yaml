@@ -15861,7 +15861,7 @@ components:
           key: ""
         href: href
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        state: queued
+        state: null
         locked: true
         spot_price_max: 9.301444
         plan:
@@ -16240,33 +16240,7 @@ components:
             $ref: '#/components/schemas/Href'
           type: array
         state:
-          description: "The current state the instance is in.\n\n* When an instance\
-            \ is initially created it will be in the `queued` state until it is picked\
-            \ up by the provisioner.\n* Once provisioning has begun on the instance\
-            \ it's state will move to `provisioning`.\n* When an instance is deleted,\
-            \ it will move to `deprovisioning` state until the deprovision is completed\
-            \ and the instance state moves to `deleted`.\n* If an instance fails to\
-            \ provision or deprovision it will move to `failed` state.\n* Once an\
-            \ instance has completed provisioning it will move to `active` state.\n\
-            * If an instance is currently powering off or powering on it will move\
-            \ to `powering_off` or `powering_on` states respectively. \n* When the\
-            \ instance is powered off completely it will move to the `inactive` state.\n\
-            * When an instance is powered on completely it will move to the `active`\
-            \ state.\n* Using the reinstall action to install a new OS on the instance\
-            \ will cause the instance state to change to `reinstalling`.\n* When the\
-            \ reinstall action is complete the instance will move to `active` state."
-          enum:
-          - queued
-          - provisioning
-          - deprovisioning
-          - reinstalling
-          - active
-          - inactive
-          - failed
-          - powering_on
-          - powering_off
-          - deleted
-          type: string
+          $ref: '#/components/schemas/DeviceStateFlexible'
         storage:
           $ref: '#/components/schemas/Storage'
         switch_uuid:
@@ -16884,7 +16858,7 @@ components:
             key: ""
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          state: queued
+          state: null
           locked: true
           spot_price_max: 9.301444
           plan:
@@ -17486,7 +17460,7 @@ components:
             key: ""
           href: href
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          state: queued
+          state: null
           locked: true
           spot_price_max: 9.301444
           plan:
@@ -30472,6 +30446,10 @@ components:
             type: string
           type: array
       type: object
+    DeviceStateFlexible:
+      anyOf:
+      - $ref: '#/components/schemas/DeviceState'
+      - type: string
     Storage:
       example:
         disks:
@@ -30567,6 +30545,34 @@ components:
           example: 10.32.16.0/31
           type: string
       type: object
+    DeviceState:
+      description: "The current state the instance is in.\n\n* When an instance is\
+        \ initially created it will be in the `queued` state until it is picked up\
+        \ by the provisioner.\n* Once provisioning has begun on the instance it's\
+        \ state will move to `provisioning`.\n* When an instance is deleted, it will\
+        \ move to `deprovisioning` state until the deprovision is completed and the\
+        \ instance state moves to `deleted`.\n* If an instance fails to provision\
+        \ or deprovision it will move to `failed` state.\n* Once an instance has completed\
+        \ provisioning it will move to `active` state.\n* If an instance is currently\
+        \ powering off or powering on it will move to `powering_off` or `powering_on`\
+        \ states respectively. \n* When the instance is powered off completely it\
+        \ will move to the `inactive` state.\n* When an instance is powered on completely\
+        \ it will move to the `active` state.\n* Using the reinstall action to install\
+        \ a new OS on the instance will cause the instance state to change to `reinstalling`.\n\
+        * When the reinstall action is complete the instance will move to `active`\
+        \ state."
+      enum:
+      - queued
+      - provisioning
+      - deprovisioning
+      - reinstalling
+      - active
+      - inactive
+      - failed
+      - powering_on
+      - powering_off
+      - deleted
+      type: string
     Disk:
       example:
         partitions:

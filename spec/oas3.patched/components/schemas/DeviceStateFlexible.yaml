@@ -1,0 +1,3 @@
+anyOf:
+  - $ref: './DeviceState.yaml'
+  - type: string

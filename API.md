@@ -432,6 +432,8 @@ Class | Method | HTTP request | Description
  - [DeviceList](docs/DeviceList.md)
  - [DeviceMetro](docs/DeviceMetro.md)
  - [DeviceProjectLite](docs/DeviceProjectLite.md)
+ - [DeviceState](docs/DeviceState.md)
+ - [DeviceStateFlexible](docs/DeviceStateFlexible.md)
  - [DeviceUpdateInput](docs/DeviceUpdateInput.md)
  - [DeviceUsage](docs/DeviceUsage.md)
  - [DeviceUsageList](docs/DeviceUsageList.md)
