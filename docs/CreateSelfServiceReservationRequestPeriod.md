@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int32** |  | [optional] 
-**Unit** | Pointer to **string** |  | [optional] 
+**Count** | Pointer to [**CreateSelfServiceReservationRequestPeriodCount**](CreateSelfServiceReservationRequestPeriodCount.md) |  | [optional] 
+**Unit** | Pointer to [**CreateSelfServiceReservationRequestPeriodUnit**](CreateSelfServiceReservationRequestPeriodUnit.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCount
 
-`func (o *CreateSelfServiceReservationRequestPeriod) GetCount() int32`
+`func (o *CreateSelfServiceReservationRequestPeriod) GetCount() CreateSelfServiceReservationRequestPeriodCount`
 
 GetCount returns the Count field if non-nil, zero value otherwise.
 
 ### GetCountOk
 
-`func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*int32, bool)`
+`func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*CreateSelfServiceReservationRequestPeriodCount, bool)`
 
 GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCount
 
-`func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v int32)`
+`func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v CreateSelfServiceReservationRequestPeriodCount)`
 
 SetCount sets Count field to given value.
 
@@ -53,20 +53,20 @@ HasCount returns a boolean if a field has been set.
 
 ### GetUnit
 
-`func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() string`
+`func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() CreateSelfServiceReservationRequestPeriodUnit`
 
 GetUnit returns the Unit field if non-nil, zero value otherwise.
 
 ### GetUnitOk
 
-`func (o *CreateSelfServiceReservationRequestPeriod) GetUnitOk() (*string, bool)`
+`func (o *CreateSelfServiceReservationRequestPeriod) GetUnitOk() (*CreateSelfServiceReservationRequestPeriodUnit, bool)`
 
 GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnit
 
-`func (o *CreateSelfServiceReservationRequestPeriod) SetUnit(v string)`
+`func (o *CreateSelfServiceReservationRequestPeriod) SetUnit(v CreateSelfServiceReservationRequestPeriodUnit)`
 
 SetUnit sets Unit field to given value.
 

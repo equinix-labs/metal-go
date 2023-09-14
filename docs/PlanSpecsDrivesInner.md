@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Count** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**PlanSpecsDrivesInnerType**](PlanSpecsDrivesInnerType.md) |  | [optional] 
 **Size** | Pointer to **string** |  | [optional] 
-**Category** | Pointer to **string** |  | [optional] 
+**Category** | Pointer to [**PlanSpecsDrivesInnerCategory**](PlanSpecsDrivesInnerCategory.md) |  | [optional] 
 
 ## Methods
 
@@ -55,20 +55,20 @@ HasCount returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *PlanSpecsDrivesInner) GetType() string`
+`func (o *PlanSpecsDrivesInner) GetType() PlanSpecsDrivesInnerType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *PlanSpecsDrivesInner) GetTypeOk() (*string, bool)`
+`func (o *PlanSpecsDrivesInner) GetTypeOk() (*PlanSpecsDrivesInnerType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *PlanSpecsDrivesInner) SetType(v string)`
+`func (o *PlanSpecsDrivesInner) SetType(v PlanSpecsDrivesInnerType)`
 
 SetType sets Type field to given value.
 
@@ -105,20 +105,20 @@ HasSize returns a boolean if a field has been set.
 
 ### GetCategory
 
-`func (o *PlanSpecsDrivesInner) GetCategory() string`
+`func (o *PlanSpecsDrivesInner) GetCategory() PlanSpecsDrivesInnerCategory`
 
 GetCategory returns the Category field if non-nil, zero value otherwise.
 
 ### GetCategoryOk
 
-`func (o *PlanSpecsDrivesInner) GetCategoryOk() (*string, bool)`
+`func (o *PlanSpecsDrivesInner) GetCategoryOk() (*PlanSpecsDrivesInnerCategory, bool)`
 
 GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCategory
 
-`func (o *PlanSpecsDrivesInner) SetCategory(v string)`
+`func (o *PlanSpecsDrivesInner) SetCategory(v PlanSpecsDrivesInnerCategory)`
 
 SetCategory sets Category field to given value.
 

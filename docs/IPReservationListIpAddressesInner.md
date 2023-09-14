@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **Public** | Pointer to **bool** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | **string** |  | 
+**Type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | 
 **CreatedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Vrf** | [**Vrf**](Vrf.md) |  | 
 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewIPReservationListIpAddressesInner
 
-`func NewIPReservationListIpAddressesInner(type_ string, vrf Vrf, ) *IPReservationListIpAddressesInner`
+`func NewIPReservationListIpAddressesInner(type_ VrfIpReservationType, vrf Vrf, ) *IPReservationListIpAddressesInner`
 
 NewIPReservationListIpAddressesInner instantiates a new IPReservationListIpAddressesInner object
 This constructor will assign default values to properties that have it defined,
@@ -757,20 +757,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *IPReservationListIpAddressesInner) GetType() string`
+`func (o *IPReservationListIpAddressesInner) GetType() VrfIpReservationType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *IPReservationListIpAddressesInner) GetTypeOk() (*string, bool)`
+`func (o *IPReservationListIpAddressesInner) GetTypeOk() (*VrfIpReservationType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *IPReservationListIpAddressesInner) SetType(v string)`
+`func (o *IPReservationListIpAddressesInner) SetType(v VrfIpReservationType)`
 
 SetType sets Type field to given value.
 

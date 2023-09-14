@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Native** | Pointer to **bool** |  | [optional] 
 **Port** | Pointer to [**Href**](Href.md) |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
+**State** | Pointer to [**PortVlanAssignmentState**](PortVlanAssignmentState.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **VirtualNetwork** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Vlan** | Pointer to **int32** |  | [optional] 
@@ -134,20 +134,20 @@ HasPort returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *PortVlanAssignment) GetState() string`
+`func (o *PortVlanAssignment) GetState() PortVlanAssignmentState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *PortVlanAssignment) GetStateOk() (*string, bool)`
+`func (o *PortVlanAssignment) GetStateOk() (*PortVlanAssignmentState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *PortVlanAssignment) SetState(v string)`
+`func (o *PortVlanAssignment) SetState(v PortVlanAssignmentState)`
 
 SetState sets State field to given value.
 

@@ -13,110 +13,11 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the DeviceCreateInFacilityInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeviceCreateInFacilityInput{}
-
-// DeviceCreateInFacilityInputBillingCycle The billing cycle of the device.
-type DeviceCreateInFacilityInputBillingCycle string
-
-// List of DeviceCreateInFacilityInputBillingCycle
-const (
-	DEVICECREATEINFACILITYINPUT_HOURLY  DeviceCreateInFacilityInputBillingCycle = "hourly"
-	DEVICECREATEINFACILITYINPUT_DAILY   DeviceCreateInFacilityInputBillingCycle = "daily"
-	DEVICECREATEINFACILITYINPUT_MONTHLY DeviceCreateInFacilityInputBillingCycle = "monthly"
-	DEVICECREATEINFACILITYINPUT_YEARLY  DeviceCreateInFacilityInputBillingCycle = "yearly"
-)
-
-// All allowed values of DeviceCreateInFacilityInputBillingCycle enum
-var AllowedDeviceCreateInFacilityInputBillingCycleEnumValues = []DeviceCreateInFacilityInputBillingCycle{
-	"hourly",
-	"daily",
-	"monthly",
-	"yearly",
-}
-
-func (v *DeviceCreateInFacilityInputBillingCycle) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := DeviceCreateInFacilityInputBillingCycle(value)
-	for _, existing := range AllowedDeviceCreateInFacilityInputBillingCycleEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DeviceCreateInFacilityInputBillingCycle", value)
-}
-
-// NewDeviceCreateInFacilityInputBillingCycleFromValue returns a pointer to a valid DeviceCreateInFacilityInputBillingCycle
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDeviceCreateInFacilityInputBillingCycleFromValue(v string) (*DeviceCreateInFacilityInputBillingCycle, error) {
-	ev := DeviceCreateInFacilityInputBillingCycle(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DeviceCreateInFacilityInputBillingCycle: valid values are %v", v, AllowedDeviceCreateInFacilityInputBillingCycleEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v DeviceCreateInFacilityInputBillingCycle) IsValid() bool {
-	for _, existing := range AllowedDeviceCreateInFacilityInputBillingCycleEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to BillingCycle value
-func (v DeviceCreateInFacilityInputBillingCycle) Ptr() *DeviceCreateInFacilityInputBillingCycle {
-	return &v
-}
-
-type NullableDeviceCreateInFacilityInputBillingCycle struct {
-	value *DeviceCreateInFacilityInputBillingCycle
-	isSet bool
-}
-
-func (v NullableDeviceCreateInFacilityInputBillingCycle) Get() *DeviceCreateInFacilityInputBillingCycle {
-	return v.value
-}
-
-func (v *NullableDeviceCreateInFacilityInputBillingCycle) Set(val *DeviceCreateInFacilityInputBillingCycle) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDeviceCreateInFacilityInputBillingCycle) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDeviceCreateInFacilityInputBillingCycle) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDeviceCreateInFacilityInputBillingCycle(val *DeviceCreateInFacilityInputBillingCycle) *NullableDeviceCreateInFacilityInputBillingCycle {
-	return &NullableDeviceCreateInFacilityInputBillingCycle{value: val, isSet: true}
-}
-
-func (v NullableDeviceCreateInFacilityInputBillingCycle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDeviceCreateInFacilityInputBillingCycle) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // DeviceCreateInFacilityInput struct for DeviceCreateInFacilityInput
 type DeviceCreateInFacilityInput struct {
@@ -124,9 +25,8 @@ type DeviceCreateInFacilityInput struct {
 	// Deprecated
 	Facility []string `json:"facility"`
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
-	AlwaysPxe *bool `json:"always_pxe,omitempty"`
-	// The billing cycle of the device.
-	BillingCycle *DeviceCreateInFacilityInputBillingCycle `json:"billing_cycle,omitempty"`
+	AlwaysPxe    *bool                          `json:"always_pxe,omitempty"`
+	BillingCycle *DeviceCreateInputBillingCycle `json:"billing_cycle,omitempty"`
 	// Customdata is an arbitrary JSON value that can be accessed via the metadata service.
 	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// Any description of the device or how it will be used. This may be used to inform other API consumers with project access.
@@ -280,9 +180,9 @@ func (o *DeviceCreateInFacilityInput) SetAlwaysPxe(v bool) {
 }
 
 // GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
-func (o *DeviceCreateInFacilityInput) GetBillingCycle() DeviceCreateInFacilityInputBillingCycle {
+func (o *DeviceCreateInFacilityInput) GetBillingCycle() DeviceCreateInputBillingCycle {
 	if o == nil || IsNil(o.BillingCycle) {
-		var ret DeviceCreateInFacilityInputBillingCycle
+		var ret DeviceCreateInputBillingCycle
 		return ret
 	}
 	return *o.BillingCycle
@@ -290,9 +190,9 @@ func (o *DeviceCreateInFacilityInput) GetBillingCycle() DeviceCreateInFacilityIn
 
 // GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceCreateInFacilityInput) GetBillingCycleOk() (*DeviceCreateInFacilityInputBillingCycle, bool) {
+func (o *DeviceCreateInFacilityInput) GetBillingCycleOk() (*DeviceCreateInputBillingCycle, bool) {
 	if o == nil || IsNil(o.BillingCycle) {
-		return o.BillingCycle, false
+		return nil, false
 	}
 	return o.BillingCycle, true
 }
@@ -306,8 +206,8 @@ func (o *DeviceCreateInFacilityInput) HasBillingCycle() bool {
 	return false
 }
 
-// SetBillingCycle gets a reference to the given string and assigns it to the BillingCycle field.
-func (o *DeviceCreateInFacilityInput) SetBillingCycle(v DeviceCreateInFacilityInputBillingCycle) {
+// SetBillingCycle gets a reference to the given DeviceCreateInputBillingCycle and assigns it to the BillingCycle field.
+func (o *DeviceCreateInFacilityInput) SetBillingCycle(v DeviceCreateInputBillingCycle) {
 	o.BillingCycle = &v
 }
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Quantity** | Pointer to **int32** | The number of devices to create in this batch. The hostname may contain an &#x60;{{index}}&#x60; placeholder, which will be replaced with the index of the device in the batch. For example, if the hostname is &#x60;device-{{index}}&#x60;, the first device in the batch will have the hostname &#x60;device-01&#x60;, the second device will have the hostname &#x60;device-02&#x60;, and so on. | [optional] 
 **Metro** | **string** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 **AlwaysPxe** | Pointer to **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] [default to false]
-**BillingCycle** | Pointer to **string** | The billing cycle of the device. | [optional] 
+**BillingCycle** | Pointer to [**DeviceCreateInputBillingCycle**](DeviceCreateInputBillingCycle.md) |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] [default to {}]
 **Description** | Pointer to **string** | Any description of the device or how it will be used. This may be used to inform other API consumers with project access. | [optional] 
 **Features** | Pointer to **[]string** | The features attribute allows you to optionally specify what features your server should have.  In the API shorthand syntax, all features listed are &#x60;required&#x60;:  &#x60;&#x60;&#x60; { \&quot;features\&quot;: [\&quot;tpm\&quot;] } &#x60;&#x60;&#x60;  Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a &#x60;preferred&#x60; value. The request will not fail if we have no servers with that feature in our inventory. The API offers an alternative syntax for mixing preferred and required features:  &#x60;&#x60;&#x60; { \&quot;features\&quot;: { \&quot;tpm\&quot;: \&quot;required\&quot;, \&quot;raid\&quot;: \&quot;preferred\&quot; } } &#x60;&#x60;&#x60;  The request will only fail if there are no available servers matching the required &#x60;tpm&#x60; criteria. | [optional] 
@@ -150,20 +150,20 @@ HasAlwaysPxe returns a boolean if a field has been set.
 
 ### GetBillingCycle
 
-`func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() string`
+`func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() DeviceCreateInputBillingCycle`
 
 GetBillingCycle returns the BillingCycle field if non-nil, zero value otherwise.
 
 ### GetBillingCycleOk
 
-`func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*string, bool)`
+`func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*DeviceCreateInputBillingCycle, bool)`
 
 GetBillingCycleOk returns a tuple with the BillingCycle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBillingCycle
 
-`func (o *InstancesBatchCreateInputBatchesInner) SetBillingCycle(v string)`
+`func (o *InstancesBatchCreateInputBatchesInner) SetBillingCycle(v DeviceCreateInputBillingCycle)`
 
 SetBillingCycle sets BillingCycle field to given value.
 

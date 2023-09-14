@@ -13,115 +13,13 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the DeviceActionInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeviceActionInput{}
 
-// DeviceActionInputType Action to perform. See Device.actions for possible actions.
-type DeviceActionInputType string
-
-// List of DeviceActionInputType
-const (
-	DEVICEACTIONINPUT_POWER_ON  DeviceActionInputType = "power_on"
-	DEVICEACTIONINPUT_POWER_OFF DeviceActionInputType = "power_off"
-	DEVICEACTIONINPUT_REBOOT    DeviceActionInputType = "reboot"
-	DEVICEACTIONINPUT_RESCUE    DeviceActionInputType = "rescue"
-	DEVICEACTIONINPUT_REINSTALL DeviceActionInputType = "reinstall"
-)
-
-// All allowed values of DeviceActionInputType enum
-var AllowedDeviceActionInputTypeEnumValues = []DeviceActionInputType{
-	"power_on",
-	"power_off",
-	"reboot",
-	"rescue",
-	"reinstall",
-}
-
-func (v *DeviceActionInputType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := DeviceActionInputType(value)
-	for _, existing := range AllowedDeviceActionInputTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DeviceActionInputType", value)
-}
-
-// NewDeviceActionInputTypeFromValue returns a pointer to a valid DeviceActionInputType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDeviceActionInputTypeFromValue(v string) (*DeviceActionInputType, error) {
-	ev := DeviceActionInputType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DeviceActionInputType: valid values are %v", v, AllowedDeviceActionInputTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v DeviceActionInputType) IsValid() bool {
-	for _, existing := range AllowedDeviceActionInputTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v DeviceActionInputType) Ptr() *DeviceActionInputType {
-	return &v
-}
-
-type NullableDeviceActionInputType struct {
-	value *DeviceActionInputType
-	isSet bool
-}
-
-func (v NullableDeviceActionInputType) Get() *DeviceActionInputType {
-	return v.value
-}
-
-func (v *NullableDeviceActionInputType) Set(val *DeviceActionInputType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDeviceActionInputType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDeviceActionInputType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDeviceActionInputType(val *DeviceActionInputType) *NullableDeviceActionInputType {
-	return &NullableDeviceActionInputType{value: val, isSet: true}
-}
-
-func (v NullableDeviceActionInputType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDeviceActionInputType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // DeviceActionInput struct for DeviceActionInput
 type DeviceActionInput struct {
-	// Action to perform. See Device.actions for possible actions.
 	Type DeviceActionInputType `json:"type"`
 	// May be required to perform actions under certain conditions
 	ForceDelete *bool `json:"force_delete,omitempty"`

@@ -13,197 +13,10 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CreateSelfServiceReservationRequestPeriod type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateSelfServiceReservationRequestPeriod{}
-
-// CreateSelfServiceReservationRequestPeriodCount the model 'CreateSelfServiceReservationRequestPeriodCount'
-type CreateSelfServiceReservationRequestPeriodCount int32
-
-// List of CreateSelfServiceReservationRequestPeriodCount
-const (
-	CREATESELFSERVICERESERVATIONREQUESTPERIOD__12 CreateSelfServiceReservationRequestPeriodCount = 12
-	CREATESELFSERVICERESERVATIONREQUESTPERIOD__36 CreateSelfServiceReservationRequestPeriodCount = 36
-)
-
-// All allowed values of CreateSelfServiceReservationRequestPeriodCount enum
-var AllowedCreateSelfServiceReservationRequestPeriodCountEnumValues = []CreateSelfServiceReservationRequestPeriodCount{
-	12,
-	36,
-}
-
-func (v *CreateSelfServiceReservationRequestPeriodCount) UnmarshalJSON(src []byte) error {
-	var value int32
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := CreateSelfServiceReservationRequestPeriodCount(value)
-	for _, existing := range AllowedCreateSelfServiceReservationRequestPeriodCountEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid CreateSelfServiceReservationRequestPeriodCount", value)
-}
-
-// NewCreateSelfServiceReservationRequestPeriodCountFromValue returns a pointer to a valid CreateSelfServiceReservationRequestPeriodCount
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateSelfServiceReservationRequestPeriodCountFromValue(v int32) (*CreateSelfServiceReservationRequestPeriodCount, error) {
-	ev := CreateSelfServiceReservationRequestPeriodCount(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for CreateSelfServiceReservationRequestPeriodCount: valid values are %v", v, AllowedCreateSelfServiceReservationRequestPeriodCountEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v CreateSelfServiceReservationRequestPeriodCount) IsValid() bool {
-	for _, existing := range AllowedCreateSelfServiceReservationRequestPeriodCountEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Count value
-func (v CreateSelfServiceReservationRequestPeriodCount) Ptr() *CreateSelfServiceReservationRequestPeriodCount {
-	return &v
-}
-
-type NullableCreateSelfServiceReservationRequestPeriodCount struct {
-	value *CreateSelfServiceReservationRequestPeriodCount
-	isSet bool
-}
-
-func (v NullableCreateSelfServiceReservationRequestPeriodCount) Get() *CreateSelfServiceReservationRequestPeriodCount {
-	return v.value
-}
-
-func (v *NullableCreateSelfServiceReservationRequestPeriodCount) Set(val *CreateSelfServiceReservationRequestPeriodCount) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateSelfServiceReservationRequestPeriodCount) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateSelfServiceReservationRequestPeriodCount) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateSelfServiceReservationRequestPeriodCount(val *CreateSelfServiceReservationRequestPeriodCount) *NullableCreateSelfServiceReservationRequestPeriodCount {
-	return &NullableCreateSelfServiceReservationRequestPeriodCount{value: val, isSet: true}
-}
-
-func (v NullableCreateSelfServiceReservationRequestPeriodCount) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateSelfServiceReservationRequestPeriodCount) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// CreateSelfServiceReservationRequestPeriodUnit the model 'CreateSelfServiceReservationRequestPeriodUnit'
-type CreateSelfServiceReservationRequestPeriodUnit string
-
-// List of CreateSelfServiceReservationRequestPeriodUnit
-const (
-	CREATESELFSERVICERESERVATIONREQUESTPERIOD_MONTHLY CreateSelfServiceReservationRequestPeriodUnit = "monthly"
-)
-
-// All allowed values of CreateSelfServiceReservationRequestPeriodUnit enum
-var AllowedCreateSelfServiceReservationRequestPeriodUnitEnumValues = []CreateSelfServiceReservationRequestPeriodUnit{
-	"monthly",
-}
-
-func (v *CreateSelfServiceReservationRequestPeriodUnit) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := CreateSelfServiceReservationRequestPeriodUnit(value)
-	for _, existing := range AllowedCreateSelfServiceReservationRequestPeriodUnitEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid CreateSelfServiceReservationRequestPeriodUnit", value)
-}
-
-// NewCreateSelfServiceReservationRequestPeriodUnitFromValue returns a pointer to a valid CreateSelfServiceReservationRequestPeriodUnit
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateSelfServiceReservationRequestPeriodUnitFromValue(v string) (*CreateSelfServiceReservationRequestPeriodUnit, error) {
-	ev := CreateSelfServiceReservationRequestPeriodUnit(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for CreateSelfServiceReservationRequestPeriodUnit: valid values are %v", v, AllowedCreateSelfServiceReservationRequestPeriodUnitEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v CreateSelfServiceReservationRequestPeriodUnit) IsValid() bool {
-	for _, existing := range AllowedCreateSelfServiceReservationRequestPeriodUnitEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Unit value
-func (v CreateSelfServiceReservationRequestPeriodUnit) Ptr() *CreateSelfServiceReservationRequestPeriodUnit {
-	return &v
-}
-
-type NullableCreateSelfServiceReservationRequestPeriodUnit struct {
-	value *CreateSelfServiceReservationRequestPeriodUnit
-	isSet bool
-}
-
-func (v NullableCreateSelfServiceReservationRequestPeriodUnit) Get() *CreateSelfServiceReservationRequestPeriodUnit {
-	return v.value
-}
-
-func (v *NullableCreateSelfServiceReservationRequestPeriodUnit) Set(val *CreateSelfServiceReservationRequestPeriodUnit) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateSelfServiceReservationRequestPeriodUnit) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateSelfServiceReservationRequestPeriodUnit) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateSelfServiceReservationRequestPeriodUnit(val *CreateSelfServiceReservationRequestPeriodUnit) *NullableCreateSelfServiceReservationRequestPeriodUnit {
-	return &NullableCreateSelfServiceReservationRequestPeriodUnit{value: val, isSet: true}
-}
-
-func (v NullableCreateSelfServiceReservationRequestPeriodUnit) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateSelfServiceReservationRequestPeriodUnit) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // CreateSelfServiceReservationRequestPeriod struct for CreateSelfServiceReservationRequestPeriod
 type CreateSelfServiceReservationRequestPeriod struct {
@@ -244,7 +57,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetCount() CreateSelfService
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequestPeriod) GetCountOk() (*CreateSelfServiceReservationRequestPeriodCount, bool) {
 	if o == nil || IsNil(o.Count) {
-		return o.Count, false
+		return nil, false
 	}
 	return o.Count, true
 }
@@ -258,7 +71,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) HasCount() bool {
 	return false
 }
 
-// SetCount gets a reference to the given int32 and assigns it to the Count field.
+// SetCount gets a reference to the given CreateSelfServiceReservationRequestPeriodCount and assigns it to the Count field.
 func (o *CreateSelfServiceReservationRequestPeriod) SetCount(v CreateSelfServiceReservationRequestPeriodCount) {
 	o.Count = &v
 }
@@ -276,7 +89,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) GetUnit() CreateSelfServiceR
 // and a boolean to check if the value has been set.
 func (o *CreateSelfServiceReservationRequestPeriod) GetUnitOk() (*CreateSelfServiceReservationRequestPeriodUnit, bool) {
 	if o == nil || IsNil(o.Unit) {
-		return o.Unit, false
+		return nil, false
 	}
 	return o.Unit, true
 }
@@ -290,7 +103,7 @@ func (o *CreateSelfServiceReservationRequestPeriod) HasUnit() bool {
 	return false
 }
 
-// SetUnit gets a reference to the given string and assigns it to the Unit field.
+// SetUnit gets a reference to the given CreateSelfServiceReservationRequestPeriodUnit and assigns it to the Unit field.
 func (o *CreateSelfServiceReservationRequestPeriod) SetUnit(v CreateSelfServiceReservationRequestPeriodUnit) {
 	o.Unit = &v
 }

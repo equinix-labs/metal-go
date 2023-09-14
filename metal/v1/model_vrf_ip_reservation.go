@@ -13,104 +13,11 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the VrfIpReservation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VrfIpReservation{}
-
-// VrfIpReservationType the model 'VrfIpReservationType'
-type VrfIpReservationType string
-
-// List of VrfIpReservationType
-const (
-	VRFIPRESERVATION_VRF VrfIpReservationType = "vrf"
-)
-
-// All allowed values of VrfIpReservationType enum
-var AllowedVrfIpReservationTypeEnumValues = []VrfIpReservationType{
-	"vrf",
-}
-
-func (v *VrfIpReservationType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := VrfIpReservationType(value)
-	for _, existing := range AllowedVrfIpReservationTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid VrfIpReservationType", value)
-}
-
-// NewVrfIpReservationTypeFromValue returns a pointer to a valid VrfIpReservationType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewVrfIpReservationTypeFromValue(v string) (*VrfIpReservationType, error) {
-	ev := VrfIpReservationType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VrfIpReservationType: valid values are %v", v, AllowedVrfIpReservationTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v VrfIpReservationType) IsValid() bool {
-	for _, existing := range AllowedVrfIpReservationTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v VrfIpReservationType) Ptr() *VrfIpReservationType {
-	return &v
-}
-
-type NullableVrfIpReservationType struct {
-	value *VrfIpReservationType
-	isSet bool
-}
-
-func (v NullableVrfIpReservationType) Get() *VrfIpReservationType {
-	return v.value
-}
-
-func (v *NullableVrfIpReservationType) Set(val *VrfIpReservationType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableVrfIpReservationType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableVrfIpReservationType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableVrfIpReservationType(val *VrfIpReservationType) *NullableVrfIpReservationType {
-	return &NullableVrfIpReservationType{value: val, isSet: true}
-}
-
-func (v NullableVrfIpReservationType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableVrfIpReservationType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // VrfIpReservation struct for VrfIpReservation
 type VrfIpReservation struct {

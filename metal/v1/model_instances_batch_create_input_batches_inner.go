@@ -13,110 +13,11 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the InstancesBatchCreateInputBatchesInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstancesBatchCreateInputBatchesInner{}
-
-// InstancesBatchCreateInputBatchesInnerBillingCycle The billing cycle of the device.
-type InstancesBatchCreateInputBatchesInnerBillingCycle string
-
-// List of InstancesBatchCreateInputBatchesInnerBillingCycle
-const (
-	INSTANCESBATCHCREATEINPUTBATCHESINNER_HOURLY  InstancesBatchCreateInputBatchesInnerBillingCycle = "hourly"
-	INSTANCESBATCHCREATEINPUTBATCHESINNER_DAILY   InstancesBatchCreateInputBatchesInnerBillingCycle = "daily"
-	INSTANCESBATCHCREATEINPUTBATCHESINNER_MONTHLY InstancesBatchCreateInputBatchesInnerBillingCycle = "monthly"
-	INSTANCESBATCHCREATEINPUTBATCHESINNER_YEARLY  InstancesBatchCreateInputBatchesInnerBillingCycle = "yearly"
-)
-
-// All allowed values of InstancesBatchCreateInputBatchesInnerBillingCycle enum
-var AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues = []InstancesBatchCreateInputBatchesInnerBillingCycle{
-	"hourly",
-	"daily",
-	"monthly",
-	"yearly",
-}
-
-func (v *InstancesBatchCreateInputBatchesInnerBillingCycle) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := InstancesBatchCreateInputBatchesInnerBillingCycle(value)
-	for _, existing := range AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InstancesBatchCreateInputBatchesInnerBillingCycle", value)
-}
-
-// NewInstancesBatchCreateInputBatchesInnerBillingCycleFromValue returns a pointer to a valid InstancesBatchCreateInputBatchesInnerBillingCycle
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstancesBatchCreateInputBatchesInnerBillingCycleFromValue(v string) (*InstancesBatchCreateInputBatchesInnerBillingCycle, error) {
-	ev := InstancesBatchCreateInputBatchesInnerBillingCycle(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InstancesBatchCreateInputBatchesInnerBillingCycle: valid values are %v", v, AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InstancesBatchCreateInputBatchesInnerBillingCycle) IsValid() bool {
-	for _, existing := range AllowedInstancesBatchCreateInputBatchesInnerBillingCycleEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to BillingCycle value
-func (v InstancesBatchCreateInputBatchesInnerBillingCycle) Ptr() *InstancesBatchCreateInputBatchesInnerBillingCycle {
-	return &v
-}
-
-type NullableInstancesBatchCreateInputBatchesInnerBillingCycle struct {
-	value *InstancesBatchCreateInputBatchesInnerBillingCycle
-	isSet bool
-}
-
-func (v NullableInstancesBatchCreateInputBatchesInnerBillingCycle) Get() *InstancesBatchCreateInputBatchesInnerBillingCycle {
-	return v.value
-}
-
-func (v *NullableInstancesBatchCreateInputBatchesInnerBillingCycle) Set(val *InstancesBatchCreateInputBatchesInnerBillingCycle) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInstancesBatchCreateInputBatchesInnerBillingCycle) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInstancesBatchCreateInputBatchesInnerBillingCycle) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInstancesBatchCreateInputBatchesInnerBillingCycle(val *InstancesBatchCreateInputBatchesInnerBillingCycle) *NullableInstancesBatchCreateInputBatchesInnerBillingCycle {
-	return &NullableInstancesBatchCreateInputBatchesInnerBillingCycle{value: val, isSet: true}
-}
-
-func (v NullableInstancesBatchCreateInputBatchesInnerBillingCycle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInstancesBatchCreateInputBatchesInnerBillingCycle) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // InstancesBatchCreateInputBatchesInner struct for InstancesBatchCreateInputBatchesInner
 type InstancesBatchCreateInputBatchesInner struct {
@@ -126,9 +27,8 @@ type InstancesBatchCreateInputBatchesInner struct {
 	// Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided.
 	Metro string `json:"metro"`
 	// When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.
-	AlwaysPxe *bool `json:"always_pxe,omitempty"`
-	// The billing cycle of the device.
-	BillingCycle *InstancesBatchCreateInputBatchesInnerBillingCycle `json:"billing_cycle,omitempty"`
+	AlwaysPxe    *bool                          `json:"always_pxe,omitempty"`
+	BillingCycle *DeviceCreateInputBillingCycle `json:"billing_cycle,omitempty"`
 	// Customdata is an arbitrary JSON value that can be accessed via the metadata service.
 	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// Any description of the device or how it will be used. This may be used to inform other API consumers with project access.
@@ -347,9 +247,9 @@ func (o *InstancesBatchCreateInputBatchesInner) SetAlwaysPxe(v bool) {
 }
 
 // GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
-func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() InstancesBatchCreateInputBatchesInnerBillingCycle {
+func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() DeviceCreateInputBillingCycle {
 	if o == nil || IsNil(o.BillingCycle) {
-		var ret InstancesBatchCreateInputBatchesInnerBillingCycle
+		var ret DeviceCreateInputBillingCycle
 		return ret
 	}
 	return *o.BillingCycle
@@ -357,9 +257,9 @@ func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycle() InstancesBatch
 
 // GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*InstancesBatchCreateInputBatchesInnerBillingCycle, bool) {
+func (o *InstancesBatchCreateInputBatchesInner) GetBillingCycleOk() (*DeviceCreateInputBillingCycle, bool) {
 	if o == nil || IsNil(o.BillingCycle) {
-		return o.BillingCycle, false
+		return nil, false
 	}
 	return o.BillingCycle, true
 }
@@ -373,8 +273,8 @@ func (o *InstancesBatchCreateInputBatchesInner) HasBillingCycle() bool {
 	return false
 }
 
-// SetBillingCycle gets a reference to the given string and assigns it to the BillingCycle field.
-func (o *InstancesBatchCreateInputBatchesInner) SetBillingCycle(v InstancesBatchCreateInputBatchesInnerBillingCycle) {
+// SetBillingCycle gets a reference to the given DeviceCreateInputBillingCycle and assigns it to the BillingCycle field.
+func (o *InstancesBatchCreateInputBatchesInner) SetBillingCycle(v DeviceCreateInputBillingCycle) {
 	o.BillingCycle = &v
 }
 

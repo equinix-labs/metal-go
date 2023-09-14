@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Port** | [**Href**](Href.md) |  | 
 **Project** | [**Href**](Href.md) |  | 
 **Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
-**Status** | **string** | The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren&#39;t in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to &#39;waiting_on_peering_details&#39; once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to &#x60;changing_peering_details&#x60; whenever an active VRF Virtual Circuit has any of its peering details updated. | 
+**Status** | [**VrfVirtualCircuitStatus**](VrfVirtualCircuitStatus.md) |  | 
 **Tags** | **[]string** |  | 
 **VirtualNetwork** | [**Href**](Href.md) |  | 
 **Vnid** | **int32** |  | 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewVirtualCircuit
 
-`func NewVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status string, tags []string, virtualNetwork Href, vnid int32, ) *VirtualCircuit`
+`func NewVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status VrfVirtualCircuitStatus, tags []string, virtualNetwork Href, vnid int32, ) *VirtualCircuit`
 
 NewVirtualCircuit instantiates a new VirtualCircuit object
 This constructor will assign default values to properties that have it defined,
@@ -211,20 +211,20 @@ HasSpeed returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *VirtualCircuit) GetStatus() string`
+`func (o *VirtualCircuit) GetStatus() VrfVirtualCircuitStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *VirtualCircuit) GetStatusOk() (*string, bool)`
+`func (o *VirtualCircuit) GetStatusOk() (*VrfVirtualCircuitStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *VirtualCircuit) SetStatus(v string)`
+`func (o *VirtualCircuit) SetStatus(v VrfVirtualCircuitStatus)`
 
 SetStatus sets Status field to given value.
 

@@ -13,214 +13,17 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the InterconnectionPort type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InterconnectionPort{}
 
-// InterconnectionPortRole Either 'primary' or 'secondary'.
-type InterconnectionPortRole string
-
-// List of InterconnectionPortRole
-const (
-	INTERCONNECTIONPORT_PRIMARY   InterconnectionPortRole = "primary"
-	INTERCONNECTIONPORT_SECONDARY InterconnectionPortRole = "secondary"
-)
-
-// All allowed values of InterconnectionPortRole enum
-var AllowedInterconnectionPortRoleEnumValues = []InterconnectionPortRole{
-	"primary",
-	"secondary",
-}
-
-func (v *InterconnectionPortRole) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := InterconnectionPortRole(value)
-	for _, existing := range AllowedInterconnectionPortRoleEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InterconnectionPortRole", value)
-}
-
-// NewInterconnectionPortRoleFromValue returns a pointer to a valid InterconnectionPortRole
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInterconnectionPortRoleFromValue(v string) (*InterconnectionPortRole, error) {
-	ev := InterconnectionPortRole(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InterconnectionPortRole: valid values are %v", v, AllowedInterconnectionPortRoleEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InterconnectionPortRole) IsValid() bool {
-	for _, existing := range AllowedInterconnectionPortRoleEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Role value
-func (v InterconnectionPortRole) Ptr() *InterconnectionPortRole {
-	return &v
-}
-
-type NullableInterconnectionPortRole struct {
-	value *InterconnectionPortRole
-	isSet bool
-}
-
-func (v NullableInterconnectionPortRole) Get() *InterconnectionPortRole {
-	return v.value
-}
-
-func (v *NullableInterconnectionPortRole) Set(val *InterconnectionPortRole) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInterconnectionPortRole) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInterconnectionPortRole) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInterconnectionPortRole(val *InterconnectionPortRole) *NullableInterconnectionPortRole {
-	return &NullableInterconnectionPortRole{value: val, isSet: true}
-}
-
-func (v NullableInterconnectionPortRole) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInterconnectionPortRole) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// InterconnectionPortStatus For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.
-type InterconnectionPortStatus string
-
-// List of InterconnectionPortStatus
-const (
-	INTERCONNECTIONPORT_REQUESTED     InterconnectionPortStatus = "requested"
-	INTERCONNECTIONPORT_ACTIVE        InterconnectionPortStatus = "active"
-	INTERCONNECTIONPORT_DELETING      InterconnectionPortStatus = "deleting"
-	INTERCONNECTIONPORT_EXPIRED       InterconnectionPortStatus = "expired"
-	INTERCONNECTIONPORT_DELETE_FAILED InterconnectionPortStatus = "delete_failed"
-)
-
-// All allowed values of InterconnectionPortStatus enum
-var AllowedInterconnectionPortStatusEnumValues = []InterconnectionPortStatus{
-	"requested",
-	"active",
-	"deleting",
-	"expired",
-	"delete_failed",
-}
-
-func (v *InterconnectionPortStatus) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := InterconnectionPortStatus(value)
-	for _, existing := range AllowedInterconnectionPortStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InterconnectionPortStatus", value)
-}
-
-// NewInterconnectionPortStatusFromValue returns a pointer to a valid InterconnectionPortStatus
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInterconnectionPortStatusFromValue(v string) (*InterconnectionPortStatus, error) {
-	ev := InterconnectionPortStatus(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InterconnectionPortStatus: valid values are %v", v, AllowedInterconnectionPortStatusEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InterconnectionPortStatus) IsValid() bool {
-	for _, existing := range AllowedInterconnectionPortStatusEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Status value
-func (v InterconnectionPortStatus) Ptr() *InterconnectionPortStatus {
-	return &v
-}
-
-type NullableInterconnectionPortStatus struct {
-	value *InterconnectionPortStatus
-	isSet bool
-}
-
-func (v NullableInterconnectionPortStatus) Get() *InterconnectionPortStatus {
-	return v.value
-}
-
-func (v *NullableInterconnectionPortStatus) Set(val *InterconnectionPortStatus) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInterconnectionPortStatus) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInterconnectionPortStatus) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInterconnectionPortStatus(val *InterconnectionPortStatus) *NullableInterconnectionPortStatus {
-	return &NullableInterconnectionPortStatus{value: val, isSet: true}
-}
-
-func (v NullableInterconnectionPortStatus) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInterconnectionPortStatus) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // InterconnectionPort struct for InterconnectionPort
 type InterconnectionPort struct {
-	Id           *string `json:"id,omitempty"`
-	Organization *Href   `json:"organization,omitempty"`
-	// Either 'primary' or 'secondary'.
-	Role *InterconnectionPortRole `json:"role,omitempty"`
-	// For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.
-	Status *InterconnectionPortStatus `json:"status,omitempty"`
+	Id           *string                    `json:"id,omitempty"`
+	Organization *Href                      `json:"organization,omitempty"`
+	Role         *InterconnectionPortRole   `json:"role,omitempty"`
+	Status       *InterconnectionPortStatus `json:"status,omitempty"`
 	// A switch 'short ID'
 	SwitchId             *string          `json:"switch_id,omitempty"`
 	VirtualCircuits      []VirtualCircuit `json:"virtual_circuits,omitempty"`
@@ -327,7 +130,7 @@ func (o *InterconnectionPort) GetRole() InterconnectionPortRole {
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetRoleOk() (*InterconnectionPortRole, bool) {
 	if o == nil || IsNil(o.Role) {
-		return o.Role, false
+		return nil, false
 	}
 	return o.Role, true
 }
@@ -341,7 +144,7 @@ func (o *InterconnectionPort) HasRole() bool {
 	return false
 }
 
-// SetRole gets a reference to the given string and assigns it to the Role field.
+// SetRole gets a reference to the given InterconnectionPortRole and assigns it to the Role field.
 func (o *InterconnectionPort) SetRole(v InterconnectionPortRole) {
 	o.Role = &v
 }
@@ -359,7 +162,7 @@ func (o *InterconnectionPort) GetStatus() InterconnectionPortStatus {
 // and a boolean to check if the value has been set.
 func (o *InterconnectionPort) GetStatusOk() (*InterconnectionPortStatus, bool) {
 	if o == nil || IsNil(o.Status) {
-		return o.Status, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -373,7 +176,7 @@ func (o *InterconnectionPort) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus gets a reference to the given InterconnectionPortStatus and assigns it to the Status field.
 func (o *InterconnectionPort) SetStatus(v InterconnectionPortStatus) {
 	o.Status = &v
 }

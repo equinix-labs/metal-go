@@ -10,17 +10,17 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Project** | Pointer to **string** |  | [optional] 
 **Redundancy** | **string** | Either &#39;primary&#39; or &#39;redundant&#39;. | 
-**ServiceTokenType** | **string** | Either &#39;a_side&#39; or &#39;z_side&#39;. Setting this field to &#39;a_side&#39; will create an interconnection with Fabric VCs (Metal Billed). Setting this field to &#39;z_side&#39; will create an interconnection with Fabric VCs (Fabric Billed). This is required when the &#39;type&#39; is &#39;shared&#39;, but this is not applicable when the &#39;type&#39; is &#39;dedicated&#39;. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | 
+**ServiceTokenType** | [**VlanFabricVcCreateInputServiceTokenType**](VlanFabricVcCreateInputServiceTokenType.md) |  | 
 **Speed** | Pointer to **int32** | A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  &#39;&#39;50mbps&#39;&#39;, &#39;&#39;200mbps&#39;&#39;, &#39;&#39;500mbps&#39;&#39;, &#39;&#39;1gbps&#39;&#39;, &#39;&#39;2gbps&#39;&#39;, &#39;&#39;5gbps&#39;&#39; or &#39;&#39;10gbps&#39;&#39;, and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to &#39;&#39;10gbps&#39;&#39; even if it is not provided. For example, &#39;&#39;500000000&#39;&#39;, &#39;&#39;50m&#39;&#39;, or&#39; &#39;&#39;500mbps&#39;&#39; will all work as valid inputs. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | **string** | When requesting for a Fabric VC, the value of this field should be &#39;shared&#39;. | 
+**Type** | [**VlanFabricVcCreateInputType**](VlanFabricVcCreateInputType.md) |  | 
 **Vlans** | Pointer to **[]int32** | A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits. | [optional] 
 
 ## Methods
 
 ### NewVlanFabricVcCreateInput
 
-`func NewVlanFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType string, type_ string, ) *VlanFabricVcCreateInput`
+`func NewVlanFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType VlanFabricVcCreateInputServiceTokenType, type_ VlanFabricVcCreateInputType, ) *VlanFabricVcCreateInput`
 
 NewVlanFabricVcCreateInput instantiates a new VlanFabricVcCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -172,20 +172,20 @@ SetRedundancy sets Redundancy field to given value.
 
 ### GetServiceTokenType
 
-`func (o *VlanFabricVcCreateInput) GetServiceTokenType() string`
+`func (o *VlanFabricVcCreateInput) GetServiceTokenType() VlanFabricVcCreateInputServiceTokenType`
 
 GetServiceTokenType returns the ServiceTokenType field if non-nil, zero value otherwise.
 
 ### GetServiceTokenTypeOk
 
-`func (o *VlanFabricVcCreateInput) GetServiceTokenTypeOk() (*string, bool)`
+`func (o *VlanFabricVcCreateInput) GetServiceTokenTypeOk() (*VlanFabricVcCreateInputServiceTokenType, bool)`
 
 GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceTokenType
 
-`func (o *VlanFabricVcCreateInput) SetServiceTokenType(v string)`
+`func (o *VlanFabricVcCreateInput) SetServiceTokenType(v VlanFabricVcCreateInputServiceTokenType)`
 
 SetServiceTokenType sets ServiceTokenType field to given value.
 
@@ -242,20 +242,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *VlanFabricVcCreateInput) GetType() string`
+`func (o *VlanFabricVcCreateInput) GetType() VlanFabricVcCreateInputType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *VlanFabricVcCreateInput) GetTypeOk() (*string, bool)`
+`func (o *VlanFabricVcCreateInput) GetTypeOk() (*VlanFabricVcCreateInputType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *VlanFabricVcCreateInput) SetType(v string)`
+`func (o *VlanFabricVcCreateInput) SetType(v VlanFabricVcCreateInputType)`
 
 SetType sets Type field to given value.
 

@@ -13,124 +13,25 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the Invitation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Invitation{}
 
-// InvitationRoles the model 'InvitationRoles'
-type InvitationRoles string
-
-// List of InvitationRoles
-const (
-	INVITATION_ADMIN                InvitationRoles = "admin"
-	INVITATION_BILLING              InvitationRoles = "billing"
-	INVITATION_COLLABORATOR         InvitationRoles = "collaborator"
-	INVITATION_LIMITED_COLLABORATOR InvitationRoles = "limited_collaborator"
-)
-
-// All allowed values of InvitationRoles enum
-var AllowedInvitationRolesEnumValues = []InvitationRoles{
-	"admin",
-	"billing",
-	"collaborator",
-	"limited_collaborator",
-}
-
-func (v *InvitationRoles) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := InvitationRoles(value)
-	for _, existing := range AllowedInvitationRolesEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InvitationRoles", value)
-}
-
-// NewInvitationRolesFromValue returns a pointer to a valid InvitationRoles
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInvitationRolesFromValue(v string) (*InvitationRoles, error) {
-	ev := InvitationRoles(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InvitationRoles: valid values are %v", v, AllowedInvitationRolesEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InvitationRoles) IsValid() bool {
-	for _, existing := range AllowedInvitationRolesEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Roles value
-func (v InvitationRoles) Ptr() *InvitationRoles {
-	return &v
-}
-
-type NullableInvitationRoles struct {
-	value *InvitationRoles
-	isSet bool
-}
-
-func (v NullableInvitationRoles) Get() *InvitationRoles {
-	return v.value
-}
-
-func (v *NullableInvitationRoles) Set(val *InvitationRoles) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInvitationRoles) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInvitationRoles) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInvitationRoles(val *InvitationRoles) *NullableInvitationRoles {
-	return &NullableInvitationRoles{value: val, isSet: true}
-}
-
-func (v NullableInvitationRoles) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInvitationRoles) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // Invitation struct for Invitation
 type Invitation struct {
-	CreatedAt            *time.Time      `json:"created_at,omitempty"`
-	Href                 *string         `json:"href,omitempty"`
-	Id                   *string         `json:"id,omitempty"`
-	Invitation           *Href           `json:"invitation,omitempty"`
-	InvitedBy            *Href           `json:"invited_by,omitempty"`
-	Invitee              *string         `json:"invitee,omitempty"`
-	Nonce                *string         `json:"nonce,omitempty"`
-	Organization         *Href           `json:"organization,omitempty"`
-	Projects             []Href          `json:"projects,omitempty"`
-	Roles                InvitationRoles `json:"roles,omitempty"`
-	UpdatedAt            *time.Time      `json:"updated_at,omitempty"`
+	CreatedAt            *time.Time             `json:"created_at,omitempty"`
+	Href                 *string                `json:"href,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	Invitation           *Href                  `json:"invitation,omitempty"`
+	InvitedBy            *Href                  `json:"invited_by,omitempty"`
+	Invitee              *string                `json:"invitee,omitempty"`
+	Nonce                *string                `json:"nonce,omitempty"`
+	Organization         *Href                  `json:"organization,omitempty"`
+	Projects             []Href                 `json:"projects,omitempty"`
+	Roles                []InvitationRolesInner `json:"roles,omitempty"`
+	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -442,9 +343,9 @@ func (o *Invitation) SetProjects(v []Href) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *Invitation) GetRoles() InvitationRoles {
+func (o *Invitation) GetRoles() []InvitationRolesInner {
 	if o == nil || IsNil(o.Roles) {
-		var ret InvitationRoles
+		var ret []InvitationRolesInner
 		return ret
 	}
 	return o.Roles
@@ -452,9 +353,9 @@ func (o *Invitation) GetRoles() InvitationRoles {
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetRolesOk() (InvitationRoles, bool) {
+func (o *Invitation) GetRolesOk() ([]InvitationRolesInner, bool) {
 	if o == nil || IsNil(o.Roles) {
-		return o.Roles, false
+		return nil, false
 	}
 	return o.Roles, true
 }
@@ -468,8 +369,8 @@ func (o *Invitation) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *Invitation) SetRoles(v InvitationRoles) {
+// SetRoles gets a reference to the given []InvitationRolesInner and assigns it to the Roles field.
+func (o *Invitation) SetRoles(v []InvitationRolesInner) {
 	o.Roles = v
 }
 

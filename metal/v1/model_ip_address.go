@@ -13,109 +13,13 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the IPAddress type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &IPAddress{}
 
-// IPAddressAddressFamily Address Family for IP Address
-type IPAddressAddressFamily int32
-
-// List of IPAddressAddressFamily
-const (
-	IPADDRESS__4 IPAddressAddressFamily = 4
-	IPADDRESS__6 IPAddressAddressFamily = 6
-)
-
-// All allowed values of IPAddressAddressFamily enum
-var AllowedIPAddressAddressFamilyEnumValues = []IPAddressAddressFamily{
-	4,
-	6,
-}
-
-func (v *IPAddressAddressFamily) UnmarshalJSON(src []byte) error {
-	var value int32
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := IPAddressAddressFamily(value)
-	for _, existing := range AllowedIPAddressAddressFamilyEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid IPAddressAddressFamily", value)
-}
-
-// NewIPAddressAddressFamilyFromValue returns a pointer to a valid IPAddressAddressFamily
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewIPAddressAddressFamilyFromValue(v int32) (*IPAddressAddressFamily, error) {
-	ev := IPAddressAddressFamily(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for IPAddressAddressFamily: valid values are %v", v, AllowedIPAddressAddressFamilyEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v IPAddressAddressFamily) IsValid() bool {
-	for _, existing := range AllowedIPAddressAddressFamilyEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to AddressFamily value
-func (v IPAddressAddressFamily) Ptr() *IPAddressAddressFamily {
-	return &v
-}
-
-type NullableIPAddressAddressFamily struct {
-	value *IPAddressAddressFamily
-	isSet bool
-}
-
-func (v NullableIPAddressAddressFamily) Get() *IPAddressAddressFamily {
-	return v.value
-}
-
-func (v *NullableIPAddressAddressFamily) Set(val *IPAddressAddressFamily) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIPAddressAddressFamily) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIPAddressAddressFamily) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIPAddressAddressFamily(val *IPAddressAddressFamily) *NullableIPAddressAddressFamily {
-	return &NullableIPAddressAddressFamily{value: val, isSet: true}
-}
-
-func (v NullableIPAddressAddressFamily) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIPAddressAddressFamily) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // IPAddress struct for IPAddress
 type IPAddress struct {
-	// Address Family for IP Address
 	AddressFamily *IPAddressAddressFamily `json:"address_family,omitempty"`
 	// Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)
 	Cidr *int32 `json:"cidr,omitempty"`
@@ -162,7 +66,7 @@ func (o *IPAddress) GetAddressFamily() IPAddressAddressFamily {
 // and a boolean to check if the value has been set.
 func (o *IPAddress) GetAddressFamilyOk() (*IPAddressAddressFamily, bool) {
 	if o == nil || IsNil(o.AddressFamily) {
-		return o.AddressFamily, false
+		return nil, false
 	}
 	return o.AddressFamily, true
 }
@@ -176,7 +80,7 @@ func (o *IPAddress) HasAddressFamily() bool {
 	return false
 }
 
-// SetAddressFamily gets a reference to the given int32 and assigns it to the AddressFamily field.
+// SetAddressFamily gets a reference to the given IPAddressAddressFamily and assigns it to the AddressFamily field.
 func (o *IPAddress) SetAddressFamily(v IPAddressAddressFamily) {
 	o.AddressFamily = &v
 }

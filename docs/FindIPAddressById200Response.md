@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **ProjectLite** | Pointer to [**Project**](Project.md) |  | [optional] 
 **RequestedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | **string** |  | 
+**Type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | 
 **CreatedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Vrf** | [**Vrf**](Vrf.md) |  | 
 
@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 
 ### NewFindIPAddressById200Response
 
-`func NewFindIPAddressById200Response(type_ string, vrf Vrf, ) *FindIPAddressById200Response`
+`func NewFindIPAddressById200Response(type_ VrfIpReservationType, vrf Vrf, ) *FindIPAddressById200Response`
 
 NewFindIPAddressById200Response instantiates a new FindIPAddressById200Response object
 This constructor will assign default values to properties that have it defined,
@@ -835,20 +835,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *FindIPAddressById200Response) GetType() string`
+`func (o *FindIPAddressById200Response) GetType() VrfIpReservationType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *FindIPAddressById200Response) GetTypeOk() (*string, bool)`
+`func (o *FindIPAddressById200Response) GetTypeOk() (*VrfIpReservationType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *FindIPAddressById200Response) SetType(v string)`
+`func (o *FindIPAddressById200Response) SetType(v VrfIpReservationType)`
 
 SetType sets Type field to given value.
 

@@ -13,203 +13,10 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PlanSpecsDrivesInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PlanSpecsDrivesInner{}
-
-// PlanSpecsDrivesInnerType the model 'PlanSpecsDrivesInnerType'
-type PlanSpecsDrivesInnerType string
-
-// List of PlanSpecsDrivesInnerType
-const (
-	PLANSPECSDRIVESINNER_HDD  PlanSpecsDrivesInnerType = "HDD"
-	PLANSPECSDRIVESINNER_SSD  PlanSpecsDrivesInnerType = "SSD"
-	PLANSPECSDRIVESINNER_NVME PlanSpecsDrivesInnerType = "NVME"
-)
-
-// All allowed values of PlanSpecsDrivesInnerType enum
-var AllowedPlanSpecsDrivesInnerTypeEnumValues = []PlanSpecsDrivesInnerType{
-	"HDD",
-	"SSD",
-	"NVME",
-}
-
-func (v *PlanSpecsDrivesInnerType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := PlanSpecsDrivesInnerType(value)
-	for _, existing := range AllowedPlanSpecsDrivesInnerTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid PlanSpecsDrivesInnerType", value)
-}
-
-// NewPlanSpecsDrivesInnerTypeFromValue returns a pointer to a valid PlanSpecsDrivesInnerType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPlanSpecsDrivesInnerTypeFromValue(v string) (*PlanSpecsDrivesInnerType, error) {
-	ev := PlanSpecsDrivesInnerType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for PlanSpecsDrivesInnerType: valid values are %v", v, AllowedPlanSpecsDrivesInnerTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v PlanSpecsDrivesInnerType) IsValid() bool {
-	for _, existing := range AllowedPlanSpecsDrivesInnerTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v PlanSpecsDrivesInnerType) Ptr() *PlanSpecsDrivesInnerType {
-	return &v
-}
-
-type NullablePlanSpecsDrivesInnerType struct {
-	value *PlanSpecsDrivesInnerType
-	isSet bool
-}
-
-func (v NullablePlanSpecsDrivesInnerType) Get() *PlanSpecsDrivesInnerType {
-	return v.value
-}
-
-func (v *NullablePlanSpecsDrivesInnerType) Set(val *PlanSpecsDrivesInnerType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePlanSpecsDrivesInnerType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePlanSpecsDrivesInnerType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePlanSpecsDrivesInnerType(val *PlanSpecsDrivesInnerType) *NullablePlanSpecsDrivesInnerType {
-	return &NullablePlanSpecsDrivesInnerType{value: val, isSet: true}
-}
-
-func (v NullablePlanSpecsDrivesInnerType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePlanSpecsDrivesInnerType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// PlanSpecsDrivesInnerCategory the model 'PlanSpecsDrivesInnerCategory'
-type PlanSpecsDrivesInnerCategory string
-
-// List of PlanSpecsDrivesInnerCategory
-const (
-	PLANSPECSDRIVESINNER_BOOT    PlanSpecsDrivesInnerCategory = "boot"
-	PLANSPECSDRIVESINNER_CACHE   PlanSpecsDrivesInnerCategory = "cache"
-	PLANSPECSDRIVESINNER_STORAGE PlanSpecsDrivesInnerCategory = "storage"
-)
-
-// All allowed values of PlanSpecsDrivesInnerCategory enum
-var AllowedPlanSpecsDrivesInnerCategoryEnumValues = []PlanSpecsDrivesInnerCategory{
-	"boot",
-	"cache",
-	"storage",
-}
-
-func (v *PlanSpecsDrivesInnerCategory) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := PlanSpecsDrivesInnerCategory(value)
-	for _, existing := range AllowedPlanSpecsDrivesInnerCategoryEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid PlanSpecsDrivesInnerCategory", value)
-}
-
-// NewPlanSpecsDrivesInnerCategoryFromValue returns a pointer to a valid PlanSpecsDrivesInnerCategory
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPlanSpecsDrivesInnerCategoryFromValue(v string) (*PlanSpecsDrivesInnerCategory, error) {
-	ev := PlanSpecsDrivesInnerCategory(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for PlanSpecsDrivesInnerCategory: valid values are %v", v, AllowedPlanSpecsDrivesInnerCategoryEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v PlanSpecsDrivesInnerCategory) IsValid() bool {
-	for _, existing := range AllowedPlanSpecsDrivesInnerCategoryEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Category value
-func (v PlanSpecsDrivesInnerCategory) Ptr() *PlanSpecsDrivesInnerCategory {
-	return &v
-}
-
-type NullablePlanSpecsDrivesInnerCategory struct {
-	value *PlanSpecsDrivesInnerCategory
-	isSet bool
-}
-
-func (v NullablePlanSpecsDrivesInnerCategory) Get() *PlanSpecsDrivesInnerCategory {
-	return v.value
-}
-
-func (v *NullablePlanSpecsDrivesInnerCategory) Set(val *PlanSpecsDrivesInnerCategory) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePlanSpecsDrivesInnerCategory) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePlanSpecsDrivesInnerCategory) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePlanSpecsDrivesInnerCategory(val *PlanSpecsDrivesInnerCategory) *NullablePlanSpecsDrivesInnerCategory {
-	return &NullablePlanSpecsDrivesInnerCategory{value: val, isSet: true}
-}
-
-func (v NullablePlanSpecsDrivesInnerCategory) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePlanSpecsDrivesInnerCategory) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // PlanSpecsDrivesInner struct for PlanSpecsDrivesInner
 type PlanSpecsDrivesInner struct {
@@ -284,7 +91,7 @@ func (o *PlanSpecsDrivesInner) GetType() PlanSpecsDrivesInnerType {
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsDrivesInner) GetTypeOk() (*PlanSpecsDrivesInnerType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return o.Type, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -298,7 +105,7 @@ func (o *PlanSpecsDrivesInner) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given PlanSpecsDrivesInnerType and assigns it to the Type field.
 func (o *PlanSpecsDrivesInner) SetType(v PlanSpecsDrivesInnerType) {
 	o.Type = &v
 }
@@ -348,7 +155,7 @@ func (o *PlanSpecsDrivesInner) GetCategory() PlanSpecsDrivesInnerCategory {
 // and a boolean to check if the value has been set.
 func (o *PlanSpecsDrivesInner) GetCategoryOk() (*PlanSpecsDrivesInnerCategory, bool) {
 	if o == nil || IsNil(o.Category) {
-		return o.Category, false
+		return nil, false
 	}
 	return o.Category, true
 }
@@ -362,7 +169,7 @@ func (o *PlanSpecsDrivesInner) HasCategory() bool {
 	return false
 }
 
-// SetCategory gets a reference to the given string and assigns it to the Category field.
+// SetCategory gets a reference to the given PlanSpecsDrivesInnerCategory and assigns it to the Category field.
 func (o *PlanSpecsDrivesInner) SetCategory(v PlanSpecsDrivesInnerCategory) {
 	o.Category = &v
 }

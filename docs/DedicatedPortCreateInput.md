@@ -8,20 +8,20 @@ Name | Type | Description | Notes
 **ContactEmail** | Pointer to **string** | The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key. | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Metro** | **string** | A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports. | 
-**Mode** | Pointer to **string** | The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
+**Mode** | Pointer to [**DedicatedPortCreateInputMode**](DedicatedPortCreateInputMode.md) |  | [optional] 
 **Name** | **string** |  | 
 **Project** | Pointer to **string** |  | [optional] 
 **Redundancy** | **string** | Either &#39;primary&#39; or &#39;redundant&#39;. | 
 **Speed** | Pointer to **int32** | A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | **string** | When requesting for a dedicated port, the value of this field should be &#39;dedicated&#39;. | 
+**Type** | [**DedicatedPortCreateInputType**](DedicatedPortCreateInputType.md) |  | 
 **UseCase** | Pointer to **string** | The intended use case of the dedicated port. | [optional] 
 
 ## Methods
 
 ### NewDedicatedPortCreateInput
 
-`func NewDedicatedPortCreateInput(metro string, name string, redundancy string, type_ string, ) *DedicatedPortCreateInput`
+`func NewDedicatedPortCreateInput(metro string, name string, redundancy string, type_ DedicatedPortCreateInputType, ) *DedicatedPortCreateInput`
 
 NewDedicatedPortCreateInput instantiates a new DedicatedPortCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -133,20 +133,20 @@ SetMetro sets Metro field to given value.
 
 ### GetMode
 
-`func (o *DedicatedPortCreateInput) GetMode() string`
+`func (o *DedicatedPortCreateInput) GetMode() DedicatedPortCreateInputMode`
 
 GetMode returns the Mode field if non-nil, zero value otherwise.
 
 ### GetModeOk
 
-`func (o *DedicatedPortCreateInput) GetModeOk() (*string, bool)`
+`func (o *DedicatedPortCreateInput) GetModeOk() (*DedicatedPortCreateInputMode, bool)`
 
 GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMode
 
-`func (o *DedicatedPortCreateInput) SetMode(v string)`
+`func (o *DedicatedPortCreateInput) SetMode(v DedicatedPortCreateInputMode)`
 
 SetMode sets Mode field to given value.
 
@@ -273,20 +273,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *DedicatedPortCreateInput) GetType() string`
+`func (o *DedicatedPortCreateInput) GetType() DedicatedPortCreateInputType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *DedicatedPortCreateInput) GetTypeOk() (*string, bool)`
+`func (o *DedicatedPortCreateInput) GetTypeOk() (*DedicatedPortCreateInputType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *DedicatedPortCreateInput) SetType(v string)`
+`func (o *DedicatedPortCreateInput) SetType(v DedicatedPortCreateInputType)`
 
 SetType sets Type field to given value.
 

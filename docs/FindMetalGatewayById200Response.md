@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **IpReservation** | Pointer to [**VrfIpReservation**](VrfIpReservation.md) |  | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
-**State** | Pointer to **string** | The current state of the Metal Gateway. &#39;Ready&#39; indicates the gateway record has been configured, but is currently not active on the network. &#39;Active&#39; indicates the gateway has been configured on the network. &#39;Deleting&#39; is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted. | [optional] 
+**State** | Pointer to [**MetalGatewayState**](MetalGatewayState.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **VirtualNetwork** | Pointer to [**VirtualNetwork**](VirtualNetwork.md) |  | [optional] 
 **Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
@@ -186,20 +186,20 @@ HasProject returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *FindMetalGatewayById200Response) GetState() string`
+`func (o *FindMetalGatewayById200Response) GetState() MetalGatewayState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *FindMetalGatewayById200Response) GetStateOk() (*string, bool)`
+`func (o *FindMetalGatewayById200Response) GetStateOk() (*MetalGatewayState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *FindMetalGatewayById200Response) SetState(v string)`
+`func (o *FindMetalGatewayById200Response) SetState(v MetalGatewayState)`
 
 SetState sets State field to given value.
 

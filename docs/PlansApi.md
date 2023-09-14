@@ -30,8 +30,8 @@ import (
 )
 
 func main() {
-    categories := []string{"compute"} // []string | Filter plans by its category (optional)
-    type_ := "standard" // string | Filter plans by its plan type (optional)
+    categories := []openapiclient.FindOrganizationDevicesCategoriesParameterInner{openapiclient.findOrganizationDevices_categories_parameter_inner("compute")} // []FindOrganizationDevicesCategoriesParameterInner | Filter plans by its category (optional)
+    type_ := openapiclient.findPlans_type_parameter("standard") // FindPlansTypeParameter | Filter plans by its plan type (optional)
     slug := "c3.small.x86" // string | Filter plans by slug (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -59,8 +59,8 @@ Other parameters are passed through a pointer to a apiFindPlansRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **categories** | **[]string** | Filter plans by its category | 
- **type_** | **string** | Filter plans by its plan type | 
+ **categories** | [**[]FindOrganizationDevicesCategoriesParameterInner**](FindOrganizationDevicesCategoriesParameterInner.md) | Filter plans by its category | 
+ **type_** | [**FindPlansTypeParameter**](FindPlansTypeParameter.md) | Filter plans by its plan type | 
  **slug** | **string** | Filter plans by slug | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 

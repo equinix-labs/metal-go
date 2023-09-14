@@ -13,209 +13,17 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the BgpConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BgpConfig{}
 
-// BgpConfigDeploymentType In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.
-type BgpConfigDeploymentType string
-
-// List of BgpConfigDeploymentType
-const (
-	BGPCONFIG_GLOBAL BgpConfigDeploymentType = "global"
-	BGPCONFIG_LOCAL  BgpConfigDeploymentType = "local"
-)
-
-// All allowed values of BgpConfigDeploymentType enum
-var AllowedBgpConfigDeploymentTypeEnumValues = []BgpConfigDeploymentType{
-	"global",
-	"local",
-}
-
-func (v *BgpConfigDeploymentType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := BgpConfigDeploymentType(value)
-	for _, existing := range AllowedBgpConfigDeploymentTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid BgpConfigDeploymentType", value)
-}
-
-// NewBgpConfigDeploymentTypeFromValue returns a pointer to a valid BgpConfigDeploymentType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewBgpConfigDeploymentTypeFromValue(v string) (*BgpConfigDeploymentType, error) {
-	ev := BgpConfigDeploymentType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for BgpConfigDeploymentType: valid values are %v", v, AllowedBgpConfigDeploymentTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v BgpConfigDeploymentType) IsValid() bool {
-	for _, existing := range AllowedBgpConfigDeploymentTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to DeploymentType value
-func (v BgpConfigDeploymentType) Ptr() *BgpConfigDeploymentType {
-	return &v
-}
-
-type NullableBgpConfigDeploymentType struct {
-	value *BgpConfigDeploymentType
-	isSet bool
-}
-
-func (v NullableBgpConfigDeploymentType) Get() *BgpConfigDeploymentType {
-	return v.value
-}
-
-func (v *NullableBgpConfigDeploymentType) Set(val *BgpConfigDeploymentType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableBgpConfigDeploymentType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableBgpConfigDeploymentType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableBgpConfigDeploymentType(val *BgpConfigDeploymentType) *NullableBgpConfigDeploymentType {
-	return &NullableBgpConfigDeploymentType{value: val, isSet: true}
-}
-
-func (v NullableBgpConfigDeploymentType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableBgpConfigDeploymentType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// BgpConfigStatus Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.
-type BgpConfigStatus string
-
-// List of BgpConfigStatus
-const (
-	BGPCONFIG_REQUESTED BgpConfigStatus = "requested"
-	BGPCONFIG_ENABLED   BgpConfigStatus = "enabled"
-	BGPCONFIG_DISABLED  BgpConfigStatus = "disabled"
-)
-
-// All allowed values of BgpConfigStatus enum
-var AllowedBgpConfigStatusEnumValues = []BgpConfigStatus{
-	"requested",
-	"enabled",
-	"disabled",
-}
-
-func (v *BgpConfigStatus) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := BgpConfigStatus(value)
-	for _, existing := range AllowedBgpConfigStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid BgpConfigStatus", value)
-}
-
-// NewBgpConfigStatusFromValue returns a pointer to a valid BgpConfigStatus
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewBgpConfigStatusFromValue(v string) (*BgpConfigStatus, error) {
-	ev := BgpConfigStatus(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for BgpConfigStatus: valid values are %v", v, AllowedBgpConfigStatusEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v BgpConfigStatus) IsValid() bool {
-	for _, existing := range AllowedBgpConfigStatusEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Status value
-func (v BgpConfigStatus) Ptr() *BgpConfigStatus {
-	return &v
-}
-
-type NullableBgpConfigStatus struct {
-	value *BgpConfigStatus
-	isSet bool
-}
-
-func (v NullableBgpConfigStatus) Get() *BgpConfigStatus {
-	return v.value
-}
-
-func (v *NullableBgpConfigStatus) Set(val *BgpConfigStatus) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableBgpConfigStatus) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableBgpConfigStatus) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableBgpConfigStatus(val *BgpConfigStatus) *NullableBgpConfigStatus {
-	return &NullableBgpConfigStatus{value: val, isSet: true}
-}
-
-func (v NullableBgpConfigStatus) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableBgpConfigStatus) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // BgpConfig struct for BgpConfig
 type BgpConfig struct {
 	// Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.
-	Asn       *int32     `json:"asn,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.
+	Asn            *int32                   `json:"asn,omitempty"`
+	CreatedAt      *time.Time               `json:"created_at,omitempty"`
 	DeploymentType *BgpConfigDeploymentType `json:"deployment_type,omitempty"`
 	Href           *string                  `json:"href,omitempty"`
 	Id             *string                  `json:"id,omitempty"`
@@ -230,8 +38,7 @@ type BgpConfig struct {
 	// Specifies AS-MACRO (aka AS-SET) to use when building client route filters
 	RouteObject *string `json:"route_object,omitempty"`
 	// The direct connections between neighboring routers that want to exchange routing information.
-	Sessions []BgpSession `json:"sessions,omitempty"`
-	// Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.
+	Sessions             []BgpSession     `json:"sessions,omitempty"`
 	Status               *BgpConfigStatus `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -336,7 +143,7 @@ func (o *BgpConfig) GetDeploymentType() BgpConfigDeploymentType {
 // and a boolean to check if the value has been set.
 func (o *BgpConfig) GetDeploymentTypeOk() (*BgpConfigDeploymentType, bool) {
 	if o == nil || IsNil(o.DeploymentType) {
-		return o.DeploymentType, false
+		return nil, false
 	}
 	return o.DeploymentType, true
 }
@@ -350,7 +157,7 @@ func (o *BgpConfig) HasDeploymentType() bool {
 	return false
 }
 
-// SetDeploymentType gets a reference to the given string and assigns it to the DeploymentType field.
+// SetDeploymentType gets a reference to the given BgpConfigDeploymentType and assigns it to the DeploymentType field.
 func (o *BgpConfig) SetDeploymentType(v BgpConfigDeploymentType) {
 	o.DeploymentType = &v
 }
@@ -667,7 +474,7 @@ func (o *BgpConfig) GetStatus() BgpConfigStatus {
 // and a boolean to check if the value has been set.
 func (o *BgpConfig) GetStatusOk() (*BgpConfigStatus, bool) {
 	if o == nil || IsNil(o.Status) {
-		return o.Status, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -681,7 +488,7 @@ func (o *BgpConfig) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus gets a reference to the given BgpConfigStatus and assigns it to the Status field.
 func (o *BgpConfig) SetStatus(v BgpConfigStatus) {
 	o.Status = &v
 }

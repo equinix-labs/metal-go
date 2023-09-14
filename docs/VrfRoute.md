@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | The unique identifier for the newly-created resource | [optional] [readonly] 
-**Status** | Pointer to **string** | The status of the route. Potential values are \&quot;pending\&quot;, \&quot;active\&quot;, \&quot;deleting\&quot;, and \&quot;error\&quot;, representing various lifecycle states of the route and whether or not it has been successfully configured on the network | [optional] [readonly] 
+**Status** | Pointer to [**VrfRouteStatus**](VrfRouteStatus.md) |  | [optional] 
 **Prefix** | Pointer to **string** | The IPv4 prefix for the route, in CIDR-style notation | [optional] 
 **NextHop** | Pointer to **string** | The next-hop IPv4 address for the route | [optional] 
-**Type** | Pointer to **string** | VRF route type, like &#39;bgp&#39;, &#39;connected&#39;, and &#39;static&#39;. Currently, only static routes are supported | [optional] [readonly] 
+**Type** | Pointer to [**VrfRouteType**](VrfRouteType.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **MetalGateway** | Pointer to [**VrfMetalGateway**](VrfMetalGateway.md) |  | [optional] 
@@ -63,20 +63,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *VrfRoute) GetStatus() string`
+`func (o *VrfRoute) GetStatus() VrfRouteStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *VrfRoute) GetStatusOk() (*string, bool)`
+`func (o *VrfRoute) GetStatusOk() (*VrfRouteStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *VrfRoute) SetStatus(v string)`
+`func (o *VrfRoute) SetStatus(v VrfRouteStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -138,20 +138,20 @@ HasNextHop returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *VrfRoute) GetType() string`
+`func (o *VrfRoute) GetType() VrfRouteType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *VrfRoute) GetTypeOk() (*string, bool)`
+`func (o *VrfRoute) GetTypeOk() (*VrfRouteType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *VrfRoute) SetType(v string)`
+`func (o *VrfRoute) SetType(v VrfRouteType)`
 
 SetType sets Type field to given value.
 

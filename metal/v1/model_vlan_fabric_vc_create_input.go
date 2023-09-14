@@ -13,197 +13,10 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the VlanFabricVcCreateInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VlanFabricVcCreateInput{}
-
-// VlanFabricVcCreateInputServiceTokenType Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-type VlanFabricVcCreateInputServiceTokenType string
-
-// List of VlanFabricVcCreateInputServiceTokenType
-const (
-	VLANFABRICVCCREATEINPUT_A_SIDE VlanFabricVcCreateInputServiceTokenType = "a_side"
-	VLANFABRICVCCREATEINPUT_Z_SIDE VlanFabricVcCreateInputServiceTokenType = "z_side"
-)
-
-// All allowed values of VlanFabricVcCreateInputServiceTokenType enum
-var AllowedVlanFabricVcCreateInputServiceTokenTypeEnumValues = []VlanFabricVcCreateInputServiceTokenType{
-	"a_side",
-	"z_side",
-}
-
-func (v *VlanFabricVcCreateInputServiceTokenType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := VlanFabricVcCreateInputServiceTokenType(value)
-	for _, existing := range AllowedVlanFabricVcCreateInputServiceTokenTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid VlanFabricVcCreateInputServiceTokenType", value)
-}
-
-// NewVlanFabricVcCreateInputServiceTokenTypeFromValue returns a pointer to a valid VlanFabricVcCreateInputServiceTokenType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewVlanFabricVcCreateInputServiceTokenTypeFromValue(v string) (*VlanFabricVcCreateInputServiceTokenType, error) {
-	ev := VlanFabricVcCreateInputServiceTokenType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VlanFabricVcCreateInputServiceTokenType: valid values are %v", v, AllowedVlanFabricVcCreateInputServiceTokenTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v VlanFabricVcCreateInputServiceTokenType) IsValid() bool {
-	for _, existing := range AllowedVlanFabricVcCreateInputServiceTokenTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to ServiceTokenType value
-func (v VlanFabricVcCreateInputServiceTokenType) Ptr() *VlanFabricVcCreateInputServiceTokenType {
-	return &v
-}
-
-type NullableVlanFabricVcCreateInputServiceTokenType struct {
-	value *VlanFabricVcCreateInputServiceTokenType
-	isSet bool
-}
-
-func (v NullableVlanFabricVcCreateInputServiceTokenType) Get() *VlanFabricVcCreateInputServiceTokenType {
-	return v.value
-}
-
-func (v *NullableVlanFabricVcCreateInputServiceTokenType) Set(val *VlanFabricVcCreateInputServiceTokenType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableVlanFabricVcCreateInputServiceTokenType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableVlanFabricVcCreateInputServiceTokenType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableVlanFabricVcCreateInputServiceTokenType(val *VlanFabricVcCreateInputServiceTokenType) *NullableVlanFabricVcCreateInputServiceTokenType {
-	return &NullableVlanFabricVcCreateInputServiceTokenType{value: val, isSet: true}
-}
-
-func (v NullableVlanFabricVcCreateInputServiceTokenType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableVlanFabricVcCreateInputServiceTokenType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// VlanFabricVcCreateInputType When requesting for a Fabric VC, the value of this field should be 'shared'.
-type VlanFabricVcCreateInputType string
-
-// List of VlanFabricVcCreateInputType
-const (
-	VLANFABRICVCCREATEINPUT_SHARED VlanFabricVcCreateInputType = "shared"
-)
-
-// All allowed values of VlanFabricVcCreateInputType enum
-var AllowedVlanFabricVcCreateInputTypeEnumValues = []VlanFabricVcCreateInputType{
-	"shared",
-}
-
-func (v *VlanFabricVcCreateInputType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := VlanFabricVcCreateInputType(value)
-	for _, existing := range AllowedVlanFabricVcCreateInputTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid VlanFabricVcCreateInputType", value)
-}
-
-// NewVlanFabricVcCreateInputTypeFromValue returns a pointer to a valid VlanFabricVcCreateInputType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewVlanFabricVcCreateInputTypeFromValue(v string) (*VlanFabricVcCreateInputType, error) {
-	ev := VlanFabricVcCreateInputType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VlanFabricVcCreateInputType: valid values are %v", v, AllowedVlanFabricVcCreateInputTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v VlanFabricVcCreateInputType) IsValid() bool {
-	for _, existing := range AllowedVlanFabricVcCreateInputTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v VlanFabricVcCreateInputType) Ptr() *VlanFabricVcCreateInputType {
-	return &v
-}
-
-type NullableVlanFabricVcCreateInputType struct {
-	value *VlanFabricVcCreateInputType
-	isSet bool
-}
-
-func (v NullableVlanFabricVcCreateInputType) Get() *VlanFabricVcCreateInputType {
-	return v.value
-}
-
-func (v *NullableVlanFabricVcCreateInputType) Set(val *VlanFabricVcCreateInputType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableVlanFabricVcCreateInputType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableVlanFabricVcCreateInputType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableVlanFabricVcCreateInputType(val *VlanFabricVcCreateInputType) *NullableVlanFabricVcCreateInputType {
-	return &NullableVlanFabricVcCreateInputType{value: val, isSet: true}
-}
-
-func (v NullableVlanFabricVcCreateInputType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableVlanFabricVcCreateInputType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // VlanFabricVcCreateInput struct for VlanFabricVcCreateInput
 type VlanFabricVcCreateInput struct {
@@ -215,14 +28,12 @@ type VlanFabricVcCreateInput struct {
 	Name    string  `json:"name"`
 	Project *string `json:"project,omitempty"`
 	// Either 'primary' or 'redundant'.
-	Redundancy string `json:"redundancy"`
-	// Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
+	Redundancy       string                                  `json:"redundancy"`
 	ServiceTokenType VlanFabricVcCreateInputServiceTokenType `json:"service_token_type"`
 	// A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.
-	Speed *int32   `json:"speed,omitempty"`
-	Tags  []string `json:"tags,omitempty"`
-	// When requesting for a Fabric VC, the value of this field should be 'shared'.
-	Type VlanFabricVcCreateInputType `json:"type"`
+	Speed *int32                      `json:"speed,omitempty"`
+	Tags  []string                    `json:"tags,omitempty"`
+	Type  VlanFabricVcCreateInputType `json:"type"`
 	// A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits.
 	Vlans                []int32 `json:"vlans,omitempty"`
 	AdditionalProperties map[string]interface{}

@@ -13,122 +13,11 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the Device type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Device{}
-
-// DeviceState The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.
-type DeviceState string
-
-// List of DeviceState
-const (
-	DEVICE_QUEUED         DeviceState = "queued"
-	DEVICE_PROVISIONING   DeviceState = "provisioning"
-	DEVICE_DEPROVISIONING DeviceState = "deprovisioning"
-	DEVICE_REINSTALLING   DeviceState = "reinstalling"
-	DEVICE_ACTIVE         DeviceState = "active"
-	DEVICE_INACTIVE       DeviceState = "inactive"
-	DEVICE_FAILED         DeviceState = "failed"
-	DEVICE_POWERING_ON    DeviceState = "powering_on"
-	DEVICE_POWERING_OFF   DeviceState = "powering_off"
-	DEVICE_DELETED        DeviceState = "deleted"
-)
-
-// All allowed values of DeviceState enum
-var AllowedDeviceStateEnumValues = []DeviceState{
-	"queued",
-	"provisioning",
-	"deprovisioning",
-	"reinstalling",
-	"active",
-	"inactive",
-	"failed",
-	"powering_on",
-	"powering_off",
-	"deleted",
-}
-
-func (v *DeviceState) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := DeviceState(value)
-	for _, existing := range AllowedDeviceStateEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DeviceState", value)
-}
-
-// NewDeviceStateFromValue returns a pointer to a valid DeviceState
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDeviceStateFromValue(v string) (*DeviceState, error) {
-	ev := DeviceState(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DeviceState: valid values are %v", v, AllowedDeviceStateEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v DeviceState) IsValid() bool {
-	for _, existing := range AllowedDeviceStateEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to State value
-func (v DeviceState) Ptr() *DeviceState {
-	return &v
-}
-
-type NullableDeviceState struct {
-	value *DeviceState
-	isSet bool
-}
-
-func (v NullableDeviceState) Get() *DeviceState {
-	return v.value
-}
-
-func (v *NullableDeviceState) Set(val *DeviceState) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDeviceState) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDeviceState) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDeviceState(val *DeviceState) *NullableDeviceState {
-	return &NullableDeviceState{value: val, isSet: true}
-}
-
-func (v NullableDeviceState) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDeviceState) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // Device struct for Device
 type Device struct {
@@ -172,11 +61,10 @@ type Device struct {
 	// Whether or not the device is a spot instance.
 	SpotInstance *bool `json:"spot_instance,omitempty"`
 	// The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown.
-	SpotPriceMax *float32 `json:"spot_price_max,omitempty"`
-	SshKeys      []Href   `json:"ssh_keys,omitempty"`
-	// The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.
-	State   *DeviceState `json:"state,omitempty"`
-	Storage *Storage     `json:"storage,omitempty"`
+	SpotPriceMax *float32     `json:"spot_price_max,omitempty"`
+	SshKeys      []Href       `json:"ssh_keys,omitempty"`
+	State        *DeviceState `json:"state,omitempty"`
+	Storage      *Storage     `json:"storage,omitempty"`
 	// Switch short id. This can be used to determine if two devices are connected to the same switch, for example.
 	SwitchUuid *string  `json:"switch_uuid,omitempty"`
 	Tags       []string `json:"tags,omitempty"`
@@ -1279,7 +1167,7 @@ func (o *Device) GetState() DeviceState {
 // and a boolean to check if the value has been set.
 func (o *Device) GetStateOk() (*DeviceState, bool) {
 	if o == nil || IsNil(o.State) {
-		return o.State, false
+		return nil, false
 	}
 	return o.State, true
 }
@@ -1293,7 +1181,7 @@ func (o *Device) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
+// SetState gets a reference to the given DeviceState and assigns it to the State field.
 func (o *Device) SetState(v DeviceState) {
 	o.State = &v
 }

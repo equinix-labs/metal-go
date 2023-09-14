@@ -246,7 +246,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | IP Reservation UUID
-    cidr := "cidr_example" // string | Size of subnets in bits
+    cidr := openapiclient.findIPAvailabilities_cidr_parameter("20") // FindIPAvailabilitiesCidrParameter | Size of subnets in bits
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -276,7 +276,7 @@ Other parameters are passed through a pointer to a apiFindIPAvailabilitiesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cidr** | **string** | Size of subnets in bits | 
+ **cidr** | [**FindIPAvailabilitiesCidrParameter**](FindIPAvailabilitiesCidrParameter.md) | Size of subnets in bits | 
 
 ### Return type
 
@@ -318,7 +318,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
-    types := []string{"Types_example"} // []string | Filter project IP reservations by reservation type (optional)
+    types := []openapiclient.FindIPReservationsTypesParameterInner{openapiclient.findIPReservations_types_parameter_inner("global_ipv4")} // []FindIPReservationsTypesParameterInner | Filter project IP reservations by reservation type (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 250)
@@ -351,7 +351,7 @@ Other parameters are passed through a pointer to a apiFindIPReservationsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **types** | **[]string** | Filter project IP reservations by reservation type | 
+ **types** | [**[]FindIPReservationsTypesParameterInner**](FindIPReservationsTypesParameterInner.md) | Filter project IP reservations by reservation type | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **perPage** | **int32** | Items returned per page | [default to 250]

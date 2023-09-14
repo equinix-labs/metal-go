@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **BgpNeighborAsn** | Pointer to **int32** | The ASN of the dynamic BGP neighbor | [optional] 
 **BgpNeighborRange** | Pointer to **string** | Network range of the dynamic BGP neighbor in CIDR format | [optional] 
 **MetalGateway** | Pointer to [**VrfMetalGateway**](VrfMetalGateway.md) |  | [optional] 
-**State** | Pointer to **string** |  | [optional] [readonly] 
+**State** | Pointer to [**BgpDynamicNeighborState**](BgpDynamicNeighborState.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] [readonly] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **CreatedBy** | Pointer to [**UserLimited**](UserLimited.md) |  | [optional] 
@@ -136,20 +136,20 @@ HasMetalGateway returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *BgpDynamicNeighbor) GetState() string`
+`func (o *BgpDynamicNeighbor) GetState() BgpDynamicNeighborState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *BgpDynamicNeighbor) GetStateOk() (*string, bool)`
+`func (o *BgpDynamicNeighbor) GetStateOk() (*BgpDynamicNeighborState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *BgpDynamicNeighbor) SetState(v string)`
+`func (o *BgpDynamicNeighbor) SetState(v BgpDynamicNeighborState)`
 
 SetState sets State field to given value.
 

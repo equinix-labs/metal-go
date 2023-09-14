@@ -13,106 +13,11 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the Project type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Project{}
-
-// ProjectType The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
-type ProjectType string
-
-// List of ProjectType
-const (
-	PROJECT_DEFAULT ProjectType = "default"
-	PROJECT_VMCE    ProjectType = "vmce"
-)
-
-// All allowed values of ProjectType enum
-var AllowedProjectTypeEnumValues = []ProjectType{
-	"default",
-	"vmce",
-}
-
-func (v *ProjectType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := ProjectType(value)
-	for _, existing := range AllowedProjectTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ProjectType", value)
-}
-
-// NewProjectTypeFromValue returns a pointer to a valid ProjectType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewProjectTypeFromValue(v string) (*ProjectType, error) {
-	ev := ProjectType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ProjectType: valid values are %v", v, AllowedProjectTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v ProjectType) IsValid() bool {
-	for _, existing := range AllowedProjectTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v ProjectType) Ptr() *ProjectType {
-	return &v
-}
-
-type NullableProjectType struct {
-	value *ProjectType
-	isSet bool
-}
-
-func (v NullableProjectType) Get() *ProjectType {
-	return v.value
-}
-
-func (v *NullableProjectType) Set(val *ProjectType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableProjectType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableProjectType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableProjectType(val *ProjectType) *NullableProjectType {
-	return &NullableProjectType{value: val, isSet: true}
-}
-
-func (v NullableProjectType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableProjectType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // Project struct for Project
 type Project struct {
@@ -127,16 +32,15 @@ type Project struct {
 	Members     []Href                 `json:"members,omitempty"`
 	Memberships []Href                 `json:"memberships,omitempty"`
 	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name          *string                `json:"name,omitempty"`
-	NetworkStatus map[string]interface{} `json:"network_status,omitempty"`
-	Organization  *Organization          `json:"organization,omitempty"`
-	PaymentMethod *Href                  `json:"payment_method,omitempty"`
-	SshKeys       []Href                 `json:"ssh_keys,omitempty"`
-	UpdatedAt     *time.Time             `json:"updated_at,omitempty"`
-	Volumes       []Href                 `json:"volumes,omitempty"`
-	// The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
-	Type                 *ProjectType `json:"type,omitempty"`
-	Tags                 []string     `json:"tags,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	NetworkStatus        map[string]interface{} `json:"network_status,omitempty"`
+	Organization         *Organization          `json:"organization,omitempty"`
+	PaymentMethod        *Href                  `json:"payment_method,omitempty"`
+	SshKeys              []Href                 `json:"ssh_keys,omitempty"`
+	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
+	Volumes              []Href                 `json:"volumes,omitempty"`
+	Type                 *ProjectType           `json:"type,omitempty"`
+	Tags                 []string               `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -716,7 +620,7 @@ func (o *Project) GetType() ProjectType {
 // and a boolean to check if the value has been set.
 func (o *Project) GetTypeOk() (*ProjectType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return o.Type, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -730,7 +634,7 @@ func (o *Project) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given ProjectType and assigns it to the Type field.
 func (o *Project) SetType(v ProjectType) {
 	o.Type = &v
 }

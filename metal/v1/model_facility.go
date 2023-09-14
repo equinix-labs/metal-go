@@ -13,118 +13,17 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Facility type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Facility{}
 
-// FacilityFeatures the model 'FacilityFeatures'
-type FacilityFeatures string
-
-// List of FacilityFeatures
-const (
-	FACILITY_BAREMETAL        FacilityFeatures = "baremetal"
-	FACILITY_BACKEND_TRANSFER FacilityFeatures = "backend_transfer"
-	FACILITY_LAYER_2          FacilityFeatures = "layer_2"
-	FACILITY_GLOBAL_IPV4      FacilityFeatures = "global_ipv4"
-	FACILITY_IBX              FacilityFeatures = "ibx"
-)
-
-// All allowed values of FacilityFeatures enum
-var AllowedFacilityFeaturesEnumValues = []FacilityFeatures{
-	"baremetal",
-	"backend_transfer",
-	"layer_2",
-	"global_ipv4",
-	"ibx",
-}
-
-func (v *FacilityFeatures) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := FacilityFeatures(value)
-	for _, existing := range AllowedFacilityFeaturesEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid FacilityFeatures", value)
-}
-
-// NewFacilityFeaturesFromValue returns a pointer to a valid FacilityFeatures
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewFacilityFeaturesFromValue(v string) (*FacilityFeatures, error) {
-	ev := FacilityFeatures(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for FacilityFeatures: valid values are %v", v, AllowedFacilityFeaturesEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v FacilityFeatures) IsValid() bool {
-	for _, existing := range AllowedFacilityFeaturesEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Features value
-func (v FacilityFeatures) Ptr() *FacilityFeatures {
-	return &v
-}
-
-type NullableFacilityFeatures struct {
-	value *FacilityFeatures
-	isSet bool
-}
-
-func (v NullableFacilityFeatures) Get() *FacilityFeatures {
-	return v.value
-}
-
-func (v *NullableFacilityFeatures) Set(val *FacilityFeatures) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFacilityFeatures) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFacilityFeatures) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFacilityFeatures(val *FacilityFeatures) *NullableFacilityFeatures {
-	return &NullableFacilityFeatures{value: val, isSet: true}
-}
-
-func (v NullableFacilityFeatures) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFacilityFeatures) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // Facility struct for Facility
 type Facility struct {
-	Address  *Address         `json:"address,omitempty"`
-	Code     *string          `json:"code,omitempty"`
-	Features FacilityFeatures `json:"features,omitempty"`
-	Id       *string          `json:"id,omitempty"`
+	Address  *Address                `json:"address,omitempty"`
+	Code     *string                 `json:"code,omitempty"`
+	Features []FacilityFeaturesInner `json:"features,omitempty"`
+	Id       *string                 `json:"id,omitempty"`
 	// IP ranges registered in facility. Can be used for GeoIP location
 	IpRanges             []string     `json:"ip_ranges,omitempty"`
 	Metro                *DeviceMetro `json:"metro,omitempty"`
@@ -216,9 +115,9 @@ func (o *Facility) SetCode(v string) {
 }
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
-func (o *Facility) GetFeatures() FacilityFeatures {
+func (o *Facility) GetFeatures() []FacilityFeaturesInner {
 	if o == nil || IsNil(o.Features) {
-		var ret FacilityFeatures
+		var ret []FacilityFeaturesInner
 		return ret
 	}
 	return o.Features
@@ -226,9 +125,9 @@ func (o *Facility) GetFeatures() FacilityFeatures {
 
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Facility) GetFeaturesOk() (FacilityFeatures, bool) {
+func (o *Facility) GetFeaturesOk() ([]FacilityFeaturesInner, bool) {
 	if o == nil || IsNil(o.Features) {
-		return o.Features, false
+		return nil, false
 	}
 	return o.Features, true
 }
@@ -242,8 +141,8 @@ func (o *Facility) HasFeatures() bool {
 	return false
 }
 
-// SetFeatures gets a reference to the given []string and assigns it to the Features field.
-func (o *Facility) SetFeatures(v FacilityFeatures) {
+// SetFeatures gets a reference to the given []FacilityFeaturesInner and assigns it to the Features field.
+func (o *Facility) SetFeatures(v []FacilityFeaturesInner) {
 	o.Features = v
 }
 

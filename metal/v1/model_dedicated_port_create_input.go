@@ -13,197 +13,10 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the DedicatedPortCreateInput type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DedicatedPortCreateInput{}
-
-// DedicatedPortCreateInputMode The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-type DedicatedPortCreateInputMode string
-
-// List of DedicatedPortCreateInputMode
-const (
-	DEDICATEDPORTCREATEINPUT_STANDARD DedicatedPortCreateInputMode = "standard"
-	DEDICATEDPORTCREATEINPUT_TUNNEL   DedicatedPortCreateInputMode = "tunnel"
-)
-
-// All allowed values of DedicatedPortCreateInputMode enum
-var AllowedDedicatedPortCreateInputModeEnumValues = []DedicatedPortCreateInputMode{
-	"standard",
-	"tunnel",
-}
-
-func (v *DedicatedPortCreateInputMode) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := DedicatedPortCreateInputMode(value)
-	for _, existing := range AllowedDedicatedPortCreateInputModeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DedicatedPortCreateInputMode", value)
-}
-
-// NewDedicatedPortCreateInputModeFromValue returns a pointer to a valid DedicatedPortCreateInputMode
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDedicatedPortCreateInputModeFromValue(v string) (*DedicatedPortCreateInputMode, error) {
-	ev := DedicatedPortCreateInputMode(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DedicatedPortCreateInputMode: valid values are %v", v, AllowedDedicatedPortCreateInputModeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v DedicatedPortCreateInputMode) IsValid() bool {
-	for _, existing := range AllowedDedicatedPortCreateInputModeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Mode value
-func (v DedicatedPortCreateInputMode) Ptr() *DedicatedPortCreateInputMode {
-	return &v
-}
-
-type NullableDedicatedPortCreateInputMode struct {
-	value *DedicatedPortCreateInputMode
-	isSet bool
-}
-
-func (v NullableDedicatedPortCreateInputMode) Get() *DedicatedPortCreateInputMode {
-	return v.value
-}
-
-func (v *NullableDedicatedPortCreateInputMode) Set(val *DedicatedPortCreateInputMode) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDedicatedPortCreateInputMode) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDedicatedPortCreateInputMode) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDedicatedPortCreateInputMode(val *DedicatedPortCreateInputMode) *NullableDedicatedPortCreateInputMode {
-	return &NullableDedicatedPortCreateInputMode{value: val, isSet: true}
-}
-
-func (v NullableDedicatedPortCreateInputMode) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDedicatedPortCreateInputMode) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// DedicatedPortCreateInputType When requesting for a dedicated port, the value of this field should be 'dedicated'.
-type DedicatedPortCreateInputType string
-
-// List of DedicatedPortCreateInputType
-const (
-	DEDICATEDPORTCREATEINPUT_DEDICATED DedicatedPortCreateInputType = "dedicated"
-)
-
-// All allowed values of DedicatedPortCreateInputType enum
-var AllowedDedicatedPortCreateInputTypeEnumValues = []DedicatedPortCreateInputType{
-	"dedicated",
-}
-
-func (v *DedicatedPortCreateInputType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := DedicatedPortCreateInputType(value)
-	for _, existing := range AllowedDedicatedPortCreateInputTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DedicatedPortCreateInputType", value)
-}
-
-// NewDedicatedPortCreateInputTypeFromValue returns a pointer to a valid DedicatedPortCreateInputType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDedicatedPortCreateInputTypeFromValue(v string) (*DedicatedPortCreateInputType, error) {
-	ev := DedicatedPortCreateInputType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DedicatedPortCreateInputType: valid values are %v", v, AllowedDedicatedPortCreateInputTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v DedicatedPortCreateInputType) IsValid() bool {
-	for _, existing := range AllowedDedicatedPortCreateInputTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v DedicatedPortCreateInputType) Ptr() *DedicatedPortCreateInputType {
-	return &v
-}
-
-type NullableDedicatedPortCreateInputType struct {
-	value *DedicatedPortCreateInputType
-	isSet bool
-}
-
-func (v NullableDedicatedPortCreateInputType) Get() *DedicatedPortCreateInputType {
-	return v.value
-}
-
-func (v *NullableDedicatedPortCreateInputType) Set(val *DedicatedPortCreateInputType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDedicatedPortCreateInputType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDedicatedPortCreateInputType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDedicatedPortCreateInputType(val *DedicatedPortCreateInputType) *NullableDedicatedPortCreateInputType {
-	return &NullableDedicatedPortCreateInputType{value: val, isSet: true}
-}
-
-func (v NullableDedicatedPortCreateInputType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDedicatedPortCreateInputType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // DedicatedPortCreateInput struct for DedicatedPortCreateInput
 type DedicatedPortCreateInput struct {
@@ -213,18 +26,16 @@ type DedicatedPortCreateInput struct {
 	ContactEmail *string `json:"contact_email,omitempty"`
 	Description  *string `json:"description,omitempty"`
 	// A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports.
-	Metro string `json:"metro"`
-	// The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+	Metro   string                        `json:"metro"`
 	Mode    *DedicatedPortCreateInputMode `json:"mode,omitempty"`
 	Name    string                        `json:"name"`
 	Project *string                       `json:"project,omitempty"`
 	// Either 'primary' or 'redundant'.
 	Redundancy string `json:"redundancy"`
 	// A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.
-	Speed *int32   `json:"speed,omitempty"`
-	Tags  []string `json:"tags,omitempty"`
-	// When requesting for a dedicated port, the value of this field should be 'dedicated'.
-	Type DedicatedPortCreateInputType `json:"type"`
+	Speed *int32                       `json:"speed,omitempty"`
+	Tags  []string                     `json:"tags,omitempty"`
+	Type  DedicatedPortCreateInputType `json:"type"`
 	// The intended use case of the dedicated port.
 	UseCase              *string `json:"use_case,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -386,7 +197,7 @@ func (o *DedicatedPortCreateInput) GetMode() DedicatedPortCreateInputMode {
 // and a boolean to check if the value has been set.
 func (o *DedicatedPortCreateInput) GetModeOk() (*DedicatedPortCreateInputMode, bool) {
 	if o == nil || IsNil(o.Mode) {
-		return o.Mode, false
+		return nil, false
 	}
 	return o.Mode, true
 }
@@ -400,7 +211,7 @@ func (o *DedicatedPortCreateInput) HasMode() bool {
 	return false
 }
 
-// SetMode gets a reference to the given string and assigns it to the Mode field.
+// SetMode gets a reference to the given DedicatedPortCreateInputMode and assigns it to the Mode field.
 func (o *DedicatedPortCreateInput) SetMode(v DedicatedPortCreateInputMode) {
 	o.Mode = &v
 }

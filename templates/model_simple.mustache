@@ -1,19 +1,6 @@
 // checks if the {{classname}} type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &{{classname}}{}
 
-{{#vars}}
-{{#isEnum}}
-{{^isContainer}}
-{{>model_inner_enum}}
-{{/isContainer}}
-{{#isContainer}}
-{{#mostInnerItems}}
-{{>model_inner_enum}}
-{{/mostInnerItems}}
-{{/isContainer}}
-{{/isEnum}}
-{{/vars}}
-
 // {{classname}} {{{description}}}{{^description}}struct for {{{classname}}}{{/description}}
 type {{classname}} struct {
 {{#parent}}
@@ -35,7 +22,7 @@ type {{classname}} struct {
 {{#deprecated}}
 	// Deprecated
 {{/deprecated}}
-	{{name}} {{^required}}{{^isNullable}}{{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{/isNullable}}{{/required}}{{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+	{{name}} {{^required}}{{^isNullable}}{{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/vars}}
 {{#isAdditionalPropertiesTrue}}
 	AdditionalProperties map[string]interface{}
@@ -50,7 +37,7 @@ type _{{{classname}}} {{{classname}}}
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func New{{classname}}({{#requiredVars}}{{nameInCamelCase}} {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^-last}}, {{/-last}}{{/requiredVars}}) *{{classname}} {
+func New{{classname}}({{#requiredVars}}{{nameInCamelCase}} {{dataType}}{{^-last}}, {{/-last}}{{/requiredVars}}) *{{classname}} {
 	this := {{classname}}{}
 {{#allVars}}
 {{#required}}
@@ -110,9 +97,9 @@ func New{{classname}}WithDefaults() *{{classname}} {
 {{#deprecated}}
 // Deprecated
 {{/deprecated}}
-func (o *{{classname}}) Get{{name}}() {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}} {
+func (o *{{classname}}) Get{{name}}() {{vendorExtensions.x-go-base-type}} {
 	if o == nil{{#isNullable}}{{^vendorExtensions.x-golang-is-container}} || o.{{name}}.Get() == nil{{/vendorExtensions.x-golang-is-container}}{{/isNullable}} {
-		var ret {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}
+		var ret {{vendorExtensions.x-go-base-type}}
 		return ret
 	}
 
@@ -137,13 +124,13 @@ func (o *{{classname}}) Get{{name}}() {{#isEnum}}{{{classname}}}{{#lambda.pascal
 {{#deprecated}}
 // Deprecated
 {{/deprecated}}
-func (o *{{classname}}) Get{{name}}Ok() ({{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}, bool) {
+func (o *{{classname}}) Get{{name}}Ok() ({{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{vendorExtensions.x-go-base-type}}, bool) {
 	if o == nil{{#isNullable}}{{#vendorExtensions.x-golang-is-container}} || IsNil(o.{{name}}){{/vendorExtensions.x-golang-is-container}}{{/isNullable}} {
 {{^isFreeFormObject}}
 		return nil, false
 	{{/isFreeFormObject}}
 	{{#isFreeFormObject}}
-		return {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}{}, false
+		return {{vendorExtensions.x-go-base-type}}{}, false
 	{{/isFreeFormObject}}
 	}
 {{#isNullable}}
@@ -163,7 +150,7 @@ func (o *{{classname}}) Get{{name}}Ok() ({{^isArray}}{{^isFreeFormObject}}*{{/is
 {{#deprecated}}
 // Deprecated
 {{/deprecated}}
-func (o *{{classname}}) Set{{name}}(v {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}) {
+func (o *{{classname}}) Set{{name}}(v {{vendorExtensions.x-go-base-type}}) {
 {{#isNullable}}
 {{#vendorExtensions.x-golang-is-container}}
 	o.{{name}} = v
@@ -183,9 +170,9 @@ func (o *{{classname}}) Set{{name}}(v {{#isEnum}}{{{classname}}}{{#lambda.pascal
 {{#deprecated}}
 // Deprecated
 {{/deprecated}}
-func (o *{{classname}}) Get{{name}}() {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}} {
+func (o *{{classname}}) Get{{name}}() {{vendorExtensions.x-go-base-type}} {
 	if o == nil{{^isNullable}} || IsNil(o.{{name}}){{/isNullable}}{{#isNullable}}{{^vendorExtensions.x-golang-is-container}} || IsNil(o.{{name}}.Get()){{/vendorExtensions.x-golang-is-container}}{{/isNullable}} {
-		var ret {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}
+		var ret {{vendorExtensions.x-go-base-type}}
 		return ret
 	}
 {{#isNullable}}
@@ -209,13 +196,13 @@ func (o *{{classname}}) Get{{name}}() {{#isEnum}}{{{classname}}}{{#lambda.pascal
 {{#deprecated}}
 // Deprecated
 {{/deprecated}}
-func (o *{{classname}}) Get{{name}}Ok() ({{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}, bool) {
+func (o *{{classname}}) Get{{name}}Ok() ({{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{vendorExtensions.x-go-base-type}}, bool) {
 	if o == nil{{^isNullable}} || IsNil(o.{{name}}){{/isNullable}}{{#isNullable}}{{#vendorExtensions.x-golang-is-container}} || IsNil(o.{{name}}){{/vendorExtensions.x-golang-is-container}}{{/isNullable}} {
 	{{^isFreeFormObject}}
-		return {{#isEnum}}o.{{name}}{{/isEnum}}{{^isEnum}}nil{{/isEnum}}, false
+		return nil, false
 	{{/isFreeFormObject}}
 	{{#isFreeFormObject}}
-		return {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}{}, false
+		return {{vendorExtensions.x-go-base-type}}{}, false
 	{{/isFreeFormObject}}
 	}
 {{#isNullable}}
@@ -244,7 +231,7 @@ func (o *{{classname}}) Has{{name}}() bool {
 {{#deprecated}}
 // Deprecated
 {{/deprecated}}
-func (o *{{classname}}) Set{{name}}(v {{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{vendorExtensions.x-go-base-type}}}{{/isEnum}}) {
+func (o *{{classname}}) Set{{name}}(v {{vendorExtensions.x-go-base-type}}) {
 {{#isNullable}}
 {{#vendorExtensions.x-golang-is-container}}
 	o.{{name}} = v
@@ -358,7 +345,7 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 	{{#deprecated}}
 		// Deprecated
 	{{/deprecated}}
-		{{name}} {{^required}}{{^isNullable}}{{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{/isNullable}}{{/required}}{{#isEnum}}{{{classname}}}{{#lambda.pascalcase}}{{{nameInCamelCase}}}{{/lambda.pascalcase}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+		{{name}} {{^required}}{{^isNullable}}{{^isArray}}{{^isFreeFormObject}}*{{/isFreeFormObject}}{{/isArray}}{{/isNullable}}{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 	{{/vars}}
 	}
 

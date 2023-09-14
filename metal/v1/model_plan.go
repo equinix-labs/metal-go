@@ -13,201 +13,10 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Plan type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Plan{}
-
-// PlanDeploymentTypes the model 'PlanDeploymentTypes'
-type PlanDeploymentTypes string
-
-// List of PlanDeploymentTypes
-const (
-	PLAN_ON_DEMAND   PlanDeploymentTypes = "on_demand"
-	PLAN_SPOT_MARKET PlanDeploymentTypes = "spot_market"
-)
-
-// All allowed values of PlanDeploymentTypes enum
-var AllowedPlanDeploymentTypesEnumValues = []PlanDeploymentTypes{
-	"on_demand",
-	"spot_market",
-}
-
-func (v *PlanDeploymentTypes) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := PlanDeploymentTypes(value)
-	for _, existing := range AllowedPlanDeploymentTypesEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid PlanDeploymentTypes", value)
-}
-
-// NewPlanDeploymentTypesFromValue returns a pointer to a valid PlanDeploymentTypes
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPlanDeploymentTypesFromValue(v string) (*PlanDeploymentTypes, error) {
-	ev := PlanDeploymentTypes(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for PlanDeploymentTypes: valid values are %v", v, AllowedPlanDeploymentTypesEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v PlanDeploymentTypes) IsValid() bool {
-	for _, existing := range AllowedPlanDeploymentTypesEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to DeploymentTypes value
-func (v PlanDeploymentTypes) Ptr() *PlanDeploymentTypes {
-	return &v
-}
-
-type NullablePlanDeploymentTypes struct {
-	value *PlanDeploymentTypes
-	isSet bool
-}
-
-func (v NullablePlanDeploymentTypes) Get() *PlanDeploymentTypes {
-	return v.value
-}
-
-func (v *NullablePlanDeploymentTypes) Set(val *PlanDeploymentTypes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePlanDeploymentTypes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePlanDeploymentTypes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePlanDeploymentTypes(val *PlanDeploymentTypes) *NullablePlanDeploymentTypes {
-	return &NullablePlanDeploymentTypes{value: val, isSet: true}
-}
-
-func (v NullablePlanDeploymentTypes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePlanDeploymentTypes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// PlanType The plan type
-type PlanType string
-
-// List of PlanType
-const (
-	PLAN_STANDARD           PlanType = "standard"
-	PLAN_WORKLOAD_OPTIMIZED PlanType = "workload_optimized"
-	PLAN_CUSTOM             PlanType = "custom"
-)
-
-// All allowed values of PlanType enum
-var AllowedPlanTypeEnumValues = []PlanType{
-	"standard",
-	"workload_optimized",
-	"custom",
-}
-
-func (v *PlanType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := PlanType(value)
-	for _, existing := range AllowedPlanTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid PlanType", value)
-}
-
-// NewPlanTypeFromValue returns a pointer to a valid PlanType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPlanTypeFromValue(v string) (*PlanType, error) {
-	ev := PlanType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for PlanType: valid values are %v", v, AllowedPlanTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v PlanType) IsValid() bool {
-	for _, existing := range AllowedPlanTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v PlanType) Ptr() *PlanType {
-	return &v
-}
-
-type NullablePlanType struct {
-	value *PlanType
-	isSet bool
-}
-
-func (v NullablePlanType) Get() *PlanType {
-	return v.value
-}
-
-func (v *NullablePlanType) Set(val *PlanType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePlanType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePlanType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePlanType(val *PlanType) *NullablePlanType {
-	return &NullablePlanType{value: val, isSet: true}
-}
-
-func (v NullablePlanType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePlanType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // Plan struct for Plan
 type Plan struct {
@@ -216,20 +25,19 @@ type Plan struct {
 	// Shows which metros the plan is available in, and the metro-based price if it is different from the default price.
 	AvailableInMetros []PlanAvailableInMetrosInner `json:"available_in_metros,omitempty"`
 	// Categories of the plan, like compute or storage. A Plan can belong to multiple categories.
-	Categories      []string            `json:"categories,omitempty"`
-	Class           *string             `json:"class,omitempty"`
-	Description     *string             `json:"description,omitempty"`
-	DeploymentTypes PlanDeploymentTypes `json:"deployment_types,omitempty"`
-	Id              *string             `json:"id,omitempty"`
+	Categories      []string                   `json:"categories,omitempty"`
+	Class           *string                    `json:"class,omitempty"`
+	Description     *string                    `json:"description,omitempty"`
+	DeploymentTypes []PlanDeploymentTypesInner `json:"deployment_types,omitempty"`
+	Id              *string                    `json:"id,omitempty"`
 	// Deprecated. Always return false
-	Legacy  *bool                  `json:"legacy,omitempty"`
-	Line    *string                `json:"line,omitempty"`
-	Name    *string                `json:"name,omitempty"`
-	Pricing map[string]interface{} `json:"pricing,omitempty"`
-	Slug    *string                `json:"slug,omitempty"`
-	Specs   *PlanSpecs             `json:"specs,omitempty"`
-	// The plan type
-	Type                 *PlanType `json:"type,omitempty"`
+	Legacy               *bool                  `json:"legacy,omitempty"`
+	Line                 *string                `json:"line,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	Pricing              map[string]interface{} `json:"pricing,omitempty"`
+	Slug                 *string                `json:"slug,omitempty"`
+	Specs                *PlanSpecs             `json:"specs,omitempty"`
+	Type                 *PlanType              `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -413,9 +221,9 @@ func (o *Plan) SetDescription(v string) {
 }
 
 // GetDeploymentTypes returns the DeploymentTypes field value if set, zero value otherwise.
-func (o *Plan) GetDeploymentTypes() PlanDeploymentTypes {
+func (o *Plan) GetDeploymentTypes() []PlanDeploymentTypesInner {
 	if o == nil || IsNil(o.DeploymentTypes) {
-		var ret PlanDeploymentTypes
+		var ret []PlanDeploymentTypesInner
 		return ret
 	}
 	return o.DeploymentTypes
@@ -423,9 +231,9 @@ func (o *Plan) GetDeploymentTypes() PlanDeploymentTypes {
 
 // GetDeploymentTypesOk returns a tuple with the DeploymentTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetDeploymentTypesOk() (PlanDeploymentTypes, bool) {
+func (o *Plan) GetDeploymentTypesOk() ([]PlanDeploymentTypesInner, bool) {
 	if o == nil || IsNil(o.DeploymentTypes) {
-		return o.DeploymentTypes, false
+		return nil, false
 	}
 	return o.DeploymentTypes, true
 }
@@ -439,8 +247,8 @@ func (o *Plan) HasDeploymentTypes() bool {
 	return false
 }
 
-// SetDeploymentTypes gets a reference to the given []string and assigns it to the DeploymentTypes field.
-func (o *Plan) SetDeploymentTypes(v PlanDeploymentTypes) {
+// SetDeploymentTypes gets a reference to the given []PlanDeploymentTypesInner and assigns it to the DeploymentTypes field.
+func (o *Plan) SetDeploymentTypes(v []PlanDeploymentTypesInner) {
 	o.DeploymentTypes = v
 }
 
@@ -681,7 +489,7 @@ func (o *Plan) GetType() PlanType {
 // and a boolean to check if the value has been set.
 func (o *Plan) GetTypeOk() (*PlanType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return o.Type, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -695,7 +503,7 @@ func (o *Plan) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given PlanType and assigns it to the Type field.
 func (o *Plan) SetType(v PlanType) {
 	o.Type = &v
 }

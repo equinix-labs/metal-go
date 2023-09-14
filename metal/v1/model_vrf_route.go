@@ -13,214 +13,21 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the VrfRoute type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VrfRoute{}
 
-// VrfRouteStatus The status of the route. Potential values are \"pending\", \"active\", \"deleting\", and \"error\", representing various lifecycle states of the route and whether or not it has been successfully configured on the network
-type VrfRouteStatus string
-
-// List of VrfRouteStatus
-const (
-	VRFROUTE_PENDING  VrfRouteStatus = "pending"
-	VRFROUTE_ACTIVE   VrfRouteStatus = "active"
-	VRFROUTE_DELETING VrfRouteStatus = "deleting"
-	VRFROUTE_ERROR    VrfRouteStatus = "error"
-)
-
-// All allowed values of VrfRouteStatus enum
-var AllowedVrfRouteStatusEnumValues = []VrfRouteStatus{
-	"pending",
-	"active",
-	"deleting",
-	"error",
-}
-
-func (v *VrfRouteStatus) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := VrfRouteStatus(value)
-	for _, existing := range AllowedVrfRouteStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid VrfRouteStatus", value)
-}
-
-// NewVrfRouteStatusFromValue returns a pointer to a valid VrfRouteStatus
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewVrfRouteStatusFromValue(v string) (*VrfRouteStatus, error) {
-	ev := VrfRouteStatus(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VrfRouteStatus: valid values are %v", v, AllowedVrfRouteStatusEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v VrfRouteStatus) IsValid() bool {
-	for _, existing := range AllowedVrfRouteStatusEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Status value
-func (v VrfRouteStatus) Ptr() *VrfRouteStatus {
-	return &v
-}
-
-type NullableVrfRouteStatus struct {
-	value *VrfRouteStatus
-	isSet bool
-}
-
-func (v NullableVrfRouteStatus) Get() *VrfRouteStatus {
-	return v.value
-}
-
-func (v *NullableVrfRouteStatus) Set(val *VrfRouteStatus) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableVrfRouteStatus) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableVrfRouteStatus) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableVrfRouteStatus(val *VrfRouteStatus) *NullableVrfRouteStatus {
-	return &NullableVrfRouteStatus{value: val, isSet: true}
-}
-
-func (v NullableVrfRouteStatus) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableVrfRouteStatus) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// VrfRouteType VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported
-type VrfRouteType string
-
-// List of VrfRouteType
-const (
-	VRFROUTE_STATIC VrfRouteType = "static"
-)
-
-// All allowed values of VrfRouteType enum
-var AllowedVrfRouteTypeEnumValues = []VrfRouteType{
-	"static",
-}
-
-func (v *VrfRouteType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := VrfRouteType(value)
-	for _, existing := range AllowedVrfRouteTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid VrfRouteType", value)
-}
-
-// NewVrfRouteTypeFromValue returns a pointer to a valid VrfRouteType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewVrfRouteTypeFromValue(v string) (*VrfRouteType, error) {
-	ev := VrfRouteType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VrfRouteType: valid values are %v", v, AllowedVrfRouteTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v VrfRouteType) IsValid() bool {
-	for _, existing := range AllowedVrfRouteTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v VrfRouteType) Ptr() *VrfRouteType {
-	return &v
-}
-
-type NullableVrfRouteType struct {
-	value *VrfRouteType
-	isSet bool
-}
-
-func (v NullableVrfRouteType) Get() *VrfRouteType {
-	return v.value
-}
-
-func (v *NullableVrfRouteType) Set(val *VrfRouteType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableVrfRouteType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableVrfRouteType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableVrfRouteType(val *VrfRouteType) *NullableVrfRouteType {
-	return &NullableVrfRouteType{value: val, isSet: true}
-}
-
-func (v NullableVrfRouteType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableVrfRouteType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // VrfRoute struct for VrfRoute
 type VrfRoute struct {
 	// The unique identifier for the newly-created resource
-	Id *string `json:"id,omitempty"`
-	// The status of the route. Potential values are \"pending\", \"active\", \"deleting\", and \"error\", representing various lifecycle states of the route and whether or not it has been successfully configured on the network
+	Id     *string         `json:"id,omitempty"`
 	Status *VrfRouteStatus `json:"status,omitempty"`
 	// The IPv4 prefix for the route, in CIDR-style notation
 	Prefix *string `json:"prefix,omitempty"`
 	// The next-hop IPv4 address for the route
-	NextHop *string `json:"next_hop,omitempty"`
-	// VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported
+	NextHop              *string          `json:"next_hop,omitempty"`
 	Type                 *VrfRouteType    `json:"type,omitempty"`
 	CreatedAt            *time.Time       `json:"created_at,omitempty"`
 	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
@@ -296,7 +103,7 @@ func (o *VrfRoute) GetStatus() VrfRouteStatus {
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetStatusOk() (*VrfRouteStatus, bool) {
 	if o == nil || IsNil(o.Status) {
-		return o.Status, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -310,7 +117,7 @@ func (o *VrfRoute) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus gets a reference to the given VrfRouteStatus and assigns it to the Status field.
 func (o *VrfRoute) SetStatus(v VrfRouteStatus) {
 	o.Status = &v
 }
@@ -392,7 +199,7 @@ func (o *VrfRoute) GetType() VrfRouteType {
 // and a boolean to check if the value has been set.
 func (o *VrfRoute) GetTypeOk() (*VrfRouteType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return o.Type, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -406,7 +213,7 @@ func (o *VrfRoute) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given VrfRouteType and assigns it to the Type field.
 func (o *VrfRoute) SetType(v VrfRouteType) {
 	o.Type = &v
 }

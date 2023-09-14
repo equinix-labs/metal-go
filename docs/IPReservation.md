@@ -32,13 +32,13 @@ Name | Type | Description | Notes
 **Public** | Pointer to **bool** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | **string** |  | 
+**Type** | [**IPReservationType**](IPReservationType.md) |  | 
 
 ## Methods
 
 ### NewIPReservation
 
-`func NewIPReservation(type_ string, ) *IPReservation`
+`func NewIPReservation(type_ IPReservationType, ) *IPReservation`
 
 NewIPReservation instantiates a new IPReservation object
 This constructor will assign default values to properties that have it defined,
@@ -755,20 +755,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *IPReservation) GetType() string`
+`func (o *IPReservation) GetType() IPReservationType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *IPReservation) GetTypeOk() (*string, bool)`
+`func (o *IPReservation) GetTypeOk() (*IPReservationType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *IPReservation) SetType(v string)`
+`func (o *IPReservation) SetType(v IPReservationType)`
 
 SetType sets Type field to given value.
 

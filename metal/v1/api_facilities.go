@@ -26,18 +26,18 @@ type FacilitiesApiService service
 type ApiFindFacilitiesRequest struct {
 	ctx        context.Context
 	ApiService *FacilitiesApiService
-	include    *[]string
-	exclude    *[]string
+	include    *[]FindFacilitiesIncludeParameterInner
+	exclude    *[]FindFacilitiesIncludeParameterInner
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-func (r ApiFindFacilitiesRequest) Include(include []string) ApiFindFacilitiesRequest {
+func (r ApiFindFacilitiesRequest) Include(include []FindFacilitiesIncludeParameterInner) ApiFindFacilitiesRequest {
 	r.include = &include
 	return r
 }
 
 // Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-func (r ApiFindFacilitiesRequest) Exclude(exclude []string) ApiFindFacilitiesRequest {
+func (r ApiFindFacilitiesRequest) Exclude(exclude []FindFacilitiesIncludeParameterInner) ApiFindFacilitiesRequest {
 	r.exclude = &exclude
 	return r
 }

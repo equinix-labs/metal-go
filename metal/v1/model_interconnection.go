@@ -13,309 +13,24 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the Interconnection type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Interconnection{}
 
-// InterconnectionMode The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-type InterconnectionMode string
-
-// List of InterconnectionMode
-const (
-	INTERCONNECTION_STANDARD InterconnectionMode = "standard"
-	INTERCONNECTION_TUNNEL   InterconnectionMode = "tunnel"
-)
-
-// All allowed values of InterconnectionMode enum
-var AllowedInterconnectionModeEnumValues = []InterconnectionMode{
-	"standard",
-	"tunnel",
-}
-
-func (v *InterconnectionMode) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := InterconnectionMode(value)
-	for _, existing := range AllowedInterconnectionModeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InterconnectionMode", value)
-}
-
-// NewInterconnectionModeFromValue returns a pointer to a valid InterconnectionMode
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInterconnectionModeFromValue(v string) (*InterconnectionMode, error) {
-	ev := InterconnectionMode(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InterconnectionMode: valid values are %v", v, AllowedInterconnectionModeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InterconnectionMode) IsValid() bool {
-	for _, existing := range AllowedInterconnectionModeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Mode value
-func (v InterconnectionMode) Ptr() *InterconnectionMode {
-	return &v
-}
-
-type NullableInterconnectionMode struct {
-	value *InterconnectionMode
-	isSet bool
-}
-
-func (v NullableInterconnectionMode) Get() *InterconnectionMode {
-	return v.value
-}
-
-func (v *NullableInterconnectionMode) Set(val *InterconnectionMode) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInterconnectionMode) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInterconnectionMode) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInterconnectionMode(val *InterconnectionMode) *NullableInterconnectionMode {
-	return &NullableInterconnectionMode{value: val, isSet: true}
-}
-
-func (v NullableInterconnectionMode) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInterconnectionMode) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// InterconnectionRedundancy Either 'primary', meaning a single interconnection, or 'redundant', meaning a redundant interconnection.
-type InterconnectionRedundancy string
-
-// List of InterconnectionRedundancy
-const (
-	INTERCONNECTION_PRIMARY   InterconnectionRedundancy = "primary"
-	INTERCONNECTION_REDUNDANT InterconnectionRedundancy = "redundant"
-)
-
-// All allowed values of InterconnectionRedundancy enum
-var AllowedInterconnectionRedundancyEnumValues = []InterconnectionRedundancy{
-	"primary",
-	"redundant",
-}
-
-func (v *InterconnectionRedundancy) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := InterconnectionRedundancy(value)
-	for _, existing := range AllowedInterconnectionRedundancyEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InterconnectionRedundancy", value)
-}
-
-// NewInterconnectionRedundancyFromValue returns a pointer to a valid InterconnectionRedundancy
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInterconnectionRedundancyFromValue(v string) (*InterconnectionRedundancy, error) {
-	ev := InterconnectionRedundancy(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InterconnectionRedundancy: valid values are %v", v, AllowedInterconnectionRedundancyEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InterconnectionRedundancy) IsValid() bool {
-	for _, existing := range AllowedInterconnectionRedundancyEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Redundancy value
-func (v InterconnectionRedundancy) Ptr() *InterconnectionRedundancy {
-	return &v
-}
-
-type NullableInterconnectionRedundancy struct {
-	value *InterconnectionRedundancy
-	isSet bool
-}
-
-func (v NullableInterconnectionRedundancy) Get() *InterconnectionRedundancy {
-	return v.value
-}
-
-func (v *NullableInterconnectionRedundancy) Set(val *InterconnectionRedundancy) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInterconnectionRedundancy) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInterconnectionRedundancy) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInterconnectionRedundancy(val *InterconnectionRedundancy) *NullableInterconnectionRedundancy {
-	return &NullableInterconnectionRedundancy{value: val, isSet: true}
-}
-
-func (v NullableInterconnectionRedundancy) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInterconnectionRedundancy) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// InterconnectionType The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports.
-type InterconnectionType string
-
-// List of InterconnectionType
-const (
-	INTERCONNECTION_SHARED    InterconnectionType = "shared"
-	INTERCONNECTION_DEDICATED InterconnectionType = "dedicated"
-)
-
-// All allowed values of InterconnectionType enum
-var AllowedInterconnectionTypeEnumValues = []InterconnectionType{
-	"shared",
-	"dedicated",
-}
-
-func (v *InterconnectionType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := InterconnectionType(value)
-	for _, existing := range AllowedInterconnectionTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InterconnectionType", value)
-}
-
-// NewInterconnectionTypeFromValue returns a pointer to a valid InterconnectionType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInterconnectionTypeFromValue(v string) (*InterconnectionType, error) {
-	ev := InterconnectionType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InterconnectionType: valid values are %v", v, AllowedInterconnectionTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InterconnectionType) IsValid() bool {
-	for _, existing := range AllowedInterconnectionTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v InterconnectionType) Ptr() *InterconnectionType {
-	return &v
-}
-
-type NullableInterconnectionType struct {
-	value *InterconnectionType
-	isSet bool
-}
-
-func (v NullableInterconnectionType) Get() *InterconnectionType {
-	return v.value
-}
-
-func (v *NullableInterconnectionType) Set(val *InterconnectionType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInterconnectionType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInterconnectionType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInterconnectionType(val *InterconnectionType) *NullableInterconnectionType {
-	return &NullableInterconnectionType{value: val, isSet: true}
-}
-
-func (v NullableInterconnectionType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInterconnectionType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // Interconnection struct for Interconnection
 type Interconnection struct {
-	ContactEmail *string `json:"contact_email,omitempty"`
-	Description  *string `json:"description,omitempty"`
-	Facility     *Href   `json:"facility,omitempty"`
-	Id           *string `json:"id,omitempty"`
-	Metro        *Metro  `json:"metro,omitempty"`
-	// The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
+	ContactEmail *string              `json:"contact_email,omitempty"`
+	Description  *string              `json:"description,omitempty"`
+	Facility     *Href                `json:"facility,omitempty"`
+	Id           *string              `json:"id,omitempty"`
+	Metro        *Metro               `json:"metro,omitempty"`
 	Mode         *InterconnectionMode `json:"mode,omitempty"`
 	Name         *string              `json:"name,omitempty"`
 	Organization *Href                `json:"organization,omitempty"`
 	// For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s).
-	Ports []InterconnectionPort `json:"ports,omitempty"`
-	// Either 'primary', meaning a single interconnection, or 'redundant', meaning a redundant interconnection.
+	Ports      []InterconnectionPort      `json:"ports,omitempty"`
 	Redundancy *InterconnectionRedundancy `json:"redundancy,omitempty"`
 	// For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued.
 	ServiceTokens []FabricServiceToken `json:"service_tokens,omitempty"`
@@ -324,8 +39,7 @@ type Interconnection struct {
 	Status *string  `json:"status,omitempty"`
 	Tags   []string `json:"tags,omitempty"`
 	// This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.
-	Token *string `json:"token,omitempty"`
-	// The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports.
+	Token                *string              `json:"token,omitempty"`
 	Type                 *InterconnectionType `json:"type,omitempty"`
 	CreatedAt            *time.Time           `json:"created_at,omitempty"`
 	UpdatedAt            *time.Time           `json:"updated_at,omitempty"`
@@ -525,7 +239,7 @@ func (o *Interconnection) GetMode() InterconnectionMode {
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetModeOk() (*InterconnectionMode, bool) {
 	if o == nil || IsNil(o.Mode) {
-		return o.Mode, false
+		return nil, false
 	}
 	return o.Mode, true
 }
@@ -539,7 +253,7 @@ func (o *Interconnection) HasMode() bool {
 	return false
 }
 
-// SetMode gets a reference to the given string and assigns it to the Mode field.
+// SetMode gets a reference to the given InterconnectionMode and assigns it to the Mode field.
 func (o *Interconnection) SetMode(v InterconnectionMode) {
 	o.Mode = &v
 }
@@ -653,7 +367,7 @@ func (o *Interconnection) GetRedundancy() InterconnectionRedundancy {
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetRedundancyOk() (*InterconnectionRedundancy, bool) {
 	if o == nil || IsNil(o.Redundancy) {
-		return o.Redundancy, false
+		return nil, false
 	}
 	return o.Redundancy, true
 }
@@ -667,7 +381,7 @@ func (o *Interconnection) HasRedundancy() bool {
 	return false
 }
 
-// SetRedundancy gets a reference to the given string and assigns it to the Redundancy field.
+// SetRedundancy gets a reference to the given InterconnectionRedundancy and assigns it to the Redundancy field.
 func (o *Interconnection) SetRedundancy(v InterconnectionRedundancy) {
 	o.Redundancy = &v
 }
@@ -845,7 +559,7 @@ func (o *Interconnection) GetType() InterconnectionType {
 // and a boolean to check if the value has been set.
 func (o *Interconnection) GetTypeOk() (*InterconnectionType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return o.Type, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -859,7 +573,7 @@ func (o *Interconnection) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given InterconnectionType and assigns it to the Type field.
 func (o *Interconnection) SetType(v InterconnectionType) {
 	o.Type = &v
 }

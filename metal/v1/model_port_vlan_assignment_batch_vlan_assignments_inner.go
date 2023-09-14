@@ -13,105 +13,10 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the PortVlanAssignmentBatchVlanAssignmentsInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PortVlanAssignmentBatchVlanAssignmentsInner{}
-
-// PortVlanAssignmentBatchVlanAssignmentsInnerState the model 'PortVlanAssignmentBatchVlanAssignmentsInnerState'
-type PortVlanAssignmentBatchVlanAssignmentsInnerState string
-
-// List of PortVlanAssignmentBatchVlanAssignmentsInnerState
-const (
-	PORTVLANASSIGNMENTBATCHVLANASSIGNMENTSINNER_ASSIGNED   PortVlanAssignmentBatchVlanAssignmentsInnerState = "assigned"
-	PORTVLANASSIGNMENTBATCHVLANASSIGNMENTSINNER_UNASSIGNED PortVlanAssignmentBatchVlanAssignmentsInnerState = "unassigned"
-)
-
-// All allowed values of PortVlanAssignmentBatchVlanAssignmentsInnerState enum
-var AllowedPortVlanAssignmentBatchVlanAssignmentsInnerStateEnumValues = []PortVlanAssignmentBatchVlanAssignmentsInnerState{
-	"assigned",
-	"unassigned",
-}
-
-func (v *PortVlanAssignmentBatchVlanAssignmentsInnerState) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := PortVlanAssignmentBatchVlanAssignmentsInnerState(value)
-	for _, existing := range AllowedPortVlanAssignmentBatchVlanAssignmentsInnerStateEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid PortVlanAssignmentBatchVlanAssignmentsInnerState", value)
-}
-
-// NewPortVlanAssignmentBatchVlanAssignmentsInnerStateFromValue returns a pointer to a valid PortVlanAssignmentBatchVlanAssignmentsInnerState
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPortVlanAssignmentBatchVlanAssignmentsInnerStateFromValue(v string) (*PortVlanAssignmentBatchVlanAssignmentsInnerState, error) {
-	ev := PortVlanAssignmentBatchVlanAssignmentsInnerState(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for PortVlanAssignmentBatchVlanAssignmentsInnerState: valid values are %v", v, AllowedPortVlanAssignmentBatchVlanAssignmentsInnerStateEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v PortVlanAssignmentBatchVlanAssignmentsInnerState) IsValid() bool {
-	for _, existing := range AllowedPortVlanAssignmentBatchVlanAssignmentsInnerStateEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to State value
-func (v PortVlanAssignmentBatchVlanAssignmentsInnerState) Ptr() *PortVlanAssignmentBatchVlanAssignmentsInnerState {
-	return &v
-}
-
-type NullablePortVlanAssignmentBatchVlanAssignmentsInnerState struct {
-	value *PortVlanAssignmentBatchVlanAssignmentsInnerState
-	isSet bool
-}
-
-func (v NullablePortVlanAssignmentBatchVlanAssignmentsInnerState) Get() *PortVlanAssignmentBatchVlanAssignmentsInnerState {
-	return v.value
-}
-
-func (v *NullablePortVlanAssignmentBatchVlanAssignmentsInnerState) Set(val *PortVlanAssignmentBatchVlanAssignmentsInnerState) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePortVlanAssignmentBatchVlanAssignmentsInnerState) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePortVlanAssignmentBatchVlanAssignmentsInnerState) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePortVlanAssignmentBatchVlanAssignmentsInnerState(val *PortVlanAssignmentBatchVlanAssignmentsInnerState) *NullablePortVlanAssignmentBatchVlanAssignmentsInnerState {
-	return &NullablePortVlanAssignmentBatchVlanAssignmentsInnerState{value: val, isSet: true}
-}
-
-func (v NullablePortVlanAssignmentBatchVlanAssignmentsInnerState) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePortVlanAssignmentBatchVlanAssignmentsInnerState) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // PortVlanAssignmentBatchVlanAssignmentsInner struct for PortVlanAssignmentBatchVlanAssignmentsInner
 type PortVlanAssignmentBatchVlanAssignmentsInner struct {
@@ -218,7 +123,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() PortVlanAssignm
 // and a boolean to check if the value has been set.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetStateOk() (*PortVlanAssignmentBatchVlanAssignmentsInnerState, bool) {
 	if o == nil || IsNil(o.State) {
-		return o.State, false
+		return nil, false
 	}
 	return o.State, true
 }
@@ -232,7 +137,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
+// SetState gets a reference to the given PortVlanAssignmentBatchVlanAssignmentsInnerState and assigns it to the State field.
 func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetState(v PortVlanAssignmentBatchVlanAssignmentsInnerState) {
 	o.State = &v
 }

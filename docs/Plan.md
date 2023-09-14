@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Categories** | Pointer to **[]string** | Categories of the plan, like compute or storage. A Plan can belong to multiple categories. | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**DeploymentTypes** | Pointer to **[]string** |  | [optional] 
+**DeploymentTypes** | Pointer to [**[]PlanDeploymentTypesInner**](PlanDeploymentTypesInner.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Legacy** | Pointer to **bool** | Deprecated. Always return false | [optional] 
 **Line** | Pointer to **string** |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Pricing** | Pointer to **map[string]interface{}** |  | [optional] 
 **Slug** | Pointer to **string** |  | [optional] 
 **Specs** | Pointer to [**PlanSpecs**](PlanSpecs.md) |  | [optional] 
-**Type** | Pointer to **string** | The plan type | [optional] 
+**Type** | Pointer to [**PlanType**](PlanType.md) |  | [optional] 
 
 ## Methods
 
@@ -165,20 +165,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetDeploymentTypes
 
-`func (o *Plan) GetDeploymentTypes() []string`
+`func (o *Plan) GetDeploymentTypes() []PlanDeploymentTypesInner`
 
 GetDeploymentTypes returns the DeploymentTypes field if non-nil, zero value otherwise.
 
 ### GetDeploymentTypesOk
 
-`func (o *Plan) GetDeploymentTypesOk() (*[]string, bool)`
+`func (o *Plan) GetDeploymentTypesOk() (*[]PlanDeploymentTypesInner, bool)`
 
 GetDeploymentTypesOk returns a tuple with the DeploymentTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeploymentTypes
 
-`func (o *Plan) SetDeploymentTypes(v []string)`
+`func (o *Plan) SetDeploymentTypes(v []PlanDeploymentTypesInner)`
 
 SetDeploymentTypes sets DeploymentTypes field to given value.
 
@@ -365,20 +365,20 @@ HasSpecs returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Plan) GetType() string`
+`func (o *Plan) GetType() PlanType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Plan) GetTypeOk() (*string, bool)`
+`func (o *Plan) GetTypeOk() (*PlanType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Plan) SetType(v string)`
+`func (o *Plan) SetType(v PlanType)`
 
 SetType sets Type field to given value.
 

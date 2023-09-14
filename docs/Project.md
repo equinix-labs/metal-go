@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **Volumes** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Type** | Pointer to **string** | The type of the project. Projects of type &#x60;vmce&#x60; are part of an in development feature and not available to all customers. | [optional] 
+**Type** | Pointer to [**ProjectType**](ProjectType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -470,20 +470,20 @@ HasVolumes returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Project) GetType() string`
+`func (o *Project) GetType() ProjectType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Project) GetTypeOk() (*string, bool)`
+`func (o *Project) GetTypeOk() (*ProjectType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Project) SetType(v string)`
+`func (o *Project) SetType(v ProjectType)`
 
 SetType sets Type field to given value.
 

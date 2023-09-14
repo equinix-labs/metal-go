@@ -13,112 +13,14 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the DeviceHealthRollup type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeviceHealthRollup{}
 
-// DeviceHealthRollupHealthRollup Health Status
-type DeviceHealthRollupHealthRollup string
-
-// List of DeviceHealthRollupHealthRollup
-const (
-	DEVICEHEALTHROLLUP_OK       DeviceHealthRollupHealthRollup = "ok"
-	DEVICEHEALTHROLLUP_WARNING  DeviceHealthRollupHealthRollup = "warning"
-	DEVICEHEALTHROLLUP_CRITICAL DeviceHealthRollupHealthRollup = "critical"
-)
-
-// All allowed values of DeviceHealthRollupHealthRollup enum
-var AllowedDeviceHealthRollupHealthRollupEnumValues = []DeviceHealthRollupHealthRollup{
-	"ok",
-	"warning",
-	"critical",
-}
-
-func (v *DeviceHealthRollupHealthRollup) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := DeviceHealthRollupHealthRollup(value)
-	for _, existing := range AllowedDeviceHealthRollupHealthRollupEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid DeviceHealthRollupHealthRollup", value)
-}
-
-// NewDeviceHealthRollupHealthRollupFromValue returns a pointer to a valid DeviceHealthRollupHealthRollup
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDeviceHealthRollupHealthRollupFromValue(v string) (*DeviceHealthRollupHealthRollup, error) {
-	ev := DeviceHealthRollupHealthRollup(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DeviceHealthRollupHealthRollup: valid values are %v", v, AllowedDeviceHealthRollupHealthRollupEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v DeviceHealthRollupHealthRollup) IsValid() bool {
-	for _, existing := range AllowedDeviceHealthRollupHealthRollupEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to HealthRollup value
-func (v DeviceHealthRollupHealthRollup) Ptr() *DeviceHealthRollupHealthRollup {
-	return &v
-}
-
-type NullableDeviceHealthRollupHealthRollup struct {
-	value *DeviceHealthRollupHealthRollup
-	isSet bool
-}
-
-func (v NullableDeviceHealthRollupHealthRollup) Get() *DeviceHealthRollupHealthRollup {
-	return v.value
-}
-
-func (v *NullableDeviceHealthRollupHealthRollup) Set(val *DeviceHealthRollupHealthRollup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDeviceHealthRollupHealthRollup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDeviceHealthRollupHealthRollup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDeviceHealthRollupHealthRollup(val *DeviceHealthRollupHealthRollup) *NullableDeviceHealthRollupHealthRollup {
-	return &NullableDeviceHealthRollupHealthRollup{value: val, isSet: true}
-}
-
-func (v NullableDeviceHealthRollupHealthRollup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDeviceHealthRollupHealthRollup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // DeviceHealthRollup Represents a Device Health Status
 type DeviceHealthRollup struct {
-	// Health Status
 	HealthRollup *DeviceHealthRollupHealthRollup `json:"health_rollup,omitempty"`
 	// Last update of health status.
 	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
@@ -157,7 +59,7 @@ func (o *DeviceHealthRollup) GetHealthRollup() DeviceHealthRollupHealthRollup {
 // and a boolean to check if the value has been set.
 func (o *DeviceHealthRollup) GetHealthRollupOk() (*DeviceHealthRollupHealthRollup, bool) {
 	if o == nil || IsNil(o.HealthRollup) {
-		return o.HealthRollup, false
+		return nil, false
 	}
 	return o.HealthRollup, true
 }
@@ -171,7 +73,7 @@ func (o *DeviceHealthRollup) HasHealthRollup() bool {
 	return false
 }
 
-// SetHealthRollup gets a reference to the given string and assigns it to the HealthRollup field.
+// SetHealthRollup gets a reference to the given DeviceHealthRollupHealthRollup and assigns it to the HealthRollup field.
 func (o *DeviceHealthRollup) SetHealthRollup(v DeviceHealthRollupHealthRollup) {
 	o.HealthRollup = &v
 }

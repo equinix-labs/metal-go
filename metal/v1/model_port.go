@@ -13,222 +13,25 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Port type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Port{}
-
-// PortType Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports
-type PortType string
-
-// List of PortType
-const (
-	PORT_NETWORK_PORT      PortType = "NetworkPort"
-	PORT_NETWORK_BOND_PORT PortType = "NetworkBondPort"
-)
-
-// All allowed values of PortType enum
-var AllowedPortTypeEnumValues = []PortType{
-	"NetworkPort",
-	"NetworkBondPort",
-}
-
-func (v *PortType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := PortType(value)
-	for _, existing := range AllowedPortTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid PortType", value)
-}
-
-// NewPortTypeFromValue returns a pointer to a valid PortType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPortTypeFromValue(v string) (*PortType, error) {
-	ev := PortType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for PortType: valid values are %v", v, AllowedPortTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v PortType) IsValid() bool {
-	for _, existing := range AllowedPortTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to Type value
-func (v PortType) Ptr() *PortType {
-	return &v
-}
-
-type NullablePortType struct {
-	value *PortType
-	isSet bool
-}
-
-func (v NullablePortType) Get() *PortType {
-	return v.value
-}
-
-func (v *NullablePortType) Set(val *PortType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePortType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePortType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePortType(val *PortType) *NullablePortType {
-	return &NullablePortType{value: val, isSet: true}
-}
-
-func (v NullablePortType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePortType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// PortNetworkType Composite network type of the bond
-type PortNetworkType string
-
-// List of PortNetworkType
-const (
-	PORT_LAYER2_BONDED     PortNetworkType = "layer2-bonded"
-	PORT_LAYER2_INDIVIDUAL PortNetworkType = "layer2-individual"
-	PORT_LAYER3            PortNetworkType = "layer3"
-	PORT_HYBRID            PortNetworkType = "hybrid"
-	PORT_HYBRID_BONDED     PortNetworkType = "hybrid-bonded"
-)
-
-// All allowed values of PortNetworkType enum
-var AllowedPortNetworkTypeEnumValues = []PortNetworkType{
-	"layer2-bonded",
-	"layer2-individual",
-	"layer3",
-	"hybrid",
-	"hybrid-bonded",
-}
-
-func (v *PortNetworkType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := PortNetworkType(value)
-	for _, existing := range AllowedPortNetworkTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid PortNetworkType", value)
-}
-
-// NewPortNetworkTypeFromValue returns a pointer to a valid PortNetworkType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPortNetworkTypeFromValue(v string) (*PortNetworkType, error) {
-	ev := PortNetworkType(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for PortNetworkType: valid values are %v", v, AllowedPortNetworkTypeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v PortNetworkType) IsValid() bool {
-	for _, existing := range AllowedPortNetworkTypeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to NetworkType value
-func (v PortNetworkType) Ptr() *PortNetworkType {
-	return &v
-}
-
-type NullablePortNetworkType struct {
-	value *PortNetworkType
-	isSet bool
-}
-
-func (v NullablePortNetworkType) Get() *PortNetworkType {
-	return v.value
-}
-
-func (v *NullablePortNetworkType) Set(val *PortNetworkType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePortNetworkType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePortNetworkType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePortNetworkType(val *PortNetworkType) *NullablePortNetworkType {
-	return &NullablePortNetworkType{value: val, isSet: true}
-}
-
-func (v NullablePortNetworkType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePortNetworkType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
 
 // Port Port is a hardware port associated with a reserved or instantiated hardware device.
 type Port struct {
 	Bond *BondPortData `json:"bond,omitempty"`
 	Data *PortData     `json:"data,omitempty"`
 	// Indicates whether or not the bond can be broken on the port (when applicable).
-	DisbondOperationSupported *bool   `json:"disbond_operation_supported,omitempty"`
-	Href                      *string `json:"href,omitempty"`
-	Id                        *string `json:"id,omitempty"`
-	Name                      *string `json:"name,omitempty"`
-	// Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports
-	Type *PortType `json:"type,omitempty"`
-	// Composite network type of the bond
-	NetworkType          *PortNetworkType `json:"network_type,omitempty"`
-	NativeVirtualNetwork *VirtualNetwork  `json:"native_virtual_network,omitempty"`
-	VirtualNetworks      []Href           `json:"virtual_networks,omitempty"`
-	AdditionalProperties map[string]interface{}
+	DisbondOperationSupported *bool            `json:"disbond_operation_supported,omitempty"`
+	Href                      *string          `json:"href,omitempty"`
+	Id                        *string          `json:"id,omitempty"`
+	Name                      *string          `json:"name,omitempty"`
+	Type                      *PortType        `json:"type,omitempty"`
+	NetworkType               *PortNetworkType `json:"network_type,omitempty"`
+	NativeVirtualNetwork      *VirtualNetwork  `json:"native_virtual_network,omitempty"`
+	VirtualNetworks           []Href           `json:"virtual_networks,omitempty"`
+	AdditionalProperties      map[string]interface{}
 }
 
 type _Port Port
@@ -455,7 +258,7 @@ func (o *Port) GetType() PortType {
 // and a boolean to check if the value has been set.
 func (o *Port) GetTypeOk() (*PortType, bool) {
 	if o == nil || IsNil(o.Type) {
-		return o.Type, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -469,7 +272,7 @@ func (o *Port) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given PortType and assigns it to the Type field.
 func (o *Port) SetType(v PortType) {
 	o.Type = &v
 }
@@ -487,7 +290,7 @@ func (o *Port) GetNetworkType() PortNetworkType {
 // and a boolean to check if the value has been set.
 func (o *Port) GetNetworkTypeOk() (*PortNetworkType, bool) {
 	if o == nil || IsNil(o.NetworkType) {
-		return o.NetworkType, false
+		return nil, false
 	}
 	return o.NetworkType, true
 }
@@ -501,7 +304,7 @@ func (o *Port) HasNetworkType() bool {
 	return false
 }
 
-// SetNetworkType gets a reference to the given string and assigns it to the NetworkType field.
+// SetNetworkType gets a reference to the given PortNetworkType and assigns it to the NetworkType field.
 func (o *Port) SetNetworkType(v PortNetworkType) {
 	o.NetworkType = &v
 }

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HealthRollup** | Pointer to **string** | Health Status | [optional] [readonly] 
+**HealthRollup** | Pointer to [**DeviceHealthRollupHealthRollup**](DeviceHealthRollupHealthRollup.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last update of health status. | [optional] [readonly] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHealthRollup
 
-`func (o *DeviceHealthRollup) GetHealthRollup() string`
+`func (o *DeviceHealthRollup) GetHealthRollup() DeviceHealthRollupHealthRollup`
 
 GetHealthRollup returns the HealthRollup field if non-nil, zero value otherwise.
 
 ### GetHealthRollupOk
 
-`func (o *DeviceHealthRollup) GetHealthRollupOk() (*string, bool)`
+`func (o *DeviceHealthRollup) GetHealthRollupOk() (*DeviceHealthRollupHealthRollup, bool)`
 
 GetHealthRollupOk returns a tuple with the HealthRollup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHealthRollup
 
-`func (o *DeviceHealthRollup) SetHealthRollup(v string)`
+`func (o *DeviceHealthRollup) SetHealthRollup(v DeviceHealthRollupHealthRollup)`
 
 SetHealthRollup sets HealthRollup field to given value.
 

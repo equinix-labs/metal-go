@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **GatewayAddress** | Pointer to **string** | The gateway address with subnet CIDR value for this Metal Gateway. For example, a Metal Gateway using an IP reservation with block 10.1.2.0/27 would have a gateway address of 10.1.2.1/27. | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**State** | Pointer to **string** | The current state of the Metal Gateway. &#39;Ready&#39; indicates the gateway record has been configured, but is currently not active on the network. &#39;Active&#39; indicates the gateway has been configured on the network. &#39;Deleting&#39; is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted. | [optional] 
+**State** | Pointer to [**MetalGatewayState**](MetalGatewayState.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **Vlan** | Pointer to **int32** | The VLAN id of the Virtual Network record associated to this Metal Gateway. | [optional] 
 
@@ -133,20 +133,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *MetalGatewayLite) GetState() string`
+`func (o *MetalGatewayLite) GetState() MetalGatewayState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *MetalGatewayLite) GetStateOk() (*string, bool)`
+`func (o *MetalGatewayLite) GetStateOk() (*MetalGatewayState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *MetalGatewayLite) SetState(v string)`
+`func (o *MetalGatewayLite) SetState(v MetalGatewayState)`
 
 SetState sets State field to given value.
 

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **Network** | Pointer to **string** |  | [optional] 
 **ParentBlock** | Pointer to [**ParentBlock**](ParentBlock.md) |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] 
-**State** | Pointer to **string** | Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network.  | [optional] 
+**State** | Pointer to [**IPAssignmentState**](IPAssignmentState.md) |  | [optional] 
 **NextHop** | Pointer to **string** | Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.  | [optional] 
 
 ## Methods
@@ -470,20 +470,20 @@ HasPublic returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *IPAssignment) GetState() string`
+`func (o *IPAssignment) GetState() IPAssignmentState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *IPAssignment) GetStateOk() (*string, bool)`
+`func (o *IPAssignment) GetStateOk() (*IPAssignmentState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *IPAssignment) SetState(v string)`
+`func (o *IPAssignment) SetState(v IPAssignmentState)`
 
 SetState sets State field to given value.
 

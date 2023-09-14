@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Nonce** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**Roles** | Pointer to **[]string** |  | [optional] 
+**Roles** | Pointer to [**[]InvitationRolesInner**](InvitationRolesInner.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
@@ -262,20 +262,20 @@ HasProjects returns a boolean if a field has been set.
 
 ### GetRoles
 
-`func (o *Invitation) GetRoles() []string`
+`func (o *Invitation) GetRoles() []InvitationRolesInner`
 
 GetRoles returns the Roles field if non-nil, zero value otherwise.
 
 ### GetRolesOk
 
-`func (o *Invitation) GetRolesOk() (*[]string, bool)`
+`func (o *Invitation) GetRolesOk() (*[]InvitationRolesInner, bool)`
 
 GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRoles
 
-`func (o *Invitation) SetRoles(v []string)`
+`func (o *Invitation) SetRoles(v []InvitationRolesInner)`
 
 SetRoles sets Roles field to given value.
 

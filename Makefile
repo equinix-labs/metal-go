@@ -1,4 +1,4 @@
-.PHONY: all pull fetch patch generate clean codegen mod docs move-other patch-post fix-imports fmt test stage
+.PHONY: all pull fetch patch generate clean codegen mod docs move-other patch-post fmt test stage
 
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
@@ -26,7 +26,7 @@ GOLANGCI_LINT=golangci-lint
 
 all: pull fetch patch generate stage
 
-generate: clean codegen mod docs move-other patch-post fix-imports fmt test
+generate: clean codegen mod docs move-other patch-post fmt test
 
 pull:
 	${CRI} pull ${OPENAPI_IMAGE}
@@ -55,13 +55,10 @@ codegen:
 	${OPENAPI_GENERATOR} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \
 		--http-user-agent "${GIT_REPO}/${PACKAGE_VERSION}" \
-		--api-name-suffix Api \
 		-p packageVersion=${PACKAGE_VERSION} \
-		-p isGoSubmodule=true \
-		-p disallowAdditionalPropertiesIfNotPresent=false \
 		--git-user-id ${GIT_ORG} \
 		--git-repo-id ${GIT_REPO}/${PACKAGE_PREFIX} \
-		-t /local/templates \
+		-c /local/config/openapi-generator.json \
 		-o /local/${PACKAGE_PREFIX}/${PACKAGE_MAJOR} \
 		-i /local/${SPEC_PATCHED_DIR}/${SPEC_ROOT_FILE}
 
@@ -95,9 +92,6 @@ move-other:
 
 lint:
 	@$(GOLANGCI_LINT) run -v --no-config --fast=false --fix --disable-all --enable goimports $(PACKAGE_PREFIX)
-
-fix-imports:
-	go run golang.org/x/tools/cmd/goimports@latest -l -w $(PACKAGE_PREFIX)
 
 fmt:
 	go run mvdan.cc/gofumpt@v0.3.1 -l -w $(PACKAGE_PREFIX)

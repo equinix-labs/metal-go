@@ -13,119 +13,21 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // checks if the MetalGatewayLite type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MetalGatewayLite{}
 
-// MetalGatewayLiteState The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-type MetalGatewayLiteState string
-
-// List of MetalGatewayLiteState
-const (
-	METALGATEWAYLITE_READY    MetalGatewayLiteState = "ready"
-	METALGATEWAYLITE_ACTIVE   MetalGatewayLiteState = "active"
-	METALGATEWAYLITE_DELETING MetalGatewayLiteState = "deleting"
-)
-
-// All allowed values of MetalGatewayLiteState enum
-var AllowedMetalGatewayLiteStateEnumValues = []MetalGatewayLiteState{
-	"ready",
-	"active",
-	"deleting",
-}
-
-func (v *MetalGatewayLiteState) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := MetalGatewayLiteState(value)
-	for _, existing := range AllowedMetalGatewayLiteStateEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid MetalGatewayLiteState", value)
-}
-
-// NewMetalGatewayLiteStateFromValue returns a pointer to a valid MetalGatewayLiteState
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewMetalGatewayLiteStateFromValue(v string) (*MetalGatewayLiteState, error) {
-	ev := MetalGatewayLiteState(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for MetalGatewayLiteState: valid values are %v", v, AllowedMetalGatewayLiteStateEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v MetalGatewayLiteState) IsValid() bool {
-	for _, existing := range AllowedMetalGatewayLiteStateEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to State value
-func (v MetalGatewayLiteState) Ptr() *MetalGatewayLiteState {
-	return &v
-}
-
-type NullableMetalGatewayLiteState struct {
-	value *MetalGatewayLiteState
-	isSet bool
-}
-
-func (v NullableMetalGatewayLiteState) Get() *MetalGatewayLiteState {
-	return v.value
-}
-
-func (v *NullableMetalGatewayLiteState) Set(val *MetalGatewayLiteState) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMetalGatewayLiteState) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMetalGatewayLiteState) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMetalGatewayLiteState(val *MetalGatewayLiteState) *NullableMetalGatewayLiteState {
-	return &NullableMetalGatewayLiteState{value: val, isSet: true}
-}
-
-func (v NullableMetalGatewayLiteState) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMetalGatewayLiteState) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // MetalGatewayLite struct for MetalGatewayLite
 type MetalGatewayLite struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The gateway address with subnet CIDR value for this Metal Gateway. For example, a Metal Gateway using an IP reservation with block 10.1.2.0/27 would have a gateway address of 10.1.2.1/27.
-	GatewayAddress *string `json:"gateway_address,omitempty"`
-	Href           *string `json:"href,omitempty"`
-	Id             *string `json:"id,omitempty"`
-	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State     *MetalGatewayLiteState `json:"state,omitempty"`
-	UpdatedAt *time.Time             `json:"updated_at,omitempty"`
+	GatewayAddress *string            `json:"gateway_address,omitempty"`
+	Href           *string            `json:"href,omitempty"`
+	Id             *string            `json:"id,omitempty"`
+	State          *MetalGatewayState `json:"state,omitempty"`
+	UpdatedAt      *time.Time         `json:"updated_at,omitempty"`
 	// The VLAN id of the Virtual Network record associated to this Metal Gateway.
 	Vlan                 *int32 `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -279,9 +181,9 @@ func (o *MetalGatewayLite) SetId(v string) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *MetalGatewayLite) GetState() MetalGatewayLiteState {
+func (o *MetalGatewayLite) GetState() MetalGatewayState {
 	if o == nil || IsNil(o.State) {
-		var ret MetalGatewayLiteState
+		var ret MetalGatewayState
 		return ret
 	}
 	return *o.State
@@ -289,9 +191,9 @@ func (o *MetalGatewayLite) GetState() MetalGatewayLiteState {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetalGatewayLite) GetStateOk() (*MetalGatewayLiteState, bool) {
+func (o *MetalGatewayLite) GetStateOk() (*MetalGatewayState, bool) {
 	if o == nil || IsNil(o.State) {
-		return o.State, false
+		return nil, false
 	}
 	return o.State, true
 }
@@ -305,8 +207,8 @@ func (o *MetalGatewayLite) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *MetalGatewayLite) SetState(v MetalGatewayLiteState) {
+// SetState gets a reference to the given MetalGatewayState and assigns it to the State field.
+func (o *MetalGatewayLite) SetState(v MetalGatewayState) {
 	o.State = &v
 }
 

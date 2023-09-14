@@ -184,8 +184,8 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     query := "query_example" // string | Search by facility code, plan name, project name, reservation short ID or device hostname (optional)
-    state := "state_example" // string | Filter by hardware reservation state (optional)
-    provisionable := "provisionable_example" // string | Filter hardware reservation that is provisionable (optional)
+    state := openapiclient.findProjectHardwareReservations_state_parameter("active") // FindProjectHardwareReservationsStateParameter | Filter by hardware reservation state (optional)
+    provisionable := openapiclient.findProjectHardwareReservations_provisionable_parameter("only") // FindProjectHardwareReservationsProvisionableParameter | Filter hardware reservation that is provisionable (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
@@ -220,8 +220,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **query** | **string** | Search by facility code, plan name, project name, reservation short ID or device hostname | 
- **state** | **string** | Filter by hardware reservation state | 
- **provisionable** | **string** | Filter hardware reservation that is provisionable | 
+ **state** | [**FindProjectHardwareReservationsStateParameter**](FindProjectHardwareReservationsStateParameter.md) | Filter by hardware reservation state | 
+ **provisionable** | [**FindProjectHardwareReservationsProvisionableParameter**](FindProjectHardwareReservationsProvisionableParameter.md) | Filter hardware reservation that is provisionable | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]
