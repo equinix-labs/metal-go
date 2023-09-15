@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
-**Role** | Pointer to **string** | Either &#39;primary&#39; or &#39;secondary&#39;. | [optional] 
-**Status** | Pointer to **string** | For both Fabric VCs and Dedicated Ports, this will be &#39;requested&#39; on creation and &#39;deleting&#39; on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to &#39;active&#39;. For Dedicated Ports, once the dedicated port is associated, this will also turn to &#39;active&#39;. For Fabric VCs, this can turn into an &#39;expired&#39; state if the service token associated is expired. | [optional] 
+**Role** | Pointer to [**InterconnectionPortRole**](InterconnectionPortRole.md) |  | [optional] 
+**Status** | Pointer to [**InterconnectionPortStatus**](InterconnectionPortStatus.md) |  | [optional] 
 **SwitchId** | Pointer to **string** | A switch &#39;short ID&#39; | [optional] 
 **VirtualCircuits** | Pointer to [**[]VirtualCircuit**](VirtualCircuit.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -86,20 +86,20 @@ HasOrganization returns a boolean if a field has been set.
 
 ### GetRole
 
-`func (o *InterconnectionPort) GetRole() string`
+`func (o *InterconnectionPort) GetRole() InterconnectionPortRole`
 
 GetRole returns the Role field if non-nil, zero value otherwise.
 
 ### GetRoleOk
 
-`func (o *InterconnectionPort) GetRoleOk() (*string, bool)`
+`func (o *InterconnectionPort) GetRoleOk() (*InterconnectionPortRole, bool)`
 
 GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRole
 
-`func (o *InterconnectionPort) SetRole(v string)`
+`func (o *InterconnectionPort) SetRole(v InterconnectionPortRole)`
 
 SetRole sets Role field to given value.
 
@@ -111,20 +111,20 @@ HasRole returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *InterconnectionPort) GetStatus() string`
+`func (o *InterconnectionPort) GetStatus() InterconnectionPortStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *InterconnectionPort) GetStatusOk() (*string, bool)`
+`func (o *InterconnectionPort) GetStatusOk() (*InterconnectionPortStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *InterconnectionPort) SetStatus(v string)`
+`func (o *InterconnectionPort) SetStatus(v InterconnectionPortStatus)`
 
 SetStatus sets Status field to given value.
 

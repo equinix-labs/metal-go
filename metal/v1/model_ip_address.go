@@ -20,8 +20,7 @@ var _ MappedNullable = &IPAddress{}
 
 // IPAddress struct for IPAddress
 type IPAddress struct {
-	// Address Family for IP Address
-	AddressFamily *int32 `json:"address_family,omitempty"`
+	AddressFamily *IPAddressAddressFamily `json:"address_family,omitempty"`
 	// Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)
 	Cidr *int32 `json:"cidr,omitempty"`
 	// UUIDs of any IP reservations to use when assigning IPs
@@ -55,9 +54,9 @@ func NewIPAddressWithDefaults() *IPAddress {
 }
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
-func (o *IPAddress) GetAddressFamily() int32 {
+func (o *IPAddress) GetAddressFamily() IPAddressAddressFamily {
 	if o == nil || IsNil(o.AddressFamily) {
-		var ret int32
+		var ret IPAddressAddressFamily
 		return ret
 	}
 	return *o.AddressFamily
@@ -65,7 +64,7 @@ func (o *IPAddress) GetAddressFamily() int32 {
 
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IPAddress) GetAddressFamilyOk() (*int32, bool) {
+func (o *IPAddress) GetAddressFamilyOk() (*IPAddressAddressFamily, bool) {
 	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
@@ -81,8 +80,8 @@ func (o *IPAddress) HasAddressFamily() bool {
 	return false
 }
 
-// SetAddressFamily gets a reference to the given int32 and assigns it to the AddressFamily field.
-func (o *IPAddress) SetAddressFamily(v int32) {
+// SetAddressFamily gets a reference to the given IPAddressAddressFamily and assigns it to the AddressFamily field.
+func (o *IPAddress) SetAddressFamily(v IPAddressAddressFamily) {
 	o.AddressFamily = &v
 }
 

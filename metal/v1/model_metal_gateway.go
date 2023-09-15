@@ -21,16 +21,15 @@ var _ MappedNullable = &MetalGateway{}
 
 // MetalGateway struct for MetalGateway
 type MetalGateway struct {
-	CreatedAt     *time.Time     `json:"created_at,omitempty"`
-	CreatedBy     *Href          `json:"created_by,omitempty"`
-	Href          *string        `json:"href,omitempty"`
-	Id            *string        `json:"id,omitempty"`
-	IpReservation *IPReservation `json:"ip_reservation,omitempty"`
-	Project       *Project       `json:"project,omitempty"`
-	// The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.
-	State                *string         `json:"state,omitempty"`
-	UpdatedAt            *time.Time      `json:"updated_at,omitempty"`
-	VirtualNetwork       *VirtualNetwork `json:"virtual_network,omitempty"`
+	CreatedAt            *time.Time         `json:"created_at,omitempty"`
+	CreatedBy            *Href              `json:"created_by,omitempty"`
+	Href                 *string            `json:"href,omitempty"`
+	Id                   *string            `json:"id,omitempty"`
+	IpReservation        *IPReservation     `json:"ip_reservation,omitempty"`
+	Project              *Project           `json:"project,omitempty"`
+	State                *MetalGatewayState `json:"state,omitempty"`
+	UpdatedAt            *time.Time         `json:"updated_at,omitempty"`
+	VirtualNetwork       *VirtualNetwork    `json:"virtual_network,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -246,9 +245,9 @@ func (o *MetalGateway) SetProject(v Project) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *MetalGateway) GetState() string {
+func (o *MetalGateway) GetState() MetalGatewayState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret MetalGatewayState
 		return ret
 	}
 	return *o.State
@@ -256,7 +255,7 @@ func (o *MetalGateway) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetalGateway) GetStateOk() (*string, bool) {
+func (o *MetalGateway) GetStateOk() (*MetalGatewayState, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -272,8 +271,8 @@ func (o *MetalGateway) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *MetalGateway) SetState(v string) {
+// SetState gets a reference to the given MetalGatewayState and assigns it to the State field.
+func (o *MetalGateway) SetState(v MetalGatewayState) {
 	o.State = &v
 }
 

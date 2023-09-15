@@ -917,7 +917,7 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     search := "search_example" // string | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
-    categories := []string{"compute"} // []string | Filter by plan category (optional)
+    categories := []openapiclient.FindOrganizationDevicesCategoriesParameterInner{openapiclient.findOrganizationDevices_categories_parameter_inner("compute")} // []FindOrganizationDevicesCategoriesParameterInner | Filter by plan category (optional)
     facility := "facility_example" // string | Filter by device facility (optional)
     hostname := "hostname_example" // string | Filter by partial hostname (optional)
     reserved := true // bool | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. (optional)
@@ -958,7 +958,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **search** | **string** | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | 
- **categories** | **[]string** | Filter by plan category | 
+ **categories** | [**[]FindOrganizationDevicesCategoriesParameterInner**](FindOrganizationDevicesCategoriesParameterInner.md) | Filter by plan category | 
  **facility** | **string** | Filter by device facility | 
  **hostname** | **string** | Filter by partial hostname | 
  **reserved** | **bool** | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. | 
@@ -1011,7 +1011,7 @@ import (
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Project UUID
     search := "search_example" // string | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
-    categories := []string{"compute"} // []string | Filter by plan category (optional)
+    categories := []openapiclient.FindOrganizationDevicesCategoriesParameterInner{openapiclient.findOrganizationDevices_categories_parameter_inner("compute")} // []FindOrganizationDevicesCategoriesParameterInner | Filter by plan category (optional)
     facility := "facility_example" // string | Filter by device facility (optional)
     hostname := "hostname_example" // string | Filter by partial hostname (optional)
     reserved := true // bool | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. (optional)
@@ -1052,7 +1052,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **search** | **string** | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | 
- **categories** | **[]string** | Filter by plan category | 
+ **categories** | [**[]FindOrganizationDevicesCategoriesParameterInner**](FindOrganizationDevicesCategoriesParameterInner.md) | Filter by plan category | 
  **facility** | **string** | Filter by device facility | 
  **hostname** | **string** | Filter by partial hostname | 
  **reserved** | **bool** | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. | 
@@ -1105,9 +1105,9 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    direction := "direction_example" // string | Traffic direction
-    interval := "interval_example" // string | Traffic interval (optional)
-    bucket := "bucket_example" // string | Traffic bucket (optional)
+    direction := openapiclient.findTraffic_direction_parameter("inbound") // FindTrafficDirectionParameter | Traffic direction
+    interval := openapiclient.findTraffic_interval_parameter("minute") // FindTrafficIntervalParameter | Traffic interval (optional)
+    bucket := openapiclient.findTraffic_bucket_parameter("internal") // FindTrafficBucketParameter | Traffic bucket (optional)
     timeframe := *openapiclient.NewFindTrafficTimeframeParameter(time.Now(), time.Now()) // FindTrafficTimeframeParameter |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -1136,9 +1136,9 @@ Other parameters are passed through a pointer to a apiFindTrafficRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **direction** | **string** | Traffic direction | 
- **interval** | **string** | Traffic interval | 
- **bucket** | **string** | Traffic bucket | 
+ **direction** | [**FindTrafficDirectionParameter**](FindTrafficDirectionParameter.md) | Traffic direction | 
+ **interval** | [**FindTrafficIntervalParameter**](FindTrafficIntervalParameter.md) | Traffic interval | 
+ **bucket** | [**FindTrafficBucketParameter**](FindTrafficBucketParameter.md) | Traffic bucket | 
  **timeframe** | [**FindTrafficTimeframeParameter**](FindTrafficTimeframeParameter.md) |  | 
 
 ### Return type
@@ -1393,7 +1393,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Device UUID
-    deviceActionInput := *openapiclient.NewDeviceActionInput("Type_example") // DeviceActionInput | Action to perform
+    deviceActionInput := *openapiclient.NewDeviceActionInput(openapiclient.DeviceActionInput_type("power_on")) // DeviceActionInput | Action to perform
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

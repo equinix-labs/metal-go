@@ -20,10 +20,10 @@ var _ MappedNullable = &Facility{}
 
 // Facility struct for Facility
 type Facility struct {
-	Address  *Address `json:"address,omitempty"`
-	Code     *string  `json:"code,omitempty"`
-	Features []string `json:"features,omitempty"`
-	Id       *string  `json:"id,omitempty"`
+	Address  *Address                `json:"address,omitempty"`
+	Code     *string                 `json:"code,omitempty"`
+	Features []FacilityFeaturesInner `json:"features,omitempty"`
+	Id       *string                 `json:"id,omitempty"`
 	// IP ranges registered in facility. Can be used for GeoIP location
 	IpRanges             []string     `json:"ip_ranges,omitempty"`
 	Metro                *DeviceMetro `json:"metro,omitempty"`
@@ -115,9 +115,9 @@ func (o *Facility) SetCode(v string) {
 }
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
-func (o *Facility) GetFeatures() []string {
+func (o *Facility) GetFeatures() []FacilityFeaturesInner {
 	if o == nil || IsNil(o.Features) {
-		var ret []string
+		var ret []FacilityFeaturesInner
 		return ret
 	}
 	return o.Features
@@ -125,7 +125,7 @@ func (o *Facility) GetFeatures() []string {
 
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Facility) GetFeaturesOk() ([]string, bool) {
+func (o *Facility) GetFeaturesOk() ([]FacilityFeaturesInner, bool) {
 	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
@@ -141,8 +141,8 @@ func (o *Facility) HasFeatures() bool {
 	return false
 }
 
-// SetFeatures gets a reference to the given []string and assigns it to the Features field.
-func (o *Facility) SetFeatures(v []string) {
+// SetFeatures gets a reference to the given []FacilityFeaturesInner and assigns it to the Features field.
+func (o *Facility) SetFeatures(v []FacilityFeaturesInner) {
 	o.Features = v
 }
 

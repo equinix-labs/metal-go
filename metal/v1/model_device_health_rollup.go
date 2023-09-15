@@ -21,8 +21,7 @@ var _ MappedNullable = &DeviceHealthRollup{}
 
 // DeviceHealthRollup Represents a Device Health Status
 type DeviceHealthRollup struct {
-	// Health Status
-	HealthRollup *string `json:"health_rollup,omitempty"`
+	HealthRollup *DeviceHealthRollupHealthRollup `json:"health_rollup,omitempty"`
 	// Last update of health status.
 	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -48,9 +47,9 @@ func NewDeviceHealthRollupWithDefaults() *DeviceHealthRollup {
 }
 
 // GetHealthRollup returns the HealthRollup field value if set, zero value otherwise.
-func (o *DeviceHealthRollup) GetHealthRollup() string {
+func (o *DeviceHealthRollup) GetHealthRollup() DeviceHealthRollupHealthRollup {
 	if o == nil || IsNil(o.HealthRollup) {
-		var ret string
+		var ret DeviceHealthRollupHealthRollup
 		return ret
 	}
 	return *o.HealthRollup
@@ -58,7 +57,7 @@ func (o *DeviceHealthRollup) GetHealthRollup() string {
 
 // GetHealthRollupOk returns a tuple with the HealthRollup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceHealthRollup) GetHealthRollupOk() (*string, bool) {
+func (o *DeviceHealthRollup) GetHealthRollupOk() (*DeviceHealthRollupHealthRollup, bool) {
 	if o == nil || IsNil(o.HealthRollup) {
 		return nil, false
 	}
@@ -74,8 +73,8 @@ func (o *DeviceHealthRollup) HasHealthRollup() bool {
 	return false
 }
 
-// SetHealthRollup gets a reference to the given string and assigns it to the HealthRollup field.
-func (o *DeviceHealthRollup) SetHealthRollup(v string) {
+// SetHealthRollup gets a reference to the given DeviceHealthRollupHealthRollup and assigns it to the HealthRollup field.
+func (o *DeviceHealthRollup) SetHealthRollup(v DeviceHealthRollupHealthRollup) {
 	o.HealthRollup = &v
 }
 

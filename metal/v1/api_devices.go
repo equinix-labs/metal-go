@@ -1945,7 +1945,7 @@ type ApiFindOrganizationDevicesRequest struct {
 	ApiService         *DevicesApiService
 	id                 string
 	search             *string
-	categories         *[]string
+	categories         *[]FindOrganizationDevicesCategoriesParameterInner
 	facility           *string
 	hostname           *string
 	reserved           *bool
@@ -1965,7 +1965,7 @@ func (r ApiFindOrganizationDevicesRequest) Search(search string) ApiFindOrganiza
 }
 
 // Filter by plan category
-func (r ApiFindOrganizationDevicesRequest) Categories(categories []string) ApiFindOrganizationDevicesRequest {
+func (r ApiFindOrganizationDevicesRequest) Categories(categories []FindOrganizationDevicesCategoriesParameterInner) ApiFindOrganizationDevicesRequest {
 	r.categories = &categories
 	return r
 }
@@ -2215,7 +2215,7 @@ type ApiFindProjectDevicesRequest struct {
 	ApiService         *DevicesApiService
 	id                 string
 	search             *string
-	categories         *[]string
+	categories         *[]FindOrganizationDevicesCategoriesParameterInner
 	facility           *string
 	hostname           *string
 	reserved           *bool
@@ -2235,7 +2235,7 @@ func (r ApiFindProjectDevicesRequest) Search(search string) ApiFindProjectDevice
 }
 
 // Filter by plan category
-func (r ApiFindProjectDevicesRequest) Categories(categories []string) ApiFindProjectDevicesRequest {
+func (r ApiFindProjectDevicesRequest) Categories(categories []FindOrganizationDevicesCategoriesParameterInner) ApiFindProjectDevicesRequest {
 	r.categories = &categories
 	return r
 }
@@ -2484,26 +2484,26 @@ type ApiFindTrafficRequest struct {
 	ctx        context.Context
 	ApiService *DevicesApiService
 	id         string
-	direction  *string
-	interval   *string
-	bucket     *string
+	direction  *FindTrafficDirectionParameter
+	interval   *FindTrafficIntervalParameter
+	bucket     *FindTrafficBucketParameter
 	timeframe  *FindTrafficTimeframeParameter
 }
 
 // Traffic direction
-func (r ApiFindTrafficRequest) Direction(direction string) ApiFindTrafficRequest {
+func (r ApiFindTrafficRequest) Direction(direction FindTrafficDirectionParameter) ApiFindTrafficRequest {
 	r.direction = &direction
 	return r
 }
 
 // Traffic interval
-func (r ApiFindTrafficRequest) Interval(interval string) ApiFindTrafficRequest {
+func (r ApiFindTrafficRequest) Interval(interval FindTrafficIntervalParameter) ApiFindTrafficRequest {
 	r.interval = &interval
 	return r
 }
 
 // Traffic bucket
-func (r ApiFindTrafficRequest) Bucket(bucket string) ApiFindTrafficRequest {
+func (r ApiFindTrafficRequest) Bucket(bucket FindTrafficBucketParameter) ApiFindTrafficRequest {
 	r.bucket = &bucket
 	return r
 }

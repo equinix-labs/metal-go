@@ -20,8 +20,7 @@ var _ MappedNullable = &BGPSessionInput{}
 
 // BGPSessionInput struct for BGPSessionInput
 type BGPSessionInput struct {
-	// Address family for BGP session.
-	AddressFamily *string `json:"address_family,omitempty"`
+	AddressFamily *BGPSessionInputAddressFamily `json:"address_family,omitempty"`
 	// Set the default route policy.
 	DefaultRoute         *bool `json:"default_route,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -51,9 +50,9 @@ func NewBGPSessionInputWithDefaults() *BGPSessionInput {
 }
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
-func (o *BGPSessionInput) GetAddressFamily() string {
+func (o *BGPSessionInput) GetAddressFamily() BGPSessionInputAddressFamily {
 	if o == nil || IsNil(o.AddressFamily) {
-		var ret string
+		var ret BGPSessionInputAddressFamily
 		return ret
 	}
 	return *o.AddressFamily
@@ -61,7 +60,7 @@ func (o *BGPSessionInput) GetAddressFamily() string {
 
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BGPSessionInput) GetAddressFamilyOk() (*string, bool) {
+func (o *BGPSessionInput) GetAddressFamilyOk() (*BGPSessionInputAddressFamily, bool) {
 	if o == nil || IsNil(o.AddressFamily) {
 		return nil, false
 	}
@@ -77,8 +76,8 @@ func (o *BGPSessionInput) HasAddressFamily() bool {
 	return false
 }
 
-// SetAddressFamily gets a reference to the given string and assigns it to the AddressFamily field.
-func (o *BGPSessionInput) SetAddressFamily(v string) {
+// SetAddressFamily gets a reference to the given BGPSessionInputAddressFamily and assigns it to the AddressFamily field.
+func (o *BGPSessionInput) SetAddressFamily(v BGPSessionInputAddressFamily) {
 	o.AddressFamily = &v
 }
 

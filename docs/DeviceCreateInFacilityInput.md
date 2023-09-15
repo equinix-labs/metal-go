@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Facility** | **[]string** | The datacenter where the device should be created.  Either metro or facility must be provided.  The API will accept either a single facility &#x60;{ \&quot;facility\&quot;: \&quot;f1\&quot; }&#x60;, or it can be instructed to create the device in the best available datacenter &#x60;{ \&quot;facility\&quot;: \&quot;any\&quot; }&#x60;.  Additionally it is possible to set a prioritized location selection. For example &#x60;{ \&quot;facility\&quot;: [\&quot;f3\&quot;, \&quot;f2\&quot;, \&quot;any\&quot;] }&#x60; can be used to prioritize &#x60;f3&#x60; and then &#x60;f2&#x60; before accepting &#x60;any&#x60; facility. If none of the facilities provided have availability for the requested device the request will fail. | 
 **AlwaysPxe** | Pointer to **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] [default to false]
-**BillingCycle** | Pointer to **string** | The billing cycle of the device. | [optional] 
+**BillingCycle** | Pointer to [**DeviceCreateInputBillingCycle**](DeviceCreateInputBillingCycle.md) |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] [default to {}]
 **Description** | Pointer to **string** | Any description of the device or how it will be used. This may be used to inform other API consumers with project access. | [optional] 
 **Features** | Pointer to **[]string** | The features attribute allows you to optionally specify what features your server should have.  In the API shorthand syntax, all features listed are &#x60;required&#x60;:  &#x60;&#x60;&#x60; { \&quot;features\&quot;: [\&quot;tpm\&quot;] } &#x60;&#x60;&#x60;  Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a &#x60;preferred&#x60; value. The request will not fail if we have no servers with that feature in our inventory. The API offers an alternative syntax for mixing preferred and required features:  &#x60;&#x60;&#x60; { \&quot;features\&quot;: { \&quot;tpm\&quot;: \&quot;required\&quot;, \&quot;raid\&quot;: \&quot;preferred\&quot; } } &#x60;&#x60;&#x60;  The request will only fail if there are no available servers matching the required &#x60;tpm&#x60; criteria. | [optional] 
@@ -97,20 +97,20 @@ HasAlwaysPxe returns a boolean if a field has been set.
 
 ### GetBillingCycle
 
-`func (o *DeviceCreateInFacilityInput) GetBillingCycle() string`
+`func (o *DeviceCreateInFacilityInput) GetBillingCycle() DeviceCreateInputBillingCycle`
 
 GetBillingCycle returns the BillingCycle field if non-nil, zero value otherwise.
 
 ### GetBillingCycleOk
 
-`func (o *DeviceCreateInFacilityInput) GetBillingCycleOk() (*string, bool)`
+`func (o *DeviceCreateInFacilityInput) GetBillingCycleOk() (*DeviceCreateInputBillingCycle, bool)`
 
 GetBillingCycleOk returns a tuple with the BillingCycle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBillingCycle
 
-`func (o *DeviceCreateInFacilityInput) SetBillingCycle(v string)`
+`func (o *DeviceCreateInFacilityInput) SetBillingCycle(v DeviceCreateInputBillingCycle)`
 
 SetBillingCycle sets BillingCycle field to given value.
 

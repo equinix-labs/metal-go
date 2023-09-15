@@ -20,8 +20,7 @@ var _ MappedNullable = &DeviceActionInput{}
 
 // DeviceActionInput struct for DeviceActionInput
 type DeviceActionInput struct {
-	// Action to perform. See Device.actions for possible actions.
-	Type string `json:"type"`
+	Type DeviceActionInputType `json:"type"`
 	// May be required to perform actions under certain conditions
 	ForceDelete *bool `json:"force_delete,omitempty"`
 	// When type is `reinstall`, enabling fast deprovisioning will bypass full disk wiping.
@@ -41,7 +40,7 @@ type _DeviceActionInput DeviceActionInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceActionInput(type_ string) *DeviceActionInput {
+func NewDeviceActionInput(type_ DeviceActionInputType) *DeviceActionInput {
 	this := DeviceActionInput{}
 	this.Type = type_
 	return &this
@@ -56,9 +55,9 @@ func NewDeviceActionInputWithDefaults() *DeviceActionInput {
 }
 
 // GetType returns the Type field value
-func (o *DeviceActionInput) GetType() string {
+func (o *DeviceActionInput) GetType() DeviceActionInputType {
 	if o == nil {
-		var ret string
+		var ret DeviceActionInputType
 		return ret
 	}
 
@@ -67,7 +66,7 @@ func (o *DeviceActionInput) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DeviceActionInput) GetTypeOk() (*string, bool) {
+func (o *DeviceActionInput) GetTypeOk() (*DeviceActionInputType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,7 +74,7 @@ func (o *DeviceActionInput) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *DeviceActionInput) SetType(v string) {
+func (o *DeviceActionInput) SetType(v DeviceActionInputType) {
 	o.Type = v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressFamily** | Pointer to **int32** | Address Family for IP Address | [optional] 
+**AddressFamily** | Pointer to [**IPAddressAddressFamily**](IPAddressAddressFamily.md) |  | [optional] 
 **Cidr** | Pointer to **int32** | Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses) | [optional] 
 **IpReservations** | Pointer to **[]string** | UUIDs of any IP reservations to use when assigning IPs | [optional] 
 **Public** | Pointer to **bool** | Address Type for IP Address | [optional] [default to true]
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddressFamily
 
-`func (o *IPAddress) GetAddressFamily() int32`
+`func (o *IPAddress) GetAddressFamily() IPAddressAddressFamily`
 
 GetAddressFamily returns the AddressFamily field if non-nil, zero value otherwise.
 
 ### GetAddressFamilyOk
 
-`func (o *IPAddress) GetAddressFamilyOk() (*int32, bool)`
+`func (o *IPAddress) GetAddressFamilyOk() (*IPAddressAddressFamily, bool)`
 
 GetAddressFamilyOk returns a tuple with the AddressFamily field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddressFamily
 
-`func (o *IPAddress) SetAddressFamily(v int32)`
+`func (o *IPAddress) SetAddressFamily(v IPAddressAddressFamily)`
 
 SetAddressFamily sets AddressFamily field to given value.
 

@@ -2002,8 +2002,8 @@ func (a *OrganizationsApiService) FindOrganizationTransfersExecute(r ApiFindOrga
 type ApiFindOrganizationsRequest struct {
 	ctx             context.Context
 	ApiService      *OrganizationsApiService
-	personal        *string
-	withoutProjects *string
+	personal        *FindOrganizationsPersonalParameter
+	withoutProjects *FindOrganizationsPersonalParameter
 	include         *[]string
 	exclude         *[]string
 	page            *int32
@@ -2011,13 +2011,13 @@ type ApiFindOrganizationsRequest struct {
 }
 
 // Include, exclude or show only personal organizations.
-func (r ApiFindOrganizationsRequest) Personal(personal string) ApiFindOrganizationsRequest {
+func (r ApiFindOrganizationsRequest) Personal(personal FindOrganizationsPersonalParameter) ApiFindOrganizationsRequest {
 	r.personal = &personal
 	return r
 }
 
 // Include, exclude or show only organizations that have no projects.
-func (r ApiFindOrganizationsRequest) WithoutProjects(withoutProjects string) ApiFindOrganizationsRequest {
+func (r ApiFindOrganizationsRequest) WithoutProjects(withoutProjects FindOrganizationsPersonalParameter) ApiFindOrganizationsRequest {
 	r.withoutProjects = &withoutProjects
 	return r
 }

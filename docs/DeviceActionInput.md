@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Action to perform. See Device.actions for possible actions. | 
+**Type** | [**DeviceActionInputType**](DeviceActionInputType.md) |  | 
 **ForceDelete** | Pointer to **bool** | May be required to perform actions under certain conditions | [optional] 
 **DeprovisionFast** | Pointer to **bool** | When type is &#x60;reinstall&#x60;, enabling fast deprovisioning will bypass full disk wiping. | [optional] 
 **PreserveData** | Pointer to **bool** | When type is &#x60;reinstall&#x60;, preserve the existing data on all disks except the operating-system disk. | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewDeviceActionInput
 
-`func NewDeviceActionInput(type_ string, ) *DeviceActionInput`
+`func NewDeviceActionInput(type_ DeviceActionInputType, ) *DeviceActionInput`
 
 NewDeviceActionInput instantiates a new DeviceActionInput object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *DeviceActionInput) GetType() string`
+`func (o *DeviceActionInput) GetType() DeviceActionInputType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *DeviceActionInput) GetTypeOk() (*string, bool)`
+`func (o *DeviceActionInput) GetTypeOk() (*DeviceActionInputType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *DeviceActionInput) SetType(v string)`
+`func (o *DeviceActionInput) SetType(v DeviceActionInputType)`
 
 SetType sets Type field to given value.
 

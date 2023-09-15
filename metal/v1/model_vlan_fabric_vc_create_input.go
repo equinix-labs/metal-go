@@ -28,14 +28,12 @@ type VlanFabricVcCreateInput struct {
 	Name    string  `json:"name"`
 	Project *string `json:"project,omitempty"`
 	// Either 'primary' or 'redundant'.
-	Redundancy string `json:"redundancy"`
-	// Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	ServiceTokenType string `json:"service_token_type"`
+	Redundancy       string                                  `json:"redundancy"`
+	ServiceTokenType VlanFabricVcCreateInputServiceTokenType `json:"service_token_type"`
 	// A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.
-	Speed *int32   `json:"speed,omitempty"`
-	Tags  []string `json:"tags,omitempty"`
-	// When requesting for a Fabric VC, the value of this field should be 'shared'.
-	Type string `json:"type"`
+	Speed *int32                      `json:"speed,omitempty"`
+	Tags  []string                    `json:"tags,omitempty"`
+	Type  VlanFabricVcCreateInputType `json:"type"`
 	// A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary (if redundant) interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits.
 	Vlans                []int32 `json:"vlans,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -47,7 +45,7 @@ type _VlanFabricVcCreateInput VlanFabricVcCreateInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVlanFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType string, type_ string) *VlanFabricVcCreateInput {
+func NewVlanFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType VlanFabricVcCreateInputServiceTokenType, type_ VlanFabricVcCreateInputType) *VlanFabricVcCreateInput {
 	this := VlanFabricVcCreateInput{}
 	this.Metro = metro
 	this.Name = name
@@ -234,9 +232,9 @@ func (o *VlanFabricVcCreateInput) SetRedundancy(v string) {
 }
 
 // GetServiceTokenType returns the ServiceTokenType field value
-func (o *VlanFabricVcCreateInput) GetServiceTokenType() string {
+func (o *VlanFabricVcCreateInput) GetServiceTokenType() VlanFabricVcCreateInputServiceTokenType {
 	if o == nil {
-		var ret string
+		var ret VlanFabricVcCreateInputServiceTokenType
 		return ret
 	}
 
@@ -245,7 +243,7 @@ func (o *VlanFabricVcCreateInput) GetServiceTokenType() string {
 
 // GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field value
 // and a boolean to check if the value has been set.
-func (o *VlanFabricVcCreateInput) GetServiceTokenTypeOk() (*string, bool) {
+func (o *VlanFabricVcCreateInput) GetServiceTokenTypeOk() (*VlanFabricVcCreateInputServiceTokenType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -253,7 +251,7 @@ func (o *VlanFabricVcCreateInput) GetServiceTokenTypeOk() (*string, bool) {
 }
 
 // SetServiceTokenType sets field value
-func (o *VlanFabricVcCreateInput) SetServiceTokenType(v string) {
+func (o *VlanFabricVcCreateInput) SetServiceTokenType(v VlanFabricVcCreateInputServiceTokenType) {
 	o.ServiceTokenType = v
 }
 
@@ -322,9 +320,9 @@ func (o *VlanFabricVcCreateInput) SetTags(v []string) {
 }
 
 // GetType returns the Type field value
-func (o *VlanFabricVcCreateInput) GetType() string {
+func (o *VlanFabricVcCreateInput) GetType() VlanFabricVcCreateInputType {
 	if o == nil {
-		var ret string
+		var ret VlanFabricVcCreateInputType
 		return ret
 	}
 
@@ -333,7 +331,7 @@ func (o *VlanFabricVcCreateInput) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *VlanFabricVcCreateInput) GetTypeOk() (*string, bool) {
+func (o *VlanFabricVcCreateInput) GetTypeOk() (*VlanFabricVcCreateInputType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -341,7 +339,7 @@ func (o *VlanFabricVcCreateInput) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *VlanFabricVcCreateInput) SetType(v string) {
+func (o *VlanFabricVcCreateInput) SetType(v VlanFabricVcCreateInputType) {
 	o.Type = v
 }
 

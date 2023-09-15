@@ -22,12 +22,11 @@ var _ MappedNullable = &ProjectCreateFromRootInput{}
 type ProjectCreateFromRootInput struct {
 	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name            string  `json:"name"`
-	OrganizationId  *string `json:"organization_id,omitempty"`
-	PaymentMethodId *string `json:"payment_method_id,omitempty"`
-	// The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.
-	Type                 *string  `json:"type,omitempty"`
-	Tags                 []string `json:"tags,omitempty"`
+	Name                 string                          `json:"name"`
+	OrganizationId       *string                         `json:"organization_id,omitempty"`
+	PaymentMethodId      *string                         `json:"payment_method_id,omitempty"`
+	Type                 *ProjectCreateFromRootInputType `json:"type,omitempty"`
+	Tags                 []string                        `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -172,9 +171,9 @@ func (o *ProjectCreateFromRootInput) SetPaymentMethodId(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *ProjectCreateFromRootInput) GetType() string {
+func (o *ProjectCreateFromRootInput) GetType() ProjectCreateFromRootInputType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret ProjectCreateFromRootInputType
 		return ret
 	}
 	return *o.Type
@@ -182,7 +181,7 @@ func (o *ProjectCreateFromRootInput) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectCreateFromRootInput) GetTypeOk() (*string, bool) {
+func (o *ProjectCreateFromRootInput) GetTypeOk() (*ProjectCreateFromRootInputType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -198,8 +197,8 @@ func (o *ProjectCreateFromRootInput) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *ProjectCreateFromRootInput) SetType(v string) {
+// SetType gets a reference to the given ProjectCreateFromRootInputType and assigns it to the Type field.
+func (o *ProjectCreateFromRootInput) SetType(v ProjectCreateFromRootInputType) {
 	o.Type = &v
 }
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Port** | Pointer to [**Port**](Port.md) |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
+**State** | Pointer to [**PortVlanAssignmentBatchState**](PortVlanAssignmentBatchState.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **VlanAssignments** | Pointer to [**[]PortVlanAssignmentBatchVlanAssignmentsInner**](PortVlanAssignmentBatchVlanAssignmentsInner.md) |  | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
@@ -160,20 +160,20 @@ HasQuantity returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *PortVlanAssignmentBatch) GetState() string`
+`func (o *PortVlanAssignmentBatch) GetState() PortVlanAssignmentBatchState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *PortVlanAssignmentBatch) GetStateOk() (*string, bool)`
+`func (o *PortVlanAssignmentBatch) GetStateOk() (*PortVlanAssignmentBatchState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *PortVlanAssignmentBatch) SetState(v string)`
+`func (o *PortVlanAssignmentBatch) SetState(v PortVlanAssignmentBatchState)`
 
 SetState sets State field to given value.
 

@@ -26,14 +26,14 @@ type BgpDynamicNeighbor struct {
 	// The ASN of the dynamic BGP neighbor
 	BgpNeighborAsn *int32 `json:"bgp_neighbor_asn,omitempty"`
 	// Network range of the dynamic BGP neighbor in CIDR format
-	BgpNeighborRange     *string          `json:"bgp_neighbor_range,omitempty"`
-	MetalGateway         *VrfMetalGateway `json:"metal_gateway,omitempty"`
-	State                *string          `json:"state,omitempty"`
-	Href                 *string          `json:"href,omitempty"`
-	CreatedAt            *time.Time       `json:"created_at,omitempty"`
-	CreatedBy            *UserLimited     `json:"created_by,omitempty"`
-	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
-	Tags                 []string         `json:"tags,omitempty"`
+	BgpNeighborRange     *string                  `json:"bgp_neighbor_range,omitempty"`
+	MetalGateway         *VrfMetalGateway         `json:"metal_gateway,omitempty"`
+	State                *BgpDynamicNeighborState `json:"state,omitempty"`
+	Href                 *string                  `json:"href,omitempty"`
+	CreatedAt            *time.Time               `json:"created_at,omitempty"`
+	CreatedBy            *UserLimited             `json:"created_by,omitempty"`
+	UpdatedAt            *time.Time               `json:"updated_at,omitempty"`
+	Tags                 []string                 `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -185,9 +185,9 @@ func (o *BgpDynamicNeighbor) SetMetalGateway(v VrfMetalGateway) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *BgpDynamicNeighbor) GetState() string {
+func (o *BgpDynamicNeighbor) GetState() BgpDynamicNeighborState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret BgpDynamicNeighborState
 		return ret
 	}
 	return *o.State
@@ -195,7 +195,7 @@ func (o *BgpDynamicNeighbor) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighbor) GetStateOk() (*string, bool) {
+func (o *BgpDynamicNeighbor) GetStateOk() (*BgpDynamicNeighborState, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -211,8 +211,8 @@ func (o *BgpDynamicNeighbor) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *BgpDynamicNeighbor) SetState(v string) {
+// SetState gets a reference to the given BgpDynamicNeighborState and assigns it to the State field.
+func (o *BgpDynamicNeighbor) SetState(v BgpDynamicNeighborState) {
 	o.State = &v
 }
 

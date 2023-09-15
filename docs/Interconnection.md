@@ -9,17 +9,17 @@ Name | Type | Description | Notes
 **Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
-**Mode** | Pointer to **string** | The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
+**Mode** | Pointer to [**InterconnectionMode**](InterconnectionMode.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Ports** | Pointer to [**[]InterconnectionPort**](InterconnectionPort.md) | For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s). | [optional] 
-**Redundancy** | Pointer to **string** | Either &#39;primary&#39;, meaning a single interconnection, or &#39;redundant&#39;, meaning a redundant interconnection. | [optional] 
+**Redundancy** | Pointer to [**InterconnectionRedundancy**](InterconnectionRedundancy.md) |  | [optional] 
 **ServiceTokens** | Pointer to [**[]FabricServiceToken**](FabricServiceToken.md) | For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued. | [optional] 
 **Speed** | Pointer to **int32** | For interconnections on Dedicated Ports and shared connections, this represents the interconnection&#39;s speed in bps. For Fabric VCs, this field refers to the maximum speed of the interconnection in bps. This value will default to 10Gbps for Fabric VCs (Fabric Billed). | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Token** | Pointer to **string** | This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated. | [optional] 
-**Type** | Pointer to **string** | The &#39;shared&#39; type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The &#39;dedicated&#39; type of interconnection refers to interconnections created with Dedicated Ports. | [optional] 
+**Type** | Pointer to [**InterconnectionType**](InterconnectionType.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **RequestedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
@@ -170,20 +170,20 @@ HasMetro returns a boolean if a field has been set.
 
 ### GetMode
 
-`func (o *Interconnection) GetMode() string`
+`func (o *Interconnection) GetMode() InterconnectionMode`
 
 GetMode returns the Mode field if non-nil, zero value otherwise.
 
 ### GetModeOk
 
-`func (o *Interconnection) GetModeOk() (*string, bool)`
+`func (o *Interconnection) GetModeOk() (*InterconnectionMode, bool)`
 
 GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMode
 
-`func (o *Interconnection) SetMode(v string)`
+`func (o *Interconnection) SetMode(v InterconnectionMode)`
 
 SetMode sets Mode field to given value.
 
@@ -270,20 +270,20 @@ HasPorts returns a boolean if a field has been set.
 
 ### GetRedundancy
 
-`func (o *Interconnection) GetRedundancy() string`
+`func (o *Interconnection) GetRedundancy() InterconnectionRedundancy`
 
 GetRedundancy returns the Redundancy field if non-nil, zero value otherwise.
 
 ### GetRedundancyOk
 
-`func (o *Interconnection) GetRedundancyOk() (*string, bool)`
+`func (o *Interconnection) GetRedundancyOk() (*InterconnectionRedundancy, bool)`
 
 GetRedundancyOk returns a tuple with the Redundancy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRedundancy
 
-`func (o *Interconnection) SetRedundancy(v string)`
+`func (o *Interconnection) SetRedundancy(v InterconnectionRedundancy)`
 
 SetRedundancy sets Redundancy field to given value.
 
@@ -420,20 +420,20 @@ HasToken returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Interconnection) GetType() string`
+`func (o *Interconnection) GetType() InterconnectionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Interconnection) GetTypeOk() (*string, bool)`
+`func (o *Interconnection) GetTypeOk() (*InterconnectionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Interconnection) SetType(v string)`
+`func (o *Interconnection) SetType(v InterconnectionType)`
 
 SetType sets Type field to given value.
 

@@ -20,8 +20,8 @@ var _ MappedNullable = &PlanSpecsNicsInner{}
 
 // PlanSpecsNicsInner struct for PlanSpecsNicsInner
 type PlanSpecsNicsInner struct {
-	Count                *int32  `json:"count,omitempty"`
-	Type                 *string `json:"type,omitempty"`
+	Count                *int32                  `json:"count,omitempty"`
+	Type                 *PlanSpecsNicsInnerType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,9 +77,9 @@ func (o *PlanSpecsNicsInner) SetCount(v int32) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *PlanSpecsNicsInner) GetType() string {
+func (o *PlanSpecsNicsInner) GetType() PlanSpecsNicsInnerType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret PlanSpecsNicsInnerType
 		return ret
 	}
 	return *o.Type
@@ -87,7 +87,7 @@ func (o *PlanSpecsNicsInner) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanSpecsNicsInner) GetTypeOk() (*string, bool) {
+func (o *PlanSpecsNicsInner) GetTypeOk() (*PlanSpecsNicsInnerType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *PlanSpecsNicsInner) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PlanSpecsNicsInner) SetType(v string) {
+// SetType gets a reference to the given PlanSpecsNicsInnerType and assigns it to the Type field.
+func (o *PlanSpecsNicsInner) SetType(v PlanSpecsNicsInnerType) {
 	o.Type = &v
 }
 

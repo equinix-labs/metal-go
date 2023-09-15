@@ -21,19 +21,17 @@ var _ MappedNullable = &Interconnection{}
 
 // Interconnection struct for Interconnection
 type Interconnection struct {
-	ContactEmail *string `json:"contact_email,omitempty"`
-	Description  *string `json:"description,omitempty"`
-	Facility     *Href   `json:"facility,omitempty"`
-	Id           *string `json:"id,omitempty"`
-	Metro        *Metro  `json:"metro,omitempty"`
-	// The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.
-	Mode         *string `json:"mode,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	Organization *Href   `json:"organization,omitempty"`
+	ContactEmail *string              `json:"contact_email,omitempty"`
+	Description  *string              `json:"description,omitempty"`
+	Facility     *Href                `json:"facility,omitempty"`
+	Id           *string              `json:"id,omitempty"`
+	Metro        *Metro               `json:"metro,omitempty"`
+	Mode         *InterconnectionMode `json:"mode,omitempty"`
+	Name         *string              `json:"name,omitempty"`
+	Organization *Href                `json:"organization,omitempty"`
 	// For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s).
-	Ports []InterconnectionPort `json:"ports,omitempty"`
-	// Either 'primary', meaning a single interconnection, or 'redundant', meaning a redundant interconnection.
-	Redundancy *string `json:"redundancy,omitempty"`
+	Ports      []InterconnectionPort      `json:"ports,omitempty"`
+	Redundancy *InterconnectionRedundancy `json:"redundancy,omitempty"`
 	// For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued.
 	ServiceTokens []FabricServiceToken `json:"service_tokens,omitempty"`
 	// For interconnections on Dedicated Ports and shared connections, this represents the interconnection's speed in bps. For Fabric VCs, this field refers to the maximum speed of the interconnection in bps. This value will default to 10Gbps for Fabric VCs (Fabric Billed).
@@ -41,12 +39,11 @@ type Interconnection struct {
 	Status *string  `json:"status,omitempty"`
 	Tags   []string `json:"tags,omitempty"`
 	// This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.
-	Token *string `json:"token,omitempty"`
-	// The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports.
-	Type                 *string    `json:"type,omitempty"`
-	CreatedAt            *time.Time `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
-	RequestedBy          *Href      `json:"requested_by,omitempty"`
+	Token                *string              `json:"token,omitempty"`
+	Type                 *InterconnectionType `json:"type,omitempty"`
+	CreatedAt            *time.Time           `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time           `json:"updated_at,omitempty"`
+	RequestedBy          *Href                `json:"requested_by,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -230,9 +227,9 @@ func (o *Interconnection) SetMetro(v Metro) {
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *Interconnection) GetMode() string {
+func (o *Interconnection) GetMode() InterconnectionMode {
 	if o == nil || IsNil(o.Mode) {
-		var ret string
+		var ret InterconnectionMode
 		return ret
 	}
 	return *o.Mode
@@ -240,7 +237,7 @@ func (o *Interconnection) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetModeOk() (*string, bool) {
+func (o *Interconnection) GetModeOk() (*InterconnectionMode, bool) {
 	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
@@ -256,8 +253,8 @@ func (o *Interconnection) HasMode() bool {
 	return false
 }
 
-// SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *Interconnection) SetMode(v string) {
+// SetMode gets a reference to the given InterconnectionMode and assigns it to the Mode field.
+func (o *Interconnection) SetMode(v InterconnectionMode) {
 	o.Mode = &v
 }
 
@@ -358,9 +355,9 @@ func (o *Interconnection) SetPorts(v []InterconnectionPort) {
 }
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise.
-func (o *Interconnection) GetRedundancy() string {
+func (o *Interconnection) GetRedundancy() InterconnectionRedundancy {
 	if o == nil || IsNil(o.Redundancy) {
-		var ret string
+		var ret InterconnectionRedundancy
 		return ret
 	}
 	return *o.Redundancy
@@ -368,7 +365,7 @@ func (o *Interconnection) GetRedundancy() string {
 
 // GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetRedundancyOk() (*string, bool) {
+func (o *Interconnection) GetRedundancyOk() (*InterconnectionRedundancy, bool) {
 	if o == nil || IsNil(o.Redundancy) {
 		return nil, false
 	}
@@ -384,8 +381,8 @@ func (o *Interconnection) HasRedundancy() bool {
 	return false
 }
 
-// SetRedundancy gets a reference to the given string and assigns it to the Redundancy field.
-func (o *Interconnection) SetRedundancy(v string) {
+// SetRedundancy gets a reference to the given InterconnectionRedundancy and assigns it to the Redundancy field.
+func (o *Interconnection) SetRedundancy(v InterconnectionRedundancy) {
 	o.Redundancy = &v
 }
 
@@ -550,9 +547,9 @@ func (o *Interconnection) SetToken(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Interconnection) GetType() string {
+func (o *Interconnection) GetType() InterconnectionType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret InterconnectionType
 		return ret
 	}
 	return *o.Type
@@ -560,7 +557,7 @@ func (o *Interconnection) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Interconnection) GetTypeOk() (*string, bool) {
+func (o *Interconnection) GetTypeOk() (*InterconnectionType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -576,8 +573,8 @@ func (o *Interconnection) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Interconnection) SetType(v string) {
+// SetType gets a reference to the given InterconnectionType and assigns it to the Type field.
+func (o *Interconnection) SetType(v InterconnectionType) {
 	o.Type = &v
 }
 

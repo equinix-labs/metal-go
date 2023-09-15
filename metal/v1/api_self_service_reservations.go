@@ -323,7 +323,7 @@ type ApiFindSelfServiceReservationsRequest struct {
 	projectId  string
 	page       *int32
 	perPage    *int32
-	categories *[]string
+	categories *[]FindOrganizationDevicesCategoriesParameterInner
 }
 
 // Page to return
@@ -339,7 +339,7 @@ func (r ApiFindSelfServiceReservationsRequest) PerPage(perPage int32) ApiFindSel
 }
 
 // Filter reservations by items category
-func (r ApiFindSelfServiceReservationsRequest) Categories(categories []string) ApiFindSelfServiceReservationsRequest {
+func (r ApiFindSelfServiceReservationsRequest) Categories(categories []FindOrganizationDevicesCategoriesParameterInner) ApiFindSelfServiceReservationsRequest {
 	r.categories = &categories
 	return r
 }

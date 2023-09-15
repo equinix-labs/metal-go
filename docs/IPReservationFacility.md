@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to [**Address**](Address.md) |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
-**Features** | Pointer to **[]string** |  | [optional] 
+**Features** | Pointer to [**[]FacilityFeaturesInner**](FacilityFeaturesInner.md) |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IpRanges** | Pointer to **[]string** | IP ranges registered in facility. Can be used for GeoIP location | [optional] 
 **Metro** | Pointer to [**DeviceMetro**](DeviceMetro.md) |  | [optional] 
@@ -83,20 +83,20 @@ HasCode returns a boolean if a field has been set.
 
 ### GetFeatures
 
-`func (o *IPReservationFacility) GetFeatures() []string`
+`func (o *IPReservationFacility) GetFeatures() []FacilityFeaturesInner`
 
 GetFeatures returns the Features field if non-nil, zero value otherwise.
 
 ### GetFeaturesOk
 
-`func (o *IPReservationFacility) GetFeaturesOk() (*[]string, bool)`
+`func (o *IPReservationFacility) GetFeaturesOk() (*[]FacilityFeaturesInner, bool)`
 
 GetFeaturesOk returns a tuple with the Features field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFeatures
 
-`func (o *IPReservationFacility) SetFeatures(v []string)`
+`func (o *IPReservationFacility) SetFeatures(v []FacilityFeaturesInner)`
 
 SetFeatures sets Features field to given value.
 

@@ -481,11 +481,11 @@ type ApiFindIPAvailabilitiesRequest struct {
 	ctx        context.Context
 	ApiService *IPAddressesApiService
 	id         string
-	cidr       *string
+	cidr       *FindIPAvailabilitiesCidrParameter
 }
 
 // Size of subnets in bits
-func (r ApiFindIPAvailabilitiesRequest) Cidr(cidr string) ApiFindIPAvailabilitiesRequest {
+func (r ApiFindIPAvailabilitiesRequest) Cidr(cidr FindIPAvailabilitiesCidrParameter) ApiFindIPAvailabilitiesRequest {
 	r.cidr = &cidr
 	return r
 }
@@ -642,14 +642,14 @@ type ApiFindIPReservationsRequest struct {
 	ctx        context.Context
 	ApiService *IPAddressesApiService
 	id         string
-	types      *[]string
+	types      *[]FindIPReservationsTypesParameterInner
 	include    *[]string
 	exclude    *[]string
 	perPage    *int32
 }
 
 // Filter project IP reservations by reservation type
-func (r ApiFindIPReservationsRequest) Types(types []string) ApiFindIPReservationsRequest {
+func (r ApiFindIPReservationsRequest) Types(types []FindIPReservationsTypesParameterInner) ApiFindIPReservationsRequest {
 	r.types = &types
 	return r
 }

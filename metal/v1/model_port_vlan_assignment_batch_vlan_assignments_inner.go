@@ -20,10 +20,10 @@ var _ MappedNullable = &PortVlanAssignmentBatchVlanAssignmentsInner{}
 
 // PortVlanAssignmentBatchVlanAssignmentsInner struct for PortVlanAssignmentBatchVlanAssignmentsInner
 type PortVlanAssignmentBatchVlanAssignmentsInner struct {
-	Id                   *string `json:"id,omitempty"`
-	Native               *bool   `json:"native,omitempty"`
-	State                *string `json:"state,omitempty"`
-	Vlan                 *int32  `json:"vlan,omitempty"`
+	Id                   *string                                           `json:"id,omitempty"`
+	Native               *bool                                             `json:"native,omitempty"`
+	State                *PortVlanAssignmentBatchVlanAssignmentsInnerState `json:"state,omitempty"`
+	Vlan                 *int32                                            `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -111,9 +111,9 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetNative(v bool) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() string {
+func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() PortVlanAssignmentBatchVlanAssignmentsInnerState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret PortVlanAssignmentBatchVlanAssignmentsInnerState
 		return ret
 	}
 	return *o.State
@@ -121,7 +121,7 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetStateOk() (*string, bool) {
+func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetStateOk() (*PortVlanAssignmentBatchVlanAssignmentsInnerState, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -137,8 +137,8 @@ func (o *PortVlanAssignmentBatchVlanAssignmentsInner) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetState(v string) {
+// SetState gets a reference to the given PortVlanAssignmentBatchVlanAssignmentsInnerState and assigns it to the State field.
+func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetState(v PortVlanAssignmentBatchVlanAssignmentsInnerState) {
 	o.State = &v
 }
 

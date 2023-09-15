@@ -21,14 +21,14 @@ var _ MappedNullable = &PortVlanAssignment{}
 
 // PortVlanAssignment struct for PortVlanAssignment
 type PortVlanAssignment struct {
-	CreatedAt            *time.Time `json:"created_at,omitempty"`
-	Id                   *string    `json:"id,omitempty"`
-	Native               *bool      `json:"native,omitempty"`
-	Port                 *Href      `json:"port,omitempty"`
-	State                *string    `json:"state,omitempty"`
-	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
-	VirtualNetwork       *Href      `json:"virtual_network,omitempty"`
-	Vlan                 *int32     `json:"vlan,omitempty"`
+	CreatedAt            *time.Time               `json:"created_at,omitempty"`
+	Id                   *string                  `json:"id,omitempty"`
+	Native               *bool                    `json:"native,omitempty"`
+	Port                 *Href                    `json:"port,omitempty"`
+	State                *PortVlanAssignmentState `json:"state,omitempty"`
+	UpdatedAt            *time.Time               `json:"updated_at,omitempty"`
+	VirtualNetwork       *Href                    `json:"virtual_network,omitempty"`
+	Vlan                 *int32                   `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -180,9 +180,9 @@ func (o *PortVlanAssignment) SetPort(v Href) {
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *PortVlanAssignment) GetState() string {
+func (o *PortVlanAssignment) GetState() PortVlanAssignmentState {
 	if o == nil || IsNil(o.State) {
-		var ret string
+		var ret PortVlanAssignmentState
 		return ret
 	}
 	return *o.State
@@ -190,7 +190,7 @@ func (o *PortVlanAssignment) GetState() string {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PortVlanAssignment) GetStateOk() (*string, bool) {
+func (o *PortVlanAssignment) GetStateOk() (*PortVlanAssignmentState, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -206,8 +206,8 @@ func (o *PortVlanAssignment) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given string and assigns it to the State field.
-func (o *PortVlanAssignment) SetState(v string) {
+// SetState gets a reference to the given PortVlanAssignmentState and assigns it to the State field.
+func (o *PortVlanAssignment) SetState(v PortVlanAssignmentState) {
 	o.State = &v
 }
 

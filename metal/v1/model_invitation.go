@@ -21,17 +21,17 @@ var _ MappedNullable = &Invitation{}
 
 // Invitation struct for Invitation
 type Invitation struct {
-	CreatedAt            *time.Time `json:"created_at,omitempty"`
-	Href                 *string    `json:"href,omitempty"`
-	Id                   *string    `json:"id,omitempty"`
-	Invitation           *Href      `json:"invitation,omitempty"`
-	InvitedBy            *Href      `json:"invited_by,omitempty"`
-	Invitee              *string    `json:"invitee,omitempty"`
-	Nonce                *string    `json:"nonce,omitempty"`
-	Organization         *Href      `json:"organization,omitempty"`
-	Projects             []Href     `json:"projects,omitempty"`
-	Roles                []string   `json:"roles,omitempty"`
-	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	CreatedAt            *time.Time             `json:"created_at,omitempty"`
+	Href                 *string                `json:"href,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	Invitation           *Href                  `json:"invitation,omitempty"`
+	InvitedBy            *Href                  `json:"invited_by,omitempty"`
+	Invitee              *string                `json:"invitee,omitempty"`
+	Nonce                *string                `json:"nonce,omitempty"`
+	Organization         *Href                  `json:"organization,omitempty"`
+	Projects             []Href                 `json:"projects,omitempty"`
+	Roles                []InvitationRolesInner `json:"roles,omitempty"`
+	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -343,9 +343,9 @@ func (o *Invitation) SetProjects(v []Href) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *Invitation) GetRoles() []string {
+func (o *Invitation) GetRoles() []InvitationRolesInner {
 	if o == nil || IsNil(o.Roles) {
-		var ret []string
+		var ret []InvitationRolesInner
 		return ret
 	}
 	return o.Roles
@@ -353,7 +353,7 @@ func (o *Invitation) GetRoles() []string {
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invitation) GetRolesOk() ([]string, bool) {
+func (o *Invitation) GetRolesOk() ([]InvitationRolesInner, bool) {
 	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
@@ -369,8 +369,8 @@ func (o *Invitation) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *Invitation) SetRoles(v []string) {
+// SetRoles gets a reference to the given []InvitationRolesInner and assigns it to the Roles field.
+func (o *Invitation) SetRoles(v []InvitationRolesInner) {
 	o.Roles = v
 }
 

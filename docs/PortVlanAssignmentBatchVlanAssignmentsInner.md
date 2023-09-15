@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Native** | Pointer to **bool** |  | [optional] 
-**State** | Pointer to **string** |  | [optional] 
+**State** | Pointer to [**PortVlanAssignmentBatchVlanAssignmentsInnerState**](PortVlanAssignmentBatchVlanAssignmentsInnerState.md) |  | [optional] 
 **Vlan** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasNative returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() string`
+`func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetState() PortVlanAssignmentBatchVlanAssignmentsInnerState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetStateOk() (*string, bool)`
+`func (o *PortVlanAssignmentBatchVlanAssignmentsInner) GetStateOk() (*PortVlanAssignmentBatchVlanAssignmentsInnerState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetState(v string)`
+`func (o *PortVlanAssignmentBatchVlanAssignmentsInner) SetState(v PortVlanAssignmentBatchVlanAssignmentsInnerState)`
 
 SetState sets State field to given value.
 

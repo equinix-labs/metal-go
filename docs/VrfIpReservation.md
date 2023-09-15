@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | **string** |  | 
+**Type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | 
 **Vrf** | [**Vrf**](Vrf.md) |  | 
 **Public** | Pointer to **bool** |  | [optional] 
 **Management** | Pointer to **bool** |  | [optional] 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewVrfIpReservation
 
-`func NewVrfIpReservation(type_ string, vrf Vrf, ) *VrfIpReservation`
+`func NewVrfIpReservation(type_ VrfIpReservationType, vrf Vrf, ) *VrfIpReservation`
 
 NewVrfIpReservation instantiates a new VrfIpReservation object
 This constructor will assign default values to properties that have it defined,
@@ -375,20 +375,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *VrfIpReservation) GetType() string`
+`func (o *VrfIpReservation) GetType() VrfIpReservationType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *VrfIpReservation) GetTypeOk() (*string, bool)`
+`func (o *VrfIpReservation) GetTypeOk() (*VrfIpReservationType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *VrfIpReservation) SetType(v string)`
+`func (o *VrfIpReservation) SetType(v VrfIpReservationType)`
 
 SetType sets Type field to given value.
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DeviceId** | Pointer to **string** |  | [optional] 
 **Message** | **string** |  | 
-**Priority** | Pointer to **string** |  | [optional] 
+**Priority** | Pointer to [**SupportRequestInputPriority**](SupportRequestInputPriority.md) |  | [optional] 
 **ProjectId** | Pointer to **string** |  | [optional] 
 **Subject** | **string** |  | 
 
@@ -76,20 +76,20 @@ SetMessage sets Message field to given value.
 
 ### GetPriority
 
-`func (o *SupportRequestInput) GetPriority() string`
+`func (o *SupportRequestInput) GetPriority() SupportRequestInputPriority`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *SupportRequestInput) GetPriorityOk() (*string, bool)`
+`func (o *SupportRequestInput) GetPriorityOk() (*SupportRequestInputPriority, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *SupportRequestInput) SetPriority(v string)`
+`func (o *SupportRequestInput) SetPriority(v SupportRequestInputPriority)`
 
 SetPriority sets Priority field to given value.
 

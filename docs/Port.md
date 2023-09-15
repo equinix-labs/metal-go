@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** | Type is either \&quot;NetworkBondPort\&quot; for bond ports or \&quot;NetworkPort\&quot; for bondable ethernet ports | [optional] 
-**NetworkType** | Pointer to **string** | Composite network type of the bond | [optional] 
+**Type** | Pointer to [**PortType**](PortType.md) |  | [optional] 
+**NetworkType** | Pointer to [**PortNetworkType**](PortNetworkType.md) |  | [optional] 
 **NativeVirtualNetwork** | Pointer to [**VirtualNetwork**](VirtualNetwork.md) |  | [optional] 
 **VirtualNetworks** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 
@@ -186,20 +186,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *Port) GetType() string`
+`func (o *Port) GetType() PortType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Port) GetTypeOk() (*string, bool)`
+`func (o *Port) GetTypeOk() (*PortType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Port) SetType(v string)`
+`func (o *Port) SetType(v PortType)`
 
 SetType sets Type field to given value.
 
@@ -211,20 +211,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetNetworkType
 
-`func (o *Port) GetNetworkType() string`
+`func (o *Port) GetNetworkType() PortNetworkType`
 
 GetNetworkType returns the NetworkType field if non-nil, zero value otherwise.
 
 ### GetNetworkTypeOk
 
-`func (o *Port) GetNetworkTypeOk() (*string, bool)`
+`func (o *Port) GetNetworkTypeOk() (*PortNetworkType, bool)`
 
 GetNetworkTypeOk returns a tuple with the NetworkType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkType
 
-`func (o *Port) SetNetworkType(v string)`
+`func (o *Port) SetNetworkType(v PortNetworkType)`
 
 SetNetworkType sets NetworkType field to given value.
 

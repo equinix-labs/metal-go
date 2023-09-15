@@ -21,16 +21,15 @@ var _ MappedNullable = &BgpSession{}
 
 // BgpSession struct for BgpSession
 type BgpSession struct {
-	AddressFamily string     `json:"address_family"`
-	CreatedAt     *time.Time `json:"created_at,omitempty"`
-	DefaultRoute  *bool      `json:"default_route,omitempty"`
-	Device        *Href      `json:"device,omitempty"`
-	Href          *string    `json:"href,omitempty"`
-	Id            *string    `json:"id,omitempty"`
-	LearnedRoutes []string   `json:"learned_routes,omitempty"`
-	//  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch.
-	Status               *string    `json:"status,omitempty"`
-	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
+	AddressFamily        BgpSessionAddressFamily `json:"address_family"`
+	CreatedAt            *time.Time              `json:"created_at,omitempty"`
+	DefaultRoute         *bool                   `json:"default_route,omitempty"`
+	Device               *Href                   `json:"device,omitempty"`
+	Href                 *string                 `json:"href,omitempty"`
+	Id                   *string                 `json:"id,omitempty"`
+	LearnedRoutes        []string                `json:"learned_routes,omitempty"`
+	Status               *BgpSessionStatus       `json:"status,omitempty"`
+	UpdatedAt            *time.Time              `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +39,7 @@ type _BgpSession BgpSession
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpSession(addressFamily string) *BgpSession {
+func NewBgpSession(addressFamily BgpSessionAddressFamily) *BgpSession {
 	this := BgpSession{}
 	this.AddressFamily = addressFamily
 	return &this
@@ -55,9 +54,9 @@ func NewBgpSessionWithDefaults() *BgpSession {
 }
 
 // GetAddressFamily returns the AddressFamily field value
-func (o *BgpSession) GetAddressFamily() string {
+func (o *BgpSession) GetAddressFamily() BgpSessionAddressFamily {
 	if o == nil {
-		var ret string
+		var ret BgpSessionAddressFamily
 		return ret
 	}
 
@@ -66,7 +65,7 @@ func (o *BgpSession) GetAddressFamily() string {
 
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetAddressFamilyOk() (*string, bool) {
+func (o *BgpSession) GetAddressFamilyOk() (*BgpSessionAddressFamily, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -74,7 +73,7 @@ func (o *BgpSession) GetAddressFamilyOk() (*string, bool) {
 }
 
 // SetAddressFamily sets field value
-func (o *BgpSession) SetAddressFamily(v string) {
+func (o *BgpSession) SetAddressFamily(v BgpSessionAddressFamily) {
 	o.AddressFamily = v
 }
 
@@ -271,9 +270,9 @@ func (o *BgpSession) SetLearnedRoutes(v []string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *BgpSession) GetStatus() string {
+func (o *BgpSession) GetStatus() BgpSessionStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret BgpSessionStatus
 		return ret
 	}
 	return *o.Status
@@ -281,7 +280,7 @@ func (o *BgpSession) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetStatusOk() (*string, bool) {
+func (o *BgpSession) GetStatusOk() (*BgpSessionStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -297,8 +296,8 @@ func (o *BgpSession) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *BgpSession) SetStatus(v string) {
+// SetStatus gets a reference to the given BgpSessionStatus and assigns it to the Status field.
+func (o *BgpSession) SetStatus(v BgpSessionStatus) {
 	o.Status = &v
 }
 

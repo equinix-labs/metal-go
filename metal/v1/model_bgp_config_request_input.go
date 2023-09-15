@@ -21,9 +21,8 @@ var _ MappedNullable = &BgpConfigRequestInput{}
 // BgpConfigRequestInput struct for BgpConfigRequestInput
 type BgpConfigRequestInput struct {
 	// Autonomous System Number for local BGP deployment.
-	Asn int32 `json:"asn"`
-	// Wether the BGP deployment is local or global. Local deployments are configured immediately. Global deployments will need to be reviewed by Equinix Metal engineers.
-	DeploymentType string `json:"deployment_type"`
+	Asn            int32                               `json:"asn"`
+	DeploymentType BgpConfigRequestInputDeploymentType `json:"deployment_type"`
 	// The plaintext password to share between BGP neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character
 	Md5 *string `json:"md5,omitempty"`
 	// A use case explanation (necessary for global BGP request review).
@@ -37,7 +36,7 @@ type _BgpConfigRequestInput BgpConfigRequestInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpConfigRequestInput(asn int32, deploymentType string) *BgpConfigRequestInput {
+func NewBgpConfigRequestInput(asn int32, deploymentType BgpConfigRequestInputDeploymentType) *BgpConfigRequestInput {
 	this := BgpConfigRequestInput{}
 	this.Asn = asn
 	this.DeploymentType = deploymentType
@@ -77,9 +76,9 @@ func (o *BgpConfigRequestInput) SetAsn(v int32) {
 }
 
 // GetDeploymentType returns the DeploymentType field value
-func (o *BgpConfigRequestInput) GetDeploymentType() string {
+func (o *BgpConfigRequestInput) GetDeploymentType() BgpConfigRequestInputDeploymentType {
 	if o == nil {
-		var ret string
+		var ret BgpConfigRequestInputDeploymentType
 		return ret
 	}
 
@@ -88,7 +87,7 @@ func (o *BgpConfigRequestInput) GetDeploymentType() string {
 
 // GetDeploymentTypeOk returns a tuple with the DeploymentType field value
 // and a boolean to check if the value has been set.
-func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*string, bool) {
+func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*BgpConfigRequestInputDeploymentType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,7 +95,7 @@ func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*string, bool) {
 }
 
 // SetDeploymentType sets field value
-func (o *BgpConfigRequestInput) SetDeploymentType(v string) {
+func (o *BgpConfigRequestInput) SetDeploymentType(v BgpConfigRequestInputDeploymentType) {
 	o.DeploymentType = v
 }
 

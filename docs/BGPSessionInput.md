@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressFamily** | Pointer to **string** | Address family for BGP session. | [optional] 
+**AddressFamily** | Pointer to [**BGPSessionInputAddressFamily**](BGPSessionInputAddressFamily.md) |  | [optional] 
 **DefaultRoute** | Pointer to **bool** | Set the default route policy. | [optional] [default to false]
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddressFamily
 
-`func (o *BGPSessionInput) GetAddressFamily() string`
+`func (o *BGPSessionInput) GetAddressFamily() BGPSessionInputAddressFamily`
 
 GetAddressFamily returns the AddressFamily field if non-nil, zero value otherwise.
 
 ### GetAddressFamilyOk
 
-`func (o *BGPSessionInput) GetAddressFamilyOk() (*string, bool)`
+`func (o *BGPSessionInput) GetAddressFamilyOk() (*BGPSessionInputAddressFamily, bool)`
 
 GetAddressFamilyOk returns a tuple with the AddressFamily field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddressFamily
 
-`func (o *BGPSessionInput) SetAddressFamily(v string)`
+`func (o *BGPSessionInput) SetAddressFamily(v BGPSessionInputAddressFamily)`
 
 SetAddressFamily sets AddressFamily field to given value.
 

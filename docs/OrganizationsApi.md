@@ -923,8 +923,8 @@ import (
 )
 
 func main() {
-    personal := "personal_example" // string | Include, exclude or show only personal organizations. (optional)
-    withoutProjects := "withoutProjects_example" // string | Include, exclude or show only organizations that have no projects. (optional)
+    personal := openapiclient.findOrganizations_personal_parameter("include") // FindOrganizationsPersonalParameter | Include, exclude or show only personal organizations. (optional)
+    withoutProjects := openapiclient.findOrganizations_personal_parameter("include") // FindOrganizationsPersonalParameter | Include, exclude or show only organizations that have no projects. (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
@@ -953,8 +953,8 @@ Other parameters are passed through a pointer to a apiFindOrganizationsRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **personal** | **string** | Include, exclude or show only personal organizations. | 
- **withoutProjects** | **string** | Include, exclude or show only organizations that have no projects. | 
+ **personal** | [**FindOrganizationsPersonalParameter**](FindOrganizationsPersonalParameter.md) | Include, exclude or show only personal organizations. | 
+ **withoutProjects** | [**FindOrganizationsPersonalParameter**](FindOrganizationsPersonalParameter.md) | Include, exclude or show only organizations that have no projects. | 
  **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
  **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
  **page** | **int32** | Page to return | [default to 1]

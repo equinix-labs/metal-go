@@ -34,7 +34,7 @@ type VrfIpReservation struct {
 	Project              *Project               `json:"project,omitempty"`
 	State                *string                `json:"state,omitempty"`
 	Tags                 []string               `json:"tags,omitempty"`
-	Type                 string                 `json:"type"`
+	Type                 VrfIpReservationType   `json:"type"`
 	Vrf                  Vrf                    `json:"vrf"`
 	Public               *bool                  `json:"public,omitempty"`
 	Management           *bool                  `json:"management,omitempty"`
@@ -54,7 +54,7 @@ type _VrfIpReservation VrfIpReservation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfIpReservation(type_ string, vrf Vrf) *VrfIpReservation {
+func NewVrfIpReservation(type_ VrfIpReservationType, vrf Vrf) *VrfIpReservation {
 	this := VrfIpReservation{}
 	this.Type = type_
 	this.Vrf = vrf
@@ -486,9 +486,9 @@ func (o *VrfIpReservation) SetTags(v []string) {
 }
 
 // GetType returns the Type field value
-func (o *VrfIpReservation) GetType() string {
+func (o *VrfIpReservation) GetType() VrfIpReservationType {
 	if o == nil {
-		var ret string
+		var ret VrfIpReservationType
 		return ret
 	}
 
@@ -497,7 +497,7 @@ func (o *VrfIpReservation) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *VrfIpReservation) GetTypeOk() (*string, bool) {
+func (o *VrfIpReservation) GetTypeOk() (*VrfIpReservationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -505,7 +505,7 @@ func (o *VrfIpReservation) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *VrfIpReservation) SetType(v string) {
+func (o *VrfIpReservation) SetType(v VrfIpReservationType) {
 	o.Type = v
 }
 

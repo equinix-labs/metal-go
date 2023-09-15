@@ -26,21 +26,21 @@ type PlansApiService service
 type ApiFindPlansRequest struct {
 	ctx        context.Context
 	ApiService *PlansApiService
-	categories *[]string
-	type_      *string
+	categories *[]FindOrganizationDevicesCategoriesParameterInner
+	type_      *FindPlansTypeParameter
 	slug       *string
 	include    *[]string
 	exclude    *[]string
 }
 
 // Filter plans by its category
-func (r ApiFindPlansRequest) Categories(categories []string) ApiFindPlansRequest {
+func (r ApiFindPlansRequest) Categories(categories []FindOrganizationDevicesCategoriesParameterInner) ApiFindPlansRequest {
 	r.categories = &categories
 	return r
 }
 
 // Filter plans by its plan type
-func (r ApiFindPlansRequest) Type_(type_ string) ApiFindPlansRequest {
+func (r ApiFindPlansRequest) Type_(type_ FindPlansTypeParameter) ApiFindPlansRequest {
 	r.type_ = &type_
 	return r
 }

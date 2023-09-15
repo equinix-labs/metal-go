@@ -32,16 +32,15 @@ type AuthTokenProject struct {
 	Members     []Href                 `json:"members,omitempty"`
 	Memberships []Href                 `json:"memberships,omitempty"`
 	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
-	Name          *string                `json:"name,omitempty"`
-	NetworkStatus map[string]interface{} `json:"network_status,omitempty"`
-	Organization  *Organization          `json:"organization,omitempty"`
-	PaymentMethod *Href                  `json:"payment_method,omitempty"`
-	SshKeys       []Href                 `json:"ssh_keys,omitempty"`
-	UpdatedAt     *time.Time             `json:"updated_at,omitempty"`
-	Volumes       []Href                 `json:"volumes,omitempty"`
-	// The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
-	Type                 *string  `json:"type,omitempty"`
-	Tags                 []string `json:"tags,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	NetworkStatus        map[string]interface{} `json:"network_status,omitempty"`
+	Organization         *Organization          `json:"organization,omitempty"`
+	PaymentMethod        *Href                  `json:"payment_method,omitempty"`
+	SshKeys              []Href                 `json:"ssh_keys,omitempty"`
+	UpdatedAt            *time.Time             `json:"updated_at,omitempty"`
+	Volumes              []Href                 `json:"volumes,omitempty"`
+	Type                 *ProjectType           `json:"type,omitempty"`
+	Tags                 []string               `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -609,9 +608,9 @@ func (o *AuthTokenProject) SetVolumes(v []Href) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *AuthTokenProject) GetType() string {
+func (o *AuthTokenProject) GetType() ProjectType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret ProjectType
 		return ret
 	}
 	return *o.Type
@@ -619,7 +618,7 @@ func (o *AuthTokenProject) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthTokenProject) GetTypeOk() (*string, bool) {
+func (o *AuthTokenProject) GetTypeOk() (*ProjectType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -635,8 +634,8 @@ func (o *AuthTokenProject) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *AuthTokenProject) SetType(v string) {
+// SetType gets a reference to the given ProjectType and assigns it to the Type field.
+func (o *AuthTokenProject) SetType(v ProjectType) {
 	o.Type = &v
 }
 

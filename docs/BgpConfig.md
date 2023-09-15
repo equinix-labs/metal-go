@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Asn** | Pointer to **int32** | Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned. | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**DeploymentType** | Pointer to **string** | In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.  | [optional] 
+**DeploymentType** | Pointer to [**BgpConfigDeploymentType**](BgpConfigDeploymentType.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] [default to 10]
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **RequestedAt** | Pointer to **time.Time** |  | [optional] 
 **RouteObject** | Pointer to **string** | Specifies AS-MACRO (aka AS-SET) to use when building client route filters | [optional] 
 **Sessions** | Pointer to [**[]BgpSession**](BgpSession.md) | The direct connections between neighboring routers that want to exchange routing information. | [optional] 
-**Status** | Pointer to **string** | Status of the BGP Config. Status \&quot;requested\&quot; is valid only with the \&quot;global\&quot; deployment_type. | [optional] 
+**Status** | Pointer to [**BgpConfigStatus**](BgpConfigStatus.md) |  | [optional] 
 
 ## Methods
 
@@ -89,20 +89,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDeploymentType
 
-`func (o *BgpConfig) GetDeploymentType() string`
+`func (o *BgpConfig) GetDeploymentType() BgpConfigDeploymentType`
 
 GetDeploymentType returns the DeploymentType field if non-nil, zero value otherwise.
 
 ### GetDeploymentTypeOk
 
-`func (o *BgpConfig) GetDeploymentTypeOk() (*string, bool)`
+`func (o *BgpConfig) GetDeploymentTypeOk() (*BgpConfigDeploymentType, bool)`
 
 GetDeploymentTypeOk returns a tuple with the DeploymentType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeploymentType
 
-`func (o *BgpConfig) SetDeploymentType(v string)`
+`func (o *BgpConfig) SetDeploymentType(v BgpConfigDeploymentType)`
 
 SetDeploymentType sets DeploymentType field to given value.
 
@@ -349,20 +349,20 @@ HasSessions returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *BgpConfig) GetStatus() string`
+`func (o *BgpConfig) GetStatus() BgpConfigStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *BgpConfig) GetStatusOk() (*string, bool)`
+`func (o *BgpConfig) GetStatusOk() (*BgpConfigStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *BgpConfig) SetStatus(v string)`
+`func (o *BgpConfig) SetStatus(v BgpConfigStatus)`
 
 SetStatus sets Status field to given value.
 

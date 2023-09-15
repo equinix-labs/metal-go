@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Count** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**PlanSpecsNicsInnerType**](PlanSpecsNicsInnerType.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasCount returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *PlanSpecsNicsInner) GetType() string`
+`func (o *PlanSpecsNicsInner) GetType() PlanSpecsNicsInnerType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *PlanSpecsNicsInner) GetTypeOk() (*string, bool)`
+`func (o *PlanSpecsNicsInner) GetTypeOk() (*PlanSpecsNicsInnerType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *PlanSpecsNicsInner) SetType(v string)`
+`func (o *PlanSpecsNicsInner) SetType(v PlanSpecsNicsInnerType)`
 
 SetType sets Type field to given value.
 

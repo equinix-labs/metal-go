@@ -49,14 +49,14 @@ type IPReservation struct {
 	Public        *bool                  `json:"public,omitempty"`
 	State         *string                `json:"state,omitempty"`
 	Tags          []string               `json:"tags,omitempty"`
-	Type          string                 `json:"type"`
+	Type          IPReservationType      `json:"type"`
 }
 
 // NewIPReservation instantiates a new IPReservation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPReservation(type_ string) *IPReservation {
+func NewIPReservation(type_ IPReservationType) *IPReservation {
 	this := IPReservation{}
 	this.Type = type_
 	return &this
@@ -967,9 +967,9 @@ func (o *IPReservation) SetTags(v []string) {
 }
 
 // GetType returns the Type field value
-func (o *IPReservation) GetType() string {
+func (o *IPReservation) GetType() IPReservationType {
 	if o == nil {
-		var ret string
+		var ret IPReservationType
 		return ret
 	}
 
@@ -978,7 +978,7 @@ func (o *IPReservation) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *IPReservation) GetTypeOk() (*string, bool) {
+func (o *IPReservation) GetTypeOk() (*IPReservationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -986,7 +986,7 @@ func (o *IPReservation) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *IPReservation) SetType(v string) {
+func (o *IPReservation) SetType(v IPReservationType) {
 	o.Type = v
 }
 

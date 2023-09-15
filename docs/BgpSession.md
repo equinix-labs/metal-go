@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressFamily** | **string** |  | 
+**AddressFamily** | [**BgpSessionAddressFamily**](BgpSessionAddressFamily.md) |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **DefaultRoute** | Pointer to **bool** |  | [optional] 
 **Device** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LearnedRoutes** | Pointer to **[]string** |  | [optional] 
-**Status** | Pointer to **string** |  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \&quot;unknown\&quot; and progress to \&quot;up\&quot; or \&quot;down\&quot; depending on the connected device. Subsequent \&quot;unknown\&quot; values indicate a problem acquiring status from the switch.  | [optional] 
+**Status** | Pointer to [**BgpSessionStatus**](BgpSessionStatus.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewBgpSession
 
-`func NewBgpSession(addressFamily string, ) *BgpSession`
+`func NewBgpSession(addressFamily BgpSessionAddressFamily, ) *BgpSession`
 
 NewBgpSession instantiates a new BgpSession object
 This constructor will assign default values to properties that have it defined,
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddressFamily
 
-`func (o *BgpSession) GetAddressFamily() string`
+`func (o *BgpSession) GetAddressFamily() BgpSessionAddressFamily`
 
 GetAddressFamily returns the AddressFamily field if non-nil, zero value otherwise.
 
 ### GetAddressFamilyOk
 
-`func (o *BgpSession) GetAddressFamilyOk() (*string, bool)`
+`func (o *BgpSession) GetAddressFamilyOk() (*BgpSessionAddressFamily, bool)`
 
 GetAddressFamilyOk returns a tuple with the AddressFamily field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddressFamily
 
-`func (o *BgpSession) SetAddressFamily(v string)`
+`func (o *BgpSession) SetAddressFamily(v BgpSessionAddressFamily)`
 
 SetAddressFamily sets AddressFamily field to given value.
 
@@ -205,20 +205,20 @@ HasLearnedRoutes returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *BgpSession) GetStatus() string`
+`func (o *BgpSession) GetStatus() BgpSessionStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *BgpSession) GetStatusOk() (*string, bool)`
+`func (o *BgpSession) GetStatusOk() (*BgpSessionStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *BgpSession) SetStatus(v string)`
+`func (o *BgpSession) SetStatus(v BgpSessionStatus)`
 
 SetStatus sets Status field to given value.
 

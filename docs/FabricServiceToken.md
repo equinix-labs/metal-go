@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **ExpiresAt** | Pointer to **time.Time** | The expiration date and time of the Fabric service token. Once a service token is expired, it is no longer redeemable. | [optional] 
 **Id** | Pointer to **string** | The UUID that can be used on the Fabric Portal to redeem either an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this UUID will represent an A-Side Service Token, which will allow interconnections to be made from Equinix Metal to other Service Providers on Fabric. For Fabric VCs (Fabric Billed), this UUID will represent a Z-Side Service Token, which will allow interconnections to be made to connect an owned Fabric Port or  Virtual Device to Equinix Metal. | [optional] 
 **MaxAllowedSpeed** | Pointer to **int32** | The maximum speed that can be selected on the Fabric Portal when configuring a interconnection with either  an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this is what the billing is based off of, and can be one of the following options, &#39;50mbps&#39;, &#39;200mbps&#39;, &#39;500mbps&#39;, &#39;1gbps&#39;, &#39;2gbps&#39;, &#39;5gbps&#39; or &#39;10gbps&#39;. For Fabric VCs (Fabric Billed), this will default to 10Gbps. | [optional] 
-**Role** | Pointer to **string** | Either primary or secondary, depending on which interconnection the service token is associated to. | [optional] 
-**ServiceTokenType** | Pointer to **string** | Either &#39;a_side&#39; or &#39;z_side&#39;, depending on which type of Fabric VC was requested. | [optional] 
-**State** | Pointer to **string** | The state of the service token that corresponds with the service token state on Fabric. An &#39;inactive&#39; state refers to a token that has not been redeemed yet on the Fabric side, an &#39;active&#39; state refers to a token that has already been redeemed, and an &#39;expired&#39; state refers to a token that has reached its expiry time. | [optional] 
+**Role** | Pointer to [**FabricServiceTokenRole**](FabricServiceTokenRole.md) |  | [optional] 
+**ServiceTokenType** | Pointer to [**FabricServiceTokenServiceTokenType**](FabricServiceTokenServiceTokenType.md) |  | [optional] 
+**State** | Pointer to [**FabricServiceTokenState**](FabricServiceTokenState.md) |  | [optional] 
 
 ## Methods
 
@@ -107,20 +107,20 @@ HasMaxAllowedSpeed returns a boolean if a field has been set.
 
 ### GetRole
 
-`func (o *FabricServiceToken) GetRole() string`
+`func (o *FabricServiceToken) GetRole() FabricServiceTokenRole`
 
 GetRole returns the Role field if non-nil, zero value otherwise.
 
 ### GetRoleOk
 
-`func (o *FabricServiceToken) GetRoleOk() (*string, bool)`
+`func (o *FabricServiceToken) GetRoleOk() (*FabricServiceTokenRole, bool)`
 
 GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRole
 
-`func (o *FabricServiceToken) SetRole(v string)`
+`func (o *FabricServiceToken) SetRole(v FabricServiceTokenRole)`
 
 SetRole sets Role field to given value.
 
@@ -132,20 +132,20 @@ HasRole returns a boolean if a field has been set.
 
 ### GetServiceTokenType
 
-`func (o *FabricServiceToken) GetServiceTokenType() string`
+`func (o *FabricServiceToken) GetServiceTokenType() FabricServiceTokenServiceTokenType`
 
 GetServiceTokenType returns the ServiceTokenType field if non-nil, zero value otherwise.
 
 ### GetServiceTokenTypeOk
 
-`func (o *FabricServiceToken) GetServiceTokenTypeOk() (*string, bool)`
+`func (o *FabricServiceToken) GetServiceTokenTypeOk() (*FabricServiceTokenServiceTokenType, bool)`
 
 GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceTokenType
 
-`func (o *FabricServiceToken) SetServiceTokenType(v string)`
+`func (o *FabricServiceToken) SetServiceTokenType(v FabricServiceTokenServiceTokenType)`
 
 SetServiceTokenType sets ServiceTokenType field to given value.
 
@@ -157,20 +157,20 @@ HasServiceTokenType returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *FabricServiceToken) GetState() string`
+`func (o *FabricServiceToken) GetState() FabricServiceTokenState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *FabricServiceToken) GetStateOk() (*string, bool)`
+`func (o *FabricServiceToken) GetStateOk() (*FabricServiceTokenState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *FabricServiceToken) SetState(v string)`
+`func (o *FabricServiceToken) SetState(v FabricServiceTokenState)`
 
 SetState sets State field to given value.
 

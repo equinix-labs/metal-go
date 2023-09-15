@@ -20,11 +20,11 @@ var _ MappedNullable = &InvitationInput{}
 
 // InvitationInput struct for InvitationInput
 type InvitationInput struct {
-	Invitee              string   `json:"invitee"`
-	Message              *string  `json:"message,omitempty"`
-	OrganizationId       *string  `json:"organization_id,omitempty"`
-	ProjectsIds          []string `json:"projects_ids,omitempty"`
-	Roles                []string `json:"roles,omitempty"`
+	Invitee              string                 `json:"invitee"`
+	Message              *string                `json:"message,omitempty"`
+	OrganizationId       *string                `json:"organization_id,omitempty"`
+	ProjectsIds          []string               `json:"projects_ids,omitempty"`
+	Roles                []InvitationRolesInner `json:"roles,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -169,9 +169,9 @@ func (o *InvitationInput) SetProjectsIds(v []string) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *InvitationInput) GetRoles() []string {
+func (o *InvitationInput) GetRoles() []InvitationRolesInner {
 	if o == nil || IsNil(o.Roles) {
-		var ret []string
+		var ret []InvitationRolesInner
 		return ret
 	}
 	return o.Roles
@@ -179,7 +179,7 @@ func (o *InvitationInput) GetRoles() []string {
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvitationInput) GetRolesOk() ([]string, bool) {
+func (o *InvitationInput) GetRolesOk() ([]InvitationRolesInner, bool) {
 	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
@@ -195,8 +195,8 @@ func (o *InvitationInput) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *InvitationInput) SetRoles(v []string) {
+// SetRoles gets a reference to the given []InvitationRolesInner and assigns it to the Roles field.
+func (o *InvitationInput) SetRoles(v []InvitationRolesInner) {
 	o.Roles = v
 }
 

@@ -10,17 +10,17 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Project** | Pointer to **string** |  | [optional] 
 **Redundancy** | **string** | Either &#39;primary&#39; or &#39;redundant&#39;. | 
-**ServiceTokenType** | **string** | Either &#39;a_side&#39; or &#39;z_side&#39;. Setting this field to &#39;a_side&#39; will create an interconnection with Fabric VCs (Metal Billed). Setting this field to &#39;z_side&#39; will create an interconnection with Fabric VCs (Fabric Billed). This is required when the &#39;type&#39; is &#39;shared&#39;, but this is not applicable when the &#39;type&#39; is &#39;dedicated&#39;. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | 
+**ServiceTokenType** | [**VlanFabricVcCreateInputServiceTokenType**](VlanFabricVcCreateInputServiceTokenType.md) |  | 
 **Speed** | Pointer to **int32** | A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  &#39;&#39;50mbps&#39;&#39;, &#39;&#39;200mbps&#39;&#39;, &#39;&#39;500mbps&#39;&#39;, &#39;&#39;1gbps&#39;&#39;, &#39;&#39;2gbps&#39;&#39;, &#39;&#39;5gbps&#39;&#39; or &#39;&#39;10gbps&#39;&#39;, and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to &#39;&#39;10gbps&#39;&#39; even if it is not provided. For example, &#39;&#39;500000000&#39;&#39;, &#39;&#39;50m&#39;&#39;, or&#39; &#39;&#39;500mbps&#39;&#39; will all work as valid inputs. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | **string** | When requesting for a Fabric VC, the value of this field should be &#39;shared&#39;. | 
+**Type** | [**VlanFabricVcCreateInputType**](VlanFabricVcCreateInputType.md) |  | 
 **Vrfs** | **[]string** | This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits of Fabric VCs on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | 
 
 ## Methods
 
 ### NewVrfFabricVcCreateInput
 
-`func NewVrfFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType string, type_ string, vrfs []string, ) *VrfFabricVcCreateInput`
+`func NewVrfFabricVcCreateInput(metro string, name string, redundancy string, serviceTokenType VlanFabricVcCreateInputServiceTokenType, type_ VlanFabricVcCreateInputType, vrfs []string, ) *VrfFabricVcCreateInput`
 
 NewVrfFabricVcCreateInput instantiates a new VrfFabricVcCreateInput object
 This constructor will assign default values to properties that have it defined,
@@ -172,20 +172,20 @@ SetRedundancy sets Redundancy field to given value.
 
 ### GetServiceTokenType
 
-`func (o *VrfFabricVcCreateInput) GetServiceTokenType() string`
+`func (o *VrfFabricVcCreateInput) GetServiceTokenType() VlanFabricVcCreateInputServiceTokenType`
 
 GetServiceTokenType returns the ServiceTokenType field if non-nil, zero value otherwise.
 
 ### GetServiceTokenTypeOk
 
-`func (o *VrfFabricVcCreateInput) GetServiceTokenTypeOk() (*string, bool)`
+`func (o *VrfFabricVcCreateInput) GetServiceTokenTypeOk() (*VlanFabricVcCreateInputServiceTokenType, bool)`
 
 GetServiceTokenTypeOk returns a tuple with the ServiceTokenType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceTokenType
 
-`func (o *VrfFabricVcCreateInput) SetServiceTokenType(v string)`
+`func (o *VrfFabricVcCreateInput) SetServiceTokenType(v VlanFabricVcCreateInputServiceTokenType)`
 
 SetServiceTokenType sets ServiceTokenType field to given value.
 
@@ -242,20 +242,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *VrfFabricVcCreateInput) GetType() string`
+`func (o *VrfFabricVcCreateInput) GetType() VlanFabricVcCreateInputType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *VrfFabricVcCreateInput) GetTypeOk() (*string, bool)`
+`func (o *VrfFabricVcCreateInput) GetTypeOk() (*VlanFabricVcCreateInputType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *VrfFabricVcCreateInput) SetType(v string)`
+`func (o *VrfFabricVcCreateInput) SetType(v VlanFabricVcCreateInputType)`
 
 SetType sets Type field to given value.
 

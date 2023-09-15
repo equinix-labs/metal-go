@@ -22,15 +22,13 @@ var _ MappedNullable = &VrfRoute{}
 // VrfRoute struct for VrfRoute
 type VrfRoute struct {
 	// The unique identifier for the newly-created resource
-	Id *string `json:"id,omitempty"`
-	// The status of the route. Potential values are \"pending\", \"active\", \"deleting\", and \"error\", representing various lifecycle states of the route and whether or not it has been successfully configured on the network
-	Status *string `json:"status,omitempty"`
+	Id     *string         `json:"id,omitempty"`
+	Status *VrfRouteStatus `json:"status,omitempty"`
 	// The IPv4 prefix for the route, in CIDR-style notation
 	Prefix *string `json:"prefix,omitempty"`
 	// The next-hop IPv4 address for the route
-	NextHop *string `json:"next_hop,omitempty"`
-	// VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported
-	Type                 *string          `json:"type,omitempty"`
+	NextHop              *string          `json:"next_hop,omitempty"`
+	Type                 *VrfRouteType    `json:"type,omitempty"`
 	CreatedAt            *time.Time       `json:"created_at,omitempty"`
 	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
 	MetalGateway         *VrfMetalGateway `json:"metal_gateway,omitempty"`
@@ -93,9 +91,9 @@ func (o *VrfRoute) SetId(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *VrfRoute) GetStatus() string {
+func (o *VrfRoute) GetStatus() VrfRouteStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret VrfRouteStatus
 		return ret
 	}
 	return *o.Status
@@ -103,7 +101,7 @@ func (o *VrfRoute) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfRoute) GetStatusOk() (*string, bool) {
+func (o *VrfRoute) GetStatusOk() (*VrfRouteStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -119,8 +117,8 @@ func (o *VrfRoute) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *VrfRoute) SetStatus(v string) {
+// SetStatus gets a reference to the given VrfRouteStatus and assigns it to the Status field.
+func (o *VrfRoute) SetStatus(v VrfRouteStatus) {
 	o.Status = &v
 }
 
@@ -189,9 +187,9 @@ func (o *VrfRoute) SetNextHop(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *VrfRoute) GetType() string {
+func (o *VrfRoute) GetType() VrfRouteType {
 	if o == nil || IsNil(o.Type) {
-		var ret string
+		var ret VrfRouteType
 		return ret
 	}
 	return *o.Type
@@ -199,7 +197,7 @@ func (o *VrfRoute) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfRoute) GetTypeOk() (*string, bool) {
+func (o *VrfRoute) GetTypeOk() (*VrfRouteType, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -215,8 +213,8 @@ func (o *VrfRoute) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *VrfRoute) SetType(v string) {
+// SetType gets a reference to the given VrfRouteType and assigns it to the Type field.
+func (o *VrfRoute) SetType(v VrfRouteType) {
 	o.Type = &v
 }
 

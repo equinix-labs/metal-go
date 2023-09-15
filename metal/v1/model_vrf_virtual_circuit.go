@@ -36,9 +36,8 @@ type VrfVirtualCircuit struct {
 	PeerAsn *int32 `json:"peer_asn,omitempty"`
 	Project *Href  `json:"project,omitempty"`
 	// integer representing bps speed
-	Speed *int32 `json:"speed,omitempty"`
-	// The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details' once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to `changing_peering_details` whenever an active VRF Virtual Circuit has any of its peering details updated.
-	Status *string `json:"status,omitempty"`
+	Speed  *int32                   `json:"speed,omitempty"`
+	Status *VrfVirtualCircuitStatus `json:"status,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
 	Subnet               *string    `json:"subnet,omitempty"`
 	Tags                 []string   `json:"tags,omitempty"`
@@ -420,9 +419,9 @@ func (o *VrfVirtualCircuit) SetSpeed(v int32) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetStatus() string {
+func (o *VrfVirtualCircuit) GetStatus() VrfVirtualCircuitStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret VrfVirtualCircuitStatus
 		return ret
 	}
 	return *o.Status
@@ -430,7 +429,7 @@ func (o *VrfVirtualCircuit) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetStatusOk() (*string, bool) {
+func (o *VrfVirtualCircuit) GetStatusOk() (*VrfVirtualCircuitStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -446,8 +445,8 @@ func (o *VrfVirtualCircuit) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *VrfVirtualCircuit) SetStatus(v string) {
+// SetStatus gets a reference to the given VrfVirtualCircuitStatus and assigns it to the Status field.
+func (o *VrfVirtualCircuit) SetStatus(v VrfVirtualCircuitStatus) {
 	o.Status = &v
 }
 

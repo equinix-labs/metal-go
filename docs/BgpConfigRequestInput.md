@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Asn** | **int32** | Autonomous System Number for local BGP deployment. | 
-**DeploymentType** | **string** | Wether the BGP deployment is local or global. Local deployments are configured immediately. Global deployments will need to be reviewed by Equinix Metal engineers. | 
+**DeploymentType** | [**BgpConfigRequestInputDeploymentType**](BgpConfigRequestInputDeploymentType.md) |  | 
 **Md5** | Pointer to **string** | The plaintext password to share between BGP neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character  | [optional] 
 **UseCase** | Pointer to **string** | A use case explanation (necessary for global BGP request review). | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewBgpConfigRequestInput
 
-`func NewBgpConfigRequestInput(asn int32, deploymentType string, ) *BgpConfigRequestInput`
+`func NewBgpConfigRequestInput(asn int32, deploymentType BgpConfigRequestInputDeploymentType, ) *BgpConfigRequestInput`
 
 NewBgpConfigRequestInput instantiates a new BgpConfigRequestInput object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetAsn sets Asn field to given value.
 
 ### GetDeploymentType
 
-`func (o *BgpConfigRequestInput) GetDeploymentType() string`
+`func (o *BgpConfigRequestInput) GetDeploymentType() BgpConfigRequestInputDeploymentType`
 
 GetDeploymentType returns the DeploymentType field if non-nil, zero value otherwise.
 
 ### GetDeploymentTypeOk
 
-`func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*string, bool)`
+`func (o *BgpConfigRequestInput) GetDeploymentTypeOk() (*BgpConfigRequestInputDeploymentType, bool)`
 
 GetDeploymentTypeOk returns a tuple with the DeploymentType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeploymentType
 
-`func (o *BgpConfigRequestInput) SetDeploymentType(v string)`
+`func (o *BgpConfigRequestInput) SetDeploymentType(v BgpConfigRequestInputDeploymentType)`
 
 SetDeploymentType sets DeploymentType field to given value.
 

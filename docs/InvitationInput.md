@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **ProjectsIds** | Pointer to **[]string** |  | [optional] 
-**Roles** | Pointer to **[]string** |  | [optional] 
+**Roles** | Pointer to [**[]InvitationRolesInner**](InvitationRolesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -126,20 +126,20 @@ HasProjectsIds returns a boolean if a field has been set.
 
 ### GetRoles
 
-`func (o *InvitationInput) GetRoles() []string`
+`func (o *InvitationInput) GetRoles() []InvitationRolesInner`
 
 GetRoles returns the Roles field if non-nil, zero value otherwise.
 
 ### GetRolesOk
 
-`func (o *InvitationInput) GetRolesOk() (*[]string, bool)`
+`func (o *InvitationInput) GetRolesOk() (*[]InvitationRolesInner, bool)`
 
 GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRoles
 
-`func (o *InvitationInput) SetRoles(v []string)`
+`func (o *InvitationInput) SetRoles(v []InvitationRolesInner)`
 
 SetRoles sets Roles field to given value.
 

@@ -377,8 +377,8 @@ type ApiFindProjectHardwareReservationsRequest struct {
 	ApiService    *HardwareReservationsApiService
 	id            string
 	query         *string
-	state         *string
-	provisionable *string
+	state         *FindProjectHardwareReservationsStateParameter
+	provisionable *FindProjectHardwareReservationsProvisionableParameter
 	include       *[]string
 	exclude       *[]string
 	page          *int32
@@ -392,13 +392,13 @@ func (r ApiFindProjectHardwareReservationsRequest) Query(query string) ApiFindPr
 }
 
 // Filter by hardware reservation state
-func (r ApiFindProjectHardwareReservationsRequest) State(state string) ApiFindProjectHardwareReservationsRequest {
+func (r ApiFindProjectHardwareReservationsRequest) State(state FindProjectHardwareReservationsStateParameter) ApiFindProjectHardwareReservationsRequest {
 	r.state = &state
 	return r
 }
 
 // Filter hardware reservation that is provisionable
-func (r ApiFindProjectHardwareReservationsRequest) Provisionable(provisionable string) ApiFindProjectHardwareReservationsRequest {
+func (r ApiFindProjectHardwareReservationsRequest) Provisionable(provisionable FindProjectHardwareReservationsProvisionableParameter) ApiFindProjectHardwareReservationsRequest {
 	r.provisionable = &provisionable
 	return r
 }

@@ -20,11 +20,11 @@ var _ MappedNullable = &SupportRequestInput{}
 
 // SupportRequestInput struct for SupportRequestInput
 type SupportRequestInput struct {
-	DeviceId             *string `json:"device_id,omitempty"`
-	Message              string  `json:"message"`
-	Priority             *string `json:"priority,omitempty"`
-	ProjectId            *string `json:"project_id,omitempty"`
-	Subject              string  `json:"subject"`
+	DeviceId             *string                      `json:"device_id,omitempty"`
+	Message              string                       `json:"message"`
+	Priority             *SupportRequestInputPriority `json:"priority,omitempty"`
+	ProjectId            *string                      `json:"project_id,omitempty"`
+	Subject              string                       `json:"subject"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -106,9 +106,9 @@ func (o *SupportRequestInput) SetMessage(v string) {
 }
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *SupportRequestInput) GetPriority() string {
+func (o *SupportRequestInput) GetPriority() SupportRequestInputPriority {
 	if o == nil || IsNil(o.Priority) {
-		var ret string
+		var ret SupportRequestInputPriority
 		return ret
 	}
 	return *o.Priority
@@ -116,7 +116,7 @@ func (o *SupportRequestInput) GetPriority() string {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SupportRequestInput) GetPriorityOk() (*string, bool) {
+func (o *SupportRequestInput) GetPriorityOk() (*SupportRequestInputPriority, bool) {
 	if o == nil || IsNil(o.Priority) {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *SupportRequestInput) HasPriority() bool {
 	return false
 }
 
-// SetPriority gets a reference to the given string and assigns it to the Priority field.
-func (o *SupportRequestInput) SetPriority(v string) {
+// SetPriority gets a reference to the given SupportRequestInputPriority and assigns it to the Priority field.
+func (o *SupportRequestInput) SetPriority(v SupportRequestInputPriority) {
 	o.Priority = &v
 }
 
