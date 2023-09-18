@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	metal "github.com/equinix-labs/metal-go/metal/v1"
 	"sigs.k8s.io/yaml"
@@ -25,7 +26,7 @@ func main() {
 	createVrfRequest := metal.VrfCreateInput{
 		Name:     "my-test-vrf-shared",
 		Metro:    metro,
-		IpRanges: []string{"10.0.0.0/16"},
+		IpRanges: []string{"192.168.0.0/16"},
 	}
 
 	gateways, r, err := api_client.MetalGatewaysApi.FindMetalGatewaysByProject(ctx, projectId).Execute()
@@ -52,7 +53,7 @@ func main() {
 	ipReservationRequest.VrfIpReservationCreateInput = &metal.VrfIpReservationCreateInput{
 		Type:    "vrf",
 		Cidr:    24,
-		Network: "10.0.0.0",
+		Network: "192.168.0.0",
 		VrfId:   vrf.GetId(),
 	}
 
@@ -82,7 +83,8 @@ func main() {
 		VirtualNetworkId: vlan.GetId(),
 	}
 
-	_, r, err = api_client.MetalGatewaysApi.CreateMetalGateway(ctx, projectId).CreateMetalGatewayRequest(createGatewayRequest).Execute()
+	metalGatewayIncludes := []string{"ip_reservation"}
+	_, r, err = api_client.MetalGatewaysApi.CreateMetalGateway(ctx, projectId).CreateMetalGatewayRequest(createGatewayRequest).Include(metalGatewayIncludes).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetalGatewaysApi.CreateMetalGateway`: %v\n", err)
@@ -110,21 +112,23 @@ func main() {
 		panic(err)
 	}
 
-	subnet := "10.0.0.2/31"
-	metalIp := "10.0.0.2"
-	customerIp := "10.0.0.3"
+	waitForActiveConnection(ctx, api_client, connection)
+
+	subnets := []string{"192.168.0.2/31", "192.168.0.4/31"}
+	metalIps := []string{"192.168.0.2", "192.168.0.4"}
+	customerIps := []string{"192.168.0.3", "192.168.0.5"}
 	peerAsn := int32(100)
 	virtualCircuitUpdateRequest := metal.VirtualCircuitUpdateInput{}
 	virtualCircuitUpdateRequest.VrfVirtualCircuitUpdateInput = &metal.VrfVirtualCircuitUpdateInput{
-		PeerAsn:    &peerAsn,
-		Subnet:     &subnet,
-		MetalIp:    &metalIp,
-		CustomerIp: &customerIp,
+		PeerAsn: &peerAsn,
 	}
 
 	for _, port := range connection.Ports {
-		for _, vc := range port.VirtualCircuits {
+		for i, vc := range port.VirtualCircuits {
 			vcId := vc.VrfVirtualCircuit.GetId()
+			virtualCircuitUpdateRequest.VrfVirtualCircuitUpdateInput.Subnet = &subnets[i]
+			virtualCircuitUpdateRequest.VrfVirtualCircuitUpdateInput.MetalIp = &metalIps[i]
+			virtualCircuitUpdateRequest.VrfVirtualCircuitUpdateInput.CustomerIp = &customerIps[i]
 			_, r, err := api_client.InterconnectionsApi.UpdateVirtualCircuit(ctx, vcId).VirtualCircuitUpdateInput(virtualCircuitUpdateRequest).Execute()
 
 			if err != nil {
@@ -136,8 +140,8 @@ func main() {
 	}
 
 	createVRFRouteRequest := metal.VrfRouteCreateInput{
-		Prefix:  "10.0.5.0/0",
-		NextHop: "10.0.5.2",
+		Prefix:  "192.168.5.0/0",
+		NextHop: "192.168.5.2",
 	}
 
 	vrfRoute, r, err := api_client.VRFsApi.CreateVrfRoute(ctx, vrf.GetId()).VrfRouteCreateInput(createVRFRouteRequest).Execute()
@@ -161,4 +165,19 @@ func main() {
 	}
 
 	fmt.Fprintf(os.Stdout, "Response from `VRFsApi.CreateVrfRoute`: \n%v\n", string(s))
+}
+
+func waitForActiveConnection(ctx context.Context, api_client *metal.APIClient, connection *metal.Interconnection) error {
+	retryInterval := 10 * time.Second
+	if connection.GetStatus() == "active" {
+		return nil
+	} else {
+		time.Sleep(retryInterval)
+		connection, _, err := api_client.InterconnectionsApi.GetInterconnection(ctx, connection.GetId()).Execute()
+		if err != nil {
+			return err
+		} else {
+			return waitForActiveConnection(ctx, api_client, connection)
+		}
+	}
 }
