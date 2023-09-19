@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Public** | Pointer to **bool** |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **NextHop** | Pointer to **string** | Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.  | [optional] 
+**Type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | 
 **Addon** | Pointer to **bool** |  | [optional] 
 **Assignments** | Pointer to [**[]IPAssignment**](IPAssignment.md) |  | [optional] 
 **Available** | Pointer to **string** |  | [optional] 
@@ -35,7 +36,6 @@ Name | Type | Description | Notes
 **ProjectLite** | Pointer to [**Project**](Project.md) |  | [optional] 
 **RequestedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | 
 **CreatedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Vrf** | [**Vrf**](Vrf.md) |  | 
 
@@ -533,6 +533,26 @@ SetNextHop sets NextHop field to given value.
 
 HasNextHop returns a boolean if a field has been set.
 
+### GetType
+
+`func (o *FindIPAddressById200Response) GetType() VrfIpReservationType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *FindIPAddressById200Response) GetTypeOk() (*VrfIpReservationType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *FindIPAddressById200Response) SetType(v VrfIpReservationType)`
+
+SetType sets Type field to given value.
+
+
 ### GetAddon
 
 `func (o *FindIPAddressById200Response) GetAddon() bool`
@@ -832,26 +852,6 @@ SetTags sets Tags field to given value.
 `func (o *FindIPAddressById200Response) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *FindIPAddressById200Response) GetType() VrfIpReservationType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *FindIPAddressById200Response) GetTypeOk() (*VrfIpReservationType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *FindIPAddressById200Response) SetType(v VrfIpReservationType)`
-
-SetType sets Type field to given value.
-
 
 ### GetCreatedBy
 

@@ -54,4 +54,8 @@ properties:
       Only set when this is a Metal Gateway Elastic IP Assignment.
 
       The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
+  type:
+    type: string
+    enum:
+    - IPAssignement
 type: object

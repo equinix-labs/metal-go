@@ -495,6 +495,7 @@ Class | Method | HTTP request | Description
  - [IPAssignmentList](docs/IPAssignmentList.md)
  - [IPAssignmentMetro](docs/IPAssignmentMetro.md)
  - [IPAssignmentState](docs/IPAssignmentState.md)
+ - [IPAssignmentType](docs/IPAssignmentType.md)
  - [IPAssignmentUpdateInput](docs/IPAssignmentUpdateInput.md)
  - [IPAvailabilitiesList](docs/IPAvailabilitiesList.md)
  - [IPReservation](docs/IPReservation.md)
