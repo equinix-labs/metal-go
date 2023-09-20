@@ -23,14 +23,14 @@ type PlanSpecsDrivesInnerType string
 const (
 	PLANSPECSDRIVESINNERTYPE_HDD  PlanSpecsDrivesInnerType = "HDD"
 	PLANSPECSDRIVESINNERTYPE_SSD  PlanSpecsDrivesInnerType = "SSD"
-	PLANSPECSDRIVESINNERTYPE_NVME PlanSpecsDrivesInnerType = "NVME"
+	PLANSPECSDRIVESINNERTYPE_NVME PlanSpecsDrivesInnerType = "NVMe"
 )
 
 // All allowed values of PlanSpecsDrivesInnerType enum
 var AllowedPlanSpecsDrivesInnerTypeEnumValues = []PlanSpecsDrivesInnerType{
 	"HDD",
 	"SSD",
-	"NVME",
+	"NVMe",
 }
 
 func (v *PlanSpecsDrivesInnerType) UnmarshalJSON(src []byte) error {

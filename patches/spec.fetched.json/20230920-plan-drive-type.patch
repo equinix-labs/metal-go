@@ -1,0 +1,13 @@
+diff --git a/spec/oas3.patched/components/schemas/Plan.yaml b/spec/oas3.patched/components/schemas/Plan.yaml
+index 0b5f1d5..c8cdf6f 100644
+--- a/spec/oas3.patched/components/schemas/Plan.yaml
++++ b/spec/oas3.patched/components/schemas/Plan.yaml
+@@ -97,7 +97,7 @@ properties:
+               enum:
+                 - HDD
+                 - SSD
+-                - NVME
++                - NVMe
+             size:
+               type: string
+               example: 3.84TB
