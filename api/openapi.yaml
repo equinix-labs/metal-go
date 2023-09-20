@@ -30738,7 +30738,7 @@ components:
       enum:
       - HDD
       - SSD
-      - NVME
+      - NVMe
       type: string
     Plan_specs_drives_inner_category:
       enum:
