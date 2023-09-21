@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Count** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to [**PlanSpecsDrivesInnerType**](PlanSpecsDrivesInnerType.md) |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
 **Size** | Pointer to **string** |  | [optional] 
 **Category** | Pointer to [**PlanSpecsDrivesInnerCategory**](PlanSpecsDrivesInnerCategory.md) |  | [optional] 
 
@@ -55,20 +55,20 @@ HasCount returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *PlanSpecsDrivesInner) GetType() PlanSpecsDrivesInnerType`
+`func (o *PlanSpecsDrivesInner) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *PlanSpecsDrivesInner) GetTypeOk() (*PlanSpecsDrivesInnerType, bool)`
+`func (o *PlanSpecsDrivesInner) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *PlanSpecsDrivesInner) SetType(v PlanSpecsDrivesInnerType)`
+`func (o *PlanSpecsDrivesInner) SetType(v string)`
 
 SetType sets Type field to given value.
 
