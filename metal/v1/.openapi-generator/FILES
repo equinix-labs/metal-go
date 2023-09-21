@@ -256,11 +256,9 @@ docs/PlanSpecs.md
 docs/PlanSpecsCpusInner.md
 docs/PlanSpecsDrivesInner.md
 docs/PlanSpecsDrivesInnerCategory.md
-docs/PlanSpecsDrivesInnerType.md
 docs/PlanSpecsFeatures.md
 docs/PlanSpecsMemory.md
 docs/PlanSpecsNicsInner.md
-docs/PlanSpecsNicsInnerType.md
 docs/PlanType.md
 docs/PlansApi.md
 docs/Port.md
@@ -572,11 +570,9 @@ model_plan_specs.go
 model_plan_specs_cpus_inner.go
 model_plan_specs_drives_inner.go
 model_plan_specs_drives_inner_category.go
-model_plan_specs_drives_inner_type.go
 model_plan_specs_features.go
 model_plan_specs_memory.go
 model_plan_specs_nics_inner.go
-model_plan_specs_nics_inner_type.go
 model_plan_type.go
 model_port.go
 model_port_assign_input.go

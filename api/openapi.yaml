@@ -15669,17 +15669,17 @@ components:
             drives:
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             nics:
             - count: 2
-              type: null
+              type: type
             - count: 2
-              type: null
+              type: type
           deployment_types:
           - null
           - null
@@ -15849,17 +15849,17 @@ components:
               drives:
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               nics:
               - count: 2
-                type: null
+                type: type
               - count: 2
-                type: null
+                type: type
             deployment_types:
             - null
             - null
@@ -16654,17 +16654,17 @@ components:
               drives:
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               nics:
               - count: 2
-                type: null
+                type: type
               - count: 2
-                type: null
+                type: type
             deployment_types:
             - null
             - null
@@ -16834,17 +16834,17 @@ components:
                 drives:
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 nics:
                 - count: 2
-                  type: null
+                  type: type
                 - count: 2
-                  type: null
+                  type: type
               deployment_types:
               - null
               - null
@@ -17256,17 +17256,17 @@ components:
               drives:
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               nics:
               - count: 2
-                type: null
+                type: type
               - count: 2
-                type: null
+                type: type
             deployment_types:
             - null
             - null
@@ -17436,17 +17436,17 @@ components:
                 drives:
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 nics:
                 - count: 2
-                  type: null
+                  type: type
                 - count: 2
-                  type: null
+                  type: type
               deployment_types:
               - null
               - null
@@ -18390,17 +18390,17 @@ components:
             drives:
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             nics:
             - count: 2
-              type: null
+              type: type
             - count: 2
-              type: null
+              type: type
           deployment_types:
           - null
           - null
@@ -18620,17 +18620,17 @@ components:
               drives:
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               nics:
               - count: 2
-                type: null
+                type: type
               - count: 2
-                type: null
+                type: type
             deployment_types:
             - null
             - null
@@ -18786,17 +18786,17 @@ components:
               drives:
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               nics:
               - count: 2
-                type: null
+                type: type
               - count: 2
-                type: null
+                type: type
             deployment_types:
             - null
             - null
@@ -19706,17 +19706,17 @@ components:
               drives:
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               nics:
               - count: 2
-                type: null
+                type: type
               - count: 2
-                type: null
+                type: type
             deployment_types:
             - null
             - null
@@ -19768,17 +19768,17 @@ components:
               drives:
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               - size: 3.84TB
                 count: 1
-                type: null
+                type: type
                 category: null
               nics:
               - count: 2
-                type: null
+                type: type
               - count: 2
-                type: null
+                type: type
             deployment_types:
             - null
             - null
@@ -19890,17 +19890,17 @@ components:
                 drives:
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 nics:
                 - count: 2
-                  type: null
+                  type: type
                 - count: 2
-                  type: null
+                  type: type
               deployment_types:
               - null
               - null
@@ -19952,17 +19952,17 @@ components:
                 drives:
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 nics:
                 - count: 2
-                  type: null
+                  type: type
                 - count: 2
-                  type: null
+                  type: type
               deployment_types:
               - null
               - null
@@ -20030,17 +20030,17 @@ components:
                 drives:
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 nics:
                 - count: 2
-                  type: null
+                  type: type
                 - count: 2
-                  type: null
+                  type: type
               deployment_types:
               - null
               - null
@@ -20092,17 +20092,17 @@ components:
                 drives:
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 - size: 3.84TB
                   count: 1
-                  type: null
+                  type: type
                   category: null
                 nics:
                 - count: 2
-                  type: null
+                  type: type
                 - count: 2
-                  type: null
+                  type: type
               deployment_types:
               - null
               - null
@@ -20236,17 +20236,17 @@ components:
             drives:
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             nics:
             - count: 2
-              type: null
+              type: type
             - count: 2
-              type: null
+              type: type
           deployment_types:
           - null
           - null
@@ -21234,17 +21234,17 @@ components:
           drives:
           - size: 3.84TB
             count: 1
-            type: null
+            type: type
             category: null
           - size: 3.84TB
             count: 1
-            type: null
+            type: type
             category: null
           nics:
           - count: 2
-            type: null
+            type: type
           - count: 2
-            type: null
+            type: type
         deployment_types:
         - null
         - null
@@ -21343,17 +21343,17 @@ components:
             drives:
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             nics:
             - count: 2
-              type: null
+              type: type
             - count: 2
-              type: null
+              type: type
           deployment_types:
           - null
           - null
@@ -21398,17 +21398,17 @@ components:
             drives:
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             - size: 3.84TB
               count: 1
-              type: null
+              type: type
               category: null
             nics:
             - count: 2
-              type: null
+              type: type
             - count: 2
-              type: null
+              type: type
           deployment_types:
           - null
           - null
@@ -30734,12 +30734,6 @@ components:
         total:
           type: string
       type: object
-    Plan_specs_drives_inner_type:
-      enum:
-      - HDD
-      - SSD
-      - NVMe
-      type: string
     Plan_specs_drives_inner_category:
       enum:
       - boot
@@ -30750,35 +30744,29 @@ components:
       example:
         size: 3.84TB
         count: 1
-        type: null
+        type: type
         category: null
       properties:
         count:
           type: integer
         type:
-          $ref: '#/components/schemas/Plan_specs_drives_inner_type'
+          type: string
         size:
           example: 3.84TB
           type: string
         category:
           $ref: '#/components/schemas/Plan_specs_drives_inner_category'
       type: object
-    Plan_specs_nics_inner_type:
-      enum:
-      - 1Gbps
-      - 10Gbps
-      - 25Gbps
-      type: string
     Plan_specs_nics_inner:
       example:
         count: 2
-        type: null
+        type: type
       properties:
         count:
           example: 2
           type: integer
         type:
-          $ref: '#/components/schemas/Plan_specs_nics_inner_type'
+          type: string
       type: object
     Plan_specs_features:
       example:
@@ -30809,17 +30797,17 @@ components:
         drives:
         - size: 3.84TB
           count: 1
-          type: null
+          type: type
           category: null
         - size: 3.84TB
           count: 1
-          type: null
+          type: type
           category: null
         nics:
         - count: 2
-          type: null
+          type: type
         - count: 2
-          type: null
+          type: type
       properties:
         cpus:
           items:
