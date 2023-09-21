@@ -97,7 +97,7 @@ properties:
               enum:
                 - HDD
                 - SSD
-                - NVMe
+                - NVME
             size:
               type: string
               example: 3.84TB
