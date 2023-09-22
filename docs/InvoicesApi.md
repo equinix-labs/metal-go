@@ -4,14 +4,14 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FindOrganizationInvoices**](InvoicesApi.md#FindOrganizationInvoices) | **Get** /organizations/{id}/invoices | Retrieve all invoices for an organization
+[**FindOrganizationInvoices**](InvoicesApi.md#FindOrganizationInvoices) | **Get** /organizations/{organization_id}/invoices | Retrieve all invoices for an organization
 [**GetInvoiceById**](InvoicesApi.md#GetInvoiceById) | **Get** /invoices/{id} | Retrieve an invoice
 
 
 
 ## FindOrganizationInvoices
 
-> InvoiceList FindOrganizationInvoices(ctx, id).Page(page).PerPage(perPage).Status(status).Execute()
+> InvoiceList FindOrganizationInvoices(ctx, organizationId).Page(page).PerPage(perPage).Status(status).Execute()
 
 Retrieve all invoices for an organization
 
@@ -30,14 +30,14 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    page := int32(56) // int32 | page number (optional)
-    perPage := int32(56) // int32 | per page (optional)
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    page := int32(56) // int32 | Page to return (optional) (default to 1)
+    perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
     status := "status_example" // string | filter by status (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InvoicesApi.FindOrganizationInvoices(context.Background(), id).Page(page).PerPage(perPage).Status(status).Execute()
+    resp, r, err := apiClient.InvoicesApi.FindOrganizationInvoices(context.Background(), organizationId).Page(page).PerPage(perPage).Status(status).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoicesApi.FindOrganizationInvoices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -63,8 +63,8 @@ Other parameters are passed through a pointer to a apiFindOrganizationInvoicesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **int32** | page number | 
- **perPage** | **int32** | per page | 
+ **page** | **int32** | Page to return | [default to 1]
+ **perPage** | **int32** | Items returned per page | [default to 10]
  **status** | **string** | filter by status | 
 
 ### Return type

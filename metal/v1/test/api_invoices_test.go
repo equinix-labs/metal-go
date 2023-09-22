@@ -25,9 +25,9 @@ func Test_v1_InvoicesApiService(t *testing.T) {
 	t.Run("Test InvoicesApiService FindOrganizationInvoices", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		var id string
+		var organizationId string
 
-		resp, httpRes, err := apiClient.InvoicesApi.FindOrganizationInvoices(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.InvoicesApi.FindOrganizationInvoices(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

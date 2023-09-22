@@ -42,13 +42,13 @@ info:
 
     ## Searching
 
-    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
+    Searching is used to find matching resources using multiple field comparisons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
     To search resources you can use the `search` query parameter.
 
     ## Include and Exclude
 
-    For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
+    For resources that contain references to other resources, such as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
 
     ```json
     {
@@ -4606,18 +4606,42 @@ paths:
       summary: Create an organization
       tags:
       - Organizations
-  /organizations/{id}:
+  /organizations/{organization_id}:
     delete:
       description: Deletes the organization.
       operationId: deleteOrganization
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "204":
           description: no content
@@ -4643,7 +4667,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -4706,7 +4730,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -4776,14 +4800,14 @@ paths:
       summary: Update the organization
       tags:
       - Organizations
-  /organizations/{id}/capacity:
+  /organizations/{organization_id}/capacity:
     get:
       description: Returns a list of facilities and plans with their current capacity.
       operationId: findOrganizationCapacityPerFacility
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -4827,14 +4851,14 @@ paths:
       summary: View available hardware plans per Facility for given organization
       tags:
       - Capacity
-  /organizations/{id}/capacity/metros:
+  /organizations/{organization_id}/capacity/metros:
     get:
       description: Returns a list of metros and plans with their current capacity.
       operationId: findOrganizationCapacityPerMetro
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -4878,7 +4902,7 @@ paths:
       summary: View available hardware plans per Metro for given organization
       tags:
       - Capacity
-  /organizations/{id}/customdata:
+  /organizations/{organization_id}/customdata:
     get:
       description: Provides the custom metadata stored for this organization in json
         format
@@ -4886,7 +4910,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -4915,14 +4939,14 @@ paths:
       summary: Retrieve the custom metadata of an organization
       tags:
       - Organizations
-  /organizations/{id}/devices:
+  /organizations/{organization_id}/devices:
     get:
       description: Provides a collection of devices for a given organization.
       operationId: findOrganizationDevices
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5044,14 +5068,14 @@ paths:
       summary: Retrieve all devices of an organization
       tags:
       - Devices
-  /organizations/{id}/events:
+  /organizations/{organization_id}/events:
     get:
       description: Returns a list of events for a single organization
       operationId: findOrganizationEvents
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5126,7 +5150,7 @@ paths:
       summary: Retrieve organization's events
       tags:
       - Events
-  /organizations/{id}/facilities:
+  /organizations/{organization_id}/facilities:
     get:
       deprecated: true
       description: Returns a listing of available datacenters for the given organization
@@ -5134,7 +5158,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5191,27 +5215,35 @@ paths:
       summary: Retrieve all facilities visible by the organization
       tags:
       - Facilities
-  /organizations/{id}/firmware-sets:
+  /organizations/{organization_id}/firmware-sets:
     get:
       description: Returns all firmware sets associated with the organization.
       operationId: getOrganizationFirmwareSets
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
           type: string
-      - description: page number to return
+      - description: Page to return
         in: query
         name: page
         schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
           type: integer
-      - description: items returned per page.
+      - description: Items returned per page
         in: query
         name: per_page
         schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
           type: integer
       responses:
         "200":
@@ -5235,11 +5267,18 @@ paths:
       summary: Get Organization's Firmware Sets
       tags:
       - Firmware Sets
-  /organizations/{id}/invitations:
+  /organizations/{organization_id}/invitations:
     get:
       description: Returns all invitations in an organization.
       operationId: findOrganizationInvitations
       parameters:
+      - description: Organization UUID
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          format: uuid
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -5270,13 +5309,6 @@ paths:
           maximum: 1000
           minimum: 1
           type: integer
-      - description: Organization UUID
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
       responses:
         "200":
           content:
@@ -5313,7 +5345,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5366,27 +5398,35 @@ paths:
       summary: Create an invitation for an organization
       tags:
       - Organizations
-  /organizations/{id}/invoices:
+  /organizations/{organization_id}/invoices:
     get:
       description: Returns all invoices for an organization
       operationId: findOrganizationInvoices
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
           type: string
-      - description: page number
+      - description: Page to return
         in: query
         name: page
         schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
           type: integer
-      - description: per page
+      - description: Items returned per page
         in: query
         name: per_page
         schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
           type: integer
       - description: filter by status
         in: query
@@ -5415,7 +5455,7 @@ paths:
       summary: Retrieve all invoices for an organization
       tags:
       - Invoices
-  /organizations/{id}/operating-systems:
+  /organizations/{organization_id}/operating-systems:
     get:
       description: Returns a listing of available operating systems for the given
         organization
@@ -5423,7 +5463,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5468,14 +5508,14 @@ paths:
       summary: Retrieve all operating systems visible by the organization
       tags:
       - Organizations
-  /organizations/{id}/payment-methods:
+  /organizations/{organization_id}/payment-methods:
     get:
       description: Returns all payment methods of an organization.
       operationId: findOrganizationPaymentMethods
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5538,7 +5578,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5590,14 +5630,14 @@ paths:
       summary: Create a payment method for the given organization
       tags:
       - Organizations
-  /organizations/{id}/plans:
+  /organizations/{organization_id}/plans:
     get:
       description: Returns a listing of available plans for the given organization
       operationId: findPlansByOrganization
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5654,14 +5694,14 @@ paths:
       summary: Retrieve all plans visible by the organization
       tags:
       - Organizations
-  /organizations/{id}/projects:
+  /organizations/{organization_id}/projects:
     get:
       description: Returns a collection of projects that belong to the organization.
       operationId: findOrganizationProjects
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5735,7 +5775,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5793,7 +5833,7 @@ paths:
       summary: Create a project for the organization
       tags:
       - Organizations
-  /organizations/{id}/transfers:
+  /organizations/{organization_id}/transfers:
     get:
       description: Provides a collection of project transfer requests from or to the
         organization.
@@ -5801,7 +5841,7 @@ paths:
       parameters:
       - description: Organization UUID
         in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           format: uuid
@@ -5845,7 +5885,7 @@ paths:
       description: List the connections belonging to the organization
       operationId: organizationListInterconnections
       parameters:
-      - description: UUID of the organization
+      - description: Organization UUID
         in: path
         name: organization_id
         required: true
@@ -5903,7 +5943,7 @@ paths:
         in the request body for connections on shared ports.
       operationId: createOrganizationInterconnection
       parameters:
-      - description: UUID of the organization
+      - description: Organization UUID
         in: path
         name: organization_id
         required: true
@@ -12341,6 +12381,14 @@ components:
           type: string
         type: array
       style: form
+    OrganizationID:
+      description: Organization UUID
+      in: path
+      name: organization_id
+      required: true
+      schema:
+        format: uuid
+        type: string
   requestBodies:
     InterconnectionCreateInput:
       content:

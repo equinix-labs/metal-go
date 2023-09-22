@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**CheckCapacityForMetro**](CapacityApi.md#CheckCapacityForMetro) | **Post** /capacity/metros | Check capacity for a metro
 [**FindCapacityForFacility**](CapacityApi.md#FindCapacityForFacility) | **Get** /capacity | View capacity
 [**FindCapacityForMetro**](CapacityApi.md#FindCapacityForMetro) | **Get** /capacity/metros | View capacity for metros
-[**FindOrganizationCapacityPerFacility**](CapacityApi.md#FindOrganizationCapacityPerFacility) | **Get** /organizations/{id}/capacity | View available hardware plans per Facility for given organization
-[**FindOrganizationCapacityPerMetro**](CapacityApi.md#FindOrganizationCapacityPerMetro) | **Get** /organizations/{id}/capacity/metros | View available hardware plans per Metro for given organization
+[**FindOrganizationCapacityPerFacility**](CapacityApi.md#FindOrganizationCapacityPerFacility) | **Get** /organizations/{organization_id}/capacity | View available hardware plans per Facility for given organization
+[**FindOrganizationCapacityPerMetro**](CapacityApi.md#FindOrganizationCapacityPerMetro) | **Get** /organizations/{organization_id}/capacity/metros | View available hardware plans per Metro for given organization
 
 
 
@@ -269,7 +269,7 @@ Other parameters are passed through a pointer to a apiFindCapacityForMetroReques
 
 ## FindOrganizationCapacityPerFacility
 
-> CapacityList FindOrganizationCapacityPerFacility(ctx, id).Execute()
+> CapacityList FindOrganizationCapacityPerFacility(ctx, organizationId).Execute()
 
 View available hardware plans per Facility for given organization
 
@@ -288,11 +288,11 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CapacityApi.FindOrganizationCapacityPerFacility(context.Background(), id).Execute()
+    resp, r, err := apiClient.CapacityApi.FindOrganizationCapacityPerFacility(context.Background(), organizationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindOrganizationCapacityPerFacility``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -308,7 +308,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationCapacityPerMetro
 
-> CapacityList FindOrganizationCapacityPerMetro(ctx, id).Execute()
+> CapacityList FindOrganizationCapacityPerMetro(ctx, organizationId).Execute()
 
 View available hardware plans per Metro for given organization
 
@@ -358,11 +358,11 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CapacityApi.FindOrganizationCapacityPerMetro(context.Background(), id).Execute()
+    resp, r, err := apiClient.CapacityApi.FindOrganizationCapacityPerMetro(context.Background(), organizationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CapacityApi.FindOrganizationCapacityPerMetro``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -378,7 +378,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 

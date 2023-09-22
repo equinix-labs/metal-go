@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**FindEvents**](EventsApi.md#FindEvents) | **Get** /events | Retrieve current user&#39;s events
 [**FindInterconnectionEvents**](EventsApi.md#FindInterconnectionEvents) | **Get** /connections/{connection_id}/events | Retrieve interconnection events
 [**FindInterconnectionPortEvents**](EventsApi.md#FindInterconnectionPortEvents) | **Get** /connections/{connection_id}/ports/{id}/events | Retrieve interconnection port events
-[**FindOrganizationEvents**](EventsApi.md#FindOrganizationEvents) | **Get** /organizations/{id}/events | Retrieve organization&#39;s events
+[**FindOrganizationEvents**](EventsApi.md#FindOrganizationEvents) | **Get** /organizations/{organization_id}/events | Retrieve organization&#39;s events
 [**FindProjectEvents**](EventsApi.md#FindProjectEvents) | **Get** /projects/{id}/events | Retrieve project&#39;s events
 [**FindVirtualCircuitEvents**](EventsApi.md#FindVirtualCircuitEvents) | **Get** /virtual-circuits/{id}/events | Retrieve virtual circuit events
 [**FindVrfRouteEvents**](EventsApi.md#FindVrfRouteEvents) | **Get** /routes/{id}/events | Retrieve VRF route events
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationEvents
 
-> EventList FindOrganizationEvents(ctx, id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> EventList FindOrganizationEvents(ctx, organizationId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve organization's events
 
@@ -420,7 +420,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
@@ -428,7 +428,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.FindOrganizationEvents(context.Background(), id).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.EventsApi.FindOrganizationEvents(context.Background(), organizationId).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.FindOrganizationEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -444,7 +444,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
