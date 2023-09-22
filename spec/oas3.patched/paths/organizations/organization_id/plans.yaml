@@ -1,24 +1,17 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
 get:
-  description: Returns a list of events for a single organization
-  operationId: findOrganizationEvents
+  description: Returns a listing of available plans for the given organization
+  operationId: findPlansByOrganization
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Exclude.yaml'
-  - $ref: '../../../components/parameters/Page.yaml'
-  - $ref: '../../../components/parameters/PerPage.yaml'
   responses:
     "200":
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/EventList.yaml'
+            $ref: '../../../components/schemas/PlanList.yaml'
       description: ok
     "401":
       content:
@@ -38,6 +31,6 @@ get:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: not found
-  summary: Retrieve organization's events
+  summary: Retrieve all plans visible by the organization
   tags:
-  - Events
+  - Organizations

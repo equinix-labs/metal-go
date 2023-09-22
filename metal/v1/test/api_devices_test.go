@@ -166,9 +166,9 @@ func Test_v1_DevicesApiService(t *testing.T) {
 	t.Run("Test DevicesApiService FindOrganizationDevices", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		var id string
+		var organizationId string
 
-		resp, httpRes, err := apiClient.DevicesApi.FindOrganizationDevices(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DevicesApi.FindOrganizationDevices(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

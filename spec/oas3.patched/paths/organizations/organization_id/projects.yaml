@@ -1,14 +1,9 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
 get:
   description: Returns a collection of projects that belong to the organization.
   operationId: findOrganizationProjects
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   - $ref: '../../../components/parameters/ProjectName.yaml'
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Exclude.yaml'
@@ -34,13 +29,7 @@ post:
   description: Creates a new project for the organization
   operationId: createOrganizationProject
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
+
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Exclude.yaml'
   requestBody:

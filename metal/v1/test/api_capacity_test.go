@@ -65,9 +65,9 @@ func Test_v1_CapacityApiService(t *testing.T) {
 	t.Run("Test CapacityApiService FindOrganizationCapacityPerFacility", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		var id string
+		var organizationId string
 
-		resp, httpRes, err := apiClient.CapacityApi.FindOrganizationCapacityPerFacility(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.CapacityApi.FindOrganizationCapacityPerFacility(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -77,9 +77,9 @@ func Test_v1_CapacityApiService(t *testing.T) {
 	t.Run("Test CapacityApiService FindOrganizationCapacityPerMetro", func(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
-		var id string
+		var organizationId string
 
-		resp, httpRes, err := apiClient.CapacityApi.FindOrganizationCapacityPerMetro(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.CapacityApi.FindOrganizationCapacityPerMetro(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

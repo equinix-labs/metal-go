@@ -5,7 +5,7 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**FindFacilities**](FacilitiesApi.md#FindFacilities) | **Get** /facilities | Retrieve all facilities
-[**FindFacilitiesByOrganization**](FacilitiesApi.md#FindFacilitiesByOrganization) | **Get** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
+[**FindFacilitiesByOrganization**](FacilitiesApi.md#FindFacilitiesByOrganization) | **Get** /organizations/{organization_id}/facilities | Retrieve all facilities visible by the organization
 [**FindFacilitiesByProject**](FacilitiesApi.md#FindFacilitiesByProject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
 
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## FindFacilitiesByOrganization
 
-> FacilityList FindFacilitiesByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+> FacilityList FindFacilitiesByOrganization(ctx, organizationId).Include(include).Exclude(exclude).Execute()
 
 Retrieve all facilities visible by the organization
 
@@ -99,13 +99,13 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FacilitiesApi.FindFacilitiesByOrganization(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.FacilitiesApi.FindFacilitiesByOrganization(context.Background(), organizationId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FacilitiesApi.FindFacilitiesByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 

@@ -118,7 +118,7 @@ import (
 )
 
 func main() {
-    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     createOrganizationInterconnectionRequest := openapiclient.createOrganizationInterconnection_request{DedicatedPortCreateInput: openapiclient.NewDedicatedPortCreateInput("Metro_example", "Name_example", "Redundancy_example", openapiclient.DedicatedPortCreateInput_type("dedicated"))} // CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -141,7 +141,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** | UUID of the organization | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -860,7 +860,7 @@ import (
 )
 
 func main() {
-    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the organization
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -882,7 +882,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** | UUID of the organization | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 

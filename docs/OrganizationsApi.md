@@ -5,20 +5,20 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOrganization**](OrganizationsApi.md#CreateOrganization) | **Post** /organizations | Create an organization
-[**CreateOrganizationInvitation**](OrganizationsApi.md#CreateOrganizationInvitation) | **Post** /organizations/{id}/invitations | Create an invitation for an organization
-[**CreateOrganizationProject**](OrganizationsApi.md#CreateOrganizationProject) | **Post** /organizations/{id}/projects | Create a project for the organization
-[**CreatePaymentMethod**](OrganizationsApi.md#CreatePaymentMethod) | **Post** /organizations/{id}/payment-methods | Create a payment method for the given organization
-[**DeleteOrganization**](OrganizationsApi.md#DeleteOrganization) | **Delete** /organizations/{id} | Delete the organization
-[**FindOperatingSystemsByOrganization**](OrganizationsApi.md#FindOperatingSystemsByOrganization) | **Get** /organizations/{id}/operating-systems | Retrieve all operating systems visible by the organization
-[**FindOrganizationById**](OrganizationsApi.md#FindOrganizationById) | **Get** /organizations/{id} | Retrieve an organization&#39;s details
-[**FindOrganizationCustomdata**](OrganizationsApi.md#FindOrganizationCustomdata) | **Get** /organizations/{id}/customdata | Retrieve the custom metadata of an organization
-[**FindOrganizationInvitations**](OrganizationsApi.md#FindOrganizationInvitations) | **Get** /organizations/{id}/invitations | Retrieve organization invitations
-[**FindOrganizationPaymentMethods**](OrganizationsApi.md#FindOrganizationPaymentMethods) | **Get** /organizations/{id}/payment-methods | Retrieve all payment methods of an organization
-[**FindOrganizationProjects**](OrganizationsApi.md#FindOrganizationProjects) | **Get** /organizations/{id}/projects | Retrieve all projects of an organization
-[**FindOrganizationTransfers**](OrganizationsApi.md#FindOrganizationTransfers) | **Get** /organizations/{id}/transfers | Retrieve all project transfer requests from or to an organization
+[**CreateOrganizationInvitation**](OrganizationsApi.md#CreateOrganizationInvitation) | **Post** /organizations/{organization_id}/invitations | Create an invitation for an organization
+[**CreateOrganizationProject**](OrganizationsApi.md#CreateOrganizationProject) | **Post** /organizations/{organization_id}/projects | Create a project for the organization
+[**CreatePaymentMethod**](OrganizationsApi.md#CreatePaymentMethod) | **Post** /organizations/{organization_id}/payment-methods | Create a payment method for the given organization
+[**DeleteOrganization**](OrganizationsApi.md#DeleteOrganization) | **Delete** /organizations/{organization_id} | Delete the organization
+[**FindOperatingSystemsByOrganization**](OrganizationsApi.md#FindOperatingSystemsByOrganization) | **Get** /organizations/{organization_id}/operating-systems | Retrieve all operating systems visible by the organization
+[**FindOrganizationById**](OrganizationsApi.md#FindOrganizationById) | **Get** /organizations/{organization_id} | Retrieve an organization&#39;s details
+[**FindOrganizationCustomdata**](OrganizationsApi.md#FindOrganizationCustomdata) | **Get** /organizations/{organization_id}/customdata | Retrieve the custom metadata of an organization
+[**FindOrganizationInvitations**](OrganizationsApi.md#FindOrganizationInvitations) | **Get** /organizations/{organization_id}/invitations | Retrieve organization invitations
+[**FindOrganizationPaymentMethods**](OrganizationsApi.md#FindOrganizationPaymentMethods) | **Get** /organizations/{organization_id}/payment-methods | Retrieve all payment methods of an organization
+[**FindOrganizationProjects**](OrganizationsApi.md#FindOrganizationProjects) | **Get** /organizations/{organization_id}/projects | Retrieve all projects of an organization
+[**FindOrganizationTransfers**](OrganizationsApi.md#FindOrganizationTransfers) | **Get** /organizations/{organization_id}/transfers | Retrieve all project transfer requests from or to an organization
 [**FindOrganizations**](OrganizationsApi.md#FindOrganizations) | **Get** /organizations | Retrieve all organizations
-[**FindPlansByOrganization**](OrganizationsApi.md#FindPlansByOrganization) | **Get** /organizations/{id}/plans | Retrieve all plans visible by the organization
-[**UpdateOrganization**](OrganizationsApi.md#UpdateOrganization) | **Put** /organizations/{id} | Update the organization
+[**FindPlansByOrganization**](OrganizationsApi.md#FindPlansByOrganization) | **Get** /organizations/{organization_id}/plans | Retrieve all plans visible by the organization
+[**UpdateOrganization**](OrganizationsApi.md#UpdateOrganization) | **Put** /organizations/{organization_id} | Update the organization
 
 
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInvitation
 
-> Invitation CreateOrganizationInvitation(ctx, id).InvitationInput(invitationInput).Include(include).Execute()
+> Invitation CreateOrganizationInvitation(ctx, organizationId).InvitationInput(invitationInput).Include(include).Execute()
 
 Create an invitation for an organization
 
@@ -113,13 +113,13 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     invitationInput := *openapiclient.NewInvitationInput("Invitee_example") // InvitationInput | Invitation to create
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), id).InvitationInput(invitationInput).Include(include).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationInvitation(context.Background(), organizationId).InvitationInput(invitationInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,7 +135,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationProject
 
-> Project CreateOrganizationProject(ctx, id).ProjectCreateInput(projectCreateInput).Include(include).Exclude(exclude).Execute()
+> Project CreateOrganizationProject(ctx, organizationId).ProjectCreateInput(projectCreateInput).Include(include).Exclude(exclude).Execute()
 
 Create a project for the organization
 
@@ -187,14 +187,14 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     projectCreateInput := *openapiclient.NewProjectCreateInput("Name_example") // ProjectCreateInput | Project to create
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), id).ProjectCreateInput(projectCreateInput).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreateOrganizationProject(context.Background(), organizationId).ProjectCreateInput(projectCreateInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateOrganizationProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,7 +210,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## CreatePaymentMethod
 
-> PaymentMethod CreatePaymentMethod(ctx, id).PaymentMethodCreateInput(paymentMethodCreateInput).Include(include).Execute()
+> PaymentMethod CreatePaymentMethod(ctx, organizationId).PaymentMethodCreateInput(paymentMethodCreateInput).Include(include).Execute()
 
 Create a payment method for the given organization
 
@@ -263,13 +263,13 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     paymentMethodCreateInput := *openapiclient.NewPaymentMethodCreateInput("Name_example", "Nonce_example") // PaymentMethodCreateInput | Payment Method to create
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), id).PaymentMethodCreateInput(paymentMethodCreateInput).Include(include).Execute()
+    resp, r, err := apiClient.OrganizationsApi.CreatePaymentMethod(context.Background(), organizationId).PaymentMethodCreateInput(paymentMethodCreateInput).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,7 +285,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -318,7 +318,7 @@ Name | Type | Description  | Notes
 
 ## DeleteOrganization
 
-> DeleteOrganization(ctx, id).Execute()
+> DeleteOrganization(ctx, organizationId).Include(include).Exclude(exclude).Execute()
 
 Delete the organization
 
@@ -337,11 +337,13 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.DeleteOrganization(context.Background(), id).Execute()
+    r, err := apiClient.OrganizationsApi.DeleteOrganization(context.Background(), organizationId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.DeleteOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -355,7 +357,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -365,6 +367,8 @@ Other parameters are passed through a pointer to a apiDeleteOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **include** | **[]string** | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | 
+ **exclude** | **[]string** | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | 
 
 ### Return type
 
@@ -386,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## FindOperatingSystemsByOrganization
 
-> OperatingSystemList FindOperatingSystemsByOrganization(ctx, id).Include(include).Execute()
+> OperatingSystemList FindOperatingSystemsByOrganization(ctx, organizationId).Include(include).Execute()
 
 Retrieve all operating systems visible by the organization
 
@@ -405,12 +409,12 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOperatingSystemsByOrganization(context.Background(), id).Include(include).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOperatingSystemsByOrganization(context.Background(), organizationId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOperatingSystemsByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -426,7 +430,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -458,7 +462,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationById
 
-> Organization FindOrganizationById(ctx, id).Include(include).Exclude(exclude).Execute()
+> Organization FindOrganizationById(ctx, organizationId).Include(include).Exclude(exclude).Execute()
 
 Retrieve an organization's details
 
@@ -477,13 +481,13 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationById(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationById(context.Background(), organizationId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,7 +503,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -532,7 +536,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationCustomdata
 
-> FindOrganizationCustomdata(ctx, id).Execute()
+> FindOrganizationCustomdata(ctx, organizationId).Execute()
 
 Retrieve the custom metadata of an organization
 
@@ -551,11 +555,11 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.FindOrganizationCustomdata(context.Background(), id).Execute()
+    r, err := apiClient.OrganizationsApi.FindOrganizationCustomdata(context.Background(), organizationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationCustomdata``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -569,7 +573,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -600,7 +604,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationInvitations
 
-> InvitationList FindOrganizationInvitations(ctx, id).Include(include).Page(page).PerPage(perPage).Execute()
+> InvitationList FindOrganizationInvitations(ctx, organizationId).Include(include).Page(page).PerPage(perPage).Execute()
 
 Retrieve organization invitations
 
@@ -619,14 +623,14 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationInvitations(context.Background(), id).Include(include).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationInvitations(context.Background(), organizationId).Include(include).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -642,7 +646,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -676,7 +680,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationPaymentMethods
 
-> PaymentMethodList FindOrganizationPaymentMethods(ctx, id).Include(include).Page(page).PerPage(perPage).Execute()
+> PaymentMethodList FindOrganizationPaymentMethods(ctx, organizationId).Include(include).Page(page).PerPage(perPage).Execute()
 
 Retrieve all payment methods of an organization
 
@@ -695,14 +699,14 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     page := int32(56) // int32 | Page to return (optional) (default to 1)
     perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationPaymentMethods(context.Background(), id).Include(include).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationPaymentMethods(context.Background(), organizationId).Include(include).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -718,7 +722,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -752,7 +756,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationProjects
 
-> ProjectList FindOrganizationProjects(ctx, id).Name(name).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+> ProjectList FindOrganizationProjects(ctx, organizationId).Name(name).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
 
 Retrieve all projects of an organization
 
@@ -771,7 +775,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     name := "name_example" // string | Filter results by name. (optional)
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -780,7 +784,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationProjects(context.Background(), id).Name(name).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationProjects(context.Background(), organizationId).Name(name).Include(include).Exclude(exclude).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -796,7 +800,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -832,7 +836,7 @@ Name | Type | Description  | Notes
 
 ## FindOrganizationTransfers
 
-> TransferRequestList FindOrganizationTransfers(ctx, id).Include(include).Execute()
+> TransferRequestList FindOrganizationTransfers(ctx, organizationId).Include(include).Execute()
 
 Retrieve all project transfer requests from or to an organization
 
@@ -851,12 +855,12 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindOrganizationTransfers(context.Background(), id).Include(include).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindOrganizationTransfers(context.Background(), organizationId).Include(include).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindOrganizationTransfers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -872,7 +876,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -980,7 +984,7 @@ Name | Type | Description  | Notes
 
 ## FindPlansByOrganization
 
-> PlanList FindPlansByOrganization(ctx, id).Include(include).Exclude(exclude).Execute()
+> PlanList FindPlansByOrganization(ctx, organizationId).Include(include).Exclude(exclude).Execute()
 
 Retrieve all plans visible by the organization
 
@@ -999,13 +1003,13 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.FindPlansByOrganization(context.Background(), id).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.OrganizationsApi.FindPlansByOrganization(context.Background(), organizationId).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.FindPlansByOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1021,7 +1025,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -1054,7 +1058,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganization
 
-> Organization UpdateOrganization(ctx, id).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
+> Organization UpdateOrganization(ctx, organizationId).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
 
 Update the organization
 
@@ -1073,14 +1077,14 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
     organizationInput := *openapiclient.NewOrganizationInput() // OrganizationInput | Organization to update
     include := []string{"Inner_example"} // []string | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude := []string{"Inner_example"} // []string | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), id).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
+    resp, r, err := apiClient.OrganizationsApi.UpdateOrganization(context.Background(), organizationId).OrganizationInput(organizationInput).Include(include).Exclude(exclude).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1096,7 +1100,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 

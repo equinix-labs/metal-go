@@ -38,13 +38,13 @@ Only IP addresses with the `type` field set to `public_ipv4` will be returned.
 
 ## Searching
 
-Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
+Searching is used to find matching resources using multiple field comparisons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
 To search resources you can use the `search` query parameter.
 
 ## Include and Exclude
 
-For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
+For resources that contain references to other resources, such as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
 
 ```json
 {
@@ -179,8 +179,8 @@ Class | Method | HTTP request | Description
 *CapacityApi* | [**CheckCapacityForMetro**](docs/CapacityApi.md#checkcapacityformetro) | **Post** /capacity/metros | Check capacity for a metro
 *CapacityApi* | [**FindCapacityForFacility**](docs/CapacityApi.md#findcapacityforfacility) | **Get** /capacity | View capacity
 *CapacityApi* | [**FindCapacityForMetro**](docs/CapacityApi.md#findcapacityformetro) | **Get** /capacity/metros | View capacity for metros
-*CapacityApi* | [**FindOrganizationCapacityPerFacility**](docs/CapacityApi.md#findorganizationcapacityperfacility) | **Get** /organizations/{id}/capacity | View available hardware plans per Facility for given organization
-*CapacityApi* | [**FindOrganizationCapacityPerMetro**](docs/CapacityApi.md#findorganizationcapacitypermetro) | **Get** /organizations/{id}/capacity/metros | View available hardware plans per Metro for given organization
+*CapacityApi* | [**FindOrganizationCapacityPerFacility**](docs/CapacityApi.md#findorganizationcapacityperfacility) | **Get** /organizations/{organization_id}/capacity | View available hardware plans per Facility for given organization
+*CapacityApi* | [**FindOrganizationCapacityPerMetro**](docs/CapacityApi.md#findorganizationcapacitypermetro) | **Get** /organizations/{organization_id}/capacity/metros | View available hardware plans per Metro for given organization
 *DevicesApi* | [**CreateBgpSession**](docs/DevicesApi.md#createbgpsession) | **Post** /devices/{id}/bgp/sessions | Create a BGP session
 *DevicesApi* | [**CreateDevice**](docs/DevicesApi.md#createdevice) | **Post** /projects/{id}/devices | Create a device
 *DevicesApi* | [**CreateIPAssignment**](docs/DevicesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create an ip assignment
@@ -193,7 +193,7 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**FindIPAssignmentCustomdata**](docs/DevicesApi.md#findipassignmentcustomdata) | **Get** /devices/{instance_id}/ips/{id}/customdata | Retrieve the custom metadata of an IP Assignment
 *DevicesApi* | [**FindIPAssignments**](docs/DevicesApi.md#findipassignments) | **Get** /devices/{id}/ips | Retrieve all ip assignments
 *DevicesApi* | [**FindInstanceBandwidth**](docs/DevicesApi.md#findinstancebandwidth) | **Get** /devices/{id}/bandwidth | Retrieve an instance bandwidth
-*DevicesApi* | [**FindOrganizationDevices**](docs/DevicesApi.md#findorganizationdevices) | **Get** /organizations/{id}/devices | Retrieve all devices of an organization
+*DevicesApi* | [**FindOrganizationDevices**](docs/DevicesApi.md#findorganizationdevices) | **Get** /organizations/{organization_id}/devices | Retrieve all devices of an organization
 *DevicesApi* | [**FindProjectDevices**](docs/DevicesApi.md#findprojectdevices) | **Get** /projects/{id}/devices | Retrieve all devices of a project
 *DevicesApi* | [**FindTraffic**](docs/DevicesApi.md#findtraffic) | **Get** /devices/{id}/traffic | Retrieve device traffic
 *DevicesApi* | [**GetBgpNeighborData**](docs/DevicesApi.md#getbgpneighbordata) | **Get** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
@@ -210,14 +210,14 @@ Class | Method | HTTP request | Description
 *EventsApi* | [**FindEvents**](docs/EventsApi.md#findevents) | **Get** /events | Retrieve current user&#39;s events
 *EventsApi* | [**FindInterconnectionEvents**](docs/EventsApi.md#findinterconnectionevents) | **Get** /connections/{connection_id}/events | Retrieve interconnection events
 *EventsApi* | [**FindInterconnectionPortEvents**](docs/EventsApi.md#findinterconnectionportevents) | **Get** /connections/{connection_id}/ports/{id}/events | Retrieve interconnection port events
-*EventsApi* | [**FindOrganizationEvents**](docs/EventsApi.md#findorganizationevents) | **Get** /organizations/{id}/events | Retrieve organization&#39;s events
+*EventsApi* | [**FindOrganizationEvents**](docs/EventsApi.md#findorganizationevents) | **Get** /organizations/{organization_id}/events | Retrieve organization&#39;s events
 *EventsApi* | [**FindProjectEvents**](docs/EventsApi.md#findprojectevents) | **Get** /projects/{id}/events | Retrieve project&#39;s events
 *EventsApi* | [**FindVirtualCircuitEvents**](docs/EventsApi.md#findvirtualcircuitevents) | **Get** /virtual-circuits/{id}/events | Retrieve virtual circuit events
 *EventsApi* | [**FindVrfRouteEvents**](docs/EventsApi.md#findvrfrouteevents) | **Get** /routes/{id}/events | Retrieve VRF route events
 *FacilitiesApi* | [**FindFacilities**](docs/FacilitiesApi.md#findfacilities) | **Get** /facilities | Retrieve all facilities
-*FacilitiesApi* | [**FindFacilitiesByOrganization**](docs/FacilitiesApi.md#findfacilitiesbyorganization) | **Get** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
+*FacilitiesApi* | [**FindFacilitiesByOrganization**](docs/FacilitiesApi.md#findfacilitiesbyorganization) | **Get** /organizations/{organization_id}/facilities | Retrieve all facilities visible by the organization
 *FacilitiesApi* | [**FindFacilitiesByProject**](docs/FacilitiesApi.md#findfacilitiesbyproject) | **Get** /projects/{id}/facilities | Retrieve all facilities visible by the project
-*FirmwareSetsApi* | [**GetOrganizationFirmwareSets**](docs/FirmwareSetsApi.md#getorganizationfirmwaresets) | **Get** /organizations/{id}/firmware-sets | Get Organization&#39;s Firmware Sets
+*FirmwareSetsApi* | [**GetOrganizationFirmwareSets**](docs/FirmwareSetsApi.md#getorganizationfirmwaresets) | **Get** /organizations/{organization_id}/firmware-sets | Get Organization&#39;s Firmware Sets
 *FirmwareSetsApi* | [**GetProjectFirmwareSets**](docs/FirmwareSetsApi.md#getprojectfirmwaresets) | **Get** /projects/{id}/firmware-sets | Get Project&#39;s Firmware Sets
 *HardwareReservationsApi* | [**ActivateHardwareReservation**](docs/HardwareReservationsApi.md#activatehardwarereservation) | **Post** /hardware-reservations/{id}/activate | Activate a spare hardware reservation
 *HardwareReservationsApi* | [**FindHardwareReservationById**](docs/HardwareReservationsApi.md#findhardwarereservationbyid) | **Get** /hardware-reservations/{id} | Retrieve a hardware reservation
@@ -249,7 +249,7 @@ Class | Method | HTTP request | Description
 *InvitationsApi* | [**AcceptInvitation**](docs/InvitationsApi.md#acceptinvitation) | **Put** /invitations/{id} | Accept an invitation
 *InvitationsApi* | [**DeclineInvitation**](docs/InvitationsApi.md#declineinvitation) | **Delete** /invitations/{id} | Decline an invitation
 *InvitationsApi* | [**FindInvitationById**](docs/InvitationsApi.md#findinvitationbyid) | **Get** /invitations/{id} | View an invitation
-*InvoicesApi* | [**FindOrganizationInvoices**](docs/InvoicesApi.md#findorganizationinvoices) | **Get** /organizations/{id}/invoices | Retrieve all invoices for an organization
+*InvoicesApi* | [**FindOrganizationInvoices**](docs/InvoicesApi.md#findorganizationinvoices) | **Get** /organizations/{organization_id}/invoices | Retrieve all invoices for an organization
 *InvoicesApi* | [**GetInvoiceById**](docs/InvoicesApi.md#getinvoicebyid) | **Get** /invoices/{id} | Retrieve an invoice
 *LicensesApi* | [**CreateLicense**](docs/LicensesApi.md#createlicense) | **Post** /projects/{id}/licenses | Create a License
 *LicensesApi* | [**DeleteLicense**](docs/LicensesApi.md#deletelicense) | **Delete** /licenses/{id} | Delete the license
@@ -274,20 +274,20 @@ Class | Method | HTTP request | Description
 *OperatingSystemsApi* | [**FindOperatingSystemVersion**](docs/OperatingSystemsApi.md#findoperatingsystemversion) | **Get** /operating-system-versions | Retrieve all operating system versions
 *OperatingSystemsApi* | [**FindOperatingSystems**](docs/OperatingSystemsApi.md#findoperatingsystems) | **Get** /operating-systems | Retrieve all operating systems
 *OrganizationsApi* | [**CreateOrganization**](docs/OrganizationsApi.md#createorganization) | **Post** /organizations | Create an organization
-*OrganizationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationsApi.md#createorganizationinvitation) | **Post** /organizations/{id}/invitations | Create an invitation for an organization
-*OrganizationsApi* | [**CreateOrganizationProject**](docs/OrganizationsApi.md#createorganizationproject) | **Post** /organizations/{id}/projects | Create a project for the organization
-*OrganizationsApi* | [**CreatePaymentMethod**](docs/OrganizationsApi.md#createpaymentmethod) | **Post** /organizations/{id}/payment-methods | Create a payment method for the given organization
-*OrganizationsApi* | [**DeleteOrganization**](docs/OrganizationsApi.md#deleteorganization) | **Delete** /organizations/{id} | Delete the organization
-*OrganizationsApi* | [**FindOperatingSystemsByOrganization**](docs/OrganizationsApi.md#findoperatingsystemsbyorganization) | **Get** /organizations/{id}/operating-systems | Retrieve all operating systems visible by the organization
-*OrganizationsApi* | [**FindOrganizationById**](docs/OrganizationsApi.md#findorganizationbyid) | **Get** /organizations/{id} | Retrieve an organization&#39;s details
-*OrganizationsApi* | [**FindOrganizationCustomdata**](docs/OrganizationsApi.md#findorganizationcustomdata) | **Get** /organizations/{id}/customdata | Retrieve the custom metadata of an organization
-*OrganizationsApi* | [**FindOrganizationInvitations**](docs/OrganizationsApi.md#findorganizationinvitations) | **Get** /organizations/{id}/invitations | Retrieve organization invitations
-*OrganizationsApi* | [**FindOrganizationPaymentMethods**](docs/OrganizationsApi.md#findorganizationpaymentmethods) | **Get** /organizations/{id}/payment-methods | Retrieve all payment methods of an organization
-*OrganizationsApi* | [**FindOrganizationProjects**](docs/OrganizationsApi.md#findorganizationprojects) | **Get** /organizations/{id}/projects | Retrieve all projects of an organization
-*OrganizationsApi* | [**FindOrganizationTransfers**](docs/OrganizationsApi.md#findorganizationtransfers) | **Get** /organizations/{id}/transfers | Retrieve all project transfer requests from or to an organization
+*OrganizationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationsApi.md#createorganizationinvitation) | **Post** /organizations/{organization_id}/invitations | Create an invitation for an organization
+*OrganizationsApi* | [**CreateOrganizationProject**](docs/OrganizationsApi.md#createorganizationproject) | **Post** /organizations/{organization_id}/projects | Create a project for the organization
+*OrganizationsApi* | [**CreatePaymentMethod**](docs/OrganizationsApi.md#createpaymentmethod) | **Post** /organizations/{organization_id}/payment-methods | Create a payment method for the given organization
+*OrganizationsApi* | [**DeleteOrganization**](docs/OrganizationsApi.md#deleteorganization) | **Delete** /organizations/{organization_id} | Delete the organization
+*OrganizationsApi* | [**FindOperatingSystemsByOrganization**](docs/OrganizationsApi.md#findoperatingsystemsbyorganization) | **Get** /organizations/{organization_id}/operating-systems | Retrieve all operating systems visible by the organization
+*OrganizationsApi* | [**FindOrganizationById**](docs/OrganizationsApi.md#findorganizationbyid) | **Get** /organizations/{organization_id} | Retrieve an organization&#39;s details
+*OrganizationsApi* | [**FindOrganizationCustomdata**](docs/OrganizationsApi.md#findorganizationcustomdata) | **Get** /organizations/{organization_id}/customdata | Retrieve the custom metadata of an organization
+*OrganizationsApi* | [**FindOrganizationInvitations**](docs/OrganizationsApi.md#findorganizationinvitations) | **Get** /organizations/{organization_id}/invitations | Retrieve organization invitations
+*OrganizationsApi* | [**FindOrganizationPaymentMethods**](docs/OrganizationsApi.md#findorganizationpaymentmethods) | **Get** /organizations/{organization_id}/payment-methods | Retrieve all payment methods of an organization
+*OrganizationsApi* | [**FindOrganizationProjects**](docs/OrganizationsApi.md#findorganizationprojects) | **Get** /organizations/{organization_id}/projects | Retrieve all projects of an organization
+*OrganizationsApi* | [**FindOrganizationTransfers**](docs/OrganizationsApi.md#findorganizationtransfers) | **Get** /organizations/{organization_id}/transfers | Retrieve all project transfer requests from or to an organization
 *OrganizationsApi* | [**FindOrganizations**](docs/OrganizationsApi.md#findorganizations) | **Get** /organizations | Retrieve all organizations
-*OrganizationsApi* | [**FindPlansByOrganization**](docs/OrganizationsApi.md#findplansbyorganization) | **Get** /organizations/{id}/plans | Retrieve all plans visible by the organization
-*OrganizationsApi* | [**UpdateOrganization**](docs/OrganizationsApi.md#updateorganization) | **Put** /organizations/{id} | Update the organization
+*OrganizationsApi* | [**FindPlansByOrganization**](docs/OrganizationsApi.md#findplansbyorganization) | **Get** /organizations/{organization_id}/plans | Retrieve all plans visible by the organization
+*OrganizationsApi* | [**UpdateOrganization**](docs/OrganizationsApi.md#updateorganization) | **Put** /organizations/{organization_id} | Update the organization
 *PasswordResetTokensApi* | [**CreatePasswordResetToken**](docs/PasswordResetTokensApi.md#createpasswordresettoken) | **Post** /reset-password | Create a password reset token
 *PasswordResetTokensApi* | [**ResetPassword**](docs/PasswordResetTokensApi.md#resetpassword) | **Delete** /reset-password | Reset current user password
 *PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /payment-methods/{id} | Delete the payment method

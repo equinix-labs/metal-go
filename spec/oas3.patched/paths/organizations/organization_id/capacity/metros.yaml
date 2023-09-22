@@ -1,33 +1,27 @@
+parameters:
+  - $ref: "../../../../components/parameters/OrganizationID.yaml"
 get:
-  description: Returns a list of facilities and plans with their current capacity.
-  operationId: findOrganizationCapacityPerFacility
-  parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
+  description: Returns a list of metros and plans with their current capacity.
+  operationId: findOrganizationCapacityPerMetro
   responses:
     "200":
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/CapacityList.yaml'
+            $ref: '../../../../components/schemas/CapacityList.yaml'
           example:
             capacity:
-              am6:
+              am:
                 "c2.medium.x86":
                   level: "string"
                 "m2.xlarge.x86":
                   level: "string"
-              da11:
+              da:
                 "c2.medium.x86":
                   level: "string"
                 "m2.xlarge.x86":
                   level: "string"
-              sv15:
+              dc:
                 "c2.medium.x86":
                   level: "string"
                 "m2.xlarge.x86":
@@ -37,14 +31,14 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/Error.yaml'
+            $ref: '../../../../components/schemas/Error.yaml'
       description: unauthorized
     "403":
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/Error.yaml'
+            $ref: '../../../../components/schemas/Error.yaml'
       description: forbidden
-  summary: View available hardware plans per Facility for given organization
+  summary: View available hardware plans per Metro for given organization
   tags:
   - Capacity

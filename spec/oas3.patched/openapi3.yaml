@@ -44,13 +44,13 @@ info:
 
     ## Searching
 
-    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
+    Searching is used to find matching resources using multiple field comparisons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
     To search resources you can use the `search` query parameter.
 
     ## Include and Exclude
 
-    For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
+    For resources that contain references to other resources, such as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
 
     ```json
     {
@@ -109,6 +109,8 @@ components:
       $ref: './components/parameters/Include.yaml'
     Exclude:
       $ref: './components/parameters/Exclude.yaml'
+    OrganizationID:
+      $ref: './components/parameters/OrganizationID.yaml'
   requestBodies:
     InterconnectionCreateInput:
       $ref: './components/requestBodies/InterconnectionCreateInput.yaml'
@@ -628,36 +630,36 @@ paths:
     $ref: ./paths/operating-systems.yaml
   /organizations:
     $ref: ./paths/organizations.yaml
-  /organizations/{id}:
-    $ref: ./paths/organizations/id.yaml
-  /organizations/{id}/capacity:
-    $ref: ./paths/organizations/id/capacity.yaml
-  /organizations/{id}/capacity/metros:
-    $ref: ./paths/organizations/id/capacity/metros.yaml
-  /organizations/{id}/customdata:
-    $ref: ./paths/organizations/id/customdata.yaml
-  /organizations/{id}/devices:
-    $ref: ./paths/organizations/id/devices.yaml
-  /organizations/{id}/events:
-    $ref: ./paths/organizations/id/events.yaml
-  /organizations/{id}/facilities:
-    $ref: ./paths/organizations/id/facilities.yaml
-  /organizations/{id}/firmware-sets:
-    $ref: ./paths/organizations/id/firmware-sets.yaml
-  /organizations/{id}/invitations:
-    $ref: ./paths/organizations/id/invitations.yaml
-  /organizations/{id}/invoices:
-    $ref: ./paths/organizations/id/invoices.yaml
-  /organizations/{id}/operating-systems:
-    $ref: ./paths/organizations/id/operating-systems.yaml
-  /organizations/{id}/payment-methods:
-    $ref: ./paths/organizations/id/payment-methods.yaml
-  /organizations/{id}/plans:
-    $ref: ./paths/organizations/id/plans.yaml
-  /organizations/{id}/projects:
-    $ref: ./paths/organizations/id/projects.yaml
-  /organizations/{id}/transfers:
-    $ref: ./paths/organizations/id/transfers.yaml
+  /organizations/{organization_id}:
+    $ref: ./paths/organizations/organization_id.yaml
+  /organizations/{organization_id}/capacity:
+    $ref: ./paths/organizations/organization_id/capacity.yaml
+  /organizations/{organization_id}/capacity/metros:
+    $ref: ./paths/organizations/organization_id/capacity/metros.yaml
+  /organizations/{organization_id}/customdata:
+    $ref: ./paths/organizations/organization_id/customdata.yaml
+  /organizations/{organization_id}/devices:
+    $ref: ./paths/organizations/organization_id/devices.yaml
+  /organizations/{organization_id}/events:
+    $ref: ./paths/organizations/organization_id/events.yaml
+  /organizations/{organization_id}/facilities:
+    $ref: ./paths/organizations/organization_id/facilities.yaml
+  /organizations/{organization_id}/firmware-sets:
+    $ref: ./paths/organizations/organization_id/firmware-sets.yaml
+  /organizations/{organization_id}/invitations:
+    $ref: ./paths/organizations/organization_id/invitations.yaml
+  /organizations/{organization_id}/invoices:
+    $ref: ./paths/organizations/organization_id/invoices.yaml
+  /organizations/{organization_id}/operating-systems:
+    $ref: ./paths/organizations/organization_id/operating-systems.yaml
+  /organizations/{organization_id}/payment-methods:
+    $ref: ./paths/organizations/organization_id/payment-methods.yaml
+  /organizations/{organization_id}/plans:
+    $ref: ./paths/organizations/organization_id/plans.yaml
+  /organizations/{organization_id}/projects:
+    $ref: ./paths/organizations/organization_id/projects.yaml
+  /organizations/{organization_id}/transfers:
+    $ref: ./paths/organizations/organization_id/transfers.yaml
   /organizations/{organization_id}/connections:
     $ref: ./paths/organizations/organization_id/connections.yaml
   /payment-methods/{id}:

@@ -1,0 +1,29 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
+get:
+  description: Provides a collection of project transfer requests from or to the organization.
+  operationId: findOrganizationTransfers
+  parameters:
+  - $ref: '../../../components/parameters/Include.yaml'
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/TransferRequestList.yaml'
+      description: ok
+    "401":
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/Error.yaml'
+      description: unauthorized
+    "403":
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/Error.yaml'
+      description: forbidden
+  summary: Retrieve all project transfer requests from or to an organization
+  tags:
+  - Organizations

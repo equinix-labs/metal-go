@@ -1,23 +1,19 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
 get:
-  deprecated: true
-  description: Returns a listing of available datacenters for the given organization
-  operationId: findFacilitiesByOrganization
+  description: Returns a list of events for a single organization
+  operationId: findOrganizationEvents
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Exclude.yaml'
+  - $ref: '../../../components/parameters/Page.yaml'
+  - $ref: '../../../components/parameters/PerPage.yaml'
   responses:
     "200":
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/FacilityList.yaml'
+            $ref: '../../../components/schemas/EventList.yaml'
       description: ok
     "401":
       content:
@@ -37,6 +33,6 @@ get:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: not found
-  summary: Retrieve all facilities visible by the organization
+  summary: Retrieve organization's events
   tags:
-  - Facilities
+  - Events

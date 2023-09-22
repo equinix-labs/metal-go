@@ -4,14 +4,14 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetOrganizationFirmwareSets**](FirmwareSetsApi.md#GetOrganizationFirmwareSets) | **Get** /organizations/{id}/firmware-sets | Get Organization&#39;s Firmware Sets
+[**GetOrganizationFirmwareSets**](FirmwareSetsApi.md#GetOrganizationFirmwareSets) | **Get** /organizations/{organization_id}/firmware-sets | Get Organization&#39;s Firmware Sets
 [**GetProjectFirmwareSets**](FirmwareSetsApi.md#GetProjectFirmwareSets) | **Get** /projects/{id}/firmware-sets | Get Project&#39;s Firmware Sets
 
 
 
 ## GetOrganizationFirmwareSets
 
-> FirmwareSetListResponse GetOrganizationFirmwareSets(ctx, id).Page(page).PerPage(perPage).Execute()
+> FirmwareSetListResponse GetOrganizationFirmwareSets(ctx, organizationId).Page(page).PerPage(perPage).Execute()
 
 Get Organization's Firmware Sets
 
@@ -30,13 +30,13 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
-    page := int32(56) // int32 | page number to return (optional)
-    perPage := int32(56) // int32 | items returned per page. (optional)
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Organization UUID
+    page := int32(56) // int32 | Page to return (optional) (default to 1)
+    perPage := int32(56) // int32 | Items returned per page (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FirmwareSetsApi.GetOrganizationFirmwareSets(context.Background(), id).Page(page).PerPage(perPage).Execute()
+    resp, r, err := apiClient.FirmwareSetsApi.GetOrganizationFirmwareSets(context.Background(), organizationId).Page(page).PerPage(perPage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FirmwareSetsApi.GetOrganizationFirmwareSets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Organization UUID | 
+**organizationId** | **string** | Organization UUID | 
 
 ### Other Parameters
 
@@ -62,8 +62,8 @@ Other parameters are passed through a pointer to a apiGetOrganizationFirmwareSet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **int32** | page number to return | 
- **perPage** | **int32** | items returned per page. | 
+ **page** | **int32** | Page to return | [default to 1]
+ **perPage** | **int32** | Items returned per page | [default to 10]
 
 ### Return type
 

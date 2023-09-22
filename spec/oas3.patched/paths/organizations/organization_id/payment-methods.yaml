@@ -1,23 +1,19 @@
+
+parameters:
+  - $ref: '../../../components/parameters/OrganizationID.yaml'
 get:
-  description: Returns all invitations in an organization.
-  operationId: findOrganizationInvitations
+  description: Returns all payment methods of an organization.
+  operationId: findOrganizationPaymentMethods
   parameters:
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Page.yaml'
   - $ref: '../../../components/parameters/PerPage.yaml'
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   responses:
     "200":
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/InvitationList.yaml'
+            $ref: '../../../components/schemas/PaymentMethodList.yaml'
       description: ok
     "401":
       content:
@@ -25,43 +21,34 @@ get:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: unauthorized
-    "403":
-      content:
-        application/json:
-          schema:
-            $ref: '../../../components/schemas/Error.yaml'
-      description: forbidden
     "404":
       content:
         application/json:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: not found
-  summary: Retrieve organization invitations
+  summary: Retrieve all payment methods of an organization
   tags:
   - Organizations
 post:
-  description: |-
-    In order to add a user to an organization, they must first be invited.
-    To invite to several projects the parameter `projects_ids:[a,b,c]` can be used
-  operationId: createOrganizationInvitation
+  description: Creates a payment method.
+  operationId: createPaymentMethod
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
+
   - $ref: '../../../components/parameters/Include.yaml'
   requestBody:
-    $ref: '../../../components/requestBodies/InvitationInput.yaml'
+    content:
+      application/json:
+        schema:
+          $ref: '../../../components/schemas/PaymentMethodCreateInput.yaml'
+    description: Payment Method to create
+    required: true
   responses:
     "201":
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/Invitation.yaml'
+            $ref: '../../../components/schemas/PaymentMethod.yaml'
       description: created
     "401":
       content:
@@ -69,12 +56,6 @@ post:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: unauthorized
-    "403":
-      content:
-        application/json:
-          schema:
-            $ref: '../../../components/schemas/Error.yaml'
-      description: forbidden
     "404":
       content:
         application/json:
@@ -87,6 +68,6 @@ post:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: unprocessable entity
-  summary: Create an invitation for an organization
+  summary: Create a payment method for the given organization
   tags:
   - Organizations

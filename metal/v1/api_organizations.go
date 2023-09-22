@@ -1,7 +1,7 @@
 /*
 Metal API
 
-# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
+# Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparisons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, such as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.
 
 API version: 1.0.0
 Contact: support@equinixmetal.com
@@ -204,7 +204,7 @@ func (a *OrganizationsApiService) CreateOrganizationExecute(r ApiCreateOrganizat
 type ApiCreateOrganizationInvitationRequest struct {
 	ctx             context.Context
 	ApiService      *OrganizationsApiService
-	id              string
+	organizationId  string
 	invitationInput *InvitationInput
 	include         *[]string
 }
@@ -232,14 +232,14 @@ In order to add a user to an organization, they must first be invited.
 To invite to several projects the parameter `projects_ids:[a,b,c]` can be used
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiCreateOrganizationInvitationRequest
 */
-func (a *OrganizationsApiService) CreateOrganizationInvitation(ctx context.Context, id string) ApiCreateOrganizationInvitationRequest {
+func (a *OrganizationsApiService) CreateOrganizationInvitation(ctx context.Context, organizationId string) ApiCreateOrganizationInvitationRequest {
 	return ApiCreateOrganizationInvitationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -259,8 +259,8 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/invitations"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -388,7 +388,7 @@ func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r ApiCreat
 type ApiCreateOrganizationProjectRequest struct {
 	ctx                context.Context
 	ApiService         *OrganizationsApiService
-	id                 string
+	organizationId     string
 	projectCreateInput *ProjectCreateInput
 	include            *[]string
 	exclude            *[]string
@@ -422,14 +422,14 @@ CreateOrganizationProject Create a project for the organization
 Creates a new project for the organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiCreateOrganizationProjectRequest
 */
-func (a *OrganizationsApiService) CreateOrganizationProject(ctx context.Context, id string) ApiCreateOrganizationProjectRequest {
+func (a *OrganizationsApiService) CreateOrganizationProject(ctx context.Context, organizationId string) ApiCreateOrganizationProjectRequest {
 	return ApiCreateOrganizationProjectRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -449,8 +449,8 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/projects"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/projects"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -559,7 +559,7 @@ func (a *OrganizationsApiService) CreateOrganizationProjectExecute(r ApiCreateOr
 type ApiCreatePaymentMethodRequest struct {
 	ctx                      context.Context
 	ApiService               *OrganizationsApiService
-	id                       string
+	organizationId           string
 	paymentMethodCreateInput *PaymentMethodCreateInput
 	include                  *[]string
 }
@@ -586,14 +586,14 @@ CreatePaymentMethod Create a payment method for the given organization
 Creates a payment method.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiCreatePaymentMethodRequest
 */
-func (a *OrganizationsApiService) CreatePaymentMethod(ctx context.Context, id string) ApiCreatePaymentMethodRequest {
+func (a *OrganizationsApiService) CreatePaymentMethod(ctx context.Context, organizationId string) ApiCreatePaymentMethodRequest {
 	return ApiCreatePaymentMethodRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -613,8 +613,8 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/payment-methods"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/payment-methods"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -729,9 +729,23 @@ func (a *OrganizationsApiService) CreatePaymentMethodExecute(r ApiCreatePaymentM
 }
 
 type ApiDeleteOrganizationRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	include        *[]string
+	exclude        *[]string
+}
+
+// Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+func (r ApiDeleteOrganizationRequest) Include(include []string) ApiDeleteOrganizationRequest {
+	r.include = &include
+	return r
+}
+
+// Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+func (r ApiDeleteOrganizationRequest) Exclude(exclude []string) ApiDeleteOrganizationRequest {
+	r.exclude = &exclude
+	return r
 }
 
 func (r ApiDeleteOrganizationRequest) Execute() (*http.Response, error) {
@@ -744,14 +758,14 @@ DeleteOrganization Delete the organization
 Deletes the organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiDeleteOrganizationRequest
 */
-func (a *OrganizationsApiService) DeleteOrganization(ctx context.Context, id string) ApiDeleteOrganizationRequest {
+func (a *OrganizationsApiService) DeleteOrganization(ctx context.Context, organizationId string) ApiDeleteOrganizationRequest {
 	return ApiDeleteOrganizationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -768,13 +782,19 @@ func (a *OrganizationsApiService) DeleteOrganizationExecute(r ApiDeleteOrganizat
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "csv")
+	}
+	if r.exclude != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude", r.exclude, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -856,10 +876,10 @@ func (a *OrganizationsApiService) DeleteOrganizationExecute(r ApiDeleteOrganizat
 }
 
 type ApiFindOperatingSystemsByOrganizationRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	include    *[]string
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	include        *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -878,14 +898,14 @@ FindOperatingSystemsByOrganization Retrieve all operating systems visible by the
 Returns a listing of available operating systems for the given organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindOperatingSystemsByOrganizationRequest
 */
-func (a *OrganizationsApiService) FindOperatingSystemsByOrganization(ctx context.Context, id string) ApiFindOperatingSystemsByOrganizationRequest {
+func (a *OrganizationsApiService) FindOperatingSystemsByOrganization(ctx context.Context, organizationId string) ApiFindOperatingSystemsByOrganizationRequest {
 	return ApiFindOperatingSystemsByOrganizationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -905,8 +925,8 @@ func (a *OrganizationsApiService) FindOperatingSystemsByOrganizationExecute(r Ap
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/operating-systems"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/operating-systems"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1016,11 +1036,11 @@ func (a *OrganizationsApiService) FindOperatingSystemsByOrganizationExecute(r Ap
 }
 
 type ApiFindOrganizationByIdRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	include        *[]string
+	exclude        *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -1045,14 +1065,14 @@ FindOrganizationById Retrieve an organization's details
 Returns a single organization's details, if the user is authorized to view it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindOrganizationByIdRequest
 */
-func (a *OrganizationsApiService) FindOrganizationById(ctx context.Context, id string) ApiFindOrganizationByIdRequest {
+func (a *OrganizationsApiService) FindOrganizationById(ctx context.Context, organizationId string) ApiFindOrganizationByIdRequest {
 	return ApiFindOrganizationByIdRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -1072,8 +1092,8 @@ func (a *OrganizationsApiService) FindOrganizationByIdExecute(r ApiFindOrganizat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1186,9 +1206,9 @@ func (a *OrganizationsApiService) FindOrganizationByIdExecute(r ApiFindOrganizat
 }
 
 type ApiFindOrganizationCustomdataRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
 }
 
 func (r ApiFindOrganizationCustomdataRequest) Execute() (*http.Response, error) {
@@ -1201,14 +1221,14 @@ FindOrganizationCustomdata Retrieve the custom metadata of an organization
 Provides the custom metadata stored for this organization in json format
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindOrganizationCustomdataRequest
 */
-func (a *OrganizationsApiService) FindOrganizationCustomdata(ctx context.Context, id string) ApiFindOrganizationCustomdataRequest {
+func (a *OrganizationsApiService) FindOrganizationCustomdata(ctx context.Context, organizationId string) ApiFindOrganizationCustomdataRequest {
 	return ApiFindOrganizationCustomdataRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -1225,8 +1245,8 @@ func (a *OrganizationsApiService) FindOrganizationCustomdataExecute(r ApiFindOrg
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/customdata"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/customdata"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1324,12 +1344,12 @@ func (a *OrganizationsApiService) FindOrganizationCustomdataExecute(r ApiFindOrg
 }
 
 type ApiFindOrganizationInvitationsRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	include    *[]string
-	page       *int32
-	perPage    *int32
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	include        *[]string
+	page           *int32
+	perPage        *int32
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -1360,14 +1380,14 @@ FindOrganizationInvitations Retrieve organization invitations
 Returns all invitations in an organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindOrganizationInvitationsRequest
 */
-func (a *OrganizationsApiService) FindOrganizationInvitations(ctx context.Context, id string) ApiFindOrganizationInvitationsRequest {
+func (a *OrganizationsApiService) FindOrganizationInvitations(ctx context.Context, organizationId string) ApiFindOrganizationInvitationsRequest {
 	return ApiFindOrganizationInvitationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -1387,8 +1407,8 @@ func (a *OrganizationsApiService) FindOrganizationInvitationsExecute(r ApiFindOr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/invitations"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/invitations"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1504,12 +1524,12 @@ func (a *OrganizationsApiService) FindOrganizationInvitationsExecute(r ApiFindOr
 }
 
 type ApiFindOrganizationPaymentMethodsRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	include    *[]string
-	page       *int32
-	perPage    *int32
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	include        *[]string
+	page           *int32
+	perPage        *int32
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -1540,14 +1560,14 @@ FindOrganizationPaymentMethods Retrieve all payment methods of an organization
 Returns all payment methods of an organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindOrganizationPaymentMethodsRequest
 */
-func (a *OrganizationsApiService) FindOrganizationPaymentMethods(ctx context.Context, id string) ApiFindOrganizationPaymentMethodsRequest {
+func (a *OrganizationsApiService) FindOrganizationPaymentMethods(ctx context.Context, organizationId string) ApiFindOrganizationPaymentMethodsRequest {
 	return ApiFindOrganizationPaymentMethodsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -1567,8 +1587,8 @@ func (a *OrganizationsApiService) FindOrganizationPaymentMethodsExecute(r ApiFin
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/payment-methods"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/payment-methods"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1673,14 +1693,14 @@ func (a *OrganizationsApiService) FindOrganizationPaymentMethodsExecute(r ApiFin
 }
 
 type ApiFindOrganizationProjectsRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	name       *string
-	include    *[]string
-	exclude    *[]string
-	page       *int32
-	perPage    *int32
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	name           *string
+	include        *[]string
+	exclude        *[]string
+	page           *int32
+	perPage        *int32
 }
 
 // Filter results by name.
@@ -1723,14 +1743,14 @@ FindOrganizationProjects Retrieve all projects of an organization
 Returns a collection of projects that belong to the organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindOrganizationProjectsRequest
 */
-func (a *OrganizationsApiService) FindOrganizationProjects(ctx context.Context, id string) ApiFindOrganizationProjectsRequest {
+func (a *OrganizationsApiService) FindOrganizationProjects(ctx context.Context, organizationId string) ApiFindOrganizationProjectsRequest {
 	return ApiFindOrganizationProjectsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -1750,8 +1770,8 @@ func (a *OrganizationsApiService) FindOrganizationProjectsExecute(r ApiFindOrgan
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/projects"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/projects"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1851,10 +1871,10 @@ func (a *OrganizationsApiService) FindOrganizationProjectsExecute(r ApiFindOrgan
 }
 
 type ApiFindOrganizationTransfersRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	include    *[]string
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	include        *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -1873,14 +1893,14 @@ FindOrganizationTransfers Retrieve all project transfer requests from or to an o
 Provides a collection of project transfer requests from or to the organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindOrganizationTransfersRequest
 */
-func (a *OrganizationsApiService) FindOrganizationTransfers(ctx context.Context, id string) ApiFindOrganizationTransfersRequest {
+func (a *OrganizationsApiService) FindOrganizationTransfers(ctx context.Context, organizationId string) ApiFindOrganizationTransfersRequest {
 	return ApiFindOrganizationTransfersRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -1900,8 +1920,8 @@ func (a *OrganizationsApiService) FindOrganizationTransfersExecute(r ApiFindOrga
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/transfers"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/transfers"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2184,11 +2204,11 @@ func (a *OrganizationsApiService) FindOrganizationsExecute(r ApiFindOrganization
 }
 
 type ApiFindPlansByOrganizationRequest struct {
-	ctx        context.Context
-	ApiService *OrganizationsApiService
-	id         string
-	include    *[]string
-	exclude    *[]string
+	ctx            context.Context
+	ApiService     *OrganizationsApiService
+	organizationId string
+	include        *[]string
+	exclude        *[]string
 }
 
 // Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -2213,14 +2233,14 @@ FindPlansByOrganization Retrieve all plans visible by the organization
 Returns a listing of available plans for the given organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiFindPlansByOrganizationRequest
 */
-func (a *OrganizationsApiService) FindPlansByOrganization(ctx context.Context, id string) ApiFindPlansByOrganizationRequest {
+func (a *OrganizationsApiService) FindPlansByOrganization(ctx context.Context, organizationId string) ApiFindPlansByOrganizationRequest {
 	return ApiFindPlansByOrganizationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -2240,8 +2260,8 @@ func (a *OrganizationsApiService) FindPlansByOrganizationExecute(r ApiFindPlansB
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}/plans"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}/plans"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2356,7 +2376,7 @@ func (a *OrganizationsApiService) FindPlansByOrganizationExecute(r ApiFindPlansB
 type ApiUpdateOrganizationRequest struct {
 	ctx               context.Context
 	ApiService        *OrganizationsApiService
-	id                string
+	organizationId    string
 	organizationInput *OrganizationInput
 	include           *[]string
 	exclude           *[]string
@@ -2390,14 +2410,14 @@ UpdateOrganization Update the organization
 Updates the organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Organization UUID
+	@param organizationId Organization UUID
 	@return ApiUpdateOrganizationRequest
 */
-func (a *OrganizationsApiService) UpdateOrganization(ctx context.Context, id string) ApiUpdateOrganizationRequest {
+func (a *OrganizationsApiService) UpdateOrganization(ctx context.Context, organizationId string) ApiUpdateOrganizationRequest {
 	return ApiUpdateOrganizationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ApiService:     a,
+		ctx:            ctx,
+		organizationId: organizationId,
 	}
 }
 
@@ -2417,8 +2437,8 @@ func (a *OrganizationsApiService) UpdateOrganizationExecute(r ApiUpdateOrganizat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/organizations/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/organizations/{organization_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

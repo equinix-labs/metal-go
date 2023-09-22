@@ -1,0 +1,627 @@
+diff --git a/spec/oas3.patched/components/parameters/OrganizationID.yaml b/spec/oas3.patched/components/parameters/OrganizationID.yaml
+new file mode 100644
+index 0000000..aa1abc5
+--- /dev/null
++++ b/spec/oas3.patched/components/parameters/OrganizationID.yaml
+@@ -0,0 +1,7 @@
++description: Organization UUID
++in: path
++name: organization_id
++required: true
++schema:
++  format: uuid
++  type: string
+\ No newline at end of file
+diff --git a/spec/oas3.patched/openapi3.yaml b/spec/oas3.patched/openapi3.yaml
+index a7db414..5da7f72 100644
+--- a/spec/oas3.patched/openapi3.yaml
++++ b/spec/oas3.patched/openapi3.yaml
+@@ -44,13 +44,13 @@ info:
+ 
+     ## Searching
+ 
+-    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
++    Searching is used to find matching resources using multiple field comparisons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
+ 
+     To search resources you can use the `search` query parameter.
+ 
+     ## Include and Exclude
+ 
+-    For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
++    For resources that contain references to other resources, such as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.
+ 
+     ```json
+     {
+@@ -109,6 +109,8 @@ components:
+       $ref: './components/parameters/Include.yaml'
+     Exclude:
+       $ref: './components/parameters/Exclude.yaml'
++    OrganizationID:
++      $ref: './components/parameters/OrganizationID.yaml'
+   requestBodies:
+     InterconnectionCreateInput:
+       $ref: './components/requestBodies/InterconnectionCreateInput.yaml'
+@@ -628,36 +630,36 @@ paths:
+     $ref: ./paths/operating-systems.yaml
+   /organizations:
+     $ref: ./paths/organizations.yaml
+-  /organizations/{id}:
+-    $ref: ./paths/organizations/id.yaml
+-  /organizations/{id}/capacity:
+-    $ref: ./paths/organizations/id/capacity.yaml
+-  /organizations/{id}/capacity/metros:
+-    $ref: ./paths/organizations/id/capacity/metros.yaml
+-  /organizations/{id}/customdata:
+-    $ref: ./paths/organizations/id/customdata.yaml
+-  /organizations/{id}/devices:
+-    $ref: ./paths/organizations/id/devices.yaml
+-  /organizations/{id}/events:
+-    $ref: ./paths/organizations/id/events.yaml
+-  /organizations/{id}/facilities:
+-    $ref: ./paths/organizations/id/facilities.yaml
+-  /organizations/{id}/firmware-sets:
+-    $ref: ./paths/organizations/id/firmware-sets.yaml
+-  /organizations/{id}/invitations:
+-    $ref: ./paths/organizations/id/invitations.yaml
+-  /organizations/{id}/invoices:
+-    $ref: ./paths/organizations/id/invoices.yaml
+-  /organizations/{id}/operating-systems:
+-    $ref: ./paths/organizations/id/operating-systems.yaml
+-  /organizations/{id}/payment-methods:
+-    $ref: ./paths/organizations/id/payment-methods.yaml
+-  /organizations/{id}/plans:
+-    $ref: ./paths/organizations/id/plans.yaml
+-  /organizations/{id}/projects:
+-    $ref: ./paths/organizations/id/projects.yaml
+-  /organizations/{id}/transfers:
+-    $ref: ./paths/organizations/id/transfers.yaml
++  /organizations/{organization_id}:
++    $ref: ./paths/organizations/organization_id.yaml
++  /organizations/{organization_id}/capacity:
++    $ref: ./paths/organizations/organization_id/capacity.yaml
++  /organizations/{organization_id}/capacity/metros:
++    $ref: ./paths/organizations/organization_id/capacity/metros.yaml
++  /organizations/{organization_id}/customdata:
++    $ref: ./paths/organizations/organization_id/customdata.yaml
++  /organizations/{organization_id}/devices:
++    $ref: ./paths/organizations/organization_id/devices.yaml
++  /organizations/{organization_id}/events:
++    $ref: ./paths/organizations/organization_id/events.yaml
++  /organizations/{organization_id}/facilities:
++    $ref: ./paths/organizations/organization_id/facilities.yaml
++  /organizations/{organization_id}/firmware-sets:
++    $ref: ./paths/organizations/organization_id/firmware-sets.yaml
++  /organizations/{organization_id}/invitations:
++    $ref: ./paths/organizations/organization_id/invitations.yaml
++  /organizations/{organization_id}/invoices:
++    $ref: ./paths/organizations/organization_id/invoices.yaml
++  /organizations/{organization_id}/operating-systems:
++    $ref: ./paths/organizations/organization_id/operating-systems.yaml
++  /organizations/{organization_id}/payment-methods:
++    $ref: ./paths/organizations/organization_id/payment-methods.yaml
++  /organizations/{organization_id}/plans:
++    $ref: ./paths/organizations/organization_id/plans.yaml
++  /organizations/{organization_id}/projects:
++    $ref: ./paths/organizations/organization_id/projects.yaml
++  /organizations/{organization_id}/transfers:
++    $ref: ./paths/organizations/organization_id/transfers.yaml
+   /organizations/{organization_id}/connections:
+     $ref: ./paths/organizations/organization_id/connections.yaml
+   /payment-methods/{id}:
+diff --git a/spec/oas3.patched/paths/organizations/id.yaml b/spec/oas3.patched/paths/organizations/organization_id.yaml
+similarity index 82%
+rename from spec/oas3.patched/paths/organizations/id.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id.yaml
+index 98d5957..50bf271 100644
+--- a/spec/oas3.patched/paths/organizations/id.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id.yaml
+@@ -1,14 +1,10 @@
++parameters:
++  - $ref: '../../components/parameters/OrganizationID.yaml'
++  - $ref: '../../components/parameters/Include.yaml'
++  - $ref: '../../components/parameters/Exclude.yaml'
+ delete:
+   description: Deletes the organization.
+   operationId: deleteOrganization
+-  parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   responses:
+     "204":
+       description: no content
+@@ -31,16 +27,6 @@ get:
+   description: Returns a single organization's details, if the user is authorized
+     to view it.
+   operationId: findOrganizationById
+-  parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+-  - $ref: '../../components/parameters/Include.yaml'
+-  - $ref: '../../components/parameters/Exclude.yaml'
+   responses:
+     "200":
+       content:
+@@ -72,16 +58,6 @@ get:
+ put:
+   description: Updates the organization.
+   operationId: updateOrganization
+-  parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+-  - $ref: '../../components/parameters/Include.yaml'
+-  - $ref: '../../components/parameters/Exclude.yaml'
+   requestBody:
+     content:
+       application/json:
+diff --git a/spec/oas3.patched/paths/organizations/id/capacity.yaml b/spec/oas3.patched/paths/organizations/organization_id/capacity.yaml
+similarity index 89%
+rename from spec/oas3.patched/paths/organizations/id/capacity.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/capacity.yaml
+index 87b47ea..0330412 100644
+--- a/spec/oas3.patched/paths/organizations/id/capacity.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/capacity.yaml
+@@ -1,14 +1,8 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Returns a list of facilities and plans with their current capacity.
+   operationId: findOrganizationCapacityPerFacility
+-  parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   responses:
+     "200":
+       content:
+diff --git a/spec/oas3.patched/paths/organizations/id/capacity/metros.yaml b/spec/oas3.patched/paths/organizations/organization_id/capacity/metros.yaml
+similarity index 89%
+rename from spec/oas3.patched/paths/organizations/id/capacity/metros.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/capacity/metros.yaml
+index 76a114c..e2c73ef 100644
+--- a/spec/oas3.patched/paths/organizations/id/capacity/metros.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/capacity/metros.yaml
+@@ -1,14 +1,8 @@
++parameters:
++  - $ref: "../../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Returns a list of metros and plans with their current capacity.
+   operationId: findOrganizationCapacityPerMetro
+-  parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   responses:
+     "200":
+       content:
+diff --git a/spec/oas3.patched/paths/organizations/organization_id/connections.yaml b/spec/oas3.patched/paths/organizations/organization_id/connections.yaml
+index 2f266f8..545a5cf 100644
+--- a/spec/oas3.patched/paths/organizations/organization_id/connections.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/connections.yaml
+@@ -1,16 +1,10 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
++  - $ref: '../../../components/parameters/Include.yaml'
++  - $ref: '../../../components/parameters/Exclude.yaml'
+ get:
+   description: List the connections belonging to the organization
+   operationId: organizationListInterconnections
+-  parameters:
+-  - description: UUID of the organization
+-    in: path
+-    name: organization_id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+-  - $ref: '../../../components/parameters/Include.yaml'
+-  - $ref: '../../../components/parameters/Exclude.yaml'
+   responses:
+     "200":
+       content:
+@@ -37,16 +31,6 @@ post:
+   description: Creates a new interconnection request. A Project ID must be specified in
+     the request body for connections on shared ports.
+   operationId: createOrganizationInterconnection
+-  parameters:
+-  - description: UUID of the organization
+-    in: path
+-    name: organization_id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+-  - $ref: '../../../components/parameters/Include.yaml'
+-  - $ref: '../../../components/parameters/Exclude.yaml'
+   requestBody:
+     $ref: '../../../components/requestBodies/InterconnectionCreateInput.yaml'
+   responses:
+diff --git a/spec/oas3.patched/paths/organizations/id/customdata.yaml b/spec/oas3.patched/paths/organizations/organization_id/customdata.yaml
+similarity index 83%
+rename from spec/oas3.patched/paths/organizations/id/customdata.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/customdata.yaml
+index e0a0c2b..309e10c 100644
+--- a/spec/oas3.patched/paths/organizations/id/customdata.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/customdata.yaml
+@@ -1,14 +1,8 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Provides the custom metadata stored for this organization in json format
+   operationId: findOrganizationCustomdata
+-  parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   responses:
+     "200":
+       description: ok
+diff --git a/spec/oas3.patched/paths/organizations/id/devices.yaml b/spec/oas3.patched/paths/organizations/organization_id/devices.yaml
+similarity index 94%
+rename from spec/oas3.patched/paths/organizations/id/devices.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/devices.yaml
+index 9309843..fa93471 100644
+--- a/spec/oas3.patched/paths/organizations/id/devices.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/devices.yaml
+@@ -1,14 +1,9 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Provides a collection of devices for a given organization.
+   operationId: findOrganizationDevices
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/DeviceSearch.yaml'
+   - description: Filter by plan category
+     in: query
+diff --git a/spec/oas3.patched/paths/organizations/id/events.yaml b/spec/oas3.patched/paths/organizations/organization_id/events.yaml
+similarity index 88%
+rename from spec/oas3.patched/paths/organizations/id/events.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/events.yaml
+index cd713da..d941fd3 100644
+--- a/spec/oas3.patched/paths/organizations/id/events.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/events.yaml
+@@ -1,14 +1,9 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Returns a list of events for a single organization
+   operationId: findOrganizationEvents
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/Include.yaml'
+   - $ref: '../../../components/parameters/Exclude.yaml'
+   - $ref: '../../../components/parameters/Page.yaml'
+diff --git a/spec/oas3.patched/paths/organizations/id/facilities.yaml b/spec/oas3.patched/paths/organizations/organization_id/facilities.yaml
+similarity index 88%
+rename from spec/oas3.patched/paths/organizations/id/facilities.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/facilities.yaml
+index cf47c1a..00fa3b1 100644
+--- a/spec/oas3.patched/paths/organizations/id/facilities.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/facilities.yaml
+@@ -1,15 +1,10 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   deprecated: true
+   description: Returns a listing of available datacenters for the given organization
+   operationId: findFacilitiesByOrganization
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/Include.yaml'
+   - $ref: '../../../components/parameters/Exclude.yaml'
+   responses:
+diff --git a/spec/oas3.patched/paths/organizations/id/firmware-sets.yaml b/spec/oas3.patched/paths/organizations/organization_id/firmware-sets.yaml
+similarity index 67%
+rename from spec/oas3.patched/paths/organizations/id/firmware-sets.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/firmware-sets.yaml
+index 35f49ed..f4b37f6 100644
+--- a/spec/oas3.patched/paths/organizations/id/firmware-sets.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/firmware-sets.yaml
+@@ -1,3 +1,5 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   tags:
+   - Firmware Sets
+@@ -5,23 +7,8 @@ get:
+   description: Returns all firmware sets associated with the organization.
+   operationId: getOrganizationFirmwareSets
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+-  - name: page
+-    in: query
+-    description: page number to return
+-    schema:
+-      type: integer
+-  - name: per_page
+-    in: query
+-    description: items returned per page.
+-    schema:
+-      type: integer
++    - $ref: "../../../components/parameters/Page.yaml"
++    - $ref: "../../../components/parameters/PerPage.yaml"
+   responses:
+     "200":
+       description: Successful operation
+diff --git a/spec/oas3.patched/paths/organizations/id/invitations.yaml b/spec/oas3.patched/paths/organizations/organization_id/invitations.yaml
+similarity index 89%
+rename from spec/oas3.patched/paths/organizations/id/invitations.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/invitations.yaml
+index 3897f3b..9af15e8 100644
+--- a/spec/oas3.patched/paths/organizations/id/invitations.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/invitations.yaml
+@@ -1,3 +1,6 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
++
+ get:
+   description: Returns all invitations in an organization.
+   operationId: findOrganizationInvitations
+@@ -5,13 +8,7 @@ get:
+   - $ref: '../../../components/parameters/Include.yaml'
+   - $ref: '../../../components/parameters/Page.yaml'
+   - $ref: '../../../components/parameters/PerPage.yaml'
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
++
+   responses:
+     "200":
+       content:
+@@ -46,13 +43,7 @@ post:
+     To invite to several projects the parameter `projects_ids:[a,b,c]` can be used
+   operationId: createOrganizationInvitation
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
++
+   - $ref: '../../../components/parameters/Include.yaml'
+   requestBody:
+     $ref: '../../../components/requestBodies/InvitationInput.yaml'
+diff --git a/spec/oas3.patched/paths/organizations/id/invoices.yaml b/spec/oas3.patched/paths/organizations/organization_id/invoices.yaml
+similarity index 71%
+rename from spec/oas3.patched/paths/organizations/id/invoices.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/invoices.yaml
+index 17cd963..96fe657 100644
+--- a/spec/oas3.patched/paths/organizations/id/invoices.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/invoices.yaml
+@@ -1,24 +1,11 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Returns all invoices for an organization
+   operationId: findOrganizationInvoices
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+-  - description: page number
+-    in: query
+-    name: page
+-    schema:
+-      type: integer
+-  - description: per page
+-    in: query
+-    name: per_page
+-    schema:
+-      type: integer
++  - $ref: '../../../components/parameters/Page.yaml'
++  - $ref: '../../../components/parameters/PerPage.yaml'
+   - description: filter by status
+     in: query
+     name: status
+diff --git a/spec/oas3.patched/paths/organizations/id/operating-systems.yaml b/spec/oas3.patched/paths/organizations/organization_id/operating-systems.yaml
+similarity index 88%
+rename from spec/oas3.patched/paths/organizations/id/operating-systems.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/operating-systems.yaml
+index edba6f6..5b86086 100644
+--- a/spec/oas3.patched/paths/organizations/id/operating-systems.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/operating-systems.yaml
+@@ -1,14 +1,9 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Returns a listing of available operating systems for the given organization
+   operationId: findOperatingSystemsByOrganization
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/Include.yaml'
+   responses:
+     "200":
+diff --git a/spec/oas3.patched/paths/organizations/id/payment-methods.yaml b/spec/oas3.patched/paths/organizations/organization_id/payment-methods.yaml
+similarity index 88%
+rename from spec/oas3.patched/paths/organizations/id/payment-methods.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/payment-methods.yaml
+index 029d3c6..c2799c4 100644
+--- a/spec/oas3.patched/paths/organizations/id/payment-methods.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/payment-methods.yaml
+@@ -1,14 +1,10 @@
++
++parameters:
++  - $ref: '../../../components/parameters/OrganizationID.yaml'
+ get:
+   description: Returns all payment methods of an organization.
+   operationId: findOrganizationPaymentMethods
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/Include.yaml'
+   - $ref: '../../../components/parameters/Page.yaml'
+   - $ref: '../../../components/parameters/PerPage.yaml'
+@@ -38,13 +34,7 @@ post:
+   description: Creates a payment method.
+   operationId: createPaymentMethod
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
++
+   - $ref: '../../../components/parameters/Include.yaml'
+   requestBody:
+     content:
+diff --git a/spec/oas3.patched/paths/organizations/id/plans.yaml b/spec/oas3.patched/paths/organizations/organization_id/plans.yaml
+similarity index 88%
+rename from spec/oas3.patched/paths/organizations/id/plans.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/plans.yaml
+index 12557ed..bb8cd56 100644
+--- a/spec/oas3.patched/paths/organizations/id/plans.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/plans.yaml
+@@ -1,14 +1,9 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Returns a listing of available plans for the given organization
+   operationId: findPlansByOrganization
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/Include.yaml'
+   - $ref: '../../../components/parameters/Exclude.yaml'
+   responses:
+diff --git a/spec/oas3.patched/paths/organizations/id/projects.yaml b/spec/oas3.patched/paths/organizations/organization_id/projects.yaml
+similarity index 87%
+rename from spec/oas3.patched/paths/organizations/id/projects.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/projects.yaml
+index 004a17e..b784b7e 100644
+--- a/spec/oas3.patched/paths/organizations/id/projects.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/projects.yaml
+@@ -1,14 +1,9 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Returns a collection of projects that belong to the organization.
+   operationId: findOrganizationProjects
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/ProjectName.yaml'
+   - $ref: '../../../components/parameters/Include.yaml'
+   - $ref: '../../../components/parameters/Exclude.yaml'
+@@ -34,13 +29,7 @@ post:
+   description: Creates a new project for the organization
+   operationId: createOrganizationProject
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
++
+   - $ref: '../../../components/parameters/Include.yaml'
+   - $ref: '../../../components/parameters/Exclude.yaml'
+   requestBody:
+diff --git a/spec/oas3.patched/paths/organizations/id/transfers.yaml b/spec/oas3.patched/paths/organizations/organization_id/transfers.yaml
+similarity index 86%
+rename from spec/oas3.patched/paths/organizations/id/transfers.yaml
+rename to spec/oas3.patched/paths/organizations/organization_id/transfers.yaml
+index a24b6af..da11ae1 100644
+--- a/spec/oas3.patched/paths/organizations/id/transfers.yaml
++++ b/spec/oas3.patched/paths/organizations/organization_id/transfers.yaml
+@@ -1,14 +1,9 @@
++parameters:
++  - $ref: "../../../components/parameters/OrganizationID.yaml"
+ get:
+   description: Provides a collection of project transfer requests from or to the organization.
+   operationId: findOrganizationTransfers
+   parameters:
+-  - description: Organization UUID
+-    in: path
+-    name: id
+-    required: true
+-    schema:
+-      format: uuid
+-      type: string
+   - $ref: '../../../components/parameters/Include.yaml'
+   responses:
+     "200":

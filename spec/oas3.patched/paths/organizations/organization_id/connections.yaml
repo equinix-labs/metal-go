@@ -1,16 +1,10 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
+  - $ref: '../../../components/parameters/Include.yaml'
+  - $ref: '../../../components/parameters/Exclude.yaml'
 get:
   description: List the connections belonging to the organization
   operationId: organizationListInterconnections
-  parameters:
-  - description: UUID of the organization
-    in: path
-    name: organization_id
-    required: true
-    schema:
-      format: uuid
-      type: string
-  - $ref: '../../../components/parameters/Include.yaml'
-  - $ref: '../../../components/parameters/Exclude.yaml'
   responses:
     "200":
       content:
@@ -37,16 +31,6 @@ post:
   description: Creates a new interconnection request. A Project ID must be specified in
     the request body for connections on shared ports.
   operationId: createOrganizationInterconnection
-  parameters:
-  - description: UUID of the organization
-    in: path
-    name: organization_id
-    required: true
-    schema:
-      format: uuid
-      type: string
-  - $ref: '../../../components/parameters/Include.yaml'
-  - $ref: '../../../components/parameters/Exclude.yaml'
   requestBody:
     $ref: '../../../components/requestBodies/InterconnectionCreateInput.yaml'
   responses:

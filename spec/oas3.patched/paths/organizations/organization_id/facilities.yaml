@@ -1,14 +1,10 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
 get:
-  description: Returns a listing of available plans for the given organization
-  operationId: findPlansByOrganization
+  deprecated: true
+  description: Returns a listing of available datacenters for the given organization
+  operationId: findFacilitiesByOrganization
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Exclude.yaml'
   responses:
@@ -16,7 +12,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../../components/schemas/PlanList.yaml'
+            $ref: '../../../components/schemas/FacilityList.yaml'
       description: ok
     "401":
       content:
@@ -36,6 +32,6 @@ get:
           schema:
             $ref: '../../../components/schemas/Error.yaml'
       description: not found
-  summary: Retrieve all plans visible by the organization
+  summary: Retrieve all facilities visible by the organization
   tags:
-  - Organizations
+  - Facilities
