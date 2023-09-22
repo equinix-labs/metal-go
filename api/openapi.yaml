@@ -182,6 +182,9 @@ tags:
     Firmware Sets Management. Notice: Firmware Sets are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
   name: Firmware Sets
 - description: |
+    Console Log Details. Notice: This is a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+  name: Console Log Details
+- description: |
     Global BGP Range Management
   externalDocs:
     url: https://metal.equinix.com/developers/docs/bgp/global-bgp/
@@ -1902,6 +1905,46 @@ paths:
       summary: Retrieve the custom metadata of an instance
       tags:
       - Devices
+  /devices/{id}/diagnostics/screenshot:
+    get:
+      description: "Capture a screenshot from the device, if supported, via the BMC."
+      operationId: captureScreenshot
+      parameters:
+      - description: Device UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/jpeg:
+              schema:
+                format: binary
+                type: string
+          description: An image file
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not implemented for device
+      tags:
+      - Console Log Details
   /devices/{id}/diagnostics/health/rollup:
     get:
       description: Returns the health rollup status of the device.
@@ -8784,6 +8827,7 @@ paths:
       - SSHKeys
   /projects/{id}/transfers:
     post:
+      deprecated: true
       description: Organization owners can transfer their projects to other organizations.
       operationId: createTransferRequest
       parameters:

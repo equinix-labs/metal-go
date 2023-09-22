@@ -57,6 +57,8 @@ type APIClient struct {
 
 	CapacityApi *CapacityApiService
 
+	ConsoleLogDetailsApi *ConsoleLogDetailsApiService
+
 	DevicesApi *DevicesApiService
 
 	EmailsApi *EmailsApiService
@@ -148,6 +150,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BGPApi = (*BGPApiService)(&c.common)
 	c.BatchesApi = (*BatchesApiService)(&c.common)
 	c.CapacityApi = (*CapacityApiService)(&c.common)
+	c.ConsoleLogDetailsApi = (*ConsoleLogDetailsApiService)(&c.common)
 	c.DevicesApi = (*DevicesApiService)(&c.common)
 	c.EmailsApi = (*EmailsApiService)(&c.common)
 	c.EventsApi = (*EventsApiService)(&c.common)
