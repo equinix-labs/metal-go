@@ -1,4 +1,5 @@
 post:
+  deprecated: true
   description: Organization owners can transfer their projects to other organizations.
   operationId: createTransferRequest
   parameters:
