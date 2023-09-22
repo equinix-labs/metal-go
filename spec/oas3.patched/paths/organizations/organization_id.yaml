@@ -1,14 +1,10 @@
+parameters:
+  - $ref: '../../components/parameters/OrganizationID.yaml'
+  - $ref: '../../components/parameters/Include.yaml'
+  - $ref: '../../components/parameters/Exclude.yaml'
 delete:
   description: Deletes the organization.
   operationId: deleteOrganization
-  parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   responses:
     "204":
       description: no content
@@ -31,16 +27,6 @@ get:
   description: Returns a single organization's details, if the user is authorized
     to view it.
   operationId: findOrganizationById
-  parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
-  - $ref: '../../components/parameters/Include.yaml'
-  - $ref: '../../components/parameters/Exclude.yaml'
   responses:
     "200":
       content:
@@ -72,16 +58,6 @@ get:
 put:
   description: Updates the organization.
   operationId: updateOrganization
-  parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
-  - $ref: '../../components/parameters/Include.yaml'
-  - $ref: '../../components/parameters/Exclude.yaml'
   requestBody:
     content:
       application/json:

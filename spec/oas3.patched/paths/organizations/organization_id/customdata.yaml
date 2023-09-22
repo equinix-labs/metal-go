@@ -1,14 +1,8 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
 get:
   description: Provides the custom metadata stored for this organization in json format
   operationId: findOrganizationCustomdata
-  parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   responses:
     "200":
       description: ok

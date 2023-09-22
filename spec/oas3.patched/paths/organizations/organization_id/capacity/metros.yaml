@@ -1,14 +1,8 @@
+parameters:
+  - $ref: "../../../../components/parameters/OrganizationID.yaml"
 get:
   description: Returns a list of metros and plans with their current capacity.
   operationId: findOrganizationCapacityPerMetro
-  parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   responses:
     "200":
       content:

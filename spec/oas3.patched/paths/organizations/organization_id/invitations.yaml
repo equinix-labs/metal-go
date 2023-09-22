@@ -1,3 +1,6 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
+
 get:
   description: Returns all invitations in an organization.
   operationId: findOrganizationInvitations
@@ -5,13 +8,7 @@ get:
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Page.yaml'
   - $ref: '../../../components/parameters/PerPage.yaml'
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
+
   responses:
     "200":
       content:
@@ -46,13 +43,7 @@ post:
     To invite to several projects the parameter `projects_ids:[a,b,c]` can be used
   operationId: createOrganizationInvitation
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
+
   - $ref: '../../../components/parameters/Include.yaml'
   requestBody:
     $ref: '../../../components/requestBodies/InvitationInput.yaml'

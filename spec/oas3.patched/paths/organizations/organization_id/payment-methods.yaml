@@ -1,14 +1,10 @@
+
+parameters:
+  - $ref: '../../../components/parameters/OrganizationID.yaml'
 get:
   description: Returns all payment methods of an organization.
   operationId: findOrganizationPaymentMethods
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Page.yaml'
   - $ref: '../../../components/parameters/PerPage.yaml'
@@ -38,13 +34,7 @@ post:
   description: Creates a payment method.
   operationId: createPaymentMethod
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
+
   - $ref: '../../../components/parameters/Include.yaml'
   requestBody:
     content:

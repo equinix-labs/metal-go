@@ -1,14 +1,9 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
 get:
   description: Returns a listing of available operating systems for the given organization
   operationId: findOperatingSystemsByOrganization
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
   - $ref: '../../../components/parameters/Include.yaml'
   responses:
     "200":

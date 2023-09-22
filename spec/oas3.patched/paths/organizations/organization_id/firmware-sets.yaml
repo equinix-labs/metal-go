@@ -1,3 +1,5 @@
+parameters:
+  - $ref: "../../../components/parameters/OrganizationID.yaml"
 get:
   tags:
   - Firmware Sets
@@ -5,23 +7,8 @@ get:
   description: Returns all firmware sets associated with the organization.
   operationId: getOrganizationFirmwareSets
   parameters:
-  - description: Organization UUID
-    in: path
-    name: id
-    required: true
-    schema:
-      format: uuid
-      type: string
-  - name: page
-    in: query
-    description: page number to return
-    schema:
-      type: integer
-  - name: per_page
-    in: query
-    description: items returned per page.
-    schema:
-      type: integer
+    - $ref: "../../../components/parameters/Page.yaml"
+    - $ref: "../../../components/parameters/PerPage.yaml"
   responses:
     "200":
       description: Successful operation
