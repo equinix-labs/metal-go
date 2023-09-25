@@ -19,6 +19,11 @@ Method | HTTP request | Description
 {{{summary}}}{{#notes}}
 
 {{{unespacedNotes}}}{{/notes}}
+{{#vendorExtensions}}
+{{#x-paginated}}
+{{{operationId}}} is a paginated API operation. You can specify page number and number of {{#lambda.lowercase}}{{{x-paginated-property}}}{{/lambda.lowercase}} per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the {{#lambda.lowercase}}{{{x-paginated-property}}}{{/lambda.lowercase}}.
+{{/x-paginated}}
+{{/vendorExtensions}}
 
 ### Example
 
