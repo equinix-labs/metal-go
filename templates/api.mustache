@@ -408,5 +408,31 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 	{{/returnType}}
 	return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, nil
 }
+
+{{#vendorExtensions}}
+{{#x-paginated}}
+func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) ExecuteWithPagination() (*{{returnType}}, error) {
+	var items {{returnType}}
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.{{x-paginated-property}} = append(items.{{x-paginated-property}}, page.{{x-paginated-property}}...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+        pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+{{/x-paginated}}
+{{/vendorExtensions}}
+
 {{/operation}}
 {{/operations}}
