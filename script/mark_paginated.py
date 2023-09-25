@@ -62,7 +62,7 @@ if "get" in operation:
 
 
 if paginated:
-    operation['get']['x-paginated'] = {'x-paginated-property': paginatedProperty}
+    operation['get']['x-equinix-metal-paginated-property'] = paginatedProperty
     with open(ymlfile,"w") as f:
         yaml.dump(operation, f)
 
