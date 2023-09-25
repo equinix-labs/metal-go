@@ -41,3 +41,5 @@ get:
   summary: Retrieve interconnection events
   tags:
   - Events
+  x-paginated:
+    x-paginated-property: Events

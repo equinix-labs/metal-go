@@ -62,3 +62,5 @@ get:
   summary: Retrieve all hardware reservations for a given project
   tags:
   - HardwareReservations
+  x-paginated:
+    x-paginated-property: HardwareReservations

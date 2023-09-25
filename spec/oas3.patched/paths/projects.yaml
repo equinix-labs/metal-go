@@ -24,6 +24,8 @@ get:
   summary: Retrieve all projects
   tags:
   - Projects
+  x-paginated:
+    x-paginated-property: Projects
 post:
   description: Creates a new project for the user default organization. If the user
     don't have an organization, a new one will be created.

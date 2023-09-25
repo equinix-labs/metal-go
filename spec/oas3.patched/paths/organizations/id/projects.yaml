@@ -30,6 +30,8 @@ get:
   summary: Retrieve all projects of an organization
   tags:
   - Organizations
+  x-paginated:
+    x-paginated-property: Projects
 post:
   description: Creates a new project for the organization
   operationId: createOrganizationProject

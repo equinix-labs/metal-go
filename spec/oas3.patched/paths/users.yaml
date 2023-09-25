@@ -23,6 +23,8 @@ get:
   summary: Retrieve all users
   tags:
   - Users
+  x-paginated:
+    x-paginated-property: Users
 post:
   description: Creates a user.
   operationId: createUser

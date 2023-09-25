@@ -83,3 +83,5 @@ get:
   summary: Retrieve all devices of an organization
   tags:
   - Devices
+  x-paginated:
+    x-paginated-property: Devices

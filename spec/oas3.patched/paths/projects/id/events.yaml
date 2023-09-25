@@ -41,3 +41,5 @@ get:
   summary: Retrieve project's events
   tags:
   - Events
+  x-paginated:
+    x-paginated-property: Events
