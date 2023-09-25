@@ -1850,6 +1850,27 @@ func (a *OrganizationsApiService) FindOrganizationProjectsExecute(r ApiFindOrgan
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+func (r ApiFindOrganizationProjectsRequest) ExecuteWithPagination() (*ProjectList, error) {
+	var items ProjectList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Projects = append(items.Projects, page.Projects...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiFindOrganizationTransfersRequest struct {
 	ctx        context.Context
 	ApiService *OrganizationsApiService
@@ -2181,6 +2202,27 @@ func (a *OrganizationsApiService) FindOrganizationsExecute(r ApiFindOrganization
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+func (r ApiFindOrganizationsRequest) ExecuteWithPagination() (*OrganizationList, error) {
+	var items OrganizationList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Organizations = append(items.Organizations, page.Organizations...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
 }
 
 type ApiFindPlansByOrganizationRequest struct {

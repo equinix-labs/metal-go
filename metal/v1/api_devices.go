@@ -2210,6 +2210,27 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+func (r ApiFindOrganizationDevicesRequest) ExecuteWithPagination() (*DeviceList, error) {
+	var items DeviceList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Devices = append(items.Devices, page.Devices...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiFindProjectDevicesRequest struct {
 	ctx                context.Context
 	ApiService         *DevicesApiService
@@ -2478,6 +2499,27 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+func (r ApiFindProjectDevicesRequest) ExecuteWithPagination() (*DeviceList, error) {
+	var items DeviceList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Devices = append(items.Devices, page.Devices...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
 }
 
 type ApiFindTrafficRequest struct {

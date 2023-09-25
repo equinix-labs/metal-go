@@ -592,6 +592,27 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+func (r ApiFindProjectHardwareReservationsRequest) ExecuteWithPagination() (*HardwareReservationList, error) {
+	var items HardwareReservationList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.HardwareReservations = append(items.HardwareReservations, page.HardwareReservations...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiMoveHardwareReservationRequest struct {
 	ctx                            context.Context
 	ApiService                     *HardwareReservationsApiService

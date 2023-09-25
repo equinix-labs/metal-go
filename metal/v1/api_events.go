@@ -213,6 +213,27 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+func (r ApiFindDeviceEventsRequest) ExecuteWithPagination() (*EventList, error) {
+	var items EventList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Events = append(items.Events, page.Events...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiFindEventByIdRequest struct {
 	ctx        context.Context
 	ApiService *EventsApiService
@@ -547,6 +568,27 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*EventList
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+func (r ApiFindEventsRequest) ExecuteWithPagination() (*EventList, error) {
+	var items EventList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Events = append(items.Events, page.Events...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiFindInterconnectionEventsRequest struct {
 	ctx          context.Context
 	ApiService   *EventsApiService
@@ -735,6 +777,27 @@ func (a *EventsApiService) FindInterconnectionEventsExecute(r ApiFindInterconnec
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+func (r ApiFindInterconnectionEventsRequest) ExecuteWithPagination() (*EventList, error) {
+	var items EventList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Events = append(items.Events, page.Events...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
 }
 
 type ApiFindInterconnectionPortEventsRequest struct {
@@ -1121,6 +1184,27 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+func (r ApiFindOrganizationEventsRequest) ExecuteWithPagination() (*EventList, error) {
+	var items EventList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Events = append(items.Events, page.Events...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiFindProjectEventsRequest struct {
 	ctx        context.Context
 	ApiService *EventsApiService
@@ -1309,6 +1393,27 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+func (r ApiFindProjectEventsRequest) ExecuteWithPagination() (*EventList, error) {
+	var items EventList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Events = append(items.Events, page.Events...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
 }
 
 type ApiFindVirtualCircuitEventsRequest struct {

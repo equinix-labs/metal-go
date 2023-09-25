@@ -1688,6 +1688,27 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*Pro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+func (r ApiFindProjectsRequest) ExecuteWithPagination() (*ProjectList, error) {
+	var items ProjectList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Projects = append(items.Projects, page.Projects...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiUpdateProjectRequest struct {
 	ctx                context.Context
 	ApiService         *ProjectsApiService
