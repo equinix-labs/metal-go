@@ -41,8 +41,7 @@ get:
   summary: Retrieve all organizations
   tags:
   - Organizations
-  x-paginated:
-    x-paginated-property: Organizations
+  x-equinix-metal-paginated-property: Organizations
 post:
   description: Creates an organization.
   operationId: createOrganization

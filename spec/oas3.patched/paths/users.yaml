@@ -23,8 +23,7 @@ get:
   summary: Retrieve all users
   tags:
   - Users
-  x-paginated:
-    x-paginated-property: Users
+  x-equinix-metal-paginated-property: Users
 post:
   description: Creates a user.
   operationId: createUser
@@ -58,7 +57,7 @@ post:
             $ref: '../components/schemas/Error.yaml'
           example:
             errors:
-              - "Email address username@example.com has already been taken"
+            - "Email address username@example.com has already been taken"
       description: unprocessable entity
   summary: Create a user
   tags:

@@ -18,8 +18,8 @@ get:
       items:
         type: string
         enum:
-          - compute
-          - storage
+        - compute
+        - storage
         example: compute
   - description: Filter by device facility
     in: query
@@ -31,7 +31,8 @@ get:
     name: hostname
     schema:
       type: string
-  - description: Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
+  - description: Filter only reserved instances. When set to true, only include reserved
+      instances. When set to false, only include on-demand instances.
     in: query
     name: reserved
     schema:
@@ -46,7 +47,9 @@ get:
     name: type
     schema:
       type: string
-  - description: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
+  - description: Filter only instances marked for termination. When set to true, only
+      include instances that have a termination time. When set to false, only include
+      instances that do not have a termination time.
     in: query
     name: has_termination_time
     schema:
@@ -83,5 +86,4 @@ get:
   summary: Retrieve all devices of an organization
   tags:
   - Devices
-  x-paginated:
-    x-paginated-property: Devices
+  x-equinix-metal-paginated-property: Devices

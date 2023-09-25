@@ -1094,8 +1094,7 @@ paths:
       summary: Retrieve interconnection events
       tags:
       - Events
-      x-paginated:
-        x-paginated-property: Events
+      x-equinix-metal-paginated-property: Events
   /connections/{connection_id}/ports:
     get:
       description: List the ports associated to an interconnection.
@@ -2020,8 +2019,7 @@ paths:
       summary: Retrieve device's events
       tags:
       - Events
-      x-paginated:
-        x-paginated-property: Events
+      x-equinix-metal-paginated-property: Events
   /devices/{id}/firmware-sets:
     get:
       description: "Returns the firmware set associated with the device. If a custom\
@@ -2682,8 +2680,7 @@ paths:
       summary: Retrieve current user's events
       tags:
       - Events
-      x-paginated:
-        x-paginated-property: Events
+      x-equinix-metal-paginated-property: Events
   /events/{id}:
     get:
       description: Returns a single event if the user has access
@@ -4549,8 +4546,7 @@ paths:
       summary: Retrieve all organizations
       tags:
       - Organizations
-      x-paginated:
-        x-paginated-property: Organizations
+      x-equinix-metal-paginated-property: Organizations
     post:
       description: Creates an organization.
       operationId: createOrganization
@@ -5052,8 +5048,7 @@ paths:
       summary: Retrieve all devices of an organization
       tags:
       - Devices
-      x-paginated:
-        x-paginated-property: Devices
+      x-equinix-metal-paginated-property: Devices
   /organizations/{id}/events:
     get:
       description: Returns a list of events for a single organization
@@ -5136,8 +5131,7 @@ paths:
       summary: Retrieve organization's events
       tags:
       - Events
-      x-paginated:
-        x-paginated-property: Events
+      x-equinix-metal-paginated-property: Events
   /organizations/{id}/facilities:
     get:
       deprecated: true
@@ -5741,8 +5735,7 @@ paths:
       summary: Retrieve all projects of an organization
       tags:
       - Organizations
-      x-paginated:
-        x-paginated-property: Projects
+      x-equinix-metal-paginated-property: Projects
     post:
       description: Creates a new project for the organization
       operationId: createOrganizationProject
@@ -7056,8 +7049,7 @@ paths:
       summary: Retrieve all projects
       tags:
       - Projects
-      x-paginated:
-        x-paginated-property: Projects
+      x-equinix-metal-paginated-property: Projects
     post:
       description: "Creates a new project for the user default organization. If the\
         \ user don't have an organization, a new one will be created."
@@ -7766,8 +7758,7 @@ paths:
       summary: Retrieve all devices of a project
       tags:
       - Devices
-      x-paginated:
-        x-paginated-property: Devices
+      x-equinix-metal-paginated-property: Devices
     post:
       description: |-
         Creates a new device and provisions it in the specified location.
@@ -7982,8 +7973,7 @@ paths:
       summary: Retrieve project's events
       tags:
       - Events
-      x-paginated:
-        x-paginated-property: Events
+      x-equinix-metal-paginated-property: Events
   /projects/{id}/facilities:
     get:
       deprecated: true
@@ -8231,8 +8221,7 @@ paths:
       summary: Retrieve all hardware reservations for a given project
       tags:
       - HardwareReservations
-      x-paginated:
-        x-paginated-property: HardwareReservations
+      x-equinix-metal-paginated-property: HardwareReservations
   /projects/{id}/ips:
     get:
       description: Provides a paginated list of IP reservations for a single project.
@@ -9275,8 +9264,7 @@ paths:
       summary: List project connections
       tags:
       - Interconnections
-      x-paginated:
-        x-paginated-property: Interconnections
+      x-equinix-metal-paginated-property: Interconnections
     post:
       description: Creates a new interconnection request
       operationId: createProjectInterconnection
@@ -9660,8 +9648,7 @@ paths:
       summary: Returns all metal gateways for a project
       tags:
       - MetalGateways
-      x-paginated:
-        x-paginated-property: MetalGateways
+      x-equinix-metal-paginated-property: MetalGateways
     post:
       description: Create a metal gateway in a project
       operationId: createMetalGateway
@@ -11230,8 +11217,7 @@ paths:
       summary: Retrieve all users
       tags:
       - Users
-      x-paginated:
-        x-paginated-property: Users
+      x-equinix-metal-paginated-property: Users
     post:
       description: Creates a user.
       operationId: createUser

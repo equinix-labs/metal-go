@@ -9,7 +9,8 @@ get:
     schema:
       format: uuid
       type: string
-  - description: Search by facility code, plan name, project name, reservation short ID or device hostname
+  - description: Search by facility code, plan name, project name, reservation short
+      ID or device hostname
     in: query
     name: query
     schema:
@@ -62,5 +63,4 @@ get:
   summary: Retrieve all hardware reservations for a given project
   tags:
   - HardwareReservations
-  x-paginated:
-    x-paginated-property: HardwareReservations
+  x-equinix-metal-paginated-property: HardwareReservations

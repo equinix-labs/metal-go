@@ -30,8 +30,7 @@ get:
   summary: Retrieve all projects of an organization
   tags:
   - Organizations
-  x-paginated:
-    x-paginated-property: Projects
+  x-equinix-metal-paginated-property: Projects
 post:
   description: Creates a new project for the organization
   operationId: createOrganizationProject

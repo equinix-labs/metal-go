@@ -35,8 +35,7 @@ get:
   summary: Returns all metal gateways for a project
   tags:
   - MetalGateways
-  x-paginated:
-    x-paginated-property: MetalGateways
+  x-equinix-metal-paginated-property: MetalGateways
 post:
   description: Create a metal gateway in a project
   operationId: createMetalGateway

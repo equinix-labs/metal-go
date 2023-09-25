@@ -41,5 +41,4 @@ get:
   summary: Retrieve device's events
   tags:
   - Events
-  x-paginated:
-    x-paginated-property: Events
+  x-equinix-metal-paginated-property: Events
