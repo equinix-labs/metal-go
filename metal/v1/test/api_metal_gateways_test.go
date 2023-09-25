@@ -80,6 +80,10 @@ func Test_v1_MetalGatewaysApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.MetalGatewaysApi.FindMetalGatewaysByProject(context.Background(), projectId).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test MetalGatewaysApiService GetMetalGatewayElasticIps", func(t *testing.T) {

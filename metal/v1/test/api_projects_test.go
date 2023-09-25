@@ -134,6 +134,10 @@ func Test_v1_ProjectsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.ProjectsApi.FindProjects(context.Background()).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test ProjectsApiService UpdateProject", func(t *testing.T) {

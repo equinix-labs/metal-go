@@ -173,6 +173,10 @@ func Test_v1_DevicesApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.DevicesApi.FindOrganizationDevices(context.Background(), id).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test DevicesApiService FindProjectDevices", func(t *testing.T) {
@@ -185,6 +189,10 @@ func Test_v1_DevicesApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.DevicesApi.FindProjectDevices(context.Background(), id).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test DevicesApiService FindTraffic", func(t *testing.T) {

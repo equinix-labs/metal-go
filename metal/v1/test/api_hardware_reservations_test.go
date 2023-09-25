@@ -56,6 +56,10 @@ func Test_v1_HardwareReservationsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.HardwareReservationsApi.FindProjectHardwareReservations(context.Background(), id).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test HardwareReservationsApiService MoveHardwareReservation", func(t *testing.T) {
