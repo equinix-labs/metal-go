@@ -678,6 +678,7 @@ Name | Type | Description  | Notes
 Retrieve all projects
 
 
+FindProjects is a paginated API operation. You can specify page number and number of projects per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the projects.
 
 ### Example
 

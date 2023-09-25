@@ -324,6 +324,7 @@ Name | Type | Description  | Notes
 Returns all metal gateways for a project
 
 
+FindMetalGatewaysByProject is a paginated API operation. You can specify page number and number of metalgateways per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the metalgateways.
 
 ### Example
 

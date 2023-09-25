@@ -371,6 +371,7 @@ Name | Type | Description  | Notes
 Retrieve all users
 
 
+FindUsers is a paginated API operation. You can specify page number and number of users per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the users.
 
 ### Example
 

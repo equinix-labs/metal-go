@@ -901,6 +901,7 @@ Name | Type | Description  | Notes
 Retrieve all devices of an organization
 
 
+FindOrganizationDevices is a paginated API operation. You can specify page number and number of devices per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the devices.
 
 ### Example
 
@@ -995,6 +996,7 @@ Name | Type | Description  | Notes
 Retrieve all devices of a project
 
 
+FindProjectDevices is a paginated API operation. You can specify page number and number of devices per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the devices.
 
 ### Example
 

@@ -23,6 +23,7 @@ Method | HTTP request | Description
 Retrieve device's events
 
 
+FindDeviceEvents is a paginated API operation. You can specify page number and number of events per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the events.
 
 ### Example
 
@@ -175,6 +176,7 @@ Name | Type | Description  | Notes
 Retrieve current user's events
 
 
+FindEvents is a paginated API operation. You can specify page number and number of events per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the events.
 
 ### Example
 
@@ -247,6 +249,7 @@ Name | Type | Description  | Notes
 Retrieve interconnection events
 
 
+FindInterconnectionEvents is a paginated API operation. You can specify page number and number of events per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the events.
 
 ### Example
 
@@ -406,6 +409,7 @@ Name | Type | Description  | Notes
 Retrieve organization's events
 
 
+FindOrganizationEvents is a paginated API operation. You can specify page number and number of events per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the events.
 
 ### Example
 
@@ -484,6 +488,7 @@ Name | Type | Description  | Notes
 Retrieve project's events
 
 
+FindProjectEvents is a paginated API operation. You can specify page number and number of events per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the events.
 
 ### Example
 

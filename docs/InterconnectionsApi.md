@@ -920,6 +920,7 @@ Name | Type | Description  | Notes
 List project connections
 
 
+ProjectListInterconnections is a paginated API operation. You can specify page number and number of interconnections per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the interconnections.
 
 ### Example
 

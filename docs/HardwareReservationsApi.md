@@ -168,6 +168,7 @@ Name | Type | Description  | Notes
 Retrieve all hardware reservations for a given project
 
 
+FindProjectHardwareReservations is a paginated API operation. You can specify page number and number of hardwarereservations per page in parameters, or you can call `ExecuteWithPagination()` to fetch all the hardwarereservations.
 
 ### Example
 
