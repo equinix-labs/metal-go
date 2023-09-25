@@ -982,7 +982,11 @@ func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*UserList, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return UserList
 func (r ApiFindUsersRequest) ExecuteWithPagination() (*UserList, error) {
+
 	var items UserList
 
 	pageNumber := int32(1)

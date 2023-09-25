@@ -1850,7 +1850,11 @@ func (a *OrganizationsApiService) FindOrganizationProjectsExecute(r ApiFindOrgan
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return ProjectList
 func (r ApiFindOrganizationProjectsRequest) ExecuteWithPagination() (*ProjectList, error) {
+
 	var items ProjectList
 
 	pageNumber := int32(1)
@@ -2204,7 +2208,11 @@ func (a *OrganizationsApiService) FindOrganizationsExecute(r ApiFindOrganization
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return OrganizationList
 func (r ApiFindOrganizationsRequest) ExecuteWithPagination() (*OrganizationList, error) {
+
 	var items OrganizationList
 
 	pageNumber := int32(1)

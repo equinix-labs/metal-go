@@ -592,7 +592,11 @@ func (a *HardwareReservationsApiService) FindProjectHardwareReservationsExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return HardwareReservationList
 func (r ApiFindProjectHardwareReservationsRequest) ExecuteWithPagination() (*HardwareReservationList, error) {
+
 	var items HardwareReservationList
 
 	pageNumber := int32(1)

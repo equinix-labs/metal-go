@@ -918,7 +918,11 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return MetalGatewayList
 func (r ApiFindMetalGatewaysByProjectRequest) ExecuteWithPagination() (*MetalGatewayList, error) {
+
 	var items MetalGatewayList
 
 	pageNumber := int32(1)

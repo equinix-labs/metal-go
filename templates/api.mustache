@@ -410,8 +410,14 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 }
 
 {{#vendorExtensions}}
-{{#x-paginated}}
+{{#x-equinix-metal-paginated-property}}
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice{{#returnType}}
+//  @return {{{.}}}{{/returnType}}
+{{#isDeprecated}}
+// Deprecated
+{{/isDeprecated}}
 func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) ExecuteWithPagination() (*{{returnType}}, error) {
+
 	var items {{returnType}}
 
 	pageNumber := int32(1)
@@ -422,7 +428,7 @@ func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/s
 			return nil, err
 		}
 
-		items.{{x-paginated-property}} = append(items.{{x-paginated-property}}, page.{{x-paginated-property}}...)
+		items.{{.}} = append(items.{{.}}, page.{{.}}...)
 		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
 			break
 		}
@@ -431,7 +437,7 @@ func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/s
 
 	return &items, nil
 }
-{{/x-paginated}}
+{{/x-equinix-metal-paginated-property}}
 {{/vendorExtensions}}
 
 {{/operation}}

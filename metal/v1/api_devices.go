@@ -2210,7 +2210,11 @@ func (a *DevicesApiService) FindOrganizationDevicesExecute(r ApiFindOrganization
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return DeviceList
 func (r ApiFindOrganizationDevicesRequest) ExecuteWithPagination() (*DeviceList, error) {
+
 	var items DeviceList
 
 	pageNumber := int32(1)
@@ -2501,7 +2505,11 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return DeviceList
 func (r ApiFindProjectDevicesRequest) ExecuteWithPagination() (*DeviceList, error) {
+
 	var items DeviceList
 
 	pageNumber := int32(1)

@@ -1688,7 +1688,11 @@ func (a *ProjectsApiService) FindProjectsExecute(r ApiFindProjectsRequest) (*Pro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return ProjectList
 func (r ApiFindProjectsRequest) ExecuteWithPagination() (*ProjectList, error) {
+
 	var items ProjectList
 
 	pageNumber := int32(1)

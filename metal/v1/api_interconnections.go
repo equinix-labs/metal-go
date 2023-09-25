@@ -2109,7 +2109,11 @@ func (a *InterconnectionsApiService) ProjectListInterconnectionsExecute(r ApiPro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return InterconnectionList
 func (r ApiProjectListInterconnectionsRequest) ExecuteWithPagination() (*InterconnectionList, error) {
+
 	var items InterconnectionList
 
 	pageNumber := int32(1)

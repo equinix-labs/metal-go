@@ -213,7 +213,11 @@ func (a *EventsApiService) FindDeviceEventsExecute(r ApiFindDeviceEventsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return EventList
 func (r ApiFindDeviceEventsRequest) ExecuteWithPagination() (*EventList, error) {
+
 	var items EventList
 
 	pageNumber := int32(1)
@@ -568,7 +572,11 @@ func (a *EventsApiService) FindEventsExecute(r ApiFindEventsRequest) (*EventList
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return EventList
 func (r ApiFindEventsRequest) ExecuteWithPagination() (*EventList, error) {
+
 	var items EventList
 
 	pageNumber := int32(1)
@@ -779,7 +787,11 @@ func (a *EventsApiService) FindInterconnectionEventsExecute(r ApiFindInterconnec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return EventList
 func (r ApiFindInterconnectionEventsRequest) ExecuteWithPagination() (*EventList, error) {
+
 	var items EventList
 
 	pageNumber := int32(1)
@@ -1184,7 +1196,11 @@ func (a *EventsApiService) FindOrganizationEventsExecute(r ApiFindOrganizationEv
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return EventList
 func (r ApiFindOrganizationEventsRequest) ExecuteWithPagination() (*EventList, error) {
+
 	var items EventList
 
 	pageNumber := int32(1)
@@ -1395,7 +1411,11 @@ func (a *EventsApiService) FindProjectEventsExecute(r ApiFindProjectEventsReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return EventList
 func (r ApiFindProjectEventsRequest) ExecuteWithPagination() (*EventList, error) {
+
 	var items EventList
 
 	pageNumber := int32(1)
