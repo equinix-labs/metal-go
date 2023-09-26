@@ -15313,6 +15313,7 @@ components:
             href: href
             network: network
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: null
           enabled: true
           manageable: true
           network: network
@@ -15337,6 +15338,7 @@ components:
             href: href
             network: network
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: null
           enabled: true
           manageable: true
           network: network
@@ -16298,6 +16300,7 @@ components:
               href: href
               network: network
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: null
             enabled: true
             manageable: true
             network: network
@@ -16322,6 +16325,7 @@ components:
               href: href
               network: network
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: null
             enabled: true
             manageable: true
             network: network
@@ -16900,6 +16904,7 @@ components:
               href: href
               network: network
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: null
             enabled: true
             manageable: true
             network: network
@@ -16924,6 +16929,7 @@ components:
               href: href
               network: network
             created_at: 2000-01-23T04:56:07.000+00:00
+            type: null
             enabled: true
             manageable: true
             network: network
@@ -18857,6 +18863,7 @@ components:
           href: href
           network: network
         created_at: 2000-01-23T04:56:07.000+00:00
+        type: null
         enabled: true
         manageable: true
         network: network
@@ -18920,6 +18927,8 @@ components:
             The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
           format: ipv4
           type: string
+        type:
+          $ref: '#/components/schemas/IPAssignment_type'
       type: object
     IPAssignmentInput:
       example:
@@ -18943,6 +18952,7 @@ components:
             href: href
             network: network
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: null
           enabled: true
           manageable: true
           network: network
@@ -18967,6 +18977,7 @@ components:
             href: href
             network: network
           created_at: 2000-01-23T04:56:07.000+00:00
+          type: null
           enabled: true
           manageable: true
           network: network
@@ -30516,6 +30527,10 @@ components:
       - pending
       - active
       - deleting
+      type: string
+    IPAssignment_type:
+      enum:
+      - IPAssignment
       type: string
     IPReservation_facility:
       allOf:
