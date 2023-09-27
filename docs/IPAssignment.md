@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to **string** |  | [optional] 
 **AddressFamily** | Pointer to **int32** |  | [optional] 
-**AssignedTo** | Pointer to [**Href**](Href.md) |  | [optional] 
+**AssignedTo** | [**Href**](Href.md) |  | 
 **Cidr** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewIPAssignment
 
-`func NewIPAssignment() *IPAssignment`
+`func NewIPAssignment(assignedTo Href, ) *IPAssignment`
 
 NewIPAssignment instantiates a new IPAssignment object
 This constructor will assign default values to properties that have it defined,
@@ -112,11 +112,6 @@ and a boolean to check if the value has been set.
 
 SetAssignedTo sets AssignedTo field to given value.
 
-### HasAssignedTo
-
-`func (o *IPAssignment) HasAssignedTo() bool`
-
-HasAssignedTo returns a boolean if a field has been set.
 
 ### GetCidr
 
