@@ -18920,6 +18920,8 @@ components:
             The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
           format: ipv4
           type: string
+      required:
+      - assigned_to
       type: object
     IPAssignmentInput:
       example:

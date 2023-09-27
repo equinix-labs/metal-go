@@ -1,0 +1,10 @@
+diff --git a/spec/oas3.patched/components/schemas/IPAssignment.yaml b/spec/oas3.patched/components/schemas/IPAssignment.yaml
+index efce269..7de0b27 100644
+--- a/spec/oas3.patched/components/schemas/IPAssignment.yaml
++++ b/spec/oas3.patched/components/schemas/IPAssignment.yaml
+@@ -1,3 +1,5 @@
++required:
++  - assigned_to
+ properties:
+   address:
+     type: string

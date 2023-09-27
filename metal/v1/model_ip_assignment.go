@@ -23,7 +23,7 @@ var _ MappedNullable = &IPAssignment{}
 type IPAssignment struct {
 	Address       *string            `json:"address,omitempty"`
 	AddressFamily *int32             `json:"address_family,omitempty"`
-	AssignedTo    *Href              `json:"assigned_to,omitempty"`
+	AssignedTo    Href               `json:"assigned_to"`
 	Cidr          *int32             `json:"cidr,omitempty"`
 	CreatedAt     *time.Time         `json:"created_at,omitempty"`
 	Enabled       *bool              `json:"enabled,omitempty"`
@@ -50,8 +50,9 @@ type _IPAssignment IPAssignment
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIPAssignment() *IPAssignment {
+func NewIPAssignment(assignedTo Href) *IPAssignment {
 	this := IPAssignment{}
+	this.AssignedTo = assignedTo
 	return &this
 }
 
@@ -127,36 +128,28 @@ func (o *IPAssignment) SetAddressFamily(v int32) {
 	o.AddressFamily = &v
 }
 
-// GetAssignedTo returns the AssignedTo field value if set, zero value otherwise.
+// GetAssignedTo returns the AssignedTo field value
 func (o *IPAssignment) GetAssignedTo() Href {
-	if o == nil || IsNil(o.AssignedTo) {
+	if o == nil {
 		var ret Href
 		return ret
 	}
-	return *o.AssignedTo
+
+	return o.AssignedTo
 }
 
-// GetAssignedToOk returns a tuple with the AssignedTo field value if set, nil otherwise
+// GetAssignedToOk returns a tuple with the AssignedTo field value
 // and a boolean to check if the value has been set.
 func (o *IPAssignment) GetAssignedToOk() (*Href, bool) {
-	if o == nil || IsNil(o.AssignedTo) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AssignedTo, true
+	return &o.AssignedTo, true
 }
 
-// HasAssignedTo returns a boolean if a field has been set.
-func (o *IPAssignment) HasAssignedTo() bool {
-	if o != nil && !IsNil(o.AssignedTo) {
-		return true
-	}
-
-	return false
-}
-
-// SetAssignedTo gets a reference to the given Href and assigns it to the AssignedTo field.
+// SetAssignedTo sets field value
 func (o *IPAssignment) SetAssignedTo(v Href) {
-	o.AssignedTo = &v
+	o.AssignedTo = v
 }
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
@@ -687,9 +680,7 @@ func (o IPAssignment) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AddressFamily) {
 		toSerialize["address_family"] = o.AddressFamily
 	}
-	if !IsNil(o.AssignedTo) {
-		toSerialize["assigned_to"] = o.AssignedTo
-	}
+	toSerialize["assigned_to"] = o.AssignedTo
 	if !IsNil(o.Cidr) {
 		toSerialize["cidr"] = o.Cidr
 	}

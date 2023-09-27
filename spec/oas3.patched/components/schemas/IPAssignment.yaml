@@ -1,3 +1,5 @@
+required:
+  - assigned_to
 properties:
   address:
     type: string
