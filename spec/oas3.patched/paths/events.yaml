@@ -22,3 +22,4 @@ get:
   summary: Retrieve current user's events
   tags:
   - Events
+  x-equinix-metal-paginated-property: Events

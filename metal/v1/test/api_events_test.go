@@ -32,6 +32,10 @@ func Test_v1_EventsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.EventsApi.FindDeviceEvents(context.Background(), id).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test EventsApiService FindEventById", func(t *testing.T) {
@@ -54,6 +58,10 @@ func Test_v1_EventsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.EventsApi.FindEvents(context.Background()).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test EventsApiService FindInterconnectionEvents", func(t *testing.T) {
@@ -66,6 +74,10 @@ func Test_v1_EventsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.EventsApi.FindInterconnectionEvents(context.Background(), connectionId).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test EventsApiService FindInterconnectionPortEvents", func(t *testing.T) {
@@ -91,6 +103,10 @@ func Test_v1_EventsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.EventsApi.FindOrganizationEvents(context.Background(), id).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test EventsApiService FindProjectEvents", func(t *testing.T) {
@@ -103,6 +119,10 @@ func Test_v1_EventsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.EventsApi.FindProjectEvents(context.Background(), id).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test EventsApiService FindVirtualCircuitEvents", func(t *testing.T) {

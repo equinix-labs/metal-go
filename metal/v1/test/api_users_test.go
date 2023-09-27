@@ -83,6 +83,10 @@ func Test_v1_UsersApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.UsersApi.FindUsers(context.Background()).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test UsersApiService UpdateCurrentUser", func(t *testing.T) {

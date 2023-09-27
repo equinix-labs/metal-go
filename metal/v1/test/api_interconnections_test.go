@@ -179,6 +179,10 @@ func Test_v1_InterconnectionsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.InterconnectionsApi.ProjectListInterconnections(context.Background(), projectId).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test InterconnectionsApiService UpdateInterconnection", func(t *testing.T) {

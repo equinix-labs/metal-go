@@ -23,6 +23,7 @@ get:
   summary: Retrieve all users
   tags:
   - Users
+  x-equinix-metal-paginated-property: Users
 post:
   description: Creates a user.
   operationId: createUser

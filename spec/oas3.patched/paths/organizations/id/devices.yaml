@@ -83,3 +83,4 @@ get:
   summary: Retrieve all devices of an organization
   tags:
   - Devices
+  x-equinix-metal-paginated-property: Devices

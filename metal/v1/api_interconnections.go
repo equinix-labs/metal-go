@@ -2109,6 +2109,31 @@ func (a *InterconnectionsApiService) ProjectListInterconnectionsExecute(r ApiPro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return InterconnectionList
+func (r ApiProjectListInterconnectionsRequest) ExecuteWithPagination() (*InterconnectionList, error) {
+
+	var items InterconnectionList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Interconnections = append(items.Interconnections, page.Interconnections...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiUpdateInterconnectionRequest struct {
 	ctx                        context.Context
 	ApiService                 *InterconnectionsApiService

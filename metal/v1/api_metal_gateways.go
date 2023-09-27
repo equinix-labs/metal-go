@@ -918,6 +918,31 @@ func (a *MetalGatewaysApiService) FindMetalGatewaysByProjectExecute(r ApiFindMet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return MetalGatewayList
+func (r ApiFindMetalGatewaysByProjectRequest) ExecuteWithPagination() (*MetalGatewayList, error) {
+
+	var items MetalGatewayList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.MetalGateways = append(items.MetalGateways, page.MetalGateways...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiGetMetalGatewayElasticIpsRequest struct {
 	ctx        context.Context
 	ApiService *MetalGatewaysApiService

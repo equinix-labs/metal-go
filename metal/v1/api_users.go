@@ -982,6 +982,31 @@ func (a *UsersApiService) FindUsersExecute(r ApiFindUsersRequest) (*UserList, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ExecuteWithPagination executes the request to fetch and return all pages of results as a single slice
+//
+//	@return UserList
+func (r ApiFindUsersRequest) ExecuteWithPagination() (*UserList, error) {
+
+	var items UserList
+
+	pageNumber := int32(1)
+
+	for {
+		page, _, err := r.Page(pageNumber).Execute()
+		if err != nil {
+			return nil, err
+		}
+
+		items.Users = append(items.Users, page.Users...)
+		if page.Meta.GetLastPage() <= page.Meta.GetCurrentPage() {
+			break
+		}
+		pageNumber = page.Meta.GetCurrentPage() + 1
+	}
+
+	return &items, nil
+}
+
 type ApiUpdateCurrentUserRequest struct {
 	ctx             context.Context
 	ApiService      *UsersApiService

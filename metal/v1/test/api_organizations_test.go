@@ -148,6 +148,10 @@ func Test_v1_OrganizationsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.OrganizationsApi.FindOrganizationProjects(context.Background(), id).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test OrganizationsApiService FindOrganizationTransfers", func(t *testing.T) {
@@ -170,6 +174,10 @@ func Test_v1_OrganizationsApiService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
+
+		resp, err = apiClient.OrganizationsApi.FindOrganizations(context.Background()).ExecuteWithPagination()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 	})
 
 	t.Run("Test OrganizationsApiService FindPlansByOrganization", func(t *testing.T) {

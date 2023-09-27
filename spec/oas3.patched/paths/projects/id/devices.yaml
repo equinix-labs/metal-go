@@ -83,6 +83,7 @@ get:
   summary: Retrieve all devices of a project
   tags:
   - Devices
+  x-equinix-metal-paginated-property: Devices
 post:
   description: |-
     Creates a new device and provisions it in the specified location.

@@ -35,6 +35,7 @@ get:
   summary: List project connections
   tags:
   - Interconnections
+  x-equinix-metal-paginated-property: Interconnections
 post:
   description: Creates a new interconnection request
   operationId: createProjectInterconnection

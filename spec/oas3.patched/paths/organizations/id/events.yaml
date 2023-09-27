@@ -41,3 +41,4 @@ get:
   summary: Retrieve organization's events
   tags:
   - Events
+  x-equinix-metal-paginated-property: Events
