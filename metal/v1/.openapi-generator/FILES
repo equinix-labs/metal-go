@@ -168,6 +168,7 @@ docs/IPAssignmentInput.md
 docs/IPAssignmentList.md
 docs/IPAssignmentMetro.md
 docs/IPAssignmentState.md
+docs/IPAssignmentType.md
 docs/IPAssignmentUpdateInput.md
 docs/IPAvailabilitiesList.md
 docs/IPReservation.md
@@ -513,6 +514,7 @@ model_ip_assignment_input.go
 model_ip_assignment_list.go
 model_ip_assignment_metro.go
 model_ip_assignment_state.go
+model_ip_assignment_type.go
 model_ip_assignment_update_input.go
 model_ip_availabilities_list.go
 model_ip_reservation.go

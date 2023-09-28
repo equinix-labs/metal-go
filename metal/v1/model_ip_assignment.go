@@ -40,7 +40,8 @@ type IPAssignment struct {
 	Public        *bool              `json:"public,omitempty"`
 	State         *IPAssignmentState `json:"state,omitempty"`
 	// Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.
-	NextHop              *string `json:"next_hop,omitempty"`
+	NextHop              *string           `json:"next_hop,omitempty"`
+	Type                 *IPAssignmentType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -671,6 +672,38 @@ func (o *IPAssignment) SetNextHop(v string) {
 	o.NextHop = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *IPAssignment) GetType() IPAssignmentType {
+	if o == nil || IsNil(o.Type) {
+		var ret IPAssignmentType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAssignment) GetTypeOk() (*IPAssignmentType, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *IPAssignment) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given IPAssignmentType and assigns it to the Type field.
+func (o *IPAssignment) SetType(v IPAssignmentType) {
+	o.Type = &v
+}
+
 func (o IPAssignment) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -738,6 +771,9 @@ func (o IPAssignment) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextHop) {
 		toSerialize["next_hop"] = o.NextHop
 	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -779,6 +815,7 @@ func (o *IPAssignment) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "public")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "next_hop")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 
