@@ -552,6 +552,8 @@ paths:
     $ref: ./paths/devices/id/bgp/sessions.yaml
   /devices/{id}/customdata:
     $ref: ./paths/devices/id/customdata.yaml
+  /devices/{id}/diagnostics/screenshot:
+    $ref: ./paths/devices/id/diagnostics/screenshot.yaml
   /devices/{id}/diagnostics/health/rollup:
     $ref: ./paths/devices/id/diagnostics/health/rollup.yaml
   /devices/{id}/events:
@@ -902,6 +904,9 @@ tags:
   - description: >
       Firmware Sets Management. Notice: Firmware Sets are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
     name: Firmware Sets
+  - description: >
+      Console Log Details. Notice: This is a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+    name: Console Log Details
   - description: >
       Global BGP Range Management
     name: GlobalBgpRanges
