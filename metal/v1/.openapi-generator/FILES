@@ -7,6 +7,7 @@ api_authentication.go
 api_batches.go
 api_bgp.go
 api_capacity.go
+api_console_log_details.go
 api_devices.go
 api_emails.go
 api_events.go
@@ -86,6 +87,7 @@ docs/CapacityInput.md
 docs/CapacityLevelPerBaremetal.md
 docs/CapacityList.md
 docs/Component.md
+docs/ConsoleLogDetailsApi.md
 docs/Coordinates.md
 docs/CreateDeviceRequest.md
 docs/CreateEmailInput.md
@@ -685,6 +687,7 @@ test/api_authentication_test.go
 test/api_batches_test.go
 test/api_bgp_test.go
 test/api_capacity_test.go
+test/api_console_log_details_test.go
 test/api_devices_test.go
 test/api_emails_test.go
 test/api_events_test.go

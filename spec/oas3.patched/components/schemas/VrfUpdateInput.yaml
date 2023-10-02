@@ -15,7 +15,7 @@ properties:
   local_asn:
     type: integer
     format: int32
-    description: The new `local_asn` value for the VRF. This field cannot be updated when there are active Interconnection Virtual Circuits associated to the VRF.
+    description: The new `local_asn` value for the VRF. This field cannot be updated when there are active Interconnection Virtual Circuits associated to the VRF, or if any of the VLANs of the VRF's metal gateway has been assigned on an instance.
   name:
     type: string
   tags:

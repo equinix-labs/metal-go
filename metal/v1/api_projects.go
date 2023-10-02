@@ -405,6 +405,8 @@ Organization owners can transfer their projects to other organizations.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id UUID of the project to be transferred
 	@return ApiCreateTransferRequestRequest
+
+Deprecated
 */
 func (a *ProjectsApiService) CreateTransferRequest(ctx context.Context, id string) ApiCreateTransferRequestRequest {
 	return ApiCreateTransferRequestRequest{
@@ -417,6 +419,8 @@ func (a *ProjectsApiService) CreateTransferRequest(ctx context.Context, id strin
 // Execute executes the request
 //
 //	@return TransferRequest
+//
+// Deprecated
 func (a *ProjectsApiService) CreateTransferRequestExecute(r ApiCreateTransferRequestRequest) (*TransferRequest, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

@@ -26,6 +26,11 @@ get:
     name: facility
     schema:
       type: string
+  - description: Filter by device metro
+    in: query
+    name: metro
+    schema:
+      type: string
   - description: Filter by partial hostname
     in: query
     name: hostname

@@ -2242,6 +2242,7 @@ type ApiFindProjectDevicesRequest struct {
 	search             *string
 	categories         *[]FindOrganizationDevicesCategoriesParameterInner
 	facility           *string
+	metro              *string
 	hostname           *string
 	reserved           *bool
 	tag                *string
@@ -2268,6 +2269,12 @@ func (r ApiFindProjectDevicesRequest) Categories(categories []FindOrganizationDe
 // Filter by device facility
 func (r ApiFindProjectDevicesRequest) Facility(facility string) ApiFindProjectDevicesRequest {
 	r.facility = &facility
+	return r
+}
+
+// Filter by device metro
+func (r ApiFindProjectDevicesRequest) Metro(metro string) ApiFindProjectDevicesRequest {
+	r.metro = &metro
 	return r
 }
 
@@ -2377,6 +2384,9 @@ func (a *DevicesApiService) FindProjectDevicesExecute(r ApiFindProjectDevicesReq
 	}
 	if r.facility != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "facility", r.facility, "")
+	}
+	if r.metro != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "metro", r.metro, "")
 	}
 	if r.hostname != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "hostname", r.hostname, "")
