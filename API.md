@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
 *CapacityApi* | [**FindCapacityForMetro**](docs/CapacityApi.md#findcapacityformetro) | **Get** /capacity/metros | View capacity for metros
 *CapacityApi* | [**FindOrganizationCapacityPerFacility**](docs/CapacityApi.md#findorganizationcapacityperfacility) | **Get** /organizations/{id}/capacity | View available hardware plans per Facility for given organization
 *CapacityApi* | [**FindOrganizationCapacityPerMetro**](docs/CapacityApi.md#findorganizationcapacitypermetro) | **Get** /organizations/{id}/capacity/metros | View available hardware plans per Metro for given organization
+*ConsoleLogDetailsApi* | [**CaptureScreenshot**](docs/ConsoleLogDetailsApi.md#capturescreenshot) | **Get** /devices/{id}/diagnostics/screenshot | 
 *DevicesApi* | [**CreateBgpSession**](docs/DevicesApi.md#createbgpsession) | **Post** /devices/{id}/bgp/sessions | Create a BGP session
 *DevicesApi* | [**CreateDevice**](docs/DevicesApi.md#createdevice) | **Post** /projects/{id}/devices | Create a device
 *DevicesApi* | [**CreateIPAssignment**](docs/DevicesApi.md#createipassignment) | **Post** /devices/{id}/ips | Create an ip assignment
