@@ -1,9 +1,0 @@
---- spec/oas3.patched/components/schemas/CapacityCheckPerMetroInfo.yaml
-+++ spec/oas3.patched/components/schemas/CapacityCheckPerMetroInfo.yaml
-@@ -11,5 +11,5 @@ properties:
-     type: string
-   quantity:
-     description: The number of servers sent to check capacity.
--    type: integer
-+    type: string
- type: object
