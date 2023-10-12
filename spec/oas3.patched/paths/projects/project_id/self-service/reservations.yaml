@@ -21,6 +21,7 @@ get:
         enum:
           - compute
           - storage
+          - vmce
         example: compute
   responses:
     "200":

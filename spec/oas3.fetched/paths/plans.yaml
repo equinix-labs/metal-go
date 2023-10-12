@@ -12,6 +12,7 @@ get:
         enum:
           - compute
           - storage
+          - vmce
         example: compute
   - description: Filter plans by its plan type
     in: query

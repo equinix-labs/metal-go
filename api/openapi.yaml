@@ -30317,6 +30317,7 @@ components:
       enum:
       - compute
       - storage
+      - vmce
       example: compute
       type: string
     createOrganizationInterconnection_request:

@@ -20,6 +20,7 @@ get:
         enum:
           - compute
           - storage
+          - vmce
         example: compute
   - description: Filter by device facility
     in: query
