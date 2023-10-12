@@ -23,12 +23,14 @@ type FindOrganizationDevicesCategoriesParameterInner string
 const (
 	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_COMPUTE FindOrganizationDevicesCategoriesParameterInner = "compute"
 	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_STORAGE FindOrganizationDevicesCategoriesParameterInner = "storage"
+	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_VMCE    FindOrganizationDevicesCategoriesParameterInner = "vmce"
 )
 
 // All allowed values of FindOrganizationDevicesCategoriesParameterInner enum
 var AllowedFindOrganizationDevicesCategoriesParameterInnerEnumValues = []FindOrganizationDevicesCategoriesParameterInner{
 	"compute",
 	"storage",
+	"vmce",
 }
 
 func (v *FindOrganizationDevicesCategoriesParameterInner) UnmarshalJSON(src []byte) error {
