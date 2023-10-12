@@ -4,18 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bill** | **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal. | [default to false]
-**Description** | **string** |  | 
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**NniVlan** | **int32** |  | 
-**Port** | [**Href**](Href.md) |  | 
-**Project** | [**Href**](Href.md) |  | 
+**Bill** | Pointer to **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal. | [optional] [default to false]
+**Description** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**NniVlan** | Pointer to **int32** |  | [optional] 
+**Port** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Speed** | Pointer to **int32** | integer representing bps speed | [optional] 
-**Status** | [**VrfVirtualCircuitStatus**](VrfVirtualCircuitStatus.md) |  | 
-**Tags** | **[]string** |  | 
-**VirtualNetwork** | [**Href**](Href.md) |  | 
-**Vnid** | **int32** |  | 
+**Status** | Pointer to [**VrfVirtualCircuitStatus**](VrfVirtualCircuitStatus.md) |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Type** | Pointer to [**VrfVirtualCircuitType**](VrfVirtualCircuitType.md) |  | [optional] 
+**VirtualNetwork** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Vnid** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **CustomerIp** | Pointer to **string** | An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used. | [optional] 
@@ -23,13 +24,13 @@ Name | Type | Description | Notes
 **MetalIp** | Pointer to **string** | An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used. | [optional] 
 **PeerAsn** | Pointer to **int32** | The peer ASN that will be used with the VRF on the Virtual Circuit. | [optional] 
 **Subnet** | Pointer to **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. | [optional] 
-**Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
+**Vrf** | [**Vrf**](Vrf.md) |  | 
 
 ## Methods
 
 ### NewVirtualCircuit
 
-`func NewVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status VrfVirtualCircuitStatus, tags []string, virtualNetwork Href, vnid int32, ) *VirtualCircuit`
+`func NewVirtualCircuit(vrf Vrf, ) *VirtualCircuit`
 
 NewVirtualCircuit instantiates a new VirtualCircuit object
 This constructor will assign default values to properties that have it defined,
@@ -63,6 +64,11 @@ and a boolean to check if the value has been set.
 
 SetBill sets Bill field to given value.
 
+### HasBill
+
+`func (o *VirtualCircuit) HasBill() bool`
+
+HasBill returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -83,6 +89,11 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+### HasDescription
+
+`func (o *VirtualCircuit) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetId
 
@@ -103,6 +114,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *VirtualCircuit) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -123,6 +139,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *VirtualCircuit) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetNniVlan
 
@@ -143,6 +164,11 @@ and a boolean to check if the value has been set.
 
 SetNniVlan sets NniVlan field to given value.
 
+### HasNniVlan
+
+`func (o *VirtualCircuit) HasNniVlan() bool`
+
+HasNniVlan returns a boolean if a field has been set.
 
 ### GetPort
 
@@ -163,6 +189,11 @@ and a boolean to check if the value has been set.
 
 SetPort sets Port field to given value.
 
+### HasPort
+
+`func (o *VirtualCircuit) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
 
 ### GetProject
 
@@ -183,6 +214,11 @@ and a boolean to check if the value has been set.
 
 SetProject sets Project field to given value.
 
+### HasProject
+
+`func (o *VirtualCircuit) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
 
 ### GetSpeed
 
@@ -228,6 +264,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *VirtualCircuit) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetTags
 
@@ -248,6 +289,36 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *VirtualCircuit) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *VirtualCircuit) GetType() VrfVirtualCircuitType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *VirtualCircuit) GetTypeOk() (*VrfVirtualCircuitType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *VirtualCircuit) SetType(v VrfVirtualCircuitType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *VirtualCircuit) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetVirtualNetwork
 
@@ -268,6 +339,11 @@ and a boolean to check if the value has been set.
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 
+### HasVirtualNetwork
+
+`func (o *VirtualCircuit) HasVirtualNetwork() bool`
+
+HasVirtualNetwork returns a boolean if a field has been set.
 
 ### GetVnid
 
@@ -288,6 +364,11 @@ and a boolean to check if the value has been set.
 
 SetVnid sets Vnid field to given value.
 
+### HasVnid
+
+`func (o *VirtualCircuit) HasVnid() bool`
+
+HasVnid returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -483,11 +564,6 @@ and a boolean to check if the value has been set.
 
 SetVrf sets Vrf field to given value.
 
-### HasVrf
-
-`func (o *VirtualCircuit) HasVrf() bool`
-
-HasVrf returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -18,7 +18,8 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**VrfVirtualCircuitStatus**](VrfVirtualCircuitStatus.md) |  | [optional] 
 **Subnet** | Pointer to **string** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Vrf** | Pointer to [**Vrf**](Vrf.md) |  | [optional] 
+**Type** | Pointer to [**VrfVirtualCircuitType**](VrfVirtualCircuitType.md) |  | [optional] 
+**Vrf** | [**Vrf**](Vrf.md) |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -26,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewVrfVirtualCircuit
 
-`func NewVrfVirtualCircuit() *VrfVirtualCircuit`
+`func NewVrfVirtualCircuit(vrf Vrf, ) *VrfVirtualCircuit`
 
 NewVrfVirtualCircuit instantiates a new VrfVirtualCircuit object
 This constructor will assign default values to properties that have it defined,
@@ -391,6 +392,31 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### GetType
+
+`func (o *VrfVirtualCircuit) GetType() VrfVirtualCircuitType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *VrfVirtualCircuit) GetTypeOk() (*VrfVirtualCircuitType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *VrfVirtualCircuit) SetType(v VrfVirtualCircuitType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *VrfVirtualCircuit) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
 ### GetVrf
 
 `func (o *VrfVirtualCircuit) GetVrf() Vrf`
@@ -410,11 +436,6 @@ and a boolean to check if the value has been set.
 
 SetVrf sets Vrf field to given value.
 
-### HasVrf
-
-`func (o *VrfVirtualCircuit) HasVrf() bool`
-
-HasVrf returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
