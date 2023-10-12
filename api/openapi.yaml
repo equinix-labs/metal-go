@@ -24290,17 +24290,7 @@ components:
           format: date-time
           type: string
       required:
-      - bill
-      - description
-      - id
-      - name
-      - nni_vlan
-      - port
-      - project
-      - status
-      - tags
       - virtual_network
-      - vnid
       type: object
     VlanVirtualCircuitCreateInput:
       properties:
@@ -29781,6 +29771,8 @@ components:
         updated_at:
           format: date-time
           type: string
+      required:
+      - vrf
       type: object
     VrfVirtualCircuitCreateInput:
       properties:

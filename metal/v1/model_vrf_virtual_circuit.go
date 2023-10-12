@@ -41,7 +41,7 @@ type VrfVirtualCircuit struct {
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
 	Subnet               *string    `json:"subnet,omitempty"`
 	Tags                 []string   `json:"tags,omitempty"`
-	Vrf                  *Vrf       `json:"vrf,omitempty"`
+	Vrf                  Vrf        `json:"vrf"`
 	CreatedAt            *time.Time `json:"created_at,omitempty"`
 	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -53,8 +53,9 @@ type _VrfVirtualCircuit VrfVirtualCircuit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfVirtualCircuit() *VrfVirtualCircuit {
+func NewVrfVirtualCircuit(vrf Vrf) *VrfVirtualCircuit {
 	this := VrfVirtualCircuit{}
+	this.Vrf = vrf
 	return &this
 }
 
@@ -514,36 +515,28 @@ func (o *VrfVirtualCircuit) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetVrf returns the Vrf field value if set, zero value otherwise.
+// GetVrf returns the Vrf field value
 func (o *VrfVirtualCircuit) GetVrf() Vrf {
-	if o == nil || IsNil(o.Vrf) {
+	if o == nil {
 		var ret Vrf
 		return ret
 	}
-	return *o.Vrf
+
+	return o.Vrf
 }
 
-// GetVrfOk returns a tuple with the Vrf field value if set, nil otherwise
+// GetVrfOk returns a tuple with the Vrf field value
 // and a boolean to check if the value has been set.
 func (o *VrfVirtualCircuit) GetVrfOk() (*Vrf, bool) {
-	if o == nil || IsNil(o.Vrf) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Vrf, true
+	return &o.Vrf, true
 }
 
-// HasVrf returns a boolean if a field has been set.
-func (o *VrfVirtualCircuit) HasVrf() bool {
-	if o != nil && !IsNil(o.Vrf) {
-		return true
-	}
-
-	return false
-}
-
-// SetVrf gets a reference to the given Vrf and assigns it to the Vrf field.
+// SetVrf sets field value
 func (o *VrfVirtualCircuit) SetVrf(v Vrf) {
-	o.Vrf = &v
+	o.Vrf = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -662,9 +655,7 @@ func (o VrfVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.Vrf) {
-		toSerialize["vrf"] = o.Vrf
-	}
+	toSerialize["vrf"] = o.Vrf
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}

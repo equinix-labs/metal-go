@@ -22,21 +22,21 @@ var _ MappedNullable = &VlanVirtualCircuit{}
 // VlanVirtualCircuit struct for VlanVirtualCircuit
 type VlanVirtualCircuit struct {
 	// True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal.
-	Bill        bool   `json:"bill"`
-	Description string `json:"description"`
-	Id          string `json:"id"`
-	Name        string `json:"name"`
-	NniVlan     int32  `json:"nni_vlan"`
-	Port        Href   `json:"port"`
-	Project     Href   `json:"project"`
+	Bill        *bool   `json:"bill,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Id          *string `json:"id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	NniVlan     *int32  `json:"nni_vlan,omitempty"`
+	Port        *Href   `json:"port,omitempty"`
+	Project     *Href   `json:"project,omitempty"`
 	// For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	Speed                *int32                   `json:"speed,omitempty"`
-	Status               VlanVirtualCircuitStatus `json:"status"`
-	Tags                 []string                 `json:"tags"`
-	VirtualNetwork       Href                     `json:"virtual_network"`
-	Vnid                 int32                    `json:"vnid"`
-	CreatedAt            *time.Time               `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time               `json:"updated_at,omitempty"`
+	Speed                *int32                    `json:"speed,omitempty"`
+	Status               *VlanVirtualCircuitStatus `json:"status,omitempty"`
+	Tags                 []string                  `json:"tags,omitempty"`
+	VirtualNetwork       Href                      `json:"virtual_network"`
+	Vnid                 *int32                    `json:"vnid,omitempty"`
+	CreatedAt            *time.Time                `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time                `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,19 +46,11 @@ type _VlanVirtualCircuit VlanVirtualCircuit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVlanVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status VlanVirtualCircuitStatus, tags []string, virtualNetwork Href, vnid int32) *VlanVirtualCircuit {
+func NewVlanVirtualCircuit(virtualNetwork Href) *VlanVirtualCircuit {
 	this := VlanVirtualCircuit{}
-	this.Bill = bill
-	this.Description = description
-	this.Id = id
-	this.Name = name
-	this.NniVlan = nniVlan
-	this.Port = port
-	this.Project = project
-	this.Status = status
-	this.Tags = tags
+	var bill bool = false
+	this.Bill = &bill
 	this.VirtualNetwork = virtualNetwork
-	this.Vnid = vnid
 	return &this
 }
 
@@ -68,176 +60,232 @@ func NewVlanVirtualCircuit(bill bool, description string, id string, name string
 func NewVlanVirtualCircuitWithDefaults() *VlanVirtualCircuit {
 	this := VlanVirtualCircuit{}
 	var bill bool = false
-	this.Bill = bill
+	this.Bill = &bill
 	return &this
 }
 
-// GetBill returns the Bill field value
+// GetBill returns the Bill field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetBill() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Bill) {
 		var ret bool
 		return ret
 	}
-
-	return o.Bill
+	return *o.Bill
 }
 
-// GetBillOk returns a tuple with the Bill field value
+// GetBillOk returns a tuple with the Bill field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetBillOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Bill) {
 		return nil, false
 	}
-	return &o.Bill, true
+	return o.Bill, true
 }
 
-// SetBill sets field value
+// HasBill returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasBill() bool {
+	if o != nil && !IsNil(o.Bill) {
+		return true
+	}
+
+	return false
+}
+
+// SetBill gets a reference to the given bool and assigns it to the Bill field.
 func (o *VlanVirtualCircuit) SetBill(v bool) {
-	o.Bill = v
+	o.Bill = &v
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetDescription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *VlanVirtualCircuit) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetId() string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *VlanVirtualCircuit) SetId(v string) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *VlanVirtualCircuit) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetNniVlan returns the NniVlan field value
+// GetNniVlan returns the NniVlan field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetNniVlan() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.NniVlan) {
 		var ret int32
 		return ret
 	}
-
-	return o.NniVlan
+	return *o.NniVlan
 }
 
-// GetNniVlanOk returns a tuple with the NniVlan field value
+// GetNniVlanOk returns a tuple with the NniVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetNniVlanOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NniVlan) {
 		return nil, false
 	}
-	return &o.NniVlan, true
+	return o.NniVlan, true
 }
 
-// SetNniVlan sets field value
+// HasNniVlan returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasNniVlan() bool {
+	if o != nil && !IsNil(o.NniVlan) {
+		return true
+	}
+
+	return false
+}
+
+// SetNniVlan gets a reference to the given int32 and assigns it to the NniVlan field.
 func (o *VlanVirtualCircuit) SetNniVlan(v int32) {
-	o.NniVlan = v
+	o.NniVlan = &v
 }
 
-// GetPort returns the Port field value
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetPort() Href {
-	if o == nil {
+	if o == nil || IsNil(o.Port) {
 		var ret Href
 		return ret
 	}
-
-	return o.Port
+	return *o.Port
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetPortOk() (*Href, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
-	return &o.Port, true
+	return o.Port, true
 }
 
-// SetPort sets field value
+// HasPort returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasPort() bool {
+	if o != nil && !IsNil(o.Port) {
+		return true
+	}
+
+	return false
+}
+
+// SetPort gets a reference to the given Href and assigns it to the Port field.
 func (o *VlanVirtualCircuit) SetPort(v Href) {
-	o.Port = v
+	o.Port = &v
 }
 
-// GetProject returns the Project field value
+// GetProject returns the Project field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetProject() Href {
-	if o == nil {
+	if o == nil || IsNil(o.Project) {
 		var ret Href
 		return ret
 	}
-
-	return o.Project
+	return *o.Project
 }
 
-// GetProjectOk returns a tuple with the Project field value
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetProjectOk() (*Href, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Project) {
 		return nil, false
 	}
-	return &o.Project, true
+	return o.Project, true
 }
 
-// SetProject sets field value
+// HasProject returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasProject() bool {
+	if o != nil && !IsNil(o.Project) {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given Href and assigns it to the Project field.
 func (o *VlanVirtualCircuit) SetProject(v Href) {
-	o.Project = v
+	o.Project = &v
 }
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
@@ -272,50 +320,66 @@ func (o *VlanVirtualCircuit) SetSpeed(v int32) {
 	o.Speed = &v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetStatus() VlanVirtualCircuitStatus {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret VlanVirtualCircuitStatus
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetStatusOk() (*VlanVirtualCircuitStatus, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given VlanVirtualCircuitStatus and assigns it to the Status field.
 func (o *VlanVirtualCircuit) SetStatus(v VlanVirtualCircuitStatus) {
-	o.Status = v
+	o.Status = &v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetTags() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
-
 	return o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetTagsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
 }
 
-// SetTags sets field value
+// HasTags returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *VlanVirtualCircuit) SetTags(v []string) {
 	o.Tags = v
 }
@@ -344,28 +408,36 @@ func (o *VlanVirtualCircuit) SetVirtualNetwork(v Href) {
 	o.VirtualNetwork = v
 }
 
-// GetVnid returns the Vnid field value
+// GetVnid returns the Vnid field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetVnid() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Vnid) {
 		var ret int32
 		return ret
 	}
-
-	return o.Vnid
+	return *o.Vnid
 }
 
-// GetVnidOk returns a tuple with the Vnid field value
+// GetVnidOk returns a tuple with the Vnid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VlanVirtualCircuit) GetVnidOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Vnid) {
 		return nil, false
 	}
-	return &o.Vnid, true
+	return o.Vnid, true
 }
 
-// SetVnid sets field value
+// HasVnid returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasVnid() bool {
+	if o != nil && !IsNil(o.Vnid) {
+		return true
+	}
+
+	return false
+}
+
+// SetVnid gets a reference to the given int32 and assigns it to the Vnid field.
 func (o *VlanVirtualCircuit) SetVnid(v int32) {
-	o.Vnid = v
+	o.Vnid = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -442,20 +514,40 @@ func (o VlanVirtualCircuit) MarshalJSON() ([]byte, error) {
 
 func (o VlanVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bill"] = o.Bill
-	toSerialize["description"] = o.Description
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["nni_vlan"] = o.NniVlan
-	toSerialize["port"] = o.Port
-	toSerialize["project"] = o.Project
+	if !IsNil(o.Bill) {
+		toSerialize["bill"] = o.Bill
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.NniVlan) {
+		toSerialize["nni_vlan"] = o.NniVlan
+	}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Project) {
+		toSerialize["project"] = o.Project
+	}
 	if !IsNil(o.Speed) {
 		toSerialize["speed"] = o.Speed
 	}
-	toSerialize["status"] = o.Status
-	toSerialize["tags"] = o.Tags
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["virtual_network"] = o.VirtualNetwork
-	toSerialize["vnid"] = o.Vnid
+	if !IsNil(o.Vnid) {
+		toSerialize["vnid"] = o.Vnid
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
