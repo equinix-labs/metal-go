@@ -1,15 +1,5 @@
 required:
-- bill
-- description
-- id
-- name
-- nni_vlan
-- port
-- project
-- status
-- tags
 - virtual_network
-- vnid
 properties:
   bill:
     type: boolean
