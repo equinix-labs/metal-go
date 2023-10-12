@@ -1,15 +1,3 @@
-required:
-- bill
-- description
-- id
-- name
-- nni_vlan
-- port
-- project
-- status
-- tags
-- virtual_network
-- vnid
 properties:
   bill:
     type: boolean
@@ -60,6 +48,10 @@ properties:
     items:
       type: string
     type: array
+  type:
+    type: string
+    enum:
+    - vlan
   virtual_network:
     $ref: './Href.yaml'
   vnid:
