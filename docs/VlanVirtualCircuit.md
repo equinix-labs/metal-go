@@ -4,18 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bill** | **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal. | [default to false]
-**Description** | **string** |  | 
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**NniVlan** | **int32** |  | 
-**Port** | [**Href**](Href.md) |  | 
-**Project** | [**Href**](Href.md) |  | 
+**Bill** | Pointer to **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal. | [optional] [default to false]
+**Description** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**NniVlan** | Pointer to **int32** |  | [optional] 
+**Port** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Speed** | Pointer to **int32** | For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details. | [optional] 
-**Status** | [**VlanVirtualCircuitStatus**](VlanVirtualCircuitStatus.md) |  | 
-**Tags** | **[]string** |  | 
-**VirtualNetwork** | [**Href**](Href.md) |  | 
-**Vnid** | **int32** |  | 
+**Status** | Pointer to [**VlanVirtualCircuitStatus**](VlanVirtualCircuitStatus.md) |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Type** | Pointer to [**VlanVirtualCircuitType**](VlanVirtualCircuitType.md) |  | [optional] 
+**VirtualNetwork** | Pointer to [**Href**](Href.md) |  | [optional] 
+**Vnid** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewVlanVirtualCircuit
 
-`func NewVlanVirtualCircuit(bill bool, description string, id string, name string, nniVlan int32, port Href, project Href, status VlanVirtualCircuitStatus, tags []string, virtualNetwork Href, vnid int32, ) *VlanVirtualCircuit`
+`func NewVlanVirtualCircuit() *VlanVirtualCircuit`
 
 NewVlanVirtualCircuit instantiates a new VlanVirtualCircuit object
 This constructor will assign default values to properties that have it defined,
@@ -57,6 +58,11 @@ and a boolean to check if the value has been set.
 
 SetBill sets Bill field to given value.
 
+### HasBill
+
+`func (o *VlanVirtualCircuit) HasBill() bool`
+
+HasBill returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -77,6 +83,11 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+### HasDescription
+
+`func (o *VlanVirtualCircuit) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetId
 
@@ -97,6 +108,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *VlanVirtualCircuit) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -117,6 +133,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *VlanVirtualCircuit) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetNniVlan
 
@@ -137,6 +158,11 @@ and a boolean to check if the value has been set.
 
 SetNniVlan sets NniVlan field to given value.
 
+### HasNniVlan
+
+`func (o *VlanVirtualCircuit) HasNniVlan() bool`
+
+HasNniVlan returns a boolean if a field has been set.
 
 ### GetPort
 
@@ -157,6 +183,11 @@ and a boolean to check if the value has been set.
 
 SetPort sets Port field to given value.
 
+### HasPort
+
+`func (o *VlanVirtualCircuit) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
 
 ### GetProject
 
@@ -177,6 +208,11 @@ and a boolean to check if the value has been set.
 
 SetProject sets Project field to given value.
 
+### HasProject
+
+`func (o *VlanVirtualCircuit) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
 
 ### GetSpeed
 
@@ -222,6 +258,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *VlanVirtualCircuit) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetTags
 
@@ -242,6 +283,36 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *VlanVirtualCircuit) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *VlanVirtualCircuit) GetType() VlanVirtualCircuitType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *VlanVirtualCircuit) GetTypeOk() (*VlanVirtualCircuitType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *VlanVirtualCircuit) SetType(v VlanVirtualCircuitType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *VlanVirtualCircuit) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetVirtualNetwork
 
@@ -262,6 +333,11 @@ and a boolean to check if the value has been set.
 
 SetVirtualNetwork sets VirtualNetwork field to given value.
 
+### HasVirtualNetwork
+
+`func (o *VlanVirtualCircuit) HasVirtualNetwork() bool`
+
+HasVirtualNetwork returns a boolean if a field has been set.
 
 ### GetVnid
 
@@ -282,6 +358,11 @@ and a boolean to check if the value has been set.
 
 SetVnid sets Vnid field to given value.
 
+### HasVnid
+
+`func (o *VlanVirtualCircuit) HasVnid() bool`
+
+HasVnid returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

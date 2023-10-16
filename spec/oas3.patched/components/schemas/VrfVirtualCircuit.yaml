@@ -1,3 +1,5 @@
+required:
+- vrf
 properties:
   customer_ip:
     description: >-
@@ -73,6 +75,10 @@ properties:
     items:
       type: string
     type: array
+  type:
+    type: string
+    enum:
+    - vrf
   vrf:
     $ref: './Vrf.yaml'
   created_at:

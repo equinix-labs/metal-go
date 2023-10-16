@@ -658,6 +658,7 @@ Class | Method | HTTP request | Description
  - [VlanVirtualCircuit](docs/VlanVirtualCircuit.md)
  - [VlanVirtualCircuitCreateInput](docs/VlanVirtualCircuitCreateInput.md)
  - [VlanVirtualCircuitStatus](docs/VlanVirtualCircuitStatus.md)
+ - [VlanVirtualCircuitType](docs/VlanVirtualCircuitType.md)
  - [VlanVirtualCircuitUpdateInput](docs/VlanVirtualCircuitUpdateInput.md)
  - [Vrf](docs/Vrf.md)
  - [VrfCreateInput](docs/VrfCreateInput.md)

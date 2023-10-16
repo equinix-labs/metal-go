@@ -360,6 +360,7 @@ docs/VlanFabricVcCreateInputType.md
 docs/VlanVirtualCircuit.md
 docs/VlanVirtualCircuitCreateInput.md
 docs/VlanVirtualCircuitStatus.md
+docs/VlanVirtualCircuitType.md
 docs/VlanVirtualCircuitUpdateInput.md
 docs/Vrf.md
 docs/VrfCreateInput.md
@@ -660,6 +661,7 @@ model_vlan_fabric_vc_create_input_type.go
 model_vlan_virtual_circuit.go
 model_vlan_virtual_circuit_create_input.go
 model_vlan_virtual_circuit_status.go
+model_vlan_virtual_circuit_type.go
 model_vlan_virtual_circuit_update_input.go
 model_vrf.go
 model_vrf_create_input.go
