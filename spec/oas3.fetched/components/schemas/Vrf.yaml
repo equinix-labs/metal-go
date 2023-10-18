@@ -2,6 +2,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   name:
     type: string
   description:
@@ -42,9 +43,11 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   tags:
     items:
       type: string

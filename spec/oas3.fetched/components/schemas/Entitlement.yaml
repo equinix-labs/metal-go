@@ -8,6 +8,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   instance_quota:
     type: object
   ip_quota:

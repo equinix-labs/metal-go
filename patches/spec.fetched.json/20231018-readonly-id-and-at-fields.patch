@@ -1,0 +1,1024 @@
+diff --git a/spec/oas3.fetched/components/schemas/AuthToken.yaml b/spec/oas3.fetched/components/schemas/AuthToken.yaml
+index 8a43219..b3d0acc 100644
+--- a/spec/oas3.fetched/components/schemas/AuthToken.yaml
++++ b/spec/oas3.fetched/components/schemas/AuthToken.yaml
+@@ -2,12 +2,14 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   description:
+     description: Available only for API keys
+     type: string
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   project:
+     allOf:
+     - $ref: './Project.yaml'
+@@ -19,6 +21,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   user:
+     allOf:
+     - $ref: './User.yaml'
+diff --git a/spec/oas3.fetched/components/schemas/Batch.yaml b/spec/oas3.fetched/components/schemas/Batch.yaml
+index 919aa20..1824bfd 100644
+--- a/spec/oas3.fetched/components/schemas/Batch.yaml
++++ b/spec/oas3.fetched/components/schemas/Batch.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   devices:
+     items:
+       $ref: './Href.yaml'
+@@ -13,6 +14,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   project:
+     $ref: './Href.yaml'
+   quantity:
+@@ -22,4 +24,5 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/BgpConfig.yaml b/spec/oas3.fetched/components/schemas/BgpConfig.yaml
+index 0947e2f..7fce1bc 100644
+--- a/spec/oas3.fetched/components/schemas/BgpConfig.yaml
++++ b/spec/oas3.fetched/components/schemas/BgpConfig.yaml
+@@ -8,6 +8,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   deployment_type:
+     description: |
+       In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.
+@@ -21,6 +22,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   max_prefix:
+     default: 10
+     description: The maximum number of route filters allowed per server
+@@ -40,6 +42,7 @@ properties:
+   requested_at:
+     format: date-time
+     type: string
++    readOnly: true
+   route_object:
+     description: Specifies AS-MACRO (aka AS-SET) to use when building client route
+       filters
+@@ -58,4 +61,5 @@ properties:
+     - enabled
+     - disabled
+     type: string
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/BgpSession.yaml b/spec/oas3.fetched/components/schemas/BgpSession.yaml
+index db8baf8..5ec3482 100644
+--- a/spec/oas3.fetched/components/schemas/BgpSession.yaml
++++ b/spec/oas3.fetched/components/schemas/BgpSession.yaml
+@@ -7,6 +7,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   default_route:
+     type: boolean
+   device:
+@@ -16,6 +17,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   learned_routes:
+     items:
+       description: IPv4 or IPv6 range
+@@ -33,9 +35,11 @@ properties:
+     - up
+     - down
+     type: string
++    readOnly: true
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ required:
+ - address_family
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/BondPortData.yaml b/spec/oas3.fetched/components/schemas/BondPortData.yaml
+index da6a03d..eeb4de5 100644
+--- a/spec/oas3.fetched/components/schemas/BondPortData.yaml
++++ b/spec/oas3.fetched/components/schemas/BondPortData.yaml
+@@ -3,6 +3,7 @@ properties:
+     description: ID of the bonding port
+     type: string
+     format: uuid
++    readOnly: true
+   name:
+     description: Name of the port interface for the bond ("bond0")
+     type: string
+diff --git a/spec/oas3.fetched/components/schemas/Device.yaml b/spec/oas3.fetched/components/schemas/Device.yaml
+index 8e3eb27..f10cd3d 100644
+--- a/spec/oas3.fetched/components/schemas/Device.yaml
++++ b/spec/oas3.fetched/components/schemas/Device.yaml
+@@ -8,6 +8,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   created_by:
+     allOf:
+     - $ref: './UserLite.yaml'
+@@ -33,6 +34,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   image_url:
+     type: string
+   ip_addresses:
+@@ -167,6 +169,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   user:
+     type: string
+   userdata:
+diff --git a/spec/oas3.fetched/components/schemas/Email.yaml b/spec/oas3.fetched/components/schemas/Email.yaml
+index 9b420b3..e7fecd4 100644
+--- a/spec/oas3.fetched/components/schemas/Email.yaml
++++ b/spec/oas3.fetched/components/schemas/Email.yaml
+@@ -8,6 +8,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   verified:
+     type: boolean
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/Entitlement.yaml b/spec/oas3.fetched/components/schemas/Entitlement.yaml
+index c8bde23..4c8a93f 100644
+--- a/spec/oas3.fetched/components/schemas/Entitlement.yaml
++++ b/spec/oas3.fetched/components/schemas/Entitlement.yaml
+@@ -8,6 +8,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   instance_quota:
+     type: object
+   ip_quota:
+diff --git a/spec/oas3.fetched/components/schemas/Event.yaml b/spec/oas3.fetched/components/schemas/Event.yaml
+index 9f4effd..58d1ff8 100644
+--- a/spec/oas3.fetched/components/schemas/Event.yaml
++++ b/spec/oas3.fetched/components/schemas/Event.yaml
+@@ -4,11 +4,13 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   href:
+     type: string
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   interpolated:
+     type: string
+   relationships:
+diff --git a/spec/oas3.fetched/components/schemas/Facility.yaml b/spec/oas3.fetched/components/schemas/Facility.yaml
+index dd0203c..c39d1f4 100644
+--- a/spec/oas3.fetched/components/schemas/Facility.yaml
++++ b/spec/oas3.fetched/components/schemas/Facility.yaml
+@@ -20,6 +20,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   ip_ranges:
+     description: IP ranges registered in facility. Can be used for GeoIP location
+     example:
+diff --git a/spec/oas3.fetched/components/schemas/GlobalBgpRange.yaml b/spec/oas3.fetched/components/schemas/GlobalBgpRange.yaml
+index ac2eaa3..d146d60 100644
+--- a/spec/oas3.fetched/components/schemas/GlobalBgpRange.yaml
++++ b/spec/oas3.fetched/components/schemas/GlobalBgpRange.yaml
+@@ -6,6 +6,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   project:
+     $ref: './Href.yaml'
+   range:
+diff --git a/spec/oas3.fetched/components/schemas/HardwareReservation.yaml b/spec/oas3.fetched/components/schemas/HardwareReservation.yaml
+index 59aa31f..5e13abb 100644
+--- a/spec/oas3.fetched/components/schemas/HardwareReservation.yaml
++++ b/spec/oas3.fetched/components/schemas/HardwareReservation.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   custom_rate:
+     description: Amount that will be charged for every billing_cycle.
+     example: 1050.5
+@@ -16,6 +17,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   need_of_service:
+     description: Whether this Device requires assistance from Equinix Metal.
+     type: boolean
+diff --git a/spec/oas3.fetched/components/schemas/IPAssignment.yaml b/spec/oas3.fetched/components/schemas/IPAssignment.yaml
+index efce269..ec1c100 100644
+--- a/spec/oas3.fetched/components/schemas/IPAssignment.yaml
++++ b/spec/oas3.fetched/components/schemas/IPAssignment.yaml
+@@ -10,6 +10,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   enabled:
+     type: boolean
+   gateway:
+@@ -21,6 +22,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   manageable:
+     type: boolean
+   management:
+diff --git a/spec/oas3.fetched/components/schemas/IPReservation.yaml b/spec/oas3.fetched/components/schemas/IPReservation.yaml
+index 848adb5..dead988 100644
+--- a/spec/oas3.fetched/components/schemas/IPReservation.yaml
++++ b/spec/oas3.fetched/components/schemas/IPReservation.yaml
+@@ -18,6 +18,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   customdata:
+     type: object
+   enabled:
+@@ -40,6 +41,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   manageable:
+     type: boolean
+   management:
+@@ -62,6 +64,7 @@ properties:
+     $ref: './Href.yaml'
+   requested_by:
+     $ref: './Href.yaml'
++    readOnly: true
+   public:
+     type: boolean
+   state:
+diff --git a/spec/oas3.fetched/components/schemas/Interconnection.yaml b/spec/oas3.fetched/components/schemas/Interconnection.yaml
+index 191a441..8b1accf 100644
+--- a/spec/oas3.fetched/components/schemas/Interconnection.yaml
++++ b/spec/oas3.fetched/components/schemas/Interconnection.yaml
+@@ -8,6 +8,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   metro:
+     allOf:
+     - $ref: './Metro.yaml'
+@@ -53,6 +54,7 @@ properties:
+     example: 10000000000
+   status:
+     type: string
++    readOnly: true
+   tags:
+     items:
+       type: string
+@@ -70,9 +72,12 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   requested_by:
+     $ref: './Href.yaml'
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/InterconnectionPort.yaml b/spec/oas3.fetched/components/schemas/InterconnectionPort.yaml
+index be1d7f5..0061644 100644
+--- a/spec/oas3.fetched/components/schemas/InterconnectionPort.yaml
++++ b/spec/oas3.fetched/components/schemas/InterconnectionPort.yaml
+@@ -2,6 +2,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   organization:
+     $ref: './Href.yaml'
+   role:
+@@ -21,6 +22,7 @@ properties:
+     - deleting
+     - expired
+     - delete_failed
++    readOnly: true
+   switch_id:
+     description: A switch 'short ID'
+     type: string
+diff --git a/spec/oas3.fetched/components/schemas/Invitation.yaml b/spec/oas3.fetched/components/schemas/Invitation.yaml
+index fb587f0..7c2d73d 100644
+--- a/spec/oas3.fetched/components/schemas/Invitation.yaml
++++ b/spec/oas3.fetched/components/schemas/Invitation.yaml
+@@ -2,11 +2,13 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   href:
+     type: string
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   invitation:
+     $ref: './Href.yaml'
+   invited_by:
+@@ -34,4 +36,5 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/Invoice.yaml b/spec/oas3.fetched/components/schemas/Invoice.yaml
+index ec764a0..a0441fd 100644
+--- a/spec/oas3.fetched/components/schemas/Invoice.yaml
++++ b/spec/oas3.fetched/components/schemas/Invoice.yaml
+@@ -23,6 +23,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   items:
+     items:
+       $ref: './LineItem.yaml'
+@@ -35,6 +36,7 @@ properties:
+     type: string
+   status:
+     type: string
++    readOnly: true
+   target_date:
+     format: date
+     type: string
+diff --git a/spec/oas3.fetched/components/schemas/License.yaml b/spec/oas3.fetched/components/schemas/License.yaml
+index d16812b..d4355a3 100644
+--- a/spec/oas3.fetched/components/schemas/License.yaml
++++ b/spec/oas3.fetched/components/schemas/License.yaml
+@@ -4,6 +4,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   license_key:
+     type: string
+   licensee_product:
+diff --git a/spec/oas3.fetched/components/schemas/Membership.yaml b/spec/oas3.fetched/components/schemas/Membership.yaml
+index 9adde1a..14ccd8b 100644
+--- a/spec/oas3.fetched/components/schemas/Membership.yaml
++++ b/spec/oas3.fetched/components/schemas/Membership.yaml
+@@ -2,11 +2,13 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   href:
+     type: string
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   project:
+     $ref: './Href.yaml'
+   roles:
+@@ -16,6 +18,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   user:
+     $ref: './Href.yaml'
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/Metadata.yaml b/spec/oas3.fetched/components/schemas/Metadata.yaml
+index 4c2d5e6..b734a76 100644
+--- a/spec/oas3.fetched/components/schemas/Metadata.yaml
++++ b/spec/oas3.fetched/components/schemas/Metadata.yaml
+@@ -13,6 +13,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   iqn:
+     type: string
+   metro:
+diff --git a/spec/oas3.fetched/components/schemas/MetalGateway.yaml b/spec/oas3.fetched/components/schemas/MetalGateway.yaml
+index ed0eb30..0c0dd0a 100644
+--- a/spec/oas3.fetched/components/schemas/MetalGateway.yaml
++++ b/spec/oas3.fetched/components/schemas/MetalGateway.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   created_by:
+     $ref: './Href.yaml'
+   href:
+@@ -9,6 +10,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   ip_reservation:
+     $ref: './IPReservation.yaml'
+   project:
+@@ -27,6 +29,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   virtual_network:
+     $ref: './VirtualNetwork.yaml'
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/MetalGatewayLite.yaml b/spec/oas3.fetched/components/schemas/MetalGatewayLite.yaml
+index ce42cc1..8d982fd 100644
+--- a/spec/oas3.fetched/components/schemas/MetalGatewayLite.yaml
++++ b/spec/oas3.fetched/components/schemas/MetalGatewayLite.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   gateway_address:
+     description: The gateway address with subnet CIDR value for this Metal Gateway.
+       For example, a Metal Gateway using an IP reservation with block 10.1.2.0/27
+@@ -13,6 +14,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   state:
+     description: The current state of the Metal Gateway. 'Ready' indicates the gateway
+       record has been configured, but is currently not active on the network. 'Active'
+@@ -27,6 +29,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   vlan:
+     description: 'The VLAN id of the Virtual Network record associated to this Metal
+       Gateway.'
+diff --git a/spec/oas3.fetched/components/schemas/Metro.yaml b/spec/oas3.fetched/components/schemas/Metro.yaml
+index c98a13f..a76922e 100644
+--- a/spec/oas3.fetched/components/schemas/Metro.yaml
++++ b/spec/oas3.fetched/components/schemas/Metro.yaml
+@@ -6,6 +6,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   name:
+     type: string
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/OperatingSystem.yaml b/spec/oas3.fetched/components/schemas/OperatingSystem.yaml
+index eb027d8..4b832a6 100644
+--- a/spec/oas3.fetched/components/schemas/OperatingSystem.yaml
++++ b/spec/oas3.fetched/components/schemas/OperatingSystem.yaml
+@@ -6,6 +6,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   licensed:
+     description: Licenced OS is priced according to pricing property
+     type: boolean
+diff --git a/spec/oas3.fetched/components/schemas/Organization.yaml b/spec/oas3.fetched/components/schemas/Organization.yaml
+index 534c0b5..1d7609c 100644
+--- a/spec/oas3.fetched/components/schemas/Organization.yaml
++++ b/spec/oas3.fetched/components/schemas/Organization.yaml
+@@ -6,6 +6,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   credit_amount:
+     format: float
+     type: number
+@@ -18,9 +19,11 @@ properties:
+       after that date, unless the value is null
+     format: date-time
+     type: string
++    readOnly: true
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   logo:
+     type: string
+   members:
+@@ -44,6 +47,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   website:
+     type: string
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/OrganizationInput.yaml b/spec/oas3.fetched/components/schemas/OrganizationInput.yaml
+index 3f46526..c88a04a 100644
+--- a/spec/oas3.fetched/components/schemas/OrganizationInput.yaml
++++ b/spec/oas3.fetched/components/schemas/OrganizationInput.yaml
+@@ -12,6 +12,7 @@ properties:
+       after that date, unless the value is null
+     format: date-time
+     type: string
++    readOnly: true
+   logo:
+     description: The logo for the organization; must be base64-encoded image data
+     format: byte
+diff --git a/spec/oas3.fetched/components/schemas/PaymentMethod.yaml b/spec/oas3.fetched/components/schemas/PaymentMethod.yaml
+index 1ead6a6..04abb10 100644
+--- a/spec/oas3.fetched/components/schemas/PaymentMethod.yaml
++++ b/spec/oas3.fetched/components/schemas/PaymentMethod.yaml
+@@ -8,6 +8,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   created_by_user:
+     $ref: './Href.yaml'
+   default:
+@@ -21,6 +22,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   name:
+     type: string
+   organization:
+@@ -34,4 +36,5 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/Plan.yaml b/spec/oas3.fetched/components/schemas/Plan.yaml
+index 0b5f1d5..3f456c8 100644
+--- a/spec/oas3.fetched/components/schemas/Plan.yaml
++++ b/spec/oas3.fetched/components/schemas/Plan.yaml
+@@ -55,6 +55,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   legacy:
+     description: Deprecated. Always return false
+     type: boolean
+diff --git a/spec/oas3.fetched/components/schemas/Port.yaml b/spec/oas3.fetched/components/schemas/Port.yaml
+index bceaf31..9ceba52 100644
+--- a/spec/oas3.fetched/components/schemas/Port.yaml
++++ b/spec/oas3.fetched/components/schemas/Port.yaml
+@@ -13,6 +13,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   name:
+     type: string
+     example: bond0
+diff --git a/spec/oas3.fetched/components/schemas/PortVlanAssignment.yaml b/spec/oas3.fetched/components/schemas/PortVlanAssignment.yaml
+index 889b348..0376dfc 100644
+--- a/spec/oas3.fetched/components/schemas/PortVlanAssignment.yaml
++++ b/spec/oas3.fetched/components/schemas/PortVlanAssignment.yaml
+@@ -2,9 +2,11 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   native:
+     type: boolean
+   port:
+@@ -17,6 +19,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   virtual_network:
+     $ref: './Href.yaml'
+   vlan:
+diff --git a/spec/oas3.fetched/components/schemas/PortVlanAssignmentBatch.yaml b/spec/oas3.fetched/components/schemas/PortVlanAssignmentBatch.yaml
+index 0d5e8a2..1098799 100644
+--- a/spec/oas3.fetched/components/schemas/PortVlanAssignmentBatch.yaml
++++ b/spec/oas3.fetched/components/schemas/PortVlanAssignmentBatch.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   error_messages:
+     items:
+       type: string
+@@ -9,6 +10,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   port:
+     $ref: './Port.yaml'
+   quantity:
+@@ -23,6 +25,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   vlan_assignments:
+     items:
+       properties:
+diff --git a/spec/oas3.fetched/components/schemas/Project.yaml b/spec/oas3.fetched/components/schemas/Project.yaml
+index 3ee880b..5144f3e 100644
+--- a/spec/oas3.fetched/components/schemas/Project.yaml
++++ b/spec/oas3.fetched/components/schemas/Project.yaml
+@@ -4,6 +4,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   customdata:
+     type: object
+   devices:
+@@ -13,6 +14,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   invitations:
+     items:
+       $ref: './Href.yaml'
+@@ -45,6 +47,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   volumes:
+     items:
+       $ref: './Href.yaml'
+diff --git a/spec/oas3.fetched/components/schemas/ProjectIdName.yaml b/spec/oas3.fetched/components/schemas/ProjectIdName.yaml
+index 3a06d9b..5849580 100644
+--- a/spec/oas3.fetched/components/schemas/ProjectIdName.yaml
++++ b/spec/oas3.fetched/components/schemas/ProjectIdName.yaml
+@@ -2,6 +2,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   name:
+     type: string
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/SSHKey.yaml b/spec/oas3.fetched/components/schemas/SSHKey.yaml
+index 135e59d..51e7ad8 100644
+--- a/spec/oas3.fetched/components/schemas/SSHKey.yaml
++++ b/spec/oas3.fetched/components/schemas/SSHKey.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   entity:
+     $ref: './Href.yaml'
+   fingerprint:
+@@ -11,6 +12,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   key:
+     type: string
+   label:
+@@ -18,6 +20,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   tags:
+     items:
+       type: string
+diff --git a/spec/oas3.fetched/components/schemas/SelfServiceReservationItemResponse.yaml b/spec/oas3.fetched/components/schemas/SelfServiceReservationItemResponse.yaml
+index 06b2f9e..79beca3 100644
+--- a/spec/oas3.fetched/components/schemas/SelfServiceReservationItemResponse.yaml
++++ b/spec/oas3.fetched/components/schemas/SelfServiceReservationItemResponse.yaml
+@@ -4,6 +4,7 @@ properties:
+     type: number
+   id:
+     type: string
++    readOnly: true
+   metro_code:
+     type: string
+   metro_id:
+diff --git a/spec/oas3.fetched/components/schemas/SelfServiceReservationResponse.yaml b/spec/oas3.fetched/components/schemas/SelfServiceReservationResponse.yaml
+index 60cbfb0..6c530db 100644
+--- a/spec/oas3.fetched/components/schemas/SelfServiceReservationResponse.yaml
++++ b/spec/oas3.fetched/components/schemas/SelfServiceReservationResponse.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   item:
+     items:
+       $ref: './SelfServiceReservationItemResponse.yaml'
+@@ -35,6 +36,7 @@ properties:
+     type: string
+   status:
+     type: string
++    readOnly: true
+   total_cost:
+     type: integer
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/SpotMarketRequest.yaml b/spec/oas3.fetched/components/schemas/SpotMarketRequest.yaml
+index bea8751..985593f 100644
+--- a/spec/oas3.fetched/components/schemas/SpotMarketRequest.yaml
++++ b/spec/oas3.fetched/components/schemas/SpotMarketRequest.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   devices_max:
+     type: integer
+   devices_min:
+@@ -16,6 +17,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   instances:
+     $ref: './Href.yaml'
+   max_bid_price:
+diff --git a/spec/oas3.fetched/components/schemas/TransferRequest.yaml b/spec/oas3.fetched/components/schemas/TransferRequest.yaml
+index 86f4eb4..28cd7fd 100644
+--- a/spec/oas3.fetched/components/schemas/TransferRequest.yaml
++++ b/spec/oas3.fetched/components/schemas/TransferRequest.yaml
+@@ -2,11 +2,13 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   href:
+     type: string
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   project:
+     $ref: './Href.yaml'
+   target_organization:
+@@ -14,4 +16,5 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/User.yaml b/spec/oas3.fetched/components/schemas/User.yaml
+index b81db71..813f0fe 100644
+--- a/spec/oas3.fetched/components/schemas/User.yaml
++++ b/spec/oas3.fetched/components/schemas/User.yaml
+@@ -6,6 +6,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   customdata:
+     type: object
+   default_organization_id:
+@@ -31,9 +32,11 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   last_login_at:
+     format: date-time
+     type: string
++    readOnly: true
+   last_name:
+     type: string
+   max_organizations:
+@@ -51,4 +54,5 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/UserLimited.yaml b/spec/oas3.fetched/components/schemas/UserLimited.yaml
+index 3e909c3..3051d21 100644
+--- a/spec/oas3.fetched/components/schemas/UserLimited.yaml
++++ b/spec/oas3.fetched/components/schemas/UserLimited.yaml
+@@ -15,6 +15,7 @@ properties:
+     description: ID of the User
+     format: uuid
+     type: string
++    readOnly: true
+ required:
+       - id
+       - short_id
+diff --git a/spec/oas3.fetched/components/schemas/UserLite.yaml b/spec/oas3.fetched/components/schemas/UserLite.yaml
+index 333edef..ae19295 100644
+--- a/spec/oas3.fetched/components/schemas/UserLite.yaml
++++ b/spec/oas3.fetched/components/schemas/UserLite.yaml
+@@ -6,6 +6,7 @@ properties:
+     description: When the user was created
+     format: date-time
+     type: string
++    readOnly: true
+   email:
+     description: Primary email address of the User
+     type: string
+@@ -22,6 +23,7 @@ properties:
+     description: ID of the User
+     format: uuid
+     type: string
++    readOnly: true
+   last_name:
+     description: Last name of the User
+     type: string
+@@ -32,6 +34,7 @@ properties:
+     description: When the user details were last updated
+     format: date-time
+     type: string
++    readOnly: true
+ required:
+ - id
+ - short_id
+diff --git a/spec/oas3.fetched/components/schemas/VirtualNetwork.yaml b/spec/oas3.fetched/components/schemas/VirtualNetwork.yaml
+index cb0c698..6ddddc5 100644
+--- a/spec/oas3.fetched/components/schemas/VirtualNetwork.yaml
++++ b/spec/oas3.fetched/components/schemas/VirtualNetwork.yaml
+@@ -14,6 +14,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   instances:
+     description: A list of instances with ports currently associated to this Virtual
+       Network.
+diff --git a/spec/oas3.fetched/components/schemas/VlanVirtualCircuit.yaml b/spec/oas3.fetched/components/schemas/VlanVirtualCircuit.yaml
+index 5532432..db4bfaf 100644
+--- a/spec/oas3.fetched/components/schemas/VlanVirtualCircuit.yaml
++++ b/spec/oas3.fetched/components/schemas/VlanVirtualCircuit.yaml
+@@ -8,6 +8,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   name:
+     type: string
+   nni_vlan:
+@@ -44,6 +45,7 @@ properties:
+     - changing_vlan_failed
+     - deactivation_failed
+     - delete_failed
++    readOnly: true
+   tags:
+     items:
+       type: string
+@@ -59,7 +61,9 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ type: object
+diff --git a/spec/oas3.fetched/components/schemas/Vrf.yaml b/spec/oas3.fetched/components/schemas/Vrf.yaml
+index 85f576e..f0a3f66 100644
+--- a/spec/oas3.fetched/components/schemas/Vrf.yaml
++++ b/spec/oas3.fetched/components/schemas/Vrf.yaml
+@@ -2,6 +2,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   name:
+     type: string
+   description:
+@@ -42,9 +43,11 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   tags:
+     items:
+       type: string
+diff --git a/spec/oas3.fetched/components/schemas/VrfIpReservation.yaml b/spec/oas3.fetched/components/schemas/VrfIpReservation.yaml
+index f17bd10..3f193dc 100644
+--- a/spec/oas3.fetched/components/schemas/VrfIpReservation.yaml
++++ b/spec/oas3.fetched/components/schemas/VrfIpReservation.yaml
+@@ -6,6 +6,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   created_by:
+     $ref: './Href.yaml'
+   details:
+@@ -15,6 +16,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   metal_gateway:
+     $ref: './MetalGatewayLite.yaml'
+   netmask:
+diff --git a/spec/oas3.fetched/components/schemas/VrfMetalGateway.yaml b/spec/oas3.fetched/components/schemas/VrfMetalGateway.yaml
+index 5864d01..d1f2392 100644
+--- a/spec/oas3.fetched/components/schemas/VrfMetalGateway.yaml
++++ b/spec/oas3.fetched/components/schemas/VrfMetalGateway.yaml
+@@ -2,6 +2,7 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   created_by:
+     $ref: './Href.yaml'
+   href:
+@@ -9,6 +10,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   ip_reservation:
+     $ref: './VrfIpReservation.yaml'
+   project:
+@@ -27,6 +29,7 @@ properties:
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+   virtual_network:
+     $ref: './VirtualNetwork.yaml'
+   vrf:
+diff --git a/spec/oas3.fetched/components/schemas/VrfVirtualCircuit.yaml b/spec/oas3.fetched/components/schemas/VrfVirtualCircuit.yaml
+index 2bb47b5..42ebfc5 100644
+--- a/spec/oas3.fetched/components/schemas/VrfVirtualCircuit.yaml
++++ b/spec/oas3.fetched/components/schemas/VrfVirtualCircuit.yaml
+@@ -13,6 +13,7 @@ properties:
+   id:
+     format: uuid
+     type: string
++    readOnly: true
+   md5:
+     description: >-
+       The MD5 password for the BGP peering in plaintext (not a checksum).
+@@ -62,6 +63,7 @@ properties:
+     - changing_peering_details_failed
+     - deactivation_failed
+     - delete_failed
++    readOnly: true
+   subnet:
+     description: >-
+       The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for
+@@ -84,7 +86,9 @@ properties:
+   created_at:
+     format: date-time
+     type: string
++    readOnly: true
+   updated_at:
+     format: date-time
+     type: string
++    readOnly: true
+ type: object

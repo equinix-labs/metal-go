@@ -2,11 +2,13 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   href:
     type: string
   id:
     format: uuid
     type: string
+    readOnly: true
   project:
     $ref: './Href.yaml'
   roles:
@@ -16,6 +18,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   user:
     $ref: './Href.yaml'
 type: object

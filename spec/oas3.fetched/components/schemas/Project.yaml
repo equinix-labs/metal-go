@@ -4,6 +4,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   customdata:
     type: object
   devices:
@@ -13,6 +14,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   invitations:
     items:
       $ref: './Href.yaml'
@@ -45,6 +47,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   volumes:
     items:
       $ref: './Href.yaml'

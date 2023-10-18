@@ -55,6 +55,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   legacy:
     description: Deprecated. Always return false
     type: boolean

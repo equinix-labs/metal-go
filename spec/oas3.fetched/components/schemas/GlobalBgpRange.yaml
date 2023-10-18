@@ -6,6 +6,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   project:
     $ref: './Href.yaml'
   range:

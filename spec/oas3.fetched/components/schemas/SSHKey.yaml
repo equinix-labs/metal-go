@@ -2,6 +2,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   entity:
     $ref: './Href.yaml'
   fingerprint:
@@ -11,6 +12,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   key:
     type: string
   label:
@@ -18,6 +20,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   tags:
     items:
       type: string

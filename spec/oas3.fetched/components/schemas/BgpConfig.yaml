@@ -8,6 +8,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   deployment_type:
     description: |
       In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.
@@ -21,6 +22,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   max_prefix:
     default: 10
     description: The maximum number of route filters allowed per server
@@ -40,6 +42,7 @@ properties:
   requested_at:
     format: date-time
     type: string
+    readOnly: true
   route_object:
     description: Specifies AS-MACRO (aka AS-SET) to use when building client route
       filters
@@ -58,4 +61,5 @@ properties:
     - enabled
     - disabled
     type: string
+    readOnly: true
 type: object

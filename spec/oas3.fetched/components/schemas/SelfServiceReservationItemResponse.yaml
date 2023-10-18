@@ -4,6 +4,7 @@ properties:
     type: number
   id:
     type: string
+    readOnly: true
   metro_code:
     type: string
   metro_id:

@@ -20,6 +20,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   ip_ranges:
     description: IP ranges registered in facility. Can be used for GeoIP location
     example:

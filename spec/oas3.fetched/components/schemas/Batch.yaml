@@ -2,6 +2,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   devices:
     items:
       $ref: './Href.yaml'
@@ -13,6 +14,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   project:
     $ref: './Href.yaml'
   quantity:
@@ -22,4 +24,5 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
 type: object
