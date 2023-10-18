@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to [**Address**](Address.md) |  | [optional] 
 **BillingAddress** | Pointer to [**Address**](Address.md) |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **CreditAmount** | Pointer to **float32** |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] [readonly] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Logo** | Pointer to **string** |  | [optional] 
 **Members** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Memberships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Terms** | Pointer to **int32** |  | [optional] 
 **Twitter** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Website** | Pointer to **string** |  | [optional] 
 
 ## Methods

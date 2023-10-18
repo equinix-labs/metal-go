@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | ID of the bonding port | [optional] 
+**Id** | Pointer to **string** | ID of the bonding port | [optional] [readonly] 
 **Name** | Pointer to **string** | Name of the port interface for the bond (\&quot;bond0\&quot;) | [optional] 
 
 ## Methods

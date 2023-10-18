@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **CustomRate** | Pointer to **float32** | Amount that will be charged for every billing_cycle. | [optional] 
 **Device** | Pointer to [**Device**](Device.md) |  | [optional] 
 **Facility** | Pointer to [**Facility**](Facility.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **NeedOfService** | Pointer to **bool** | Whether this Device requires assistance from Equinix Metal. | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] 
 **Project** | Pointer to [**Project**](Project.md) |  | [optional] 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Address** | Pointer to **string** |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Verified** | Pointer to **bool** |  | [optional] 
 
 ## Methods

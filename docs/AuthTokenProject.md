@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BgpConfig** | Pointer to [**Href**](Href.md) |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Devices** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Invitations** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **MaxDevices** | Pointer to **map[string]interface{}** |  | [optional] 
 **Members** | Pointer to [**[]Href**](Href.md) |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **Organization** | Pointer to [**Organization**](Organization.md) |  | [optional] 
 **PaymentMethod** | Pointer to [**Href**](Href.md) |  | [optional] 
 **SshKeys** | Pointer to [**[]Href**](Href.md) |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Volumes** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Type** | Pointer to [**ProjectType**](ProjectType.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Entity** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Fingerprint** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Key** | Pointer to **string** |  | [optional] 
 **Label** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods

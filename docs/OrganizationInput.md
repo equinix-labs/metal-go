@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **BillingAddress** | Pointer to [**Address**](Address.md) |  | [optional] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
+**Enforce2faAt** | Pointer to **time.Time** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] [readonly] 
 **Logo** | Pointer to **string** | The logo for the organization; must be base64-encoded image data | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Twitter** | Pointer to **string** |  | [optional] 

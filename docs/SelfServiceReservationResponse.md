@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Item** | Pointer to [**[]SelfServiceReservationItemResponse**](SelfServiceReservationItemResponse.md) |  | [optional] 
 **Notes** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to **string** |  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Project** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **string** |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] [readonly] 
 **TotalCost** | Pointer to **int32** |  | [optional] 
 
 ## Methods

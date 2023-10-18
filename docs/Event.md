@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Body** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Interpolated** | Pointer to **string** |  | [optional] 
 **Relationships** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **State** | Pointer to **string** |  | [optional] 

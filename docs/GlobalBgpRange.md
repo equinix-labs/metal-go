@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddressFamily** | Pointer to **int32** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Range** | Pointer to **string** |  | [optional] 
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **LicenseKey** | Pointer to **string** |  | [optional] 
 **LicenseeProduct** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 

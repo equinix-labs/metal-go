@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **FeatureAccess** | Pointer to **map[string]interface{}** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | **string** |  | 
+**Id** | **string** |  | [readonly] 
 **InstanceQuota** | Pointer to **map[string]interface{}** |  | [optional] 
 **IpQuota** | Pointer to **map[string]interface{}** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 

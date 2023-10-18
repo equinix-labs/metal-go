@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Data** | Pointer to [**PortData**](PortData.md) |  | [optional] 
 **DisbondOperationSupported** | Pointer to **bool** | Indicates whether or not the bond can be broken on the port (when applicable). | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**PortType**](PortType.md) |  | [optional] 
 **NetworkType** | Pointer to [**PortNetworkType**](PortNetworkType.md) |  | [optional] 

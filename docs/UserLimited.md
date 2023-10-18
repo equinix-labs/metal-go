@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **AvatarUrl** | Pointer to **string** | Avatar URL of the User | [optional] 
 **FullName** | Pointer to **string** | Full name of the User | [optional] 
 **Href** | Pointer to **string** | API URL uniquely representing the User | [optional] 
-**Id** | **string** | ID of the User | 
+**Id** | **string** | ID of the User | [readonly] 
 
 ## Methods
 

@@ -11,12 +11,12 @@ Name | Type | Description | Notes
 **CreditsApplied** | Pointer to **float32** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
 **DueOn** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Items** | Pointer to [**[]LineItem**](LineItem.md) |  | [optional] 
 **Number** | Pointer to **string** |  | [optional] 
 **Project** | Pointer to [**ProjectIdName**](ProjectIdName.md) |  | [optional] 
 **ReferenceNumber** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] [readonly] 
 **TargetDate** | Pointer to **string** |  | [optional] 
 
 ## Methods

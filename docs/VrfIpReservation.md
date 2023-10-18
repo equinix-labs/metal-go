@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddressFamily** | Pointer to **int32** |  | [optional] 
 **Cidr** | Pointer to **int32** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **CreatedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Details** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **MetalGateway** | Pointer to [**MetalGatewayLite**](MetalGatewayLite.md) |  | [optional] 
 **Netmask** | Pointer to **string** |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 

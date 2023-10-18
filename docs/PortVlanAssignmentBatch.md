@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **ErrorMessages** | Pointer to **[]string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Port** | Pointer to [**Port**](Port.md) |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
 **State** | Pointer to [**PortVlanAssignmentBatchState**](PortVlanAssignmentBatchState.md) |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **VlanAssignments** | Pointer to [**[]PortVlanAssignmentBatchVlanAssignmentsInner**](PortVlanAssignmentBatchVlanAssignmentsInner.md) |  | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 

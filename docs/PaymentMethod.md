@@ -7,18 +7,18 @@ Name | Type | Description | Notes
 **BillingAddress** | Pointer to [**PaymentMethodBillingAddress**](PaymentMethodBillingAddress.md) |  | [optional] 
 **CardType** | Pointer to **string** |  | [optional] 
 **CardholderName** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **CreatedByUser** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Default** | Pointer to **bool** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **ExpirationMonth** | Pointer to **string** |  | [optional] 
 **ExpirationYear** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 
 ## Methods
 

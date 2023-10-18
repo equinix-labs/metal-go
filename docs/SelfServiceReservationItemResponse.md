@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **float32** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **MetroCode** | Pointer to **string** |  | [optional] 
 **MetroId** | Pointer to **string** |  | [optional] 
 **MetroName** | Pointer to **string** |  | [optional] 
