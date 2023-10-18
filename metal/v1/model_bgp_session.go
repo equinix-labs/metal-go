@@ -377,6 +377,20 @@ func (o BgpSession) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BgpSession) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"address_family",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varBgpSession := _BgpSession{}
 
 	err = json.Unmarshal(bytes, &varBgpSession)

@@ -269,6 +269,20 @@ func (o ProjectCreateFromRootInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ProjectCreateFromRootInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varProjectCreateFromRootInput := _ProjectCreateFromRootInput{}
 
 	err = json.Unmarshal(bytes, &varProjectCreateFromRootInput)

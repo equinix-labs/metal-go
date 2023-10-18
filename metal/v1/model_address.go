@@ -286,6 +286,22 @@ func (o Address) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Address) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"address",
+		"country",
+		"zip_code",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varAddress := _Address{}
 
 	err = json.Unmarshal(bytes, &varAddress)

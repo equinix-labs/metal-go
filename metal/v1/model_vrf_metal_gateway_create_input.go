@@ -117,6 +117,21 @@ func (o VrfMetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VrfMetalGatewayCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"ip_reservation_id",
+		"virtual_network_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVrfMetalGatewayCreateInput := _VrfMetalGatewayCreateInput{}
 
 	err = json.Unmarshal(bytes, &varVrfMetalGatewayCreateInput)

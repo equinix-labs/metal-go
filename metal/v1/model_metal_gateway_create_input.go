@@ -163,6 +163,20 @@ func (o MetalGatewayCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *MetalGatewayCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"virtual_network_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varMetalGatewayCreateInput := _MetalGatewayCreateInput{}
 
 	err = json.Unmarshal(bytes, &varMetalGatewayCreateInput)

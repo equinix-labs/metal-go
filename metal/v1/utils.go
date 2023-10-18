@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"reflect"
 	"time"
 )
@@ -345,4 +346,8 @@ func IsNil(i interface{}) bool {
 
 type MappedNullable interface {
 	ToMap() (map[string]interface{}, error)
+}
+
+func MissingRequiredFieldError(name string) error {
+	return fmt.Errorf("no value given for required field %v", name)
 }

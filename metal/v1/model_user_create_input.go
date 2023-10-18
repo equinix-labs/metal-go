@@ -648,6 +648,22 @@ func (o UserCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UserCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"emails",
+		"first_name",
+		"last_name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varUserCreateInput := _UserCreateInput{}
 
 	err = json.Unmarshal(bytes, &varUserCreateInput)

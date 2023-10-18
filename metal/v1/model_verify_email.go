@@ -89,6 +89,20 @@ func (o VerifyEmail) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VerifyEmail) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"user_token",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVerifyEmail := _VerifyEmail{}
 
 	err = json.Unmarshal(bytes, &varVerifyEmail)

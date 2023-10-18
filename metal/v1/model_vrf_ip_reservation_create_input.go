@@ -281,6 +281,23 @@ func (o VrfIpReservationCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VrfIpReservationCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"cidr",
+		"network",
+		"type",
+		"vrf_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVrfIpReservationCreateInput := _VrfIpReservationCreateInput{}
 
 	err = json.Unmarshal(bytes, &varVrfIpReservationCreateInput)

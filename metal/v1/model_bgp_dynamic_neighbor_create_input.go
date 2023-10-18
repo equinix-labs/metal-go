@@ -153,6 +153,21 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"bgp_neighbor_range",
+		"bgp_neighbor_asn",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varBgpDynamicNeighborCreateInput := _BgpDynamicNeighborCreateInput{}
 
 	err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput)

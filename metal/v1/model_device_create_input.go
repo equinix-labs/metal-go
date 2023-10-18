@@ -990,6 +990,21 @@ func (o DeviceCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *DeviceCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"operating_system",
+		"plan",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varDeviceCreateInput := _DeviceCreateInput{}
 
 	err = json.Unmarshal(bytes, &varDeviceCreateInput)

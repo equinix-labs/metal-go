@@ -223,6 +223,21 @@ func (o SupportRequestInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *SupportRequestInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"message",
+		"subject",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varSupportRequestInput := _SupportRequestInput{}
 
 	err = json.Unmarshal(bytes, &varSupportRequestInput)

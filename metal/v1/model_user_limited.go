@@ -237,6 +237,20 @@ func (o UserLimited) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UserLimited) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varUserLimited := _UserLimited{}
 
 	err = json.Unmarshal(bytes, &varUserLimited)

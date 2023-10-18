@@ -707,6 +707,20 @@ func (o VrfVirtualCircuit) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VrfVirtualCircuit) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"vrf",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVrfVirtualCircuit := _VrfVirtualCircuit{}
 
 	err = json.Unmarshal(bytes, &varVrfVirtualCircuit)

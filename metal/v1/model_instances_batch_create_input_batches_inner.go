@@ -1123,6 +1123,23 @@ func (o InstancesBatchCreateInputBatchesInner) ToMap() (map[string]interface{}, 
 }
 
 func (o *InstancesBatchCreateInputBatchesInner) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"metro",
+		"operating_system",
+		"plan",
+		"facility",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varInstancesBatchCreateInputBatchesInner := _InstancesBatchCreateInputBatchesInner{}
 
 	err = json.Unmarshal(bytes, &varInstancesBatchCreateInputBatchesInner)

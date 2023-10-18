@@ -408,6 +408,25 @@ func (o VrfFabricVcCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VrfFabricVcCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"metro",
+		"name",
+		"redundancy",
+		"service_token_type",
+		"type",
+		"vrfs",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVrfFabricVcCreateInput := _VrfFabricVcCreateInput{}
 
 	err = json.Unmarshal(bytes, &varVrfFabricVcCreateInput)

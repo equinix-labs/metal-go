@@ -470,6 +470,22 @@ func (o Entitlement) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Entitlement) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"id",
+		"slug",
+		"weight",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varEntitlement := _Entitlement{}
 
 	err = json.Unmarshal(bytes, &varEntitlement)

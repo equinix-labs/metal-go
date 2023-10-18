@@ -232,6 +232,20 @@ func (o InvitationInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *InvitationInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"invitee",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varInvitationInput := _InvitationInput{}
 
 	err = json.Unmarshal(bytes, &varInvitationInput)

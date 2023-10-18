@@ -414,6 +414,21 @@ func (o DeviceCreatedBy) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *DeviceCreatedBy) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"id",
+		"short_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varDeviceCreatedBy := _DeviceCreatedBy{}
 
 	err = json.Unmarshal(bytes, &varDeviceCreatedBy)

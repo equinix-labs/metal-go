@@ -191,6 +191,21 @@ func (o MetalGatewayElasticIpCreateInput) ToMap() (map[string]interface{}, error
 }
 
 func (o *MetalGatewayElasticIpCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"address",
+		"next_hop",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varMetalGatewayElasticIpCreateInput := _MetalGatewayElasticIpCreateInput{}
 
 	err = json.Unmarshal(bytes, &varMetalGatewayElasticIpCreateInput)

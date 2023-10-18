@@ -417,6 +417,24 @@ func (o VlanFabricVcCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VlanFabricVcCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"metro",
+		"name",
+		"redundancy",
+		"service_token_type",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVlanFabricVcCreateInput := _VlanFabricVcCreateInput{}
 
 	err = json.Unmarshal(bytes, &varVlanFabricVcCreateInput)

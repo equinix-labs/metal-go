@@ -463,6 +463,23 @@ func (o DedicatedPortCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *DedicatedPortCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"metro",
+		"name",
+		"redundancy",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varDedicatedPortCreateInput := _DedicatedPortCreateInput{}
 
 	err = json.Unmarshal(bytes, &varDedicatedPortCreateInput)

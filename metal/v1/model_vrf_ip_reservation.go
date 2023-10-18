@@ -908,6 +908,21 @@ func (o VrfIpReservation) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VrfIpReservation) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"type",
+		"vrf",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVrfIpReservation := _VrfIpReservation{}
 
 	err = json.Unmarshal(bytes, &varVrfIpReservation)

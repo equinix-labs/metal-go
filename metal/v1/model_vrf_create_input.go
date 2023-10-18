@@ -372,6 +372,21 @@ func (o VrfCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VrfCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"metro",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varVrfCreateInput := _VrfCreateInput{}
 
 	err = json.Unmarshal(bytes, &varVrfCreateInput)

@@ -88,6 +88,20 @@ func (o DeviceProjectLite) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *DeviceProjectLite) UnmarshalJSON(bytes []byte) (err error) {
+	requiredProperties := []string{
+		"href",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range requiredProperties {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
 	varDeviceProjectLite := _DeviceProjectLite{}
 
 	err = json.Unmarshal(bytes, &varDeviceProjectLite)
