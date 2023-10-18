@@ -333,6 +333,24 @@ func (o {{classname}}) ToMap() (map[string]interface{}, error) {
 
 {{#isAdditionalPropertiesTrue}}
 func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
+{{#hasRequired}}
+	requiredProperties := []string{
+{{#requiredVars}}
+		"{{baseName}}",
+{{/requiredVars}}
+	}
+
+	allProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &allProperties); err == nil {
+		for _, requiredProperty := range(requiredProperties) {
+			if _, exists := allProperties[requiredProperty]; !exists {
+				return MissingRequiredFieldError(requiredProperty)
+			}
+		}
+	}
+
+{{/hasRequired}}
 {{#parent}}
 {{^isMap}}
 	type {{classname}}WithoutEmbeddedStruct struct {
