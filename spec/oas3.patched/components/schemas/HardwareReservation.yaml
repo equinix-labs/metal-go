@@ -2,6 +2,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   custom_rate:
     description: Amount that will be charged for every billing_cycle.
     example: 1050.5
@@ -16,6 +17,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   need_of_service:
     description: Whether this Device requires assistance from Equinix Metal.
     type: boolean

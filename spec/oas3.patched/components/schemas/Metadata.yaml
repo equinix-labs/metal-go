@@ -13,6 +13,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   iqn:
     type: string
   metro:

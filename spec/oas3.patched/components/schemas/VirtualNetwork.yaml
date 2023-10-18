@@ -17,6 +17,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   instances:
     description: A list of instances with ports currently associated to this Virtual
       Network.

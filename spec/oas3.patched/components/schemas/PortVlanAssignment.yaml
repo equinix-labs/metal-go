@@ -2,9 +2,11 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   id:
     format: uuid
     type: string
+    readOnly: true
   native:
     type: boolean
   port:
@@ -17,6 +19,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   virtual_network:
     $ref: './Href.yaml'
   vlan:

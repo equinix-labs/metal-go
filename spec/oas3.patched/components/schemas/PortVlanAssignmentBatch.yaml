@@ -2,6 +2,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   error_messages:
     items:
       type: string
@@ -9,6 +10,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   port:
     $ref: './Port.yaml'
   quantity:
@@ -23,6 +25,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   vlan_assignments:
     items:
       properties:

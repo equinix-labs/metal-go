@@ -4,6 +4,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   license_key:
     type: string
   licensee_product:

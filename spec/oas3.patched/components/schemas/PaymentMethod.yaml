@@ -8,6 +8,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   created_by_user:
     $ref: './Href.yaml'
   default:
@@ -21,6 +22,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   name:
     type: string
   organization:
@@ -34,4 +36,5 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
 type: object

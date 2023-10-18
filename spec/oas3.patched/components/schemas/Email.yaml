@@ -8,6 +8,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   verified:
     type: boolean
 type: object

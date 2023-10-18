@@ -4,11 +4,13 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   href:
     type: string
   id:
     format: uuid
     type: string
+    readOnly: true
   interpolated:
     type: string
   relationships:
