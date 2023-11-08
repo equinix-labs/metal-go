@@ -21,9 +21,11 @@ type FindOrganizationDevicesCategoriesParameterInner string
 
 // List of findOrganizationDevices_categories_parameter_inner
 const (
-	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_COMPUTE FindOrganizationDevicesCategoriesParameterInner = "compute"
-	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_STORAGE FindOrganizationDevicesCategoriesParameterInner = "storage"
-	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_VMCE    FindOrganizationDevicesCategoriesParameterInner = "vmce"
+	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_COMPUTE     FindOrganizationDevicesCategoriesParameterInner = "compute"
+	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_STORAGE     FindOrganizationDevicesCategoriesParameterInner = "storage"
+	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_VMCE        FindOrganizationDevicesCategoriesParameterInner = "vmce"
+	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_LEGACY_GEN  FindOrganizationDevicesCategoriesParameterInner = "legacy_gen"
+	FINDORGANIZATIONDEVICESCATEGORIESPARAMETERINNER_CURRENT_GEN FindOrganizationDevicesCategoriesParameterInner = "current_gen"
 )
 
 // All allowed values of FindOrganizationDevicesCategoriesParameterInner enum
@@ -31,6 +33,8 @@ var AllowedFindOrganizationDevicesCategoriesParameterInnerEnumValues = []FindOrg
 	"compute",
 	"storage",
 	"vmce",
+	"legacy_gen",
+	"current_gen",
 }
 
 func (v *FindOrganizationDevicesCategoriesParameterInner) UnmarshalJSON(src []byte) error {
