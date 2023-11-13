@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BgpDynamicNeighborCreateInput type satisfies the MappedNullable interface at compile time
@@ -153,6 +154,28 @@ func (o BgpDynamicNeighborCreateInput) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *BgpDynamicNeighborCreateInput) UnmarshalJSON(bytes []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"bgp_neighbor_range",
+		"bgp_neighbor_asn",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varBgpDynamicNeighborCreateInput := _BgpDynamicNeighborCreateInput{}
 
 	err = json.Unmarshal(bytes, &varBgpDynamicNeighborCreateInput)

@@ -13,6 +13,7 @@ package v1
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -51,6 +52,8 @@ type IPReservation struct {
 	Tags          []string               `json:"tags,omitempty"`
 	Type          IPReservationType      `json:"type"`
 }
+
+type _IPReservation IPReservation
 
 // NewIPReservation instantiates a new IPReservation object
 // This constructor will assign default values to properties that have it defined,
@@ -1086,6 +1089,41 @@ func (o IPReservation) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
+}
+
+func (o *IPReservation) UnmarshalJSON(bytes []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varIPReservation := _IPReservation{}
+
+	err = json.Unmarshal(bytes, &varIPReservation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IPReservation(varIPReservation)
+
+	return err
 }
 
 type NullableIPReservation struct {
