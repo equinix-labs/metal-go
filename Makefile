@@ -11,7 +11,7 @@ SPEC_PATCHED_DIR=spec/oas3.patched
 
 SPEC_FETCHED_FILE:=spec.fetched.json
 SPEC_PATCHED_FILE:=spec.patched.json
-OPENAPI_IMAGE_TAG=v7.0.0
+OPENAPI_IMAGE_TAG=v7.1.0
 OPENAPI_IMAGE=openapitools/openapi-generator-cli:${OPENAPI_IMAGE_TAG}
 GIT_ORG=equinix-labs
 GIT_REPO=metal-go
