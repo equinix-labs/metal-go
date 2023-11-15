@@ -51,6 +51,10 @@ patch-post:
 clean:
 	rm -rf $(PACKAGE_PREFIX)
 
+
+openapi-generator:
+	${OPENAPI_GENERATOR} meta -o /local/templates/ -t go
+
 codegen:
 	${OPENAPI_GENERATOR} generate -g go \
 		--package-name ${PACKAGE_MAJOR} \

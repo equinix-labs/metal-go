@@ -772,7 +772,17 @@ func formatErrorMessage(status string, v interface{}) string {
 	str := ""
 	metaValue := reflect.ValueOf(v).Elem()
 
+	// if v is implements Error, let's use it's Error()
+	if err, ok := v.(Error); ok {
+		str = err.Error()
+	} 
+
 	if metaValue.Kind() == reflect.Struct {
+		field := metaValue.FieldByName("Error")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s", field.Interface())
+		}
+
 		field := metaValue.FieldByName("Title")
 		if field != (reflect.Value{}) {
 			str = fmt.Sprintf("%s", field.Interface())

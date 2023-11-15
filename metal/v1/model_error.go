@@ -27,6 +27,10 @@ type Error struct {
 	AdditionalProperties map[string]interface{}
 }
 
+func (r Error) Error() string {
+		return fmt.Sprintf("%s %s", strings.Join(r.Errors, ", "), r.Error)
+}
+
 type _Error Error
 
 // NewError instantiates a new Error object
