@@ -21,6 +21,8 @@ get:
           - compute
           - storage
           - vmce
+          - legacy_gen
+          - current_gen
         example: compute
   - description: Filter by device facility
     in: query
