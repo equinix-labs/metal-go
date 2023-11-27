@@ -255,14 +255,16 @@ func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 		}
 
 		dump, err := httputil.DumpRequestOut(request, true)
+
+		if hasAuth {
+			request.Header["X-Auth-Token"] = authToken
+		}
+		
 		if err != nil {
 			return nil, err
 		}
 		log.Printf("\n%s\n", string(dump))
 
-		if hasAuth {
-			request.Header["X-Auth-Token"] = authToken
-		}
 	}
 
 	resp, err := c.cfg.HTTPClient.Do(request)
