@@ -2,12 +2,14 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   description:
     description: Available only for API keys
     type: string
   id:
     format: uuid
     type: string
+    readOnly: true
   project:
     allOf:
     - $ref: './Project.yaml'
@@ -19,6 +21,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   user:
     allOf:
     - $ref: './User.yaml'

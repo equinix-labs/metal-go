@@ -6,6 +6,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   created_by:
     $ref: './Href.yaml'
   details:
@@ -15,6 +16,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   metal_gateway:
     $ref: './MetalGatewayLite.yaml'
   netmask:

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AvatarThumbUrl** | Pointer to **string** |  | [optional] 
 **AvatarUrl** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Customdata** | Pointer to **map[string]interface{}** |  | [optional] 
 **DefaultOrganizationId** | Pointer to **string** |  | [optional] 
 **DefaultProjectId** | Pointer to **string** |  | [optional] 
@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 **FraudScore** | Pointer to **string** |  | [optional] 
 **FullName** | Pointer to **string** |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**LastLoginAt** | Pointer to **time.Time** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
+**LastLoginAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **LastName** | Pointer to **string** |  | [optional] 
 **MaxOrganizations** | Pointer to **int32** |  | [optional] 
 **MaxProjects** | Pointer to **int32** |  | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **ShortId** | Pointer to **string** |  | [optional] 
 **Timezone** | Pointer to **string** |  | [optional] 
 **TwoFactorAuth** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 
 ## Methods
 

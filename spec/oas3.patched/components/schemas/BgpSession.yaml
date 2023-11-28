@@ -7,6 +7,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   default_route:
     type: boolean
   device:
@@ -16,6 +17,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   learned_routes:
     items:
       description: IPv4 or IPv6 range
@@ -33,9 +35,11 @@ properties:
     - up
     - down
     type: string
+    readOnly: true
   updated_at:
     format: date-time
     type: string
+    readOnly: true
 required:
 - address_family
 type: object

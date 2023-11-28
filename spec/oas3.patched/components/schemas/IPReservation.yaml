@@ -18,6 +18,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   customdata:
     type: object
   enabled:
@@ -40,6 +41,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   manageable:
     type: boolean
   management:
@@ -62,6 +64,7 @@ properties:
     $ref: './Href.yaml'
   requested_by:
     $ref: './Href.yaml'
+    readOnly: true
   public:
     type: boolean
   state:

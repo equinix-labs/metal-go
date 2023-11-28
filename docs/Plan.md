@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Class** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **DeploymentTypes** | Pointer to [**[]PlanDeploymentTypesInner**](PlanDeploymentTypesInner.md) |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Legacy** | Pointer to **bool** | Deprecated. Always return false | [optional] 
 **Line** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 

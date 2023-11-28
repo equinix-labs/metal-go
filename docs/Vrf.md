@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** | Optional field that can be set to describe the VRF | [optional] 
 **Bill** | Pointer to **bool** | True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted. | [optional] [default to false]
@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 **Metro** | Pointer to [**Metro**](Metro.md) |  | [optional] 
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods

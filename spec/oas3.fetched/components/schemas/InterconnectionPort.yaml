@@ -2,6 +2,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   organization:
     $ref: './Href.yaml'
   role:
@@ -21,6 +22,7 @@ properties:
     - deleting
     - expired
     - delete_failed
+    readOnly: true
   switch_id:
     description: A switch 'short ID'
     type: string

@@ -12537,12 +12537,14 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         description:
           description: Available only for API keys
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         project:
           $ref: '#/components/schemas/AuthToken_project'
@@ -12552,6 +12554,7 @@ components:
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         user:
           $ref: '#/components/schemas/AuthToken_user'
@@ -12621,6 +12624,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         devices:
           items:
@@ -12632,6 +12636,7 @@ components:
           type: array
         id:
           format: uuid
+          readOnly: true
           type: string
         project:
           $ref: '#/components/schemas/Href'
@@ -12641,6 +12646,7 @@ components:
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       type: object
     BatchesList:
@@ -12739,6 +12745,7 @@ components:
           type: integer
         created_at:
           format: date-time
+          readOnly: true
           type: string
         deployment_type:
           $ref: '#/components/schemas/BgpConfig_deployment_type'
@@ -12746,6 +12753,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         max_prefix:
           default: 10
@@ -12765,6 +12773,7 @@ components:
           type: array
         requested_at:
           format: date-time
+          readOnly: true
           type: string
         route_object:
           description: Specifies AS-MACRO (aka AS-SET) to use when building client
@@ -14996,6 +15005,7 @@ components:
           $ref: '#/components/schemas/BgpSession_address_family'
         created_at:
           format: date-time
+          readOnly: true
           type: string
         default_route:
           type: boolean
@@ -15005,6 +15015,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         learned_routes:
           items:
@@ -15016,6 +15027,7 @@ components:
           $ref: '#/components/schemas/BgpSession_status'
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       required:
       - address_family
@@ -15993,6 +16005,7 @@ components:
           type: integer
         created_at:
           format: date-time
+          readOnly: true
           type: string
         created_by:
           $ref: '#/components/schemas/Device_created_by'
@@ -16016,6 +16029,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         image_url:
           type: string
@@ -16116,6 +16130,7 @@ components:
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         user:
           type: string
@@ -17695,6 +17710,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         verified:
           type: boolean
@@ -17721,6 +17737,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         instance_quota:
           type: object
@@ -17777,11 +17794,13 @@ components:
           type: string
         created_at:
           format: date-time
+          readOnly: true
           type: string
         href:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         interpolated:
           type: string
@@ -17925,6 +17944,7 @@ components:
           type: array
         id:
           format: uuid
+          readOnly: true
           type: string
         ip_ranges:
           description: IP ranges registered in facility. Can be used for GeoIP location
@@ -18299,6 +18319,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         project:
           $ref: '#/components/schemas/Href'
@@ -18497,6 +18518,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         custom_rate:
           description: Amount that will be charged for every billing_cycle.
@@ -18511,6 +18533,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         need_of_service:
           description: Whether this Device requires assistance from Equinix Metal.
@@ -18967,6 +18990,7 @@ components:
           type: integer
         created_at:
           format: date-time
+          readOnly: true
           type: string
         enabled:
           type: boolean
@@ -18978,6 +19002,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         manageable:
           type: boolean
@@ -19108,6 +19133,7 @@ components:
           type: integer
         created_at:
           format: date-time
+          readOnly: true
           type: string
         customdata:
           type: object
@@ -19125,6 +19151,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         manageable:
           type: boolean
@@ -19297,6 +19324,7 @@ components:
           $ref: '#/components/schemas/Href'
         id:
           format: uuid
+          readOnly: true
           type: string
         metro:
           allOf:
@@ -19346,6 +19374,7 @@ components:
           example: 10000000000
           type: integer
         status:
+          readOnly: true
           type: string
         tags:
           items:
@@ -19360,9 +19389,11 @@ components:
           $ref: '#/components/schemas/Interconnection_type'
         created_at:
           format: date-time
+          readOnly: true
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         requested_by:
           $ref: '#/components/schemas/Href'
@@ -19534,6 +19565,7 @@ components:
       properties:
         id:
           format: uuid
+          readOnly: true
           type: string
         organization:
           $ref: '#/components/schemas/Href'
@@ -19643,11 +19675,13 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         href:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         invitation:
           $ref: '#/components/schemas/Href'
@@ -19670,6 +19704,7 @@ components:
           type: array
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       type: object
     InvitationInput:
@@ -19901,6 +19936,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         items:
           items:
@@ -19913,6 +19949,7 @@ components:
         reference_number:
           type: string
         status:
+          readOnly: true
           type: string
         target_date:
           format: date
@@ -20222,6 +20259,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         license_key:
           type: string
@@ -20378,11 +20416,13 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         href:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         project:
           $ref: '#/components/schemas/Href'
@@ -20392,6 +20432,7 @@ components:
           type: array
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         user:
           $ref: '#/components/schemas/Href'
@@ -20525,6 +20566,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         iqn:
           type: string
@@ -20569,6 +20611,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         created_by:
           $ref: '#/components/schemas/Href'
@@ -20576,6 +20619,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         ip_reservation:
           $ref: '#/components/schemas/IPReservation'
@@ -20585,6 +20629,7 @@ components:
           $ref: '#/components/schemas/MetalGateway_state'
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         virtual_network:
           $ref: '#/components/schemas/VirtualNetwork'
@@ -20690,6 +20735,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         gateway_address:
           description: "The gateway address with subnet CIDR value for this Metal\
@@ -20701,11 +20747,13 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         state:
           $ref: '#/components/schemas/MetalGateway_state'
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         vlan:
           description: The VLAN id of the Virtual Network record associated to this
@@ -20726,6 +20774,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         name:
           type: string
@@ -20787,6 +20836,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         licensed:
           description: Licenced OS is priced according to pricing property
@@ -20900,6 +20950,7 @@ components:
           $ref: '#/components/schemas/Address'
         created_at:
           format: date-time
+          readOnly: true
           type: string
         credit_amount:
           format: float
@@ -20912,9 +20963,11 @@ components:
           description: "Force to all members to have enabled the two factor authentication\
             \ after that date, unless the value is null"
           format: date-time
+          readOnly: true
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         logo:
           type: string
@@ -20938,6 +20991,7 @@ components:
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         website:
           type: string
@@ -20984,6 +21038,7 @@ components:
           description: "Force to all members to have enabled the two factor authentication\
             \ after that date, unless the value is null"
           format: date-time
+          readOnly: true
           type: string
         logo:
           description: The logo for the organization; must be base64-encoded image
@@ -21153,6 +21208,7 @@ components:
           type: string
         created_at:
           format: date-time
+          readOnly: true
           type: string
         created_by_user:
           $ref: '#/components/schemas/Href'
@@ -21166,6 +21222,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         name:
           type: string
@@ -21179,6 +21236,7 @@ components:
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       type: object
     PaymentMethodBillingAddress:
@@ -21374,6 +21432,7 @@ components:
           uniqueItems: true
         id:
           format: uuid
+          readOnly: true
           type: string
         legacy:
           description: Deprecated. Always return false
@@ -21579,6 +21638,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         name:
           example: bond0
@@ -21632,9 +21692,11 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         native:
           type: boolean
@@ -21644,6 +21706,7 @@ components:
           $ref: '#/components/schemas/PortVlanAssignment_state'
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         virtual_network:
           $ref: '#/components/schemas/Href'
@@ -21725,6 +21788,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         error_messages:
           items:
@@ -21732,6 +21796,7 @@ components:
           type: array
         id:
           format: uuid
+          readOnly: true
           type: string
         port:
           $ref: '#/components/schemas/Port'
@@ -21741,6 +21806,7 @@ components:
           $ref: '#/components/schemas/PortVlanAssignmentBatch_state'
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         vlan_assignments:
           items:
@@ -22025,6 +22091,7 @@ components:
           $ref: '#/components/schemas/Href'
         created_at:
           format: date-time
+          readOnly: true
           type: string
         customdata:
           type: object
@@ -22036,6 +22103,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         invitations:
           items:
@@ -22069,6 +22137,7 @@ components:
           type: array
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         volumes:
           items:
@@ -22152,6 +22221,7 @@ components:
       properties:
         id:
           format: uuid
+          readOnly: true
           type: string
         name:
           type: string
@@ -22447,6 +22517,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         entity:
           $ref: '#/components/schemas/Href'
@@ -22456,6 +22527,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         key:
           type: string
@@ -22463,6 +22535,7 @@ components:
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         tags:
           items:
@@ -22589,6 +22662,7 @@ components:
           format: float
           type: number
         id:
+          readOnly: true
           type: string
         metro_code:
           type: string
@@ -22744,6 +22818,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         item:
           items:
@@ -22767,6 +22842,7 @@ components:
           format: date-time
           type: string
         status:
+          readOnly: true
           type: string
         total_cost:
           type: integer
@@ -23214,6 +23290,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         devices_max:
           type: integer
@@ -23228,6 +23305,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         instances:
           $ref: '#/components/schemas/Href'
@@ -23593,11 +23671,13 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         href:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         project:
           $ref: '#/components/schemas/Href'
@@ -23605,6 +23685,7 @@ components:
           $ref: '#/components/schemas/Href'
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       type: object
     TransferRequestInput:
@@ -23680,6 +23761,7 @@ components:
           type: string
         created_at:
           format: date-time
+          readOnly: true
           type: string
         customdata:
           type: object
@@ -23705,9 +23787,11 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         last_login_at:
           format: date-time
+          readOnly: true
           type: string
         last_name:
           type: string
@@ -23725,6 +23809,7 @@ components:
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       type: object
     UserCreateInput:
@@ -23825,6 +23910,7 @@ components:
         id:
           description: ID of the User
           format: uuid
+          readOnly: true
           type: string
       required:
       - id
@@ -23910,6 +23996,7 @@ components:
         created_at:
           description: When the user was created
           format: date-time
+          readOnly: true
           type: string
         email:
           description: Primary email address of the User
@@ -23926,6 +24013,7 @@ components:
         id:
           description: ID of the User
           format: uuid
+          readOnly: true
           type: string
         last_name:
           description: Last name of the User
@@ -23936,6 +24024,7 @@ components:
         updated_at:
           description: When the user details were last updated
           format: date-time
+          readOnly: true
           type: string
       required:
       - id
@@ -24051,6 +24140,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         instances:
           description: A list of instances with ports currently associated to this
@@ -24266,6 +24356,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         name:
           type: string
@@ -24299,9 +24390,11 @@ components:
           type: integer
         created_at:
           format: date-time
+          readOnly: true
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       type: object
     VlanVirtualCircuitCreateInput:
@@ -24526,6 +24619,7 @@ components:
       properties:
         id:
           format: uuid
+          readOnly: true
           type: string
         name:
           type: string
@@ -24572,9 +24666,11 @@ components:
           type: string
         created_at:
           format: date-time
+          readOnly: true
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         tags:
           items:
@@ -25102,6 +25198,7 @@ components:
           type: integer
         created_at:
           format: date-time
+          readOnly: true
           type: string
         created_by:
           $ref: '#/components/schemas/Href'
@@ -25111,6 +25208,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         metal_gateway:
           $ref: '#/components/schemas/MetalGatewayLite'
@@ -26914,6 +27012,7 @@ components:
       properties:
         created_at:
           format: date-time
+          readOnly: true
           type: string
         created_by:
           $ref: '#/components/schemas/Href'
@@ -26921,6 +27020,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         ip_reservation:
           $ref: '#/components/schemas/VrfIpReservation'
@@ -26930,6 +27030,7 @@ components:
           $ref: '#/components/schemas/MetalGateway_state'
         updated_at:
           format: date-time
+          readOnly: true
           type: string
         virtual_network:
           $ref: '#/components/schemas/VirtualNetwork'
@@ -29769,6 +29870,7 @@ components:
           type: string
         id:
           format: uuid
+          readOnly: true
           type: string
         md5:
           description: The MD5 password for the BGP peering in plaintext (not a checksum).
@@ -29816,9 +29918,11 @@ components:
           $ref: '#/components/schemas/Vrf'
         created_at:
           format: date-time
+          readOnly: true
           type: string
         updated_at:
           format: date-time
+          readOnly: true
           type: string
       required:
       - vrf
@@ -30065,6 +30169,7 @@ components:
         id:
           description: ID of the bonding port
           format: uuid
+          readOnly: true
           type: string
         name:
           description: Name of the port interface for the bond ("bond0")
@@ -30441,6 +30546,7 @@ components:
       - requested
       - enabled
       - disabled
+      readOnly: true
       type: string
     BgpConfigRequestInput_deployment_type:
       description: Wether the BGP deployment is local or global. Local deployments
@@ -30474,6 +30580,7 @@ components:
       - unknown
       - up
       - down
+      readOnly: true
       type: string
     CreateSelfServiceReservationRequest_period_count:
       enum:
@@ -30730,6 +30837,7 @@ components:
       - deleting
       - expired
       - delete_failed
+      readOnly: true
       type: string
     Invitation_roles_inner:
       enum:
@@ -31199,6 +31307,7 @@ components:
       - changing_vlan_failed
       - deactivation_failed
       - delete_failed
+      readOnly: true
       type: string
     VlanVirtualCircuit_type:
       enum:
@@ -31253,6 +31362,7 @@ components:
       - changing_peering_details_failed
       - deactivation_failed
       - delete_failed
+      readOnly: true
       type: string
     DeviceActionInput_type:
       description: Action to perform. See Device.actions for possible actions.

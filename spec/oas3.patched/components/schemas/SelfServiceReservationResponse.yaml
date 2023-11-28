@@ -2,6 +2,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   item:
     items:
       $ref: './SelfServiceReservationItemResponse.yaml'
@@ -35,6 +36,7 @@ properties:
     type: string
   status:
     type: string
+    readOnly: true
   total_cost:
     type: integer
 type: object

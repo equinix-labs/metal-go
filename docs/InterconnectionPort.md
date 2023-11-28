@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Role** | Pointer to [**InterconnectionPortRole**](InterconnectionPortRole.md) |  | [optional] 
 **Status** | Pointer to [**InterconnectionPortStatus**](InterconnectionPortStatus.md) |  | [optional] 

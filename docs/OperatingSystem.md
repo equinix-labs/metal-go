@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Distro** | Pointer to **string** |  | [optional] 
 **DistroLabel** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Licensed** | Pointer to **bool** | Licenced OS is priced according to pricing property | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Preinstallable** | Pointer to **bool** | Servers can be already preinstalled with OS in order to shorten provision time. | [optional] 

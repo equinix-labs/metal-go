@@ -3,6 +3,7 @@ properties:
     description: ID of the bonding port
     type: string
     format: uuid
+    readOnly: true
   name:
     description: Name of the port interface for the bond ("bond0")
     type: string

@@ -2,11 +2,13 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   href:
     type: string
   id:
     format: uuid
     type: string
+    readOnly: true
   invitation:
     $ref: './Href.yaml'
   invited_by:
@@ -34,4 +36,5 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
 type: object

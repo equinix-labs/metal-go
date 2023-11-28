@@ -2,6 +2,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   created_by:
     $ref: './Href.yaml'
   href:
@@ -9,6 +10,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   ip_reservation:
     $ref: './IPReservation.yaml'
   project:
@@ -27,6 +29,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   virtual_network:
     $ref: './VirtualNetwork.yaml'
 type: object

@@ -6,6 +6,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   licensed:
     description: Licenced OS is priced according to pricing property
     type: boolean

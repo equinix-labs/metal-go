@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AvatarThumbUrl** | Pointer to **string** | Avatar thumbnail URL of the User | [optional] 
-**CreatedAt** | Pointer to **time.Time** | When the user was created | [optional] 
+**CreatedAt** | Pointer to **time.Time** | When the user was created | [optional] [readonly] 
 **Email** | Pointer to **string** | Primary email address of the User | [optional] 
 **FirstName** | Pointer to **string** | First name of the User | [optional] 
 **FullName** | Pointer to **string** | Full name of the User | [optional] 
 **Href** | Pointer to **string** | API URL uniquely representing the User | [optional] 
-**Id** | **string** | ID of the User | 
+**Id** | **string** | ID of the User | [readonly] 
 **LastName** | Pointer to **string** | Last name of the User | [optional] 
 **ShortId** | **string** | Short ID of the User | 
-**UpdatedAt** | Pointer to **time.Time** | When the user details were last updated | [optional] 
+**UpdatedAt** | Pointer to **time.Time** | When the user details were last updated | [optional] [readonly] 
 
 ## Methods
 

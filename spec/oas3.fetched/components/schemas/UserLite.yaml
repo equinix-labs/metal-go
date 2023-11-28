@@ -6,6 +6,7 @@ properties:
     description: When the user was created
     format: date-time
     type: string
+    readOnly: true
   email:
     description: Primary email address of the User
     type: string
@@ -22,6 +23,7 @@ properties:
     description: ID of the User
     format: uuid
     type: string
+    readOnly: true
   last_name:
     description: Last name of the User
     type: string
@@ -32,6 +34,7 @@ properties:
     description: When the user details were last updated
     format: date-time
     type: string
+    readOnly: true
 required:
 - id
 - short_id

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Invitation** | Pointer to [**Href**](Href.md) |  | [optional] 
 **InvitedBy** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Invitee** | Pointer to **string** |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Organization** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Projects** | Pointer to [**[]Href**](Href.md) |  | [optional] 
 **Roles** | Pointer to [**[]InvitationRolesInner**](InvitationRolesInner.md) |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 
 ## Methods
 

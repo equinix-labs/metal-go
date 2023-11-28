@@ -6,6 +6,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   customdata:
     type: object
   default_organization_id:
@@ -31,9 +32,11 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   last_login_at:
     format: date-time
     type: string
+    readOnly: true
   last_name:
     type: string
   max_organizations:
@@ -51,4 +54,5 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
 type: object

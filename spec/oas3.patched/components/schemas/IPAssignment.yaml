@@ -10,6 +10,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   enabled:
     type: boolean
   gateway:
@@ -21,6 +22,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   manageable:
     type: boolean
   management:

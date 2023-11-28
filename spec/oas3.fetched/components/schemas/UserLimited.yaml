@@ -15,6 +15,7 @@ properties:
     description: ID of the User
     format: uuid
     type: string
+    readOnly: true
 required:
       - id
       - short_id

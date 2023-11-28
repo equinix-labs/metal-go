@@ -13,6 +13,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   md5:
     description: >-
       The MD5 password for the BGP peering in plaintext (not a checksum).
@@ -62,6 +63,7 @@ properties:
     - changing_peering_details_failed
     - deactivation_failed
     - delete_failed
+    readOnly: true
   subnet:
     description: >-
       The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for
@@ -84,7 +86,9 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   updated_at:
     format: date-time
     type: string
+    readOnly: true
 type: object

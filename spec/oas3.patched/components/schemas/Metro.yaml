@@ -6,6 +6,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   name:
     type: string
 type: object

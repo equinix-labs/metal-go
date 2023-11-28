@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Address** | Pointer to [**Address**](Address.md) |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
 **Features** | Pointer to [**[]FacilityFeaturesInner**](FacilityFeaturesInner.md) |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **IpRanges** | Pointer to **[]string** | IP ranges registered in facility. Can be used for GeoIP location | [optional] 
 **Metro** | Pointer to [**DeviceMetro**](DeviceMetro.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 

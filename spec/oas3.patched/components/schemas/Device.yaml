@@ -8,6 +8,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   created_by:
     allOf:
     - $ref: './UserLite.yaml'
@@ -33,6 +34,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   image_url:
     type: string
   ip_addresses:
@@ -165,6 +167,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   user:
     type: string
   userdata:

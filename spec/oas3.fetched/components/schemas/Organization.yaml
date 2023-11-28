@@ -6,6 +6,7 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   credit_amount:
     format: float
     type: number
@@ -18,9 +19,11 @@ properties:
       after that date, unless the value is null
     format: date-time
     type: string
+    readOnly: true
   id:
     format: uuid
     type: string
+    readOnly: true
   logo:
     type: string
   members:
@@ -44,6 +47,7 @@ properties:
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   website:
     type: string
 type: object

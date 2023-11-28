@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Asn** | Pointer to **int32** | Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned. | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **DeploymentType** | Pointer to [**BgpConfigDeploymentType**](BgpConfigDeploymentType.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **MaxPrefix** | Pointer to **int32** | The maximum number of route filters allowed per server | [optional] [default to 10]
 **Md5** | Pointer to **NullableString** | (Optional) Password for BGP session in plaintext (not a checksum) | [optional] 
 **Project** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Ranges** | Pointer to [**[]GlobalBgpRange**](GlobalBgpRange.md) | The IP block ranges associated to the ASN (Populated in Global BGP only) | [optional] 
-**RequestedAt** | Pointer to **time.Time** |  | [optional] 
+**RequestedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **RouteObject** | Pointer to **string** | Specifies AS-MACRO (aka AS-SET) to use when building client route filters | [optional] 
 **Sessions** | Pointer to [**[]BgpSession**](BgpSession.md) | The direct connections between neighboring routers that want to exchange routing information. | [optional] 
 **Status** | Pointer to [**BgpConfigStatus**](BgpConfigStatus.md) |  | [optional] 

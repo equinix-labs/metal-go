@@ -23,6 +23,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   items:
     items:
       $ref: './LineItem.yaml'
@@ -35,6 +36,7 @@ properties:
     type: string
   status:
     type: string
+    readOnly: true
   target_date:
     format: date
     type: string

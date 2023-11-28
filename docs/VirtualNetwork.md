@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Facility** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Instances** | Pointer to [**[]Href**](Href.md) | A list of instances with ports currently associated to this Virtual Network. | [optional] 
 **MetalGateways** | Pointer to [**[]MetalGatewayLite**](MetalGatewayLite.md) | A list of metal gateways currently associated to this Virtual Network. | [optional] 
 **Metro** | Pointer to [**Href**](Href.md) |  | [optional] 

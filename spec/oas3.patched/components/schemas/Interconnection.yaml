@@ -8,6 +8,7 @@ properties:
   id:
     format: uuid
     type: string
+    readOnly: true
   metro:
     allOf:
     - $ref: './Metro.yaml'
@@ -53,6 +54,7 @@ properties:
     example: 10000000000
   status:
     type: string
+    readOnly: true
   tags:
     items:
       type: string
@@ -70,9 +72,12 @@ properties:
   created_at:
     format: date-time
     type: string
+    readOnly: true
   updated_at:
     format: date-time
     type: string
+    readOnly: true
   requested_by:
     $ref: './Href.yaml'
+    readOnly: true
 type: object

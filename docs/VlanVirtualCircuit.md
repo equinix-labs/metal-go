@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Bill** | Pointer to **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal. | [optional] [default to false]
 **Description** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | Pointer to **string** |  | [optional] 
 **NniVlan** | Pointer to **int32** |  | [optional] 
 **Port** | Pointer to [**Href**](Href.md) |  | [optional] 
@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **Type** | Pointer to [**VlanVirtualCircuitType**](VlanVirtualCircuitType.md) |  | [optional] 
 **VirtualNetwork** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Vnid** | Pointer to **int32** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 
 ## Methods
 

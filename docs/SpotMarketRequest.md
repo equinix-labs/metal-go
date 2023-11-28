@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **DevicesMax** | Pointer to **int32** |  | [optional] 
 **DevicesMin** | Pointer to **int32** |  | [optional] 
 **EndAt** | Pointer to **time.Time** |  | [optional] 
 **Facilities** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Href** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Instances** | Pointer to [**Href**](Href.md) |  | [optional] 
 **MaxBidPrice** | Pointer to **float32** |  | [optional] 
 **Metro** | Pointer to [**SpotMarketRequestMetro**](SpotMarketRequestMetro.md) |  | [optional] 

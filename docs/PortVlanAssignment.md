@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
 **Native** | Pointer to **bool** |  | [optional] 
 **Port** | Pointer to [**Href**](Href.md) |  | [optional] 
 **State** | Pointer to [**PortVlanAssignmentState**](PortVlanAssignmentState.md) |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] [readonly] 
 **VirtualNetwork** | Pointer to [**Href**](Href.md) |  | [optional] 
 **Vlan** | Pointer to **int32** |  | [optional] 
 
