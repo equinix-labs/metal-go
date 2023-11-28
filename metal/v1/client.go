@@ -356,18 +356,22 @@ func parameterToJson(obj interface{}) (string, error) {
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 	if c.cfg.Debug {
-		r := request.Clone(context.TODO())
-		r.Body, _ = request.GetBody()
-		h := r.Header
-		if len(h.Get("X-Auth-Token")) != 0 {
-			h.Set("X-Auth-Token", "**REDACTED**")
+		authToken, hasAuth := request.Header["X-Auth-Token"]
+		if hasAuth {
+			request.Header.Set("X-Auth-Token", "**REDACTED**")
 		}
 
-		dump, err := httputil.DumpRequestOut(r, true)
+		dump, err := httputil.DumpRequestOut(request, true)
+
+		if hasAuth {
+			request.Header["X-Auth-Token"] = authToken
+		}
+
 		if err != nil {
 			return nil, err
 		}
 		log.Printf("\n%s\n", string(dump))
+
 	}
 
 	resp, err := c.cfg.HTTPClient.Do(request)
