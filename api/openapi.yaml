@@ -12692,7 +12692,7 @@ components:
           learned_routes:
           - 10.32.16.0/31
           - 10.32.16.0/31
-          status: null
+          status: status
         - address_family: null
           updated_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -12704,7 +12704,7 @@ components:
           learned_routes:
           - 10.32.16.0/31
           - 10.32.16.0/31
-          status: null
+          status: status
         ranges:
         - address_family: 6
           project:
@@ -14990,7 +14990,7 @@ components:
         learned_routes:
         - 10.32.16.0/31
         - 10.32.16.0/31
-        status: null
+        status: status
       properties:
         address_family:
           $ref: '#/components/schemas/BgpSession_address_family'
@@ -15013,7 +15013,12 @@ components:
             type: string
           type: array
         status:
-          $ref: '#/components/schemas/BgpSession_status'
+          description: " The status of the BGP Session. Multiple status values may\
+            \ be reported when the device is connected to multiple switches, one value\
+            \ per switch. Each status will start with \"unknown\" and progress to\
+            \ \"up\" or \"down\" depending on the connected device. Subsequent \"\
+            unknown\" values indicate a problem acquiring status from the switch. "
+          type: string
         updated_at:
           format: date-time
           type: string
@@ -15034,7 +15039,7 @@ components:
           learned_routes:
           - 10.32.16.0/31
           - 10.32.16.0/31
-          status: null
+          status: status
         - address_family: null
           updated_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -15046,7 +15051,7 @@ components:
           learned_routes:
           - 10.32.16.0/31
           - 10.32.16.0/31
-          status: null
+          status: status
       properties:
         bgp_sessions:
           items:
@@ -30463,17 +30468,6 @@ components:
       enum:
       - ipv4
       - ipv6
-      type: string
-    BgpSession_status:
-      description: " The status of the BGP Session. Multiple status values may be\
-        \ reported when the device is connected to multiple switches, one value per\
-        \ switch. Each status will start with \"unknown\" and progress to \"up\" or\
-        \ \"down\" depending on the connected device. Subsequent \"unknown\" values\
-        \ indicate a problem acquiring status from the switch. "
-      enum:
-      - unknown
-      - up
-      - down
       type: string
     CreateSelfServiceReservationRequest_period_count:
       enum:

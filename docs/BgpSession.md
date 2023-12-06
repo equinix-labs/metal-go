@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Href** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LearnedRoutes** | Pointer to **[]string** |  | [optional] 
-**Status** | Pointer to [**BgpSessionStatus**](BgpSessionStatus.md) |  | [optional] 
+**Status** | Pointer to **string** |  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \&quot;unknown\&quot; and progress to \&quot;up\&quot; or \&quot;down\&quot; depending on the connected device. Subsequent \&quot;unknown\&quot; values indicate a problem acquiring status from the switch.  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
@@ -205,20 +205,20 @@ HasLearnedRoutes returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *BgpSession) GetStatus() BgpSessionStatus`
+`func (o *BgpSession) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *BgpSession) GetStatusOk() (*BgpSessionStatus, bool)`
+`func (o *BgpSession) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *BgpSession) SetStatus(v BgpSessionStatus)`
+`func (o *BgpSession) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 

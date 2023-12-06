@@ -76,7 +76,6 @@ docs/BgpSession.md
 docs/BgpSessionAddressFamily.md
 docs/BgpSessionList.md
 docs/BgpSessionNeighbors.md
-docs/BgpSessionStatus.md
 docs/BondPortData.md
 docs/CapacityApi.md
 docs/CapacityCheckPerFacilityInfo.md
@@ -414,7 +413,6 @@ model_bgp_session_input.go
 model_bgp_session_input_address_family.go
 model_bgp_session_list.go
 model_bgp_session_neighbors.go
-model_bgp_session_status.go
 model_bond_port_data.go
 model_capacity_check_per_facility_info.go
 model_capacity_check_per_facility_list.go

@@ -22,15 +22,16 @@ var _ MappedNullable = &BgpSession{}
 
 // BgpSession struct for BgpSession
 type BgpSession struct {
-	AddressFamily        BgpSessionAddressFamily `json:"address_family"`
-	CreatedAt            *time.Time              `json:"created_at,omitempty"`
-	DefaultRoute         *bool                   `json:"default_route,omitempty"`
-	Device               *Href                   `json:"device,omitempty"`
-	Href                 *string                 `json:"href,omitempty"`
-	Id                   *string                 `json:"id,omitempty"`
-	LearnedRoutes        []string                `json:"learned_routes,omitempty"`
-	Status               *BgpSessionStatus       `json:"status,omitempty"`
-	UpdatedAt            *time.Time              `json:"updated_at,omitempty"`
+	AddressFamily BgpSessionAddressFamily `json:"address_family"`
+	CreatedAt     *time.Time              `json:"created_at,omitempty"`
+	DefaultRoute  *bool                   `json:"default_route,omitempty"`
+	Device        *Href                   `json:"device,omitempty"`
+	Href          *string                 `json:"href,omitempty"`
+	Id            *string                 `json:"id,omitempty"`
+	LearnedRoutes []string                `json:"learned_routes,omitempty"`
+	//  The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch.
+	Status               *string    `json:"status,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -271,9 +272,9 @@ func (o *BgpSession) SetLearnedRoutes(v []string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *BgpSession) GetStatus() BgpSessionStatus {
+func (o *BgpSession) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
-		var ret BgpSessionStatus
+		var ret string
 		return ret
 	}
 	return *o.Status
@@ -281,7 +282,7 @@ func (o *BgpSession) GetStatus() BgpSessionStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpSession) GetStatusOk() (*BgpSessionStatus, bool) {
+func (o *BgpSession) GetStatusOk() (*string, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -297,8 +298,8 @@ func (o *BgpSession) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given BgpSessionStatus and assigns it to the Status field.
-func (o *BgpSession) SetStatus(v BgpSessionStatus) {
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *BgpSession) SetStatus(v string) {
 	o.Status = &v
 }
 

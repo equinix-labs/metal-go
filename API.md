@@ -411,7 +411,6 @@ Class | Method | HTTP request | Description
  - [BgpSessionAddressFamily](docs/BgpSessionAddressFamily.md)
  - [BgpSessionList](docs/BgpSessionList.md)
  - [BgpSessionNeighbors](docs/BgpSessionNeighbors.md)
- - [BgpSessionStatus](docs/BgpSessionStatus.md)
  - [BondPortData](docs/BondPortData.md)
  - [CapacityCheckPerFacilityInfo](docs/CapacityCheckPerFacilityInfo.md)
  - [CapacityCheckPerFacilityList](docs/CapacityCheckPerFacilityList.md)
