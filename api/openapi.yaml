@@ -780,18 +780,24 @@ paths:
                   am:
                     c2.medium.x86:
                       level: string
+                      available_servers: 25
                     m2.xlarge.x86:
                       level: string
+                      available_servers: 15
                   da:
                     c2.medium.x86:
                       level: string
+                      available_servers: 26
                     m2.xlarge.x86:
                       level: string
+                      available_servers: 11
                   dc:
                     c2.medium.x86:
                       level: string
+                      available_servers: 14
                     m2.xlarge.x86:
                       level: string
+                      available_servers: 10
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -5021,6 +5027,11 @@ paths:
         name: has_termination_time
         schema:
           type: boolean
+      - description: Filter by MAC address
+        in: query
+        name: mac_address
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -7736,6 +7747,11 @@ paths:
         name: has_termination_time
         schema:
           type: boolean
+      - description: Filter by MAC address
+        in: query
+        name: mac_address
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
