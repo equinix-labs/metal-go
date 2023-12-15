@@ -1,9 +1,8 @@
 # Golang client for Equinix Metal
 
-[![Experimental](https://img.shields.io/badge/Stability-Experimental-red.svg)](https://github.com/equinix-labs/equinix-labs/blob/main/uniform-standards.md)
+[![Deprecated](https://img.shields.io/badge/Stability-Deprecated-red.svg)](https://github.com/equinix-labs/equinix-labs/blob/main/uniform-standards.md)
 
-> **[Experimental](https://github.com/equinix-labs/equinix-labs/blob/main/experimental-statement.md)**
-> This is experimental. Don't use it in production. Examples demonstrate that this client is usable. Please submit patches and open issues with your experience. This repo contains Go code generated from a [customized OpenAPI specification](spec/oas3.patched) based on the [Equinix Metal API spec](https://api.equinix.com/metal/v1/api-docs).  The client is generated using the Go client support built into the [OpenAPITools openapi-generator](https://github.com/OpenAPITools/openapi-generator).
+> **[Deprecated](https://github.com/equinix-labs/equinix-labs/blob/main/deprecated-statement.md)** This repository is Deprecated, meaning that this software is only supported or maintained by Equinix Metal and its community in a case-by-case basis.  It has been replaced by [`equinix-sdk-go`](https://github.com/equinix/equinix-sdk-go), which is generated using a similar process to this SDK and is intended to support Equinix services beyond only Metal.  Version 0.30.0 of the new SDK is a drop-in replacement for version 0.29.0 of this SDK.
 
 ## Contents
 
