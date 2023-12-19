@@ -70,6 +70,7 @@ validate:
 mod:
 	rm -f go.mod go.sum ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/go.mod ${PACKAGE_PREFIX}/${PACKAGE_MAJOR}/go.sum
 	go mod init github.com/${GIT_ORG}/${GIT_REPO}
+	printf "// Deprecated: use github.com/equinix/equinix-sdk-go instead.\n%s" "$$(cat go.mod)" > go.mod
 	go mod tidy
 
 test:
