@@ -1,3 +1,4 @@
+// Deprecated: use github.com/equinix/equinix-sdk-go instead.
 module github.com/equinix-labs/metal-go
 
 go 1.19
